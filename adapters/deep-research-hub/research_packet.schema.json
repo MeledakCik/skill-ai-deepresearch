@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/deep-research-domain-council/research_packet.schema.json",
+  "title": "Research Packet",
+  "description": "Shared exchange format for findings between deep-research AIs (Part Q of deep-research-domain-council).",
+  "type": "object",
+  "required": ["producer", "run_date", "brief_id", "findings", "sources"],
+  "properties": {
+    "producer": {"type": "string", "description": "Platform + model + mode, e.g. 'Gemini Deep Research (Gemini 4 Argon)'"},
+    "run_date": {"type": "string", "format": "date"},
+    "brief_id": {"type": "string"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "rq", "claim", "confidence", "source_ids"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^F[0-9]+$"},
+          "rq": {"type": "string", "pattern": "^RQ[0-9]+$"},
+          "claim": {"type": "string"},
+          "confidence": {"enum": ["Very high", "High", "Moderate", "Low", "Speculative"]},
+          "confidence_reason": {"type": "string"},
+          "source_ids": {"type": "array", "items": {"type": "string", "pattern": "^S[0-9]+$"}, "minItems": 1},
+          "updates": {"type": "string", "description": "Finding id this one updates, if any"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url", "tier"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^S[0-9]+$"},
+          "title": {"type": "string"},
+          "publisher": {"type": "string"},
+          "date": {"type": "string"},
+          "url": {"type": "string", "format": "uri"},
+          "tier": {"enum": ["T1", "T2", "T3", "T4"]},
+          "origin_of": {"type": "string", "description": "Source id of the original, if this source repeats another"},
+          "locator": {"type": "string"}
+        }
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "side_a", "side_b"],
+        "properties": {
+          "topic": {"type": "string"},
+          "side_a": {"type": "string"},
+          "side_b": {"type": "string"},
+          "likely_reason": {"type": "string"}
+        }
+      }
+    },
+    "gaps": {"type": "array", "items": {"type": "string"}}
+  }
+}
