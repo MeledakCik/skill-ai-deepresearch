@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   source: deep-research-domain-council
 ---
 
@@ -32,7 +32,7 @@ Hard rules: no fake stats, logos or testimonials; specific CTAs ("Create invoice
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill.
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier.
 
 ## Before sending (every time)
 
@@ -52,3 +52,5 @@ Full checklist: Part N of the deep-research-council skill (open only for high-st
 | `references/part-c3-anti-slop-design-filter.md` | Anti-slop rules R-01..R-40 and reference design systems |
 | `references/part-c5-full-stack-60fps-motion-distributed-back.md` | Full-stack, 60 fps motion and back-end patterns |
 | `references/part-g-natural-writing.md` | Natural writing patterns and rewrite example |
+
+References sometimes mention Parts that live in sibling skills: Part A, D, E, I, J, K, L, M1, M3, M4, M5, N, Q, R3 -> `../deep-research-council/references/`; Part B, C1, H -> `../token-efficiency/references/`; Part C2 -> `../academic-writing/references/`; Part C4 -> `../android-compose/references/`; Part C6 -> `../skill-security-audit/references/`; Part M2 -> `../ai-video-production/references/`; Part O -> `../project-scaffolding/references/`; Part P -> `../infrastructure-iac/references/`; Part R (research engine) -> `../deep-research-council/SKILL.md`. Open them only if the current task truly needs that detail.

@@ -46,7 +46,7 @@ MODEL_CLASS = """## Match effort to the model
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill."""
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier."""
 
 # Each skill: description (what + use when + not for), core workflow, references (Part letters or sub-sections like "C3").
 SKILLS = {
@@ -72,7 +72,23 @@ Tiers: **Quick** 1-5 sources (stages 1, 3, 6, 12) · **Standard** 10-25 sources,
 11. Keep notes and a claim ledger so long runs survive interruptions.
 12. Report: bottom line first, cited findings per RQ, confidence (Very high / High / Moderate / Low / Speculative) with reasons, contradictions, gaps, method line, sources.
 
-Source tiers: T1 original data, official statistics, filings, peer-reviewed, primary law, official docs · T2 reputable secondary · T3 trade press, blogs, vendor papers · T4 anonymous, SEO, AI-generated (not evidence).""",
+Source tiers: T1 original data, official statistics, filings, peer-reviewed, primary law, official docs · T2 reputable secondary · T3 trade press, blogs, vendor papers · T4 anonymous, SEO, AI-generated (not evidence).
+
+Rules that apply at every tier:
+- **Date-bound question** ("per <date>", "terbaru", "saat ini", "sekarang"): even at Quick tier, run one recency check for changes after your newest source's date (stage 7, one or two searches).
+- **Only sources you actually opened count.** Search-result snippets are leads; list them separately if useful.
+- **Citations:** if your host has a native citation format or tool, use it. Otherwise cite inline as [1], [2] and list numbered sources (title, publisher, date, URL, tier). Never leave an empty citation.
+
+## Quick-tier report template
+
+```
+Kesimpulan / Bottom line: 2-4 bullets, each with confidence
+Temuan: one short paragraph or 3-6 bullets per RQ, cited [n]
+Celah: what was not checked and how to check it
+Metode: tier, sources opened (count by tier), search date
+Sumber: [n] title, publisher, date, URL, tier
+```
+Standard and Deep tiers add contradictions, ranked findings and follow-up questions (template in the Part I reference).""",
         "refs": ["A", "I", "J", "K", "L", "Q", "D", "R3", "M1", "M3", "M4", "M5", "E", "N", "H"],
     },
     "web-ui-design": {
@@ -103,6 +119,13 @@ Hard rules: no fake stats, logos or testimonials; specific CTAs ("Create invoice
 - Vary sentence length; prose for reasoning, lists only for scannable items.
 - Give a verdict and the condition that would flip it, instead of fake balance.
 - Indonesian: natural register (baku, not stiff); no literal translations of English marketing phrases.
+- Never invent facts (prices, hours, claims of taste or results). If the user gave no facts, ask for them or write without them.
+
+## Social media captions
+
+Lead with the most concrete thing (product + price, or the news). 1-3 short paragraphs. 3-5 specific hashtags (place, product, brand), not generic ones. Emoji: none by default; at most 1-2 if the account's own style uses them. End with one clear action (visit, order, reply) only if it fits.
+
+Example. Before: "Di era digital ini kami bangga mempersembahkan solusi kopi revolusioner! ✨🚀" After: "Es kopi gula aren, Rp18.000. Andalan kami di Jalan Braga 12, buka 07.00-22.00."
 
 ## Self-check
 
@@ -289,6 +312,35 @@ def sections(body):
     return out
 
 
+# Home skill of every Part / sub-section (where a model should look for it).
+HOME = {
+    **{k: "deep-research-council" for k in ["A", "D", "E", "I", "J", "K", "L", "M1", "M3", "M4", "M5", "N", "Q", "R3"]},
+    **{k: "token-efficiency" for k in ["B", "C1", "H"]},
+    "C2": "academic-writing", "C3": "web-ui-design", "C5": "web-ui-design", "F": "web-ui-design",
+    "G": "natural-writing", "C4": "android-compose", "C6": "skill-security-audit",
+    "M2": "ai-video-production", "O": "project-scaffolding", "P": "infrastructure-iac",
+}
+
+
+def cross_ref_note(name, own_refs):
+    """Reference files mention other Parts; tell the model which sibling skill holds each one."""
+    owner = dict(HOME)
+    own = set(own_refs)
+    own_letters = {k for k in own if len(k) == 1}
+    elsewhere = {}
+    for key, skill in sorted(owner.items()):
+        if skill == name or key in own or key[0] in own_letters:
+            continue
+        elsewhere.setdefault(skill, []).append(key)
+    lines = [f"Part {', '.join(v)} -> `../{k}/references/`" for k, v in elsewhere.items()]
+    if name != "deep-research-council":
+        lines.append("Part R (research engine) -> `../deep-research-council/SKILL.md`")
+    if not lines:
+        return ""
+    return ("\nReferences sometimes mention Parts that live in sibling skills: " + "; ".join(lines) +
+            ". Open them only if the current task truly needs that detail.\n")
+
+
 def ref_filename(key, text):
     title = text.splitlines()[0].lstrip("#").strip()
     title = re.sub(r"^(PART [A-Z] — |[A-Z]\d+\. )", "", title).split("(")[0]
@@ -314,8 +366,9 @@ def build_skills(body, version):
         # why: YAML needs quotes escaped; use a folded block scalar to stay valid with any punctuation
         fm = (f"---\nname: {name}\ndescription: >-\n  {desc}\nlicense: MIT\nmetadata:\n  author: kasyaf-anugrah\n"
               f"  version: \"{version}\"\n  source: {PLUGIN}\n---\n\n")
+        others = cross_ref_note(name, spec["refs"])
         text = (fm + f"# {spec['title']}\n\n{spec['core']}\n\n{MODEL_CLASS}\n\n{SHIP_CHECK}\n\n"
-                "## References (open only the one you need)\n\n| File | Read when |\n|:---|:---|\n" + "\n".join(rows) + "\n")
+                "## References (open only the one you need)\n\n| File | Read when |\n|:---|:---|\n" + "\n".join(rows) + "\n" + others)
         text = text.replace("Full checklist: `references/part-n-pre-delivery-error-handling.md`",
                             "Full checklist: " + (f"`references/{ref_filename('N', secs['N'])}`" if "N" in spec["refs"] else "Part N of the deep-research-council skill"))
         write(f"skills/{name}/SKILL.md", text)

@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   source: deep-research-domain-council
 ---
 
@@ -31,7 +31,7 @@ Model pairing (optional): a strong long-context model as architect, a strong cod
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill.
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier.
 
 ## Before sending (every time)
 
@@ -51,3 +51,5 @@ Full checklist: `references/part-n-pre-delivery-error-handling.md` (open only fo
 | `references/part-c5-full-stack-60fps-motion-distributed-back.md` | Full-stack, 60 fps motion and back-end patterns |
 | `references/part-n-pre-delivery-error-handling.md` | Pre-delivery error handling (full) |
 | `references/part-h-token-economy.md` | Token economy, caching, model-class profiles (H9) |
+
+References sometimes mention Parts that live in sibling skills: Part A, D, E, I, J, K, L, M1, M3, M4, M5, Q, R3 -> `../deep-research-council/references/`; Part B, C1 -> `../token-efficiency/references/`; Part C2 -> `../academic-writing/references/`; Part C3, F -> `../web-ui-design/references/`; Part C4 -> `../android-compose/references/`; Part C6 -> `../skill-security-audit/references/`; Part G -> `../natural-writing/references/`; Part M2 -> `../ai-video-production/references/`; Part P -> `../infrastructure-iac/references/`; Part R (research engine) -> `../deep-research-council/SKILL.md`. Open them only if the current task truly needs that detail.

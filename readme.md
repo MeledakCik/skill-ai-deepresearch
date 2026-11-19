@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.0.0 |
+| **Versi** | 17.1.0 |
 | **Format** | 10 skill fokus di `skills/` (dibangun dari satu sumber `deep-research-domain-council/SKILL.md`), standar Open Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -268,6 +268,13 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.1.0 — Perbaikan dari uji langsung
+- Uji pemicu: 24/24 benar di Haiku dan Sonnet (lihat `evals/trigger-tests.md`).
+- Pertanyaan yang terikat tanggal ("per November 2026", "terbaru") selalu dicek perubahan terbaru, termasuk di tier Quick.
+- Hanya sumber yang benar-benar dibuka yang dihitung; aturan format sitasi; template laporan tier Quick.
+- `natural-writing`: aturan caption media sosial dan contoh sebelum/sesudah.
+- Setiap skill menunjukkan di skill mana Part lain berada.
 
 ### v17.0.0 — Dipecah jadi 10 skill fokus
 - Deskripsi sempit per skill ("Use when … Not for …") supaya tidak salah aktif.

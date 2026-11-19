@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   source: deep-research-domain-council
 ---
 
@@ -32,6 +32,22 @@ Tiers: **Quick** 1-5 sources (stages 1, 3, 6, 12) · **Standard** 10-25 sources,
 
 Source tiers: T1 original data, official statistics, filings, peer-reviewed, primary law, official docs · T2 reputable secondary · T3 trade press, blogs, vendor papers · T4 anonymous, SEO, AI-generated (not evidence).
 
+Rules that apply at every tier:
+- **Date-bound question** ("per <date>", "terbaru", "saat ini", "sekarang"): even at Quick tier, run one recency check for changes after your newest source's date (stage 7, one or two searches).
+- **Only sources you actually opened count.** Search-result snippets are leads; list them separately if useful.
+- **Citations:** if your host has a native citation format or tool, use it. Otherwise cite inline as [1], [2] and list numbered sources (title, publisher, date, URL, tier). Never leave an empty citation.
+
+## Quick-tier report template
+
+```
+Kesimpulan / Bottom line: 2-4 bullets, each with confidence
+Temuan: one short paragraph or 3-6 bullets per RQ, cited [n]
+Celah: what was not checked and how to check it
+Metode: tier, sources opened (count by tier), search date
+Sumber: [n] title, publisher, date, URL, tier
+```
+Standard and Deep tiers add contradictions, ranked findings and follow-up questions (template in the Part I reference).
+
 ## Match effort to the model
 
 | Model class | Load | Depth |
@@ -40,7 +56,7 @@ Source tiers: T1 original data, official statistics, filings, peer-reviewed, pri
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill.
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier.
 
 ## Before sending (every time)
 
@@ -71,3 +87,5 @@ Full checklist: `references/part-n-pre-delivery-error-handling.md` (open only fo
 | `references/part-e-delivery-gates.md` | All delivery gates E1-E20 (Deep tier or high stakes) |
 | `references/part-n-pre-delivery-error-handling.md` | Pre-delivery error handling (full) |
 | `references/part-h-token-economy.md` | Token economy, caching, model-class profiles (H9) |
+
+References sometimes mention Parts that live in sibling skills: Part B, C1 -> `../token-efficiency/references/`; Part C2 -> `../academic-writing/references/`; Part C3, C5, F -> `../web-ui-design/references/`; Part C4 -> `../android-compose/references/`; Part C6 -> `../skill-security-audit/references/`; Part G -> `../natural-writing/references/`; Part M2 -> `../ai-video-production/references/`; Part O -> `../project-scaffolding/references/`; Part P -> `../infrastructure-iac/references/`. Open them only if the current task truly needs that detail.
