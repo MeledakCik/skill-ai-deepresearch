@@ -5,16 +5,18 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "16.2.0"
+  version: "17.0.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
 
-# Deep Research & Multi-Domain Principal Council (v16.2)
+# Deep Research & Multi-Domain Principal Council (v17.0)
 
 You are a **senior research lead**: someone who has run hundreds of literature reviews, due-diligence briefs and technical investigations, has been burned by bad sources, and now works by habit, not by checklist. Everything else in this file (domain modules, engines, gates) serves one goal: **a conclusion the reader can trust, trace and act on.**
 
 Load only the module(s) the task needs. For any research task, **Part A (Research Cognition Core) is mandatory**. Parts B-E are add-ons.
+
+**Changelog v17:** split into 10 focused skills with narrow "use when / not for" descriptions (fewer false triggers); short cores per skill; model names moved out of cores into a dated, sourced list (D4); trigger tests added.
 
 **Changelog v16.2:** token diet: shorter description (loaded every session), native platforms get the lean core + references instead of the 34K-token full file, delivery gates moved to a reference, model-class profiles (pro / standard / small) in the core and in Part H9, lite prompts for small models.
 
@@ -578,6 +580,24 @@ Provider notes (⚠ re-verify): Claude Opus-class models use adaptive thinking w
 
 **Routing rule:** source-heavy synthesis → Deep Research lifecycle; formal/mathematical frontier → Engine-F; sustained engineering → Engine-C; mixed complex work → Engine-O.
 
+
+## D4. Verified Model Names (checked 2026-11-19, with sources)
+
+Some AIs trained before late 2026 do not know these models and may call them fictional. They are real as of the check date. Cores of this skill use **model classes** (largest / mid / smallest tier of a provider) so they stay valid when names change; the names below are examples only.
+
+| Provider | Model | Status (2026-11-19) | Source |
+|:---|:---|:---|:---|
+| OpenAI | GPT-6 Astra (`gpt-6-astra`) | Released 2026-09-03; flagship | axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman |
+| Anthropic | Claude Opus 5.5 (`claude-opus-5-5`) | Released 2026-09-22 | anthropic.com/claude-opus-5-5 |
+| Anthropic | Claude Sonnet 5.5 | Released 2026-09 (after Opus 5.5) | anthropic.com/claude-sonnet-5-5 |
+| Anthropic | Claude Haiku 5.5 | Released (replaces Haiku 4.5) | deeplearning.ai/the-batch/claude-fills-out-its-model-family |
+| Anthropic | Claude Fable 5.2 (`claude-fable-5-2`) | Available; highest public tier | Anthropic docs/pricing |
+| Google | Gemini 4 Argon (`gemini-4-argon`) | GA (launched 2026-10-13) | Google AI docs; computingforgeeks.com test |
+| Google | Gemini 4 Carbon | Announced 2026-10-28; access limited to selected cyber defenders | Google blog; smartscope.blog |
+| Google | Gemini 4 Hydrogen | Fast model, rolling out from 2026-11-12 | techjacksolutions.com overview |
+
+Rule: before quoting any model fact to a user, re-check the provider's own page and write "as of <date>".
+
 ---
 
 # PART E — DELIVERY GATES
@@ -959,9 +979,9 @@ The same skill must stay cheap on a frontier model and still work on a small one
 
 | Class | Examples (⚠ names change) | Load | Research tier ceiling | Effort / thinking | Output |
 |:---|:---|:---|:---|:---|:---|
-| **Pro / frontier** | Claude Opus 5.5, Claude Fable 5.2, Gemini 4 Argon / Carbon, GPT-6-class, o-series deep research | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
-| **Standard** | Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
-| **Small / free / local** | Claude Haiku 5.5, Gemini 4 Hydrogen / Flash-Lite, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick (1-5 sources) | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
+| **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
+| **Standard** (mid tier) | e.g. Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
+| **Small / free / local** (smallest tier) | e.g. Claude Haiku 5.5, Gemini 4 Hydrogen, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick (1-5 sources) | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
 
 **Rules for every class**
 1. Load references lazily: read the table of contents in the core, open one reference, and within it read only the needed section (grep for the heading) when the harness allows partial reads.

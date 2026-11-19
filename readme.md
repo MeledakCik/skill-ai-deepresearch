@@ -4,13 +4,32 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 16.2.0 |
-| **Format** | Satu file `SKILL.md` (±1.890 baris), standar Open Agent Skills |
+| **Versi** | 17.0.0 |
+| **Format** | 10 skill fokus di `skills/` (dibangun dari satu sumber `deep-research-domain-council/SKILL.md`), standar Open Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
 | **Penulis** | kasyaf-anugrah |
 
 ---
+
+## Apa yang baru di v17: 10 skill fokus
+
+Dulu semuanya satu skill raksasa, jadi AI kadang memakainya di tempat yang salah. Sekarang dipecah. Setiap skill punya deskripsi tegas ("pakai saat… jangan pakai untuk…") dan inti pendek (±650–1.300 token):
+
+| Skill | Dipakai untuk |
+|:---|:---|
+| `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
+| `web-ui-design` | Website, landing page, UI tanpa kesan template AI |
+| `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
+| `academic-writing` | Skripsi/tesis/disertasi (Bab I–V), paper, proposal |
+| `project-scaffolding` | Memulai proyek/repo baru dengan versi terverifikasi dan quality rails |
+| `infrastructure-iac` | Terraform, Kubernetes, CI/CD, DR, dengan persetujuan manusia sebelum ke production |
+| `android-compose` | Android, Kotlin, Jetpack Compose |
+| `skill-security-audit` | Audit keamanan skill, plugin, dan skrip |
+| `ai-video-production` | Perencanaan video AI (Dreamina/Seedance, Veo, Sora, Kling, Runway) |
+| `token-efficiency` | Menghemat token di sesi agen |
+
+Nama model tidak lagi ditulis di inti skill. Yang dipakai kelas model (tier terbesar, menengah, terkecil). Nama spesifik ada di referensi D4 lengkap dengan tanggal cek dan sumbernya, supaya AI yang data latihnya lebih lama tidak bingung. Uji pemicu ada di `evals/trigger-tests.md`.
 
 ## Cara paling gampang: zip folder, lalu upload
 
@@ -28,8 +47,8 @@ Setelah mengedit `deep-research-domain-council/SKILL.md`, jalankan `python scrip
 
 | Bagian | Sebelum | Sekarang |
 |:---|:---|:---|
-| Deskripsi skill (dimuat di setiap sesi) | ±216 token | ±100 token |
-| Skill aktif di Claude Code / Codex / Gemini CLI / Copilot / OpenCode | ±34.000 token | ±3.300 token + 1 referensi yang dibutuhkan |
+| Deskripsi skill (dimuat di setiap sesi) | ±216 token (1 skill) | ±790 token total untuk 10 skill (sengaja lebih rinci supaya pemicunya tepat) |
+| Skill aktif di Claude Code / Codex / Gemini CLI / Copilot / OpenCode | ±34.000 token | ±650–1.300 token (hanya skill yang cocok) + 1 referensi bila perlu |
 | Rules Windsurf / Cline / Roo (bisa ikut di setiap pesan) | ±1.900 token | ±470 token |
 | Instruksi ChatGPT/Gemini/dll. untuk model kecil | (tidak ada) | `INSTRUCTIONS-lite.md` ±370 token |
 
@@ -249,6 +268,13 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.0.0 — Dipecah jadi 10 skill fokus
+- Deskripsi sempit per skill ("Use when … Not for …") supaya tidak salah aktif.
+- Inti per skill ±650–1.300 token; detail di `references/`.
+- Nama model diganti kelas model di inti; daftar nama terverifikasi dengan sumber di Part D4.
+- `sync.py` membangun ke-10 skill dari satu sumber; `install.ps1`/`install.sh` memasang semuanya dan menghapus skill lama.
+- `evals/trigger-tests.md` untuk menguji pemicu.
 
 ### v16.0.0 — Mesin deep research terpadu (satu AI, semua metode)
 - **Part R:** AI yang sedang dipakai menjalankan 12 tahap gabungan: klarifikasi dan rewrite brief (OpenAI), rencana yang bisa diedit (Gemini), sapuan cepat (Perplexity), jalur paralel (Claude), perburuan fakta sulit (OpenAI), verifikasi di dalam loop (DeepSeek), sapuan berita terbaru (Grok), sapuan data internal (Copilot), mirror pass, review mata segar, penyimpanan state, dan laporan bersitasi.

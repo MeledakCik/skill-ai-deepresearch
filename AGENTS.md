@@ -1,4 +1,14 @@
 # AGENTS.md
 
-This project uses the skill **deep-research-domain-council**. Core: `skills/deep-research-domain-council/SKILL.md` (small); details in `skills/deep-research-domain-council/references/` (open only the one file the task needs; never load the full source file).
-Load and follow the core when the task involves deep research, literature reviews, decision briefs, academic writing (S1-S3), web/UI design, natural writing, token efficiency, security audits, Android, full-stack, AI video, assistant workflows, error checking before delivery, project scaffolding, or infrastructure. For any deep research request, run the Unified Deep Research Engine (Part R). Match depth to the model class (pro / standard / small) as the core describes.
+This project ships focused skills. Load only the one that matches the task, and inside it open only the reference file you need:
+
+- `skills/deep-research-council/SKILL.md`: Runs a rigorous multi-source research process and writes a cited, calibrated report.
+- `skills/web-ui-design/SKILL.md`: Designs and builds websites, landing pages and app screens that look specific to the product instead of AI-generated.
+- `skills/natural-writing/SKILL.md`: Drafts or rewrites prose so it reads like a skilled human instead of an AI.
+- `skills/academic-writing/SKILL.md`: Guides academic writing for skripsi, tesis and disertasi (S1-S3, Bab I-V), journal papers, research proposals and lab reports, with claim-evidence mapping and verified citations.
+- `skills/project-scaffolding/SKILL.md`: Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails (format, lint, strict types, tests, pre-commit, CI) and one working vertical slice.
+- `skills/infrastructure-iac/SKILL.md`: Plans, writes and reviews cloud infrastructure and delivery pipelines (Terraform or OpenTofu, Kubernetes, CI/CD, observability, backups and DR) using an author/reviewer workflow with human approval before any production change.
+- `skills/android-compose/SKILL.md`: Builds and reviews Android apps with Kotlin and Jetpack Compose: modularization, MVI, Navigation 3, coroutines, Koin, Gradle convention plugins, tests and OWASP MASVS security.
+- `skills/skill-security-audit/SKILL.md`: Audits AI agent skills, plugins and scripts for security risks (remote code execution, reading secrets, unsafe shell, path traversal, unverified downloads) and gives a scored report, plus safe secret-handling patterns.
+- `skills/ai-video-production/SKILL.md`: Plans AI-generated videos for tools such as Dreamina/Seedance, Veo, Sora, Kling and Runway: brief, reference board, shot list, prompt anatomy, iteration budget, editing plan and rights checks.
+- `skills/token-efficiency/SKILL.md`: Cuts token use and cost in AI agent and chat sessions: context hygiene, filtered tool output, diffs instead of rewrites, prompt caching, model and effort routing, and a waste audit.
