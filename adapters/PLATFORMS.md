@@ -4,10 +4,10 @@ Skill ini mengikuti **Agent Skills open standard** (folder berisi `SKILL.md` den
 
 | Platform | Dukungan | Cara pasang |
 |:---|:---|:---|
-| Claude Code | Native | Repo: `.claude/skills/deep-research-domain-council/` (sudah ada). Global: `scripts/install.*` → `~/.claude/skills/` |
+| Claude Code | Native | Repo: `.claude/skills/<10 skill>/` (sudah ada). Global: `scripts/install.*` → `~/.claude/skills/` |
 | Claude.ai (web/desktop) | Native | Settings → Capabilities → Skills → upload `adapters/claude-ai/deep-research-domain-council.zip` ⚠ letak menu bisa berubah |
 | OpenAI Codex (CLI / IDE) | Native | Repo: `.agents/skills/` (sudah ada). Global: `~/.agents/skills/` (versi lama: `~/.codex/skills/`). Cek dengan `/skills` atau panggil `$deep-research-domain-council` |
-| ChatGPT | Adapter | **Custom GPT:** tempel `adapters/chatgpt/INSTRUCTIONS.md` ke kolom Instructions (di bawah batas 8.000 karakter), lalu upload `deep-research-domain-council/SKILL.md` sebagai Knowledge. **Projects:** tempel ke Project instructions dan tambahkan SKILL.md sebagai file |
+| ChatGPT | Adapter | **Custom GPT:** tempel `adapters/chatgpt/INSTRUCTIONS.md` ke kolom Instructions (di bawah batas 8.000 karakter), lalu upload `SKILL.md` dari skill yang relevan di `skills/` (plus file `references/`-nya) sebagai Knowledge. **Projects:** tempel ke Project instructions dan tambahkan SKILL.md sebagai file |
 | Gemini CLI | Native | Repo: `.gemini/skills/` atau `.agents/skills/` (sudah ada). Global: `~/.gemini/skills/`. Cek dengan `/skills list`, muat ulang dengan `/skills reload`. ⚠ Di sebagian versi, fitur skills harus diaktifkan dulu di settings |
 | Gemini app (Gems) | Adapter | Buat Gem baru → tempel `adapters/gemini-gem/INSTRUCTIONS.md` → tambahkan `SKILL.md` sebagai file pengetahuan |
 | GitHub Copilot | Native + instruksi | Skill dibaca dari `.github/skills/` atau `.claude/skills/`; `.github/copilot-instructions.md` mengarahkan ke skill |

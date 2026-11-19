@@ -1,6 +1,6 @@
 {
   "name": "deep-research-domain-council",
-  "version": "16.2.0",
-  "description": "Senior deep-research engine and multi-domain council: a unified deep-research engine combining the methods of OpenAI, Gemini, Claude, DeepSeek, Copilot, Perplexity and Grok, plus academic writing (S1-S3), anti-slop web design, natural writing, token efficiency, pre-delivery error checking, scaffolding, infrastructure, Android, full-stack and security audits.",
+  "version": "17.0.0",
+  "description": "Ten focused skills: deep research with a unified multi-lab method, web and UI design without AI slop, natural writing, academic writing (S1-S3), project scaffolding, infrastructure as code, Android/Compose, skill security audits, AI video production and token efficiency.",
   "contextFileName": "GEMINI.md"
 }
