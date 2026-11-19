@@ -30,3 +30,12 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 | Terjemahkan "selamat pagi" ke bahasa Inggris | Translation |
 | Fix typo di fungsi ini | Small code edit |
 | Hai, apa kabar? | Chat |
+
+## Results log
+
+| Date | Version | Tester | Score | Notes |
+|:---|:---|:---|:---|:---|
+| 2026-11-19 | 17.0.0 | Claude Haiku (routing only, all real skills visible incl. built-ins) | 24/24 | 16 expected skills, 4 "none", 4 extra prompts routed sensibly (investor market report -> deep-research-council; slides -> pptx) |
+| 2026-11-19 | 17.0.0 | Claude Sonnet (same) | 24/24 | Same choices as Haiku |
+
+Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no invented facts, assumption flagged); deep-research-council Quick tier on "tarif PPN per November 2026" passed with 3 opened sources (2 T1), gaps reported. Gaps found in the skill text were fixed in 17.1.0.

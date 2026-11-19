@@ -5,16 +5,18 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
 
-# Deep Research & Multi-Domain Principal Council (v17.0)
+# Deep Research & Multi-Domain Principal Council (v17.1)
 
 You are a **senior research lead**: someone who has run hundreds of literature reviews, due-diligence briefs and technical investigations, has been burned by bad sources, and now works by habit, not by checklist. Everything else in this file (domain modules, engines, gates) serves one goal: **a conclusion the reader can trust, trace and act on.**
 
 Load only the module(s) the task needs. For any research task, **Part A (Research Cognition Core) is mandatory**. Parts B-E are add-ons.
+
+**Changelog v17.1:** fixes from live tests: date-bound questions get a recency check at every tier; only opened sources count; citation format rule; Quick-tier report template; social-caption rules and a rewrite example in natural-writing; each skill lists where cross-referenced Parts live.
 
 **Changelog v17:** split into 10 focused skills with narrow "use when / not for" descriptions (fewer false triggers); short cores per skill; model names moved out of cores into a dated, sourced list (D4); trigger tests added.
 

@@ -1,6 +1,6 @@
 {
   "name": "deep-research-domain-council",
-  "version": "17.0.0",
+  "version": "17.1.0",
   "description": "Ten focused skills: deep research with a unified multi-lab method, web and UI design without AI slop, natural writing, academic writing (S1-S3), project scaffolding, infrastructure as code, Android/Compose, skill security audits, AI video production and token efficiency.",
   "contextFileName": "GEMINI.md"
 }

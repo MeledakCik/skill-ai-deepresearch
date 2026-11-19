@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   source: deep-research-domain-council
 ---
 
@@ -30,7 +30,7 @@ Rights: no real person's face or voice without consent, no copyrighted character
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill.
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier.
 
 ## Before sending (every time)
 
@@ -47,3 +47,5 @@ Full checklist: Part N of the deep-research-council skill (open only for high-st
 | File | Read when |
 |:---|:---|
 | `references/part-m2-dreamina.md` | AI video production details |
+
+References sometimes mention Parts that live in sibling skills: Part A, D, E, I, J, K, L, M1, M3, M4, M5, N, Q, R3 -> `../deep-research-council/references/`; Part B, C1, H -> `../token-efficiency/references/`; Part C2 -> `../academic-writing/references/`; Part C3, C5, F -> `../web-ui-design/references/`; Part C4 -> `../android-compose/references/`; Part C6 -> `../skill-security-audit/references/`; Part G -> `../natural-writing/references/`; Part O -> `../project-scaffolding/references/`; Part P -> `../infrastructure-iac/references/`; Part R (research engine) -> `../deep-research-council/SKILL.md`. Open them only if the current task truly needs that detail.

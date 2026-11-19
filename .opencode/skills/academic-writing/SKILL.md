@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.0.0"
+  version: "17.1.0"
   source: deep-research-domain-council
 ---
 
@@ -30,7 +30,7 @@ Bab I opens with the concrete phenomenon and its measured problem (no "Di era gl
 | Mid tier | this core + at most 1 reference section | standard workflow, short output |
 | Smallest / free tier | this core only | quick version; say when a bigger model would do better |
 
-Unsure which class you are? Use mid tier. Current model names and dates: Part D4 of the deep-research skill.
+Short, simple task? Skip this table and just do it well. Unsure of your class? Use mid tier.
 
 ## Before sending (every time)
 
@@ -50,3 +50,5 @@ Full checklist: Part N of the deep-research-council skill (open only for high-st
 | `references/part-a-research-cognition-core.md` | Research method library: laws, lifecycle, tiers, ACH, claim ledger, report shape |
 | `references/part-k-expert-field-council.md` | 14 field-specialist personas |
 | `references/part-g-natural-writing.md` | Natural writing patterns and rewrite example |
+
+References sometimes mention Parts that live in sibling skills: Part B, C1, H -> `../token-efficiency/references/`; Part C3, C5, F -> `../web-ui-design/references/`; Part C4 -> `../android-compose/references/`; Part C6 -> `../skill-security-audit/references/`; Part D, E, I, J, L, M1, M3, M4, M5, N, Q, R3 -> `../deep-research-council/references/`; Part M2 -> `../ai-video-production/references/`; Part O -> `../project-scaffolding/references/`; Part P -> `../infrastructure-iac/references/`; Part R (research engine) -> `../deep-research-council/SKILL.md`. Open them only if the current task truly needs that detail.
