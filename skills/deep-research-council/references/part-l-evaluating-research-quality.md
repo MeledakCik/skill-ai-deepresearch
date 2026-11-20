@@ -28,7 +28,7 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 
 | Failure | Symptom | Fix |
 |:---|:---|:---|
-| Under-search | Conclusion from 2-3 pages | Enforce tier minimums |
+| Under-search | A pivotal question rests on one unexamined origin | Trace the measurement, seek an independent challenge and qualify the conclusion if evidence stays sparse |
 | Over-search | Dozens of calls on a simple question | Enforce tier caps; triage first |
 | Echo chamber | All sources share one origin | Origin counting (A0 law 4) |
 | Citation drift | Citation near but not supporting the claim | Citation inspection (A1 S7.1) |

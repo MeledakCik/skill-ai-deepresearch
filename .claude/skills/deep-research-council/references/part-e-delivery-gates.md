@@ -2,7 +2,7 @@
 
 | Gate | Pass condition |
 |:---|:---|
-| E1 Research | Brief written; RQ tree + hypotheses; tier-appropriate source count; linchpins on ≥2-3 independent T1/T2 origins; disconfirmation done; contradictions registered; every claim cited; citations inspected; rubric all ≥4; methodology + limitations present |
+| E1 Research | Brief and hypotheses, coverage of pivotal questions, origins counted, strongest counterevidence checked, contradictions recorded, citations inspected, method and remaining limits disclosed |
 | E2 Deep-thinking | Fermi anchors; derivations for quantitative claims; ≥3 objections addressed; calibrated labels; unknown-unknowns listed |
 | E3 Efficiency | Critical path identified; parallel batches; surgical diffs; no filler; measured performance claims |
 | E4 Anti-slop UI | Design Read + dials + reference; hard gates pass; WCAG AA; keyboard; complete states; 0 dead controls |

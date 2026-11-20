@@ -4,22 +4,23 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.1.0 |
-| **Format** | 10 skill fokus di `skills/` (dibangun dari satu sumber `deep-research-domain-council/SKILL.md`), standar Open Agent Skills |
+| **Versi** | 17.2.0 |
+| **Format** | 12 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
 | **Penulis** | kasyaf-anugrah |
 
 ---
 
-## Apa yang baru di v17: 10 skill fokus
+## Pilihan skill
 
-Dulu semuanya satu skill raksasa, jadi AI kadang memakainya di tempat yang salah. Sekarang dipecah. Setiap skill punya deskripsi tegas ("pakai saat… jangan pakai untuk…") dan inti pendek (±650–1.300 token):
+Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memulai. Referensi berisi contoh dan prosedur yang bisa dibuka saat diperlukan.
 
 | Skill | Dipakai untuk |
 |:---|:---|
 | `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
 | `web-ui-design` | Website, landing page, UI tanpa kesan template AI |
+| `ui-component-motion` | Membuat komponen interaktif dan animasi sesuai alur produk, termasuk navigasi keyboard dan tampilan minim gerak |
 | `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
 | `academic-writing` | Skripsi/tesis/disertasi (Bab I–V), paper, proposal |
 | `project-scaffolding` | Memulai proyek/repo baru dengan versi terverifikasi dan quality rails |
@@ -27,9 +28,10 @@ Dulu semuanya satu skill raksasa, jadi AI kadang memakainya di tempat yang salah
 | `android-compose` | Android, Kotlin, Jetpack Compose |
 | `skill-security-audit` | Audit keamanan skill, plugin, dan skrip |
 | `ai-video-production` | Perencanaan video AI (Dreamina/Seedance, Veo, Sora, Kling, Runway) |
-| `token-efficiency` | Menghemat token di sesi agen |
+| `token-efficiency` | Menghemat konteks sambil mempertahankan rujukan bukti, hasil uji, dan catatan yang diperlukan untuk melanjutkan |
+| `usage-limit-recovery` | Menyimpan hasil teruji saat kuota sesi, mingguan, atau paket gratis menipis dan melanjutkan pekerjaan dari checkpoint |
 
-Nama model tidak lagi ditulis di inti skill. Yang dipakai kelas model (tier terbesar, menengah, terkecil). Nama spesifik ada di referensi D4 lengkap dengan tanggal cek dan sumbernya, supaya AI yang data latihnya lebih lama tidak bingung. Uji pemicu ada di `evals/trigger-tests.md`.
+Setiap skill memiliki contoh permintaan untuk menguji kapan ia aktif. Lihat [uji pemicu dan skenario perilaku](evals/trigger-tests.md).
 
 ## Cara paling gampang: zip folder, lalu upload
 
@@ -43,28 +45,18 @@ Nama model tidak lagi ditulis di inti skill. Yang dipakai kelas model (tier terb
 Setelah mengedit `deep-research-domain-council/SKILL.md`, jalankan `python scripts/sync.py` dulu sebelum zip. Skrip ini memperbarui semua salinan, versi ringkas plugin, manifest, dan membuang file zip yang terselip di dalam folder (uploader menolak zip di dalam zip). Pakai `python scripts/sync.py --zip` untuk langsung membuat `../<nama-folder>.zip`.
 
 
-## Hemat token (pro, biasa, atau model kecil)
+## Riset dengan anggaran terbatas
 
-| Bagian | Sebelum | Sekarang |
-|:---|:---|:---|
-| Deskripsi skill (dimuat di setiap sesi) | ±216 token (1 skill) | ±790 token total untuk 10 skill (sengaja lebih rinci supaya pemicunya tepat) |
-| Skill aktif di Claude Code / Codex / Gemini CLI / Copilot / OpenCode | ±34.000 token | ±650–1.300 token (hanya skill yang cocok) + 1 referensi bila perlu |
-| Rules Windsurf / Cline / Roo (bisa ikut di setiap pesan) | ±1.900 token | ±470 token |
-| Instruksi ChatGPT/Gemini/dll. untuk model kecil | (tidak ada) | `INSTRUCTIONS-lite.md` ±370 token |
+Mulai dari klaim yang paling memengaruhi keputusan. Catat temuan, lokasi bukti, asal data, satuan, dan bukti yang berlawanan. Dua artikel yang mengutip survei yang sama dihitung sebagai satu asal data. Dengan catatan ini, agen dapat memeriksa angka atau melanjutkan pencarian tanpa membawa seluruh halaman ke giliran berikutnya. Untuk aplikasi chat dengan konteks kecil, tersedia adapter `INSTRUCTIONS-lite.md` dan versi API `system-prompt-lite.md`.
 
-Skill otomatis menyesuaikan kedalaman dengan kelas model:
-- **Pro** (Opus 5.5, Fable 5.2, Gemini 4 Argon/Carbon, kelas GPT-6): riset sampai tier Deep, memuat 1–2 referensi.
-- **Biasa** (Sonnet 5.5, kelas Flash/mini, DeepSeek V4): tier Standard, maksimal 1 referensi, lebih banyak mencari daripada berpikir panjang.
-- **Kecil/gratis** (Haiku 5.5, Gemini 4 Hydrogen, model open-source kecil): tier Quick, cukup inti skill atau versi lite.
-
-Untuk ChatGPT, Gemini app, Perplexity, Grok, Copilot, dan API: pakai `INSTRUCTIONS.md` untuk model pro/biasa, atau `INSTRUCTIONS-lite.md` untuk model kecil/gratis.
+Saat kuota menipis, agen memprioritaskan satu hasil yang bisa dipakai. Untuk kode, agen menjalankan alur utamanya dan mencatat pemeriksaan yang lolos. Untuk riset, agen menyerahkan temuan yang sudah memiliki sumber dan menandai pertanyaan terbuka. Checkpoint berisi tujuan, hasil terverifikasi, pekerjaan tertunda, tindakan yang hasilnya belum diketahui, dan langkah berikutnya. Jika platform memutus sesi tanpa peringatan, sesi berikutnya dapat memakai checkpoint terakhir yang berhasil disimpan atau dikirim di chat. Contoh perintah lokal ada di [panduan pemulihan](skills/usage-limit-recovery/references/part-t-usage-limit-recovery.md).
 
 ## Daftar Isi
 
 1. [Apa yang dilakukan skill ini](#apa-yang-dilakukan-skill-ini)
 2. [Instalasi](#instalasi)
 3. [Cara pakai](#cara-pakai)
-4. [Struktur skill (Part A–M)](#struktur-skill-part-am)
+4. [Struktur skill](#struktur-skill)
 5. [Cara kerja riset (ringkas)](#cara-kerja-riset-ringkas)
 6. [Delivery gates](#delivery-gates)
 7. [Fakta yang mudah basi (tanda ⚠)](#fakta-yang-mudah-basi-tanda-)
@@ -85,7 +77,7 @@ Skill ini mengubah cara agen bekerja pada tugas riset dan teknis:
 - **Scaffolding dan infrastruktur.** Proyek baru dirancang Gemini 4 Argon dan dibangun Gemini 4 Carbon. Infrastruktur ditulis Claude Opus 5.5 lalu direview Claude Fable 5.2, dan tidak ada perubahan produksi tanpa persetujuan manusia.
 - **Satu AI, semua metode deep research.** AI apa pun yang Anda pakai (ChatGPT, Gemini, Claude, Copilot, Perplexity, Grok, DeepSeek) menjalankan satu mesin terpadu yang menggabungkan cara kerja deep research semua platform itu. Cukup ketik "deep research: <pertanyaan>".
 - **AI riset saling menguatkan.** ChatGPT, Gemini, Claude, Copilot, Perplexity, Grok, dan DeepSeek bisa dipakai bersama: brief yang sama, format hasil yang sama (Research Packet), lalu digabung, dicek silang, dan saling mengisi celah.
-- **Hemat token.** Ada aturan konkret supaya agen tidak boros konteks: tidak membaca ulang file, memfilter output tool, memakai diff, dan memilih effort sesuai tugas.
+- **Hemat token.** Agen membaca bagian yang relevan, menyimpan lokasi bukti dan memakai diff. Pemeriksaan akhir tetap memakai sumber atau hasil eksekusi yang sesuai.
 
 Skill ini **tidak** membuat model lebih pintar secara ajaib, dan tidak mewakili "isi kepala" karyawan lab mana pun. Isinya adalah kebiasaan kerja yang terdokumentasi dan bisa dicek.
 
@@ -114,8 +106,8 @@ Skrip menyalin skill ke `~/.claude/skills`, `~/.agents/skills`, `~/.codex/skills
 | Platform | Cara |
 |:---|:---|
 | **Claude Code** | Native: `.claude/skills/` (sudah ada di repo) |
-| **Claude.ai** | Upload `adapters/claude-ai/deep-research-domain-council.zip` di pengaturan Skills |
-| **OpenAI Codex** | Native: `.agents/skills/` (sudah ada di repo); panggil dengan `$deep-research-domain-council` |
+| **Claude.ai** | Buat arsip dengan `python scripts/sync.py --zip` dan gunakan arsip plugin dari direktori induk |
+| **OpenAI Codex** | Skill proyek tersedia di `.agents/skills/`. Contoh pemanggilan langsung `$ui-component-motion` atau `$usage-limit-recovery` |
 | **ChatGPT** | Custom GPT / Projects: tempel `adapters/chatgpt/INSTRUCTIONS.md` dan upload `SKILL.md` sebagai Knowledge |
 | **Perplexity** | Instruksi Space: `adapters/perplexity/INSTRUCTIONS.md` (+ SKILL.md sebagai file bila didukung) |
 | **Grok** | Custom instructions: `adapters/grok/INSTRUCTIONS.md` |
@@ -128,13 +120,13 @@ Skrip menyalin skill ke `~/.claude/skills`, `~/.agents/skills`, `~/.codex/skills
 | **Cursor / Windsurf / Cline / Roo** | Rule file di `.cursor/rules/`, `.windsurf/rules/`, `.clinerules/`, `.roo/rules/` |
 | **DeepSeek / API apa pun** | System prompt: `adapters/api/system-prompt.md` |
 
-Saat idle, platform native hanya membaca `name` dan `description` (±100 token). Isi lengkap baru dimuat ketika tugas cocok. Platform berbasis instruksi tetap (Custom GPT, Gem, rules, API) memakai versi ringkas ±1.400 token supaya tidak boros.
+Platform native dapat memilih skill dari nama dan deskripsinya sebelum memuat panduan. Platform berbasis instruksi tetap memakai adapter ringkas.
 
 ### Struktur repo
 
 ```
 deepresearch-skill/
-├── deep-research-domain-council/SKILL.md   ← sumber utama (edit di sini saja)
+├── deep-research-domain-council/SKILL.md   ← sumber referensi
 ├── .claude/skills/…      Claude Code
 ├── .agents/skills/…      Codex, Gemini CLI, agen standar
 ├── .gemini/skills/…      Gemini CLI
@@ -143,16 +135,15 @@ deepresearch-skill/
 ├── .cursor/ .windsurf/ .clinerules/ .roo/   rules editor AI
 ├── AGENTS.md  CLAUDE.md  GEMINI.md          pointer ke skill
 ├── adapters/
-│   ├── CORE_PROMPT.md        versi ringkas (±5,6 KB)
+│   ├── CORE_PROMPT.md        panduan inti untuk aplikasi chat
 │   ├── PLATFORMS.md          panduan per platform
 │   ├── deep-research-hub/    brief, prompt relay/cross-examine/merge, schema, merge_packets.py
 │   ├── hosts/                blok khusus per AI (digabung otomatis oleh sync.py)
-│   ├── chatgpt/ gemini-gem/ claude-project/ copilot/ perplexity/ grok/ api/
-│   └── claude-ai/deep-research-domain-council.zip
-└── scripts/  install.ps1  install.sh  sync.py
+│   └── chatgpt/ gemini-gem/ claude-project/ copilot/ perplexity/ grok/ api/
+└── scripts/  install.ps1  install.sh  sync.py  checkpoint.py
 ```
 
-Setelah mengedit `SKILL.md` atau `adapters/CORE_PROMPT.md`, jalankan `python scripts/sync.py`. Skrip ini menyalin ulang skill ke semua folder, membuat ulang file rules dan pointer, lalu membangun ulang zip Claude.ai.
+Inti dan daftar referensi tiap skill berada di `scripts/sync.py`. Setelah mengubah sumber, jalankan `python scripts/sync.py` untuk membangun ulang katalog, salinan skill, dan adapter. Opsi `--zip` juga membuat arsip di direktori induk.
 
 ---
 
@@ -167,7 +158,9 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | Brief keputusan | "Deep research: pilih Platform A atau B untuk toko online di Indonesia 2027" | Part A, tier S/D |
 | Tinjauan pustaka | "Buat SOTA review RAG untuk Bab II skripsi saya" | Part A + C2 + K12 |
 | Desain web | "Desain landing page untuk aplikasi kasir UMKM, jangan seperti template AI" | Part F + C3 |
+| Komponen dan animasi | "Buat komponen antrean bengkel. Mekanik bisa membuka detail tanpa kehilangan posisi dan tetap bisa memakai keyboard." | S |
 | Hemat token | "Audit kenapa sesi agen saya boros token" | Part H |
+| Pemulihan kuota | "Kuota mingguan hampir habis. Selesaikan satu alur yang bisa dijalankan, uji, lalu simpan titik lanjut." | T |
 | Video AI | "Buat shot list dan prompt video iklan 15 detik di Dreamina" | M2 |
 | Data perusahaan | "Rangkum progres proyek X dari dokumen tim kita" | M1 |
 | Asisten proaktif | "Jadi asisten bergaya Jarvis untuk riset mingguan saya" | M4 |
@@ -179,7 +172,7 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 
 ---
 
-## Struktur skill (Part A–M)
+## Struktur skill
 
 | Part | Isi | Kapan dipakai |
 |:---|:---|:---|
@@ -201,6 +194,8 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | **P — Infrastructure** | Claude Opus 5.5 max (author) + Claude Fable 5.2 max (reviewer), 10 prinsip, workflow author/reviewer, checklist review, aturan keamanan agen, penanganan error infra, deliverable wajib | Cloud, IaC, CI/CD, Kubernetes, DR |
 | **R — Unified Deep Research Engine** | Mesin 12 tahap yang menggabungkan metode OpenAI, Gemini, Claude, DeepSeek, Copilot, Perplexity, dan Grok di dalam satu AI; jalur tanpa sub-agent; adapter per host; frasa aktivasi | **Default** untuk setiap permintaan deep research |
 | **Q — Multi-AI Federation** | Roster kekuatan tiap AI riset, 4 pola kolaborasi (Split, Mirror, Relay, Cross-examine), brief universal, format Research Packet + JSON schema, protokol penggabungan berbasis asal sumber, log kalibrasi, prompt hand-off | Memakai beberapa AI riset untuk satu pertanyaan |
+| **S — Custom Components and Interaction Motion** | Kontrak komponen, fokus, transisi yang bisa diinterupsi, contoh CSS dan uji minim gerak | Komponen interaktif web |
+| **T — Usage Limit Recovery** | Checkpoint, klasifikasi gangguan, penyerahan hasil parsial dan langkah pemulihan | Sesi terbatas atau pekerjaan terputus |
 
 ---
 
@@ -213,7 +208,7 @@ S0 Triage → S1 Brief → S2 Rencana (pohon RQ + hipotesis) → S3 Cari (luas)
         ↑____________ bisa kembali merencana ulang kapan saja ____________|
 ```
 
-**Tier anggaran** (menggantikan batas "3 hop" di versi lama):
+Rentang berikut membantu memperkirakan anggaran. Pencarian dapat berhenti ketika bukti sudah menjawab pertanyaan dan pengujian terhadap penjelasan lain selesai. Bila kuota habis lebih dulu, catat celahnya.
 
 | Tier | Sumber dibaca | Sumber independen per klaim kunci | Contoh |
 |:---|:---|:---|:---|
@@ -268,6 +263,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.2.0
+
+Dua skill baru menangani komponen UI beserta animasinya dan pemulihan saat kuota habis. Panduan riset kini memeriksa asal data yang sama, perbedaan penyebut, dan apakah kesimpulan berubah saat sumber yang disengketakan dikeluarkan. Panduan token menyimpan lokasi bukti selama pemadatan konteks.
 
 ### v17.1.0 — Perbaikan dari uji langsung
 - Uji pemicu: 24/24 benar di Haiku dan Sonnet (lihat `evals/trigger-tests.md`).

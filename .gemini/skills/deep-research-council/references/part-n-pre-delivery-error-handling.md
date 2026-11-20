@@ -61,7 +61,7 @@ Rules:
 
 ## N4. Handling Tool & Runtime Errors During the Task
 
-1. **Read the full error.** Classify: transient (timeout, 429, 503, network reset) vs deterministic (400, 404, syntax, permission, missing file).
+1. **Read the error type and scope.** A 429 can indicate temporary throttling or an exhausted allowance. Follow Part T for all usage-limit responses, including its one-retry ceiling for explicit short-lived throttling. The general retry rule below applies to other transient failures.
 2. **Transient:** retry with exponential backoff + jitter (e.g., 1 s, 2 s, 4 s), max 3 attempts. Respect `Retry-After`.
 3. **Deterministic:** do not retry unchanged. Find the cause first: wrong argument, wrong path, missing dependency, wrong version, missing permission.
 4. **Root cause over workaround.** A workaround that hides the error (catch-and-ignore, `--force`, disabling a test, `any`, `@ts-ignore`, `|| true`) needs an explicit reason and must be reported.

@@ -34,9 +34,9 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Literature / SOTA review | "review", "survey", "state of the art", thesis Bab II | D or X |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive):**
+**Budget tiers (adaptive).** Use these ranges to estimate effort. Evidence coverage and the user's scope govern when to stop. Report a lone origin and its limits when independent measurements are unavailable.
 
-| Tier | Sources read in full | Independent origins per key claim | Disconfirmation searches | Typical tool calls |
+| Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
 |:---|:---|:---|:---|:---|
 | Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
 | S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |

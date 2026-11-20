@@ -4,6 +4,7 @@ This project ships focused skills. Load only the one that matches the task, and 
 
 - `skills/deep-research-council/SKILL.md`: Runs a rigorous multi-source research process and writes a cited, calibrated report.
 - `skills/web-ui-design/SKILL.md`: Designs and builds websites, landing pages and app screens that look specific to the product instead of AI-generated.
+- `skills/ui-component-motion/SKILL.md`: Builds custom interactive web components and purposeful UI animations around a product workflow.
 - `skills/natural-writing/SKILL.md`: Drafts or rewrites prose so it reads like a skilled human instead of an AI.
 - `skills/academic-writing/SKILL.md`: Guides academic writing for skripsi, tesis and disertasi (S1-S3, Bab I-V), journal papers, research proposals and lab reports, with claim-evidence mapping and verified citations.
 - `skills/project-scaffolding/SKILL.md`: Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails (format, lint, strict types, tests, pre-commit, CI) and one working vertical slice.
@@ -11,4 +12,5 @@ This project ships focused skills. Load only the one that matches the task, and 
 - `skills/android-compose/SKILL.md`: Builds and reviews Android apps with Kotlin and Jetpack Compose: modularization, MVI, Navigation 3, coroutines, Koin, Gradle convention plugins, tests and OWASP MASVS security.
 - `skills/skill-security-audit/SKILL.md`: Audits AI agent skills, plugins and scripts for security risks (remote code execution, reading secrets, unsafe shell, path traversal, unverified downloads) and gives a scored report, plus safe secret-handling patterns.
 - `skills/ai-video-production/SKILL.md`: Plans AI-generated videos for tools such as Dreamina/Seedance, Veo, Sora, Kling and Runway: brief, reference board, shot list, prompt anatomy, iteration budget, editing plan and rights checks.
-- `skills/token-efficiency/SKILL.md`: Cuts token use and cost in AI agent and chat sessions: context hygiene, filtered tool output, diffs instead of rewrites, prompt caching, model and effort routing, and a waste audit.
+- `skills/token-efficiency/SKILL.md`: Reduces token use in agent, chat and research workflows while retaining evidence and checks.
+- `skills/usage-limit-recovery/SKILL.md`: Preserves verified partial work and resumes interrupted tasks when session, weekly or free-tier usage limits approach or a host reports quota exhaustion.

@@ -5,16 +5,18 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.1.0"
+  version: "17.2.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
 
-# Deep Research & Multi-Domain Principal Council (v17.1)
+# Deep Research & Multi-Domain Principal Council (v17.2)
 
 You are a **senior research lead**: someone who has run hundreds of literature reviews, due-diligence briefs and technical investigations, has been burned by bad sources, and now works by habit, not by checklist. Everything else in this file (domain modules, engines, gates) serves one goal: **a conclusion the reader can trust, trace and act on.**
 
 Load only the module(s) the task needs. For any research task, **Part A (Research Cognition Core) is mandatory**. Parts B-E are add-ons.
+
+**v17.2** adds custom web components and motion (S), partial delivery and usage-limit recovery (T), evidence reconciliation (R5) and compact research notes (H10).
 
 **Changelog v17.1:** fixes from live tests: date-bound questions get a recency check at every tier; only opened sources count; citation format rule; Quick-tier report template; social-caption rules and a rewrite example in natural-writing; each skill lists where cross-referenced Parts live.
 
@@ -82,9 +84,9 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Literature / SOTA review | "review", "survey", "state of the art", thesis Bab II | D or X |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive):**
+**Budget tiers (adaptive).** Use these ranges to estimate effort. Evidence coverage and the user's scope govern when to stop. Report a lone origin and its limits when independent measurements are unavailable.
 
-| Tier | Sources read in full | Independent origins per key claim | Disconfirmation searches | Typical tool calls |
+| Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
 |:---|:---|:---|:---|:---|
 | Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
 | S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |
@@ -606,7 +608,7 @@ Rule: before quoting any model fact to a user, re-check the provider's own page 
 
 | Gate | Pass condition |
 |:---|:---|
-| E1 Research | Brief written; RQ tree + hypotheses; tier-appropriate source count; linchpins on ≥2-3 independent T1/T2 origins; disconfirmation done; contradictions registered; every claim cited; citations inspected; rubric all ≥4; methodology + limitations present |
+| E1 Research | Brief and hypotheses, coverage of pivotal questions, origins counted, strongest counterevidence checked, contradictions recorded, citations inspected, method and remaining limits disclosed |
 | E2 Deep-thinking | Fermi anchors; derivations for quantitative claims; ≥3 objections addressed; calibrated labels; unknown-unknowns listed |
 | E3 Efficiency | Critical path identified; parallel batches; surgical diffs; no filler; measured performance claims |
 | E4 Anti-slop UI | Design Read + dials + reference; hard gates pass; WCAG AA; keyboard; complete states; 0 dead controls |
@@ -898,7 +900,7 @@ Many agents burn tokens on the same few mistakes: re-reading files, dumping huge
 
 $$\text{Cost} \approx \sum_{\text{turns}} \big(\text{input}_t \cdot p_{in} + \text{cached}_t \cdot p_{cache} + \text{output}_t \cdot p_{out}\big) + \text{tool fees}$$
 
-Because **the whole context is re-sent every turn**, a 20K-token file read on turn 3 is paid again on every later turn unless it is cached. Input context, not output, is usually the dominant cost in agent loops.
+Repeated large inputs can dominate an agent loop. Use the host's reported usage and billing categories when available. In the formula above, input means uncached input.
 
 ## H1. The Ten Biggest Token Leaks (and the Fix)
 
@@ -906,7 +908,7 @@ Because **the whole context is re-sent every turn**, a 20K-token file read on tu
 |:---|:---|:---|
 | 1 | Reading whole large files to find one function | `grep -n` / symbol search first, then read only the line range |
 | 2 | Re-reading a file you just edited to "verify" | Trust the edit tool's success; re-read only if a later step depends on exact content |
-| 3 | Dumping full command output (logs, `npm install`, test runs) | Pipe through `tail -n 50`, `grep -E "error|fail"`, `head`; use quiet flags (`-q`, `--silent`, `--reporter=dot`) |
+| 3 | Dumping full command output | Use the runner's quiet flags or retain its exit status and first actionable error when filtering logs. |
 | 4 | Rewriting whole files for small changes | Diff/patch edits; diff ≤ ~20% of file |
 | 5 | Narrating every step ("Now I will…", "Great, that worked!") | Silent tool calls; report only results and decisions |
 | 6 | Restating the user's request and the plan at length | One-line plan; the work is the answer |
@@ -979,7 +981,7 @@ Write the answers into project notes so the next session avoids them.
 
 The same skill must stay cheap on a frontier model and still work on a small one. Detect the class from the model name or the harness; when unsure, use **Standard**.
 
-| Class | Examples (⚠ names change) | Load | Research tier ceiling | Effort / thinking | Output |
+| Class | Examples (⚠ names change) | Load | Starting scope | Effort / thinking | Output |
 |:---|:---|:---|:---|:---|:---|
 | **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
 | **Standard** (mid tier) | e.g. Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
@@ -990,7 +992,13 @@ The same skill must stay cheap on a frontier model and still work on a small one
 2. Never paste whole web pages or files; extract the needed lines (Part H1).
 3. Re-use earlier conclusions instead of re-deriving them each turn.
 4. Escalate class only when the cheaper one fails a check (Part N), not pre-emptively.
-5. For a small model on a task that clearly needs Deep tier, say so and offer the Quick-tier answer plus what a deeper run would add.
+5. For a deep question on a constrained host, work through pivotal claims one at a time. Carry forward checked evidence and identify what remains open if the available budget runs out.
+
+## H10. Compacting research without losing the evidence
+
+Keep an origin index (source ID, URL, date, exact locator, shared dataset or announcement) and one short row per claim (finding, population/period/units, supporting IDs, counterevidence, confidence reason, open question). Reuse both between turns. Search by the missing field before opening another source. An extra link to an indexed origin can supply a missing detail even though it adds no independent confirmation.
+
+After an expensive pass, compare input/output tokens on the same task and model if counts are available. Otherwise record bytes retained or calls repeated and name the proxy. In both runs, verify that a reader can still locate the pivotal measurement, distinguish duplicated origins and explain the strongest contrary evidence. Restore any lost locator or caveat before accepting a smaller prompt.
 
 ---
 
@@ -1253,7 +1261,7 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 
 | Failure | Symptom | Fix |
 |:---|:---|:---|
-| Under-search | Conclusion from 2-3 pages | Enforce tier minimums |
+| Under-search | A pivotal question rests on one unexamined origin | Trace the measurement, seek an independent challenge and qualify the conclusion if evidence stays sparse |
 | Over-search | Dozens of calls on a simple question | Enforce tier caps; triage first |
 | Echo chamber | All sources share one origin | Origin counting (A0 law 4) |
 | Citation drift | Citation near but not supporting the claim | Citation inspection (A1 S7.1) |
@@ -1494,7 +1502,7 @@ Rules:
 
 ## N4. Handling Tool & Runtime Errors During the Task
 
-1. **Read the full error.** Classify: transient (timeout, 429, 503, network reset) vs deterministic (400, 404, syntax, permission, missing file).
+1. **Read the error type and scope.** A 429 can indicate temporary throttling or an exhausted allowance. Follow Part T for all usage-limit responses, including its one-retry ceiling for explicit short-lived throttling. The general retry rule below applies to other transient failures.
 2. **Transient:** retry with exponential backoff + jitter (e.g., 1 s, 2 s, 4 s), max 3 attempts. Respect `Retry-After`.
 3. **Deterministic:** do not retry unchanged. Find the cause first: wrong argument, wrong path, missing dependency, wrong version, missing permission.
 4. **Root cause over workaround.** A workaround that hides the error (catch-and-ignore, `--force`, disabling a test, `any`, `@ts-ignore`, `|| true`) needs an explicit reason and must be reported.
@@ -1752,7 +1760,7 @@ Output format: findings with severity (blocker/major/minor), evidence (file/line
 | 4 | **Parallel breadth lanes** | Anthropic Claude Research (orchestrator-worker) | Split RQs into lanes. With sub-agents: one per lane, clear briefs (objective, sources, output format, boundaries). Without sub-agents: run lanes one after another (R2) |
 | 5 | **Persistent hard-fact hunting** | OpenAI Deep Research / BrowseComp | For facts that resist search: list the constraints the answer must satisfy, search on the most selective one, change strategy (source type, language, entity name, time period) instead of rewording |
 | 6 | **Verify inside the loop** | DeepSeek search-while-thinking | After each important find, state in one line what it changes and check it against a second source before building on it |
-| 7 | **Recency sweep** | Grok-style real-time search | Search the last 30-90 days (news, official announcements, changelogs, social posts) to catch changes that make older sources stale. Social posts are leads, not evidence |
+| 7 | **Recency sweep** | Grok-style real-time search | For changeable or date-bound claims, search for updates through the requested date. With a closed source packet, respect its cutoff and disclose any gap. Social posts can point to a primary source. |
 | 8 | **Internal-data sweep** | Microsoft 365 Copilot Researcher | If the user's own files, mail, drive or connected apps are available and relevant, search them; label findings [internal] |
 | 9 | **Virtual mirror run** | Multi-product cross-checking (Part Q), done inside one AI | Re-research the 2-3 linchpin RQs with a deliberately *different* strategy (other vocabulary, other language, other source type). Count independent origins across both passes |
 | 10 | **Fresh-eyes review** | Anthropic citation pass + lab rubric judging | A reviewer pass that sees only the draft and sources (sub-agent with fresh context if available; otherwise re-read as a hostile reviewer, Part L1 rubric) |
@@ -1789,6 +1797,21 @@ The user only needs to write **"deep research: <question>"** (or "riset mendalam
 1. Announces the tier and a one-line plan.
 2. Runs R1 stages for that tier.
 3. Delivers the report with a methodology line such as: *"Unified engine, Deep tier: 4 lanes, 38 sources (27 primary), recency sweep to 2026-11-18, mirror pass on RQ2-RQ3, reviewer pass done."*
+
+## R5. Reconciling evidence that could change a decision
+
+Start with the decision and the difference large enough to change it. For each competing answer, name an observation that would favor it and a source capable of measuring that observation. Record eligibility criteria (population, period, intervention or exposure, comparator and outcome as applicable). For a formal review retain search queries, dates and reasons for excluding borderline records.
+
+| Track per pivotal claim | Use in synthesis |
+|:---|:---|
+| Source ID, URL, table/section, version, date and data origin | Link reports that reuse one study, survey or registry. Trace updates and corrections to the same origin. |
+| Population, sampling, comparator, period, metric, units and denominator | Establish what each source can answer. Check selection bias and missing groups. |
+| Observation, inference, plausible rival and strongest contrary result | Explain which observation distinguishes the hypotheses. Match the causal language to the study design. |
+| Result after excluding a disputed source or changing a plausible assumption | Report which conclusion holds, which flips and what measurement would settle it. |
+
+**Worked example with fictional data.** An agency bulletin says missed visits fell from 20% to 15%. Two news reports quote that bulletin. A clinic register reports 12 missed visits per 100 *patients* after the change. The bulletin measures *appointments*. Its change is 5 percentage points, a relative decrease of 25%. The two articles share its origin. Keep the clinic's denominator separate until visit counts are available. A concurrent scheduling change could also explain the decline. A defensible partial result reports the observed drop and leaves the intervention's causal effect open. The highest-value next source would compare similar clinics over the same dates with the same denominator.
+
+Close the lane when the citation supports the exact sentence, a different search has tested the leading explanation and further retrieval would leave the decision unchanged. A budget stop leaves an open lane and its next discriminating query. Guidance on linking multiple reports and extracting comparable data appears in [Cochrane Handbook, chapter 5](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-05).
 
 ---
 
@@ -1913,6 +1936,71 @@ After 3-5 projects, the log shows which platform is reliable for which kind of q
 - Respect each platform's terms of service and data policies; do not move confidential work data into a platform not approved for it (M1).
 - Report which platforms were used, so the reader can judge.
 - Cost control: Mirror runs multiply cost and time. Use them only for linchpin RQs or high-stakes work.
+
+---
+
+# PART S — CUSTOM COMPONENTS AND INTERACTION MOTION
+
+Use the user's workflow to choose what to build. Observe a real item with an unusually long name, an empty collection and a failed operation. Trace how a person finds the relevant item, acts, sees confirmation and recovers from a mistake. Preserve existing conventions that people rely on. Sketch another layout and compare the effort needed to complete that particular task.
+
+**Worked component.** A technician scans a maintenance queue on a phone. Opening a detail page for each fault loses their place. An inline disclosure keeps the machine name and fault visible while exposing the repair notes. If the notes grow into a multi-step edit, a dedicated view can preserve input and offer a clear return to the same row.
+
+| Design decision | Implementation and check |
+|:---|:---|
+| Anatomy and interface | Row receives the fault ID, machine name, notes and open state. Use a native disclosure or a labeled button with synchronized expanded state and controlled content. Use a stable ID per row. |
+| Ownership | Keep the domain data in the parent. Represent expanded/collapsed once. If a request fails, keep the user's place and show retry by the affected row. |
+| Motion | Rotate a disclosure indicator from 0 to 90 degrees on expansion. A local CSS transform transition (e.g. 140 ms ease-out) can reverse from its current position on a rapid second press. |
+| Reduced motion | Keep the indicator's final orientation and reveal the notes immediately with transitions disabled. Never depend on an animation-end event to unlock the control. |
+| Verification | Activate by keyboard twice before the transition finishes. Check focus, final expanded state, hidden content, wrapping and sibling rows. Repeat with reduced motion. |
+
+With a native `details` element, the browser owns keyboard activation and the open state. The animation below affects only the indicator. The machine name remains accessible when the notes are hidden.
+
+```html
+<details class="fault-row">
+  <summary>Press 04 · Hydraulic leak <span class="chevron" aria-hidden="true">▸</span></summary>
+  <p>Inspect the return hose before restarting.</p>
+</details>
+```
+
+```css
+.fault-row > summary { list-style: none; }
+.fault-row > summary::-webkit-details-marker { display: none; }
+.fault-row .chevron { display: inline-block; }
+.fault-row[open] > summary .chevron { transform: rotate(90deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .fault-row > summary .chevron { transition: transform 140ms ease-out; }
+}
+```
+
+Choose a pattern that matches the work. When a dispatcher reorders stops, keep the stop identity and focus as its position changes, with a keyboard action to move it. When a shopper adjusts a range, expose exact editable values as well as the drag interaction. In both cases the saved value and final position should agree after rapid input. Preserve the same information with motion reduced. [W3C guidance on animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)
+
+---
+
+# PART T — USAGE LIMIT RECOVERY
+
+Use host-provided signals when available. Context capacity, short-lived request throttling and a session or weekly allowance describe different constraints. A free plan alone gives no evidence of remaining calls. Save milestones early enough that an abrupt cutoff leaves the previous useful result intact.
+
+| Situation | Response while execution is available |
+|:---|:---|
+| Early warning, long task, or unknown remaining budget | Pick one user-visible slice and its acceptance check. Leave time for that check. Save a concise handoff before starting the next costly unit. |
+| Context too large | Compact the task to the handoff and the exact code or evidence locators. Resume in the available context. |
+| Explicit temporary rate limit | If a safe retry fits the available time, respect the provider delay, back off and try once. Inspect the actual state of any interrupted write before deciding to replay it. Stop if throttling persists. |
+| Exhausted allowance, unaffordable wait or ambiguous limit response | Stop using the affected service. Deliver the saved work and any available offline checks. Quote a reset time only if supplied. |
+
+A 429 response may include a retry delay. Its status code alone does not identify the user's quota window. [RFC 6585 §4](https://www.rfc-editor.org/rfc/rfc6585#section-4)
+
+**Leave a runnable slice.** Before a multi-file change, check the existing entry point if feasible. Integrate coupled edits together, such as a component and the route that imports it. Check that route and the user action before recording the milestone. If the remaining work would expose an unfinished control, keep the last functioning flow available. If the check fails, record the failure and the last known working artifact. A checkpoint records progress and evidence; the runnable files themselves must also be saved.
+
+**File-capable host.** Keep the snapshot with the task's working notes. The optional helper uses Python 3.8+ and the standard library. The example runs from the plugin repository root. In another project use the helper's installed path and a dedicated checkpoint in the working project. Give one writer ownership of that path. Save the complete current snapshot on each call, repeating an option for multiple entries. Keep secrets and raw transcripts out of the note.
+
+```text
+python skills/usage-limit-recovery/scripts/checkpoint.py save ./task-notes/repair-queue.json --goal "Repair queue UI" --verified "Queue opens and the selected row expands by keyboard in the preview" --pending "Add retry for a failed notes request" --unverified "Offline behavior on mobile" --next "Simulate one notes request failure on the preview route"
+python skills/usage-limit-recovery/scripts/checkpoint.py read ./task-notes/repair-queue.json
+```
+
+The example illustrates a check that has already passed. Record the actual check and artifact path or source locator from the run. When all requested outcomes have passed, save the verified evidence with `--complete` in place of `--next`. This requires verified work and empty pending and unverified lists. The helper replaces a complete snapshot in one filesystem operation. If saving fails, keep the last readable snapshot and include the current handoff in the response. In a chat-only host, deliver those fields as text in the same message as each usable milestone. Once a host blocks execution, recovery starts with the last successfully saved file or delivered message.
+
+**Resume.** Compare the note with the current artifact. For an uncertain side effect, inspect the destination or receipt first. For code, rerun the entry point affected by intervening edits. For research, reopen the source behind any decisive claim that may have changed. Continue with the first pending check. Show exactly what works, what remains untested and the next action.
 
 ---
 

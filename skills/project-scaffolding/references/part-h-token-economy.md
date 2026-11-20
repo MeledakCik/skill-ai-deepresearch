@@ -4,7 +4,7 @@ Many agents burn tokens on the same few mistakes: re-reading files, dumping huge
 
 $$\text{Cost} \approx \sum_{\text{turns}} \big(\text{input}_t \cdot p_{in} + \text{cached}_t \cdot p_{cache} + \text{output}_t \cdot p_{out}\big) + \text{tool fees}$$
 
-Because **the whole context is re-sent every turn**, a 20K-token file read on turn 3 is paid again on every later turn unless it is cached. Input context, not output, is usually the dominant cost in agent loops.
+Repeated large inputs can dominate an agent loop. Use the host's reported usage and billing categories when available. In the formula above, input means uncached input.
 
 ## H1. The Ten Biggest Token Leaks (and the Fix)
 
@@ -12,7 +12,7 @@ Because **the whole context is re-sent every turn**, a 20K-token file read on tu
 |:---|:---|:---|
 | 1 | Reading whole large files to find one function | `grep -n` / symbol search first, then read only the line range |
 | 2 | Re-reading a file you just edited to "verify" | Trust the edit tool's success; re-read only if a later step depends on exact content |
-| 3 | Dumping full command output (logs, `npm install`, test runs) | Pipe through `tail -n 50`, `grep -E "error|fail"`, `head`; use quiet flags (`-q`, `--silent`, `--reporter=dot`) |
+| 3 | Dumping full command output | Use the runner's quiet flags or retain its exit status and first actionable error when filtering logs. |
 | 4 | Rewriting whole files for small changes | Diff/patch edits; diff ≤ ~20% of file |
 | 5 | Narrating every step ("Now I will…", "Great, that worked!") | Silent tool calls; report only results and decisions |
 | 6 | Restating the user's request and the plan at length | One-line plan; the work is the answer |
@@ -85,7 +85,7 @@ Write the answers into project notes so the next session avoids them.
 
 The same skill must stay cheap on a frontier model and still work on a small one. Detect the class from the model name or the harness; when unsure, use **Standard**.
 
-| Class | Examples (⚠ names change) | Load | Research tier ceiling | Effort / thinking | Output |
+| Class | Examples (⚠ names change) | Load | Starting scope | Effort / thinking | Output |
 |:---|:---|:---|:---|:---|:---|
 | **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
 | **Standard** (mid tier) | e.g. Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
@@ -96,4 +96,10 @@ The same skill must stay cheap on a frontier model and still work on a small one
 2. Never paste whole web pages or files; extract the needed lines (Part H1).
 3. Re-use earlier conclusions instead of re-deriving them each turn.
 4. Escalate class only when the cheaper one fails a check (Part N), not pre-emptively.
-5. For a small model on a task that clearly needs Deep tier, say so and offer the Quick-tier answer plus what a deeper run would add.
+5. For a deep question on a constrained host, work through pivotal claims one at a time. Carry forward checked evidence and identify what remains open if the available budget runs out.
+
+## H10. Compacting research without losing the evidence
+
+Keep an origin index (source ID, URL, date, exact locator, shared dataset or announcement) and one short row per claim (finding, population/period/units, supporting IDs, counterevidence, confidence reason, open question). Reuse both between turns. Search by the missing field before opening another source. An extra link to an indexed origin can supply a missing detail even though it adds no independent confirmation.
+
+After an expensive pass, compare input/output tokens on the same task and model if counts are available. Otherwise record bytes retained or calls repeated and name the proxy. In both runs, verify that a reader can still locate the pivotal measurement, distinguish duplicated origins and explain the strongest contrary evidence. Restore any lost locator or caveat before accepting a smaller prompt.
