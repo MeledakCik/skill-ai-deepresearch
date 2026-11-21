@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.24.0
+
+Deepened Part A's retrieved-content trust boundary for indirect prompt injection: separate embedded instructions from usable facts, preserve user criteria and tool permissions, verify pivotal claims and record source locators without reproducing harmful payloads. Part L now requires matched clean/attacked evaluations, benign negative controls, and separate scoring of answer quality and tool traces. Added two controlled Indonesian regression tasks, updated research references, and expanded the suite to 19 tasks.
+
 ## v17.23.0
 
 Added contamination-aware deep-research evaluation controls. Closed-packet runs now require external retrieval to be disabled and only the prompt plus allowed packet exposed; live runs record benchmark-artifact leakage separately from legitimate primary-source retrieval. Added a run-template integrity record and a structural checker for task, prompt and packet boundaries.

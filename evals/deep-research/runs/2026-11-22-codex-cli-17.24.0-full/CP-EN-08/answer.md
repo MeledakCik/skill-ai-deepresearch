@@ -1,0 +1,29 @@
+**No. The board can report a preliminary review with two provisionally included trials.** As of the packet’s last status date, 1 March 2026, the search covered MEDLINE and the reference list of R01. One potentially eligible report remained unavailable. One reviewer made all screening decisions, no second reviewer or adjudicator checked them, and no protocol was registered or time-stamped before the search began. The packet does not establish that all eligible trials were identified. (`search-log.csv`, `screening.csv`, `access-status.md`)
+
+### Record flow through 1 March 2026
+
+The searches identified **6 records**. Removing **1 duplicate** left **5 unique records** for title-and-abstract screening. The reviewer excluded **2** and sought **3 full texts**. Of those, **2 were retrieved, assessed and included** and **1 remained unavailable**. There were **0 full-text eligibility exclusions**. (`screening.csv`)
+
+| Record | Disposition | Reason or full-text status |
+|---|---|---|
+| R01 | Included by the initial reviewer | Full text retrieved. Primary-care hypertension RCT with an eligible refill-based adherence outcome at 12 weeks. |
+| R02 | Included by the initial reviewer | Full text retrieved. Primary-care hypertension RCT with a validated adherence outcome at 24 weeks. |
+| R03 | Pending eligibility | The abstract gives neither the follow-up duration nor a complete adherence outcome definition. The corresponding author was contacted on 2 February 2026. No response or full text had arrived by 1 March. |
+| R04 | Duplicate removed | Same DOI and article as R01. No separate screening or full-text assessment. |
+| R05 | Excluded at title and abstract | Diabetes sample with no separately reported hypertension subgroup. Full text was not sought. |
+| R06 | Excluded at title and abstract | Four-week follow-up falls below the eight-week minimum. Full text was not sought. |
+
+### Protocol addendum — 22 November 2026
+
+This addendum applies prospectively to the remaining work. The latest documented record status is still 1 March 2026. Time-stamp and archive this version before running another search or re-screening records. Log subsequent amendments with their date, rationale and affected decisions.
+
+1. **Preserve the preliminary searches.** Retain the original `search-log.csv` rows, IDs and counts. Q1 searched MEDLINE on 10 January 2026 using `(hypertension OR high blood pressure) AND (SMS OR text message) AND (medication adherence) AND randomized`, with 2018–2025, human, and English-or-Indonesian filters. It returned R01, R02, R03, R05 and R06. The log says the export was retained. Q2 checked R01’s references by title and DOI on 12 January, with no additional limits. Its single hit was R04. Give every subsequent search a new ID, including reruns.
+2. **Apply the board’s eligibility criteria.** Include randomized trials published from 1 January 2018 through 31 December 2025 in English or Indonesian. Participants must be adults aged 18 or older with diagnosed hypertension managed in primary care. Compare SMS medication-adherence reminders alone or plus usual care with usual care or no SMS reminder. Require a validated adherence measure or pharmacy-refill adherence at eight weeks or later. For mixed-condition samples, require a separately reported hypertension subgroup. (`review-brief.md`)
+3. **Broaden and document the search.** Rerun MEDLINE and search Embase, CENTRAL and GARUDA. Combine hypertension terms with SMS and text-message terms, including *hipertensi* and *pesan singkat* where appropriate. Apply adherence, trial-design and follow-up criteria during screening so a missing abstract term does not hide an eligible trial. Search ClinicalTrials.gov, WHO ICTRP, relevant proceedings and thesis repositories for leads to eligible reports. Check references and forward citations of included reports. For each run, log source and platform, run date, exact query or citation-check method and seed report, coverage dates, filters, hit count including zero, export filename, and assigned record IDs. Preserve the raw exports and link each duplicate to its retained record. Link distinct reports of the same trial under one study ID.
+4. **Verify screening and resolve retrieval.** Two reviewers should independently screen all unique records at title and abstract, including the original five, and independently assess retrieved full texts. Retain the original decisions. Log each reviewer’s decision, date, stage, retrieval status, and one primary eligibility reason per exclusion. Resolve disagreements by discussion, then by a third reviewer if needed, and record the resolution. For R03, check library holdings and linked publications and follow up with the author. Log each route, date, response and a prespecified retrieval cutoff. If the report is still unavailable at cutoff, report it as **sought, not retrieved, eligibility unresolved**. Reconcile all counts before issuing the final flow.
+
+### Synthesis decision
+
+A **preliminary narrative synthesis** is defensible. R01, in 240 rural primary-care adults, reported an **8 percentage-point** between-group difference in the proportion meeting a refill threshold at 12 weeks (95% CI 1 to 15). R02, in 180 urban primary-care adults, reported a **0.7-point** between-group difference in mean change on the MMAS-8 at 24 weeks (95% CI 0.1 to 1.3). Both compared SMS plus usual care with usual care. (`study-r01.md`, `study-r02.md`)
+
+**A pooled effect is not defensible from this packet.** The trials estimate different quantities at different follow-up times. Neither reports the other’s outcome, and the packet supplies no validated conversion. For the completed review, independently verify the extracted effects and their uncertainty, assess risk of bias for each result, and pool only trials with a compatible outcome definition, effect measure and prespecified follow-up window. Otherwise, retain study-level estimates in their original units.

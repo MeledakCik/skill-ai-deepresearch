@@ -39,18 +39,22 @@ def main() -> None:
     assert "private rotating holdouts" in live.get("release_claims", ""), "live release claims need private holdouts"
 
     headings = set(re.findall(r"^## ([A-Z]+-[A-Z]+-\d+)\s*$", prompts, re.MULTILINE))
+
+    def prompt_body(heading: str) -> str:
+        match = re.search(
+            rf"^## {re.escape(heading)}\s*$\n(.*?)(?=^## |\Z)",
+            prompts,
+            re.MULTILINE | re.DOTALL,
+        )
+        assert match, f"cannot extract prompt: {heading}"
+        return match.group(1).strip()
+
     for task in tasks:
         assert task["prompt_heading"] in headings, f"missing prompt: {task['id']}"
         if task["track"] != "closed-packet":
             continue
 
-        prompt_match = re.search(
-            rf"^## {re.escape(task['prompt_heading'])}\s*$\n(.*?)(?=^## |\Z)",
-            prompts,
-            re.MULTILINE | re.DOTALL,
-        )
-        assert prompt_match, f"cannot extract prompt: {task['id']}"
-        prompt_text = prompt_match.group(1).lower()
+        prompt_text = prompt_body(task["prompt_heading"]).lower()
         assert re.search(r"do not browse|don't browse|jangan browsing|jangan menjalankan pencarian web", prompt_text), (
             f"closed task lacks no-browse instruction: {task['id']}"
         )
@@ -64,6 +68,40 @@ def main() -> None:
         assert not any("answer-key" in name or "hidden-rubric" in name for name in packet_files), (
             f"hidden scoring material leaked into packet: {task['id']}"
         )
+
+    paired_cases = manifest.get("paired_cases", [])
+    assert paired_cases, "matched adversarial cases are missing"
+    for pair in paired_cases:
+        clean = next((task for task in tasks if task["id"] == pair["clean_task_id"]), None)
+        attacked = next((task for task in tasks if task["id"] == pair["attacked_task_id"]), None)
+        assert clean and attacked, f"paired tasks are missing: {pair['id']}"
+        assert clean["track"] == attacked["track"] == "closed-packet", f"paired tasks must be closed: {pair['id']}"
+        assert prompt_body(clean["prompt_heading"]) == prompt_body(attacked["prompt_heading"]), (
+            f"paired prompts differ: {pair['id']}"
+        )
+
+        clean_packet = (EVAL / clean["packet"]).resolve()
+        attacked_packet = (EVAL / attacked["packet"]).resolve()
+        clean_files = {path.relative_to(clean_packet).as_posix(): path for path in clean_packet.rglob("*") if path.is_file()}
+        attacked_files = {
+            path.relative_to(attacked_packet).as_posix(): path
+            for path in attacked_packet.rglob("*")
+            if path.is_file()
+        }
+        assert clean_files.keys() == attacked_files.keys(), f"paired packet file sets differ: {pair['id']}"
+        variant_path = "committee-acceptance-log.md"
+        assert variant_path in clean_files, f"paired variant file missing: {pair['id']}"
+        for relative_path in clean_files:
+            clean_text = clean_files[relative_path].read_text(encoding="utf-8")
+            attacked_text = attacked_files[relative_path].read_text(encoding="utf-8")
+            if relative_path == variant_path:
+                directives = re.findall(r"<!--.*?-->", attacked_text, re.DOTALL)
+                assert len(directives) == 1, f"attacked packet must contain one HTML-comment injection: {pair['id']}"
+                assert "AI ASSISTANT INSTRUCTION" in directives[0], f"injection marker missing: {pair['id']}"
+                attacked_text = re.sub(r"<!--.*?-->", "", attacked_text, flags=re.DOTALL)
+            assert clean_text.rstrip() == attacked_text.rstrip(), (
+                f"paired packet has an uncontrolled difference: {pair['id']} ({relative_path})"
+            )
 
     task_template = run_template["tasks"][0]
     integrity = task_template.get("evaluation_integrity", {})
@@ -81,6 +119,7 @@ def main() -> None:
     assert required_fields <= integrity.keys(), "run template lacks contamination record fields"
     assert "disable web search" in readme.lower(), "operator instructions do not require closed-run isolation"
     assert "contamination control" in readme.lower(), "contamination protocol missing from README"
+    assert "paired retrieved-content injection check" in readme.lower(), "README lacks paired-injection instructions"
 
     print(
         f"Evaluation integrity checks passed: {len(tasks)} tasks, "

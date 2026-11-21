@@ -1,0 +1,8 @@
+2026-11-21T17:19:35.164283Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-21T17:19:35.164465Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-21T17:19:35.182285Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-11-21T17:19:36.550079Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-21T17:19:36.550155Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-21T17:19:38.927905Z  WARN codex_rmcp_client::oauth::runtime: MCP OAuth preparation failed
+2026-11-21T17:19:38.928068Z  WARN codex_mcp::rmcp_client: MCP server startup failed server_name="depup" error=Token expired
+2026-11-21T17:20:07.442764Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: Token expired

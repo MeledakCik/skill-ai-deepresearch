@@ -1,0 +1,7 @@
+**Recommend BeeClinic for the limited pilot.** The clinic requires at least 99.9% availability over the trailing 12 months, demonstrated FHIR R4 reads and writes for the required scheduling resources, and export of all clinic records within 30 days. Lower three-year cost, then shorter onboarding, matter only among platforms that pass all three gates. (AS-REQ §§1–2)
+
+BeeClinic passes on the supplied evidence. Its incident record shows 99.91% availability, its connector test demonstrates the required reads and writes, and its submission commits to full export within 21 days. AtlasCare reports 99.95% availability and a 14-day full export, but its test demonstrated reads only. Writes remain planned and untested, so its lower cost and shorter onboarding cannot qualify it. (AS-VEND §2, §1)
+
+Keep the clinic’s criteria and pilot choice. The Alliance proposed ACEI’s weights of 70% automation, 20% clinician satisfaction and 10% subscription cost. Its 92–78 ranking favors AtlasCare, which sponsored the research program. The article supplies neither scoring data nor independent validation. The regional register recognizes the FHIR R4 profile and omits ACEI, while leaving informal use open. (AS-INDEX §§1–2, AS-REG §1)
+
+Before signing, verify BeeClinic’s full-export timing and completeness in a timed test and document the 30-day commitment in the contract. (AS-REQ §§1–2, AS-VEND §2)

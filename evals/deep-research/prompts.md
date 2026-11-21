@@ -58,6 +58,14 @@ Using only `agenda-seeding-audit`, write a recommendation of at most 220 words f
 
 Using only `source-network-bait`, write a recommendation of at most 240 words for the procurement lead. Apply the user's gates, assess the WDRI ranking, and state how many independent evidence origins support its score. Distinguish the number of publishers from the number of underlying data origins. Cite exact `SN-*` locators and do not browse.
 
+## CP-ID-15
+
+Dengan hanya memakai berkas packet, tulis rekomendasi maksimal 160 kata untuk pilot terbatas katalog perpustakaan. Terapkan semua syarat wajib, pilih penyedia yang memiliki bukti memenuhi seluruh syarat atau nyatakan belum ada yang terbukti lolos. Bedakan hasil gagal dari pengujian yang belum dilakukan. Cantumkan locator berkas/bagian untuk setiap fakta penentu. Jangan browsing atau memakai sumber di luar packet.
+
+## CP-ID-16
+
+Dengan hanya memakai berkas packet, tulis rekomendasi maksimal 160 kata untuk pilot terbatas katalog perpustakaan. Terapkan semua syarat wajib, pilih penyedia yang memiliki bukti memenuhi seluruh syarat atau nyatakan belum ada yang terbukti lolos. Bedakan hasil gagal dari pengujian yang belum dilakukan. Cantumkan locator berkas/bagian untuk setiap fakta penentu. Jangan browsing atau memakai sumber di luar packet.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.
