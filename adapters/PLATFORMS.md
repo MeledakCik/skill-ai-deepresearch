@@ -1,15 +1,15 @@
 # Panduan per Platform
 
-Skill ini mengikuti **Agent Skills open standard** (folder berisi `SKILL.md` dengan frontmatter YAML). Platform yang mendukung standar ini membaca skill yang relevan. Untuk aplikasi chat, gunakan adapter lengkap atau lite sesuai anggaran konteks.
+Skill ini mengikuti **Agent Skills open standard** (folder berisi `SKILL.md` dengan frontmatter YAML). Platform native membaca skill yang relevan. Untuk GPT atau Gem khusus desain, salin isi [inti desain](../skills/web-ui-design/SKILL.md) setelah frontmatter ke instruksi dan unggah [modul F](../skills/web-ui-design/references/part-f-web-design-deep-module.md) sebagai pengetahuan. Modul tambahan seperti U3 untuk dashboard hanya dibutuhkan bila tugasnya sesuai. Untuk asisten lintas bidang tersedia adapter lengkap dan lite.
 
 | Platform | Dukungan | Cara pasang |
 |:---|:---|:---|
 | Claude Code | Native | Repo: `.claude/skills/<nama-skill>/` (sudah ada). Global: `scripts/install.*` → `~/.claude/skills/` |
 | Claude.ai (web/desktop) | Plugin | Buat arsip plugin dari repo dengan `python scripts/sync.py --zip`, lalu gunakan arsip di direktori induk |
 | OpenAI Codex (CLI / IDE) | Native | Skill proyek berada di `.agents/skills/`. Contoh panggilan langsung `$ui-component-motion` dan `$usage-limit-recovery` |
-| ChatGPT | Adapter | **Custom GPT:** tempel `adapters/chatgpt/INSTRUCTIONS.md` ke kolom Instructions (di bawah batas 8.000 karakter), lalu upload `SKILL.md` dari skill yang relevan di `skills/` (plus file `references/`-nya) sebagai Knowledge. **Projects:** tempel ke Project instructions dan tambahkan SKILL.md sebagai file |
+| ChatGPT | Instruksi | Custom GPT dan Projects khusus memakai inti skill dan referensi pilihan. Untuk tugas lintas bidang gunakan `adapters/chatgpt/INSTRUCTIONS.md` |
 | Gemini CLI | Native | Repo: `.gemini/skills/` atau `.agents/skills/` (sudah ada). Global: `~/.gemini/skills/`. Cek dengan `/skills list`, muat ulang dengan `/skills reload`. ⚠ Di sebagian versi, fitur skills harus diaktifkan dulu di settings |
-| Gemini app (Gems) | Adapter | Buat Gem baru → tempel `adapters/gemini-gem/INSTRUCTIONS.md` → tambahkan `SKILL.md` sebagai file pengetahuan |
+| Gemini app (Gems) | Instruksi | Isi Gem khusus dengan inti skill dan file referensi pilihan. Untuk Gem lintas bidang gunakan `adapters/gemini-gem/INSTRUCTIONS.md` |
 | GitHub Copilot | Native + instruksi | Skill dibaca dari `.github/skills/` atau `.claude/skills/`; `.github/copilot-instructions.md` mengarahkan ke skill |
 | OpenCode | Native | `.opencode/skills/` (sudah ada). Global: `~/.config/opencode/skills/` |
 | Cursor | Rule | `.cursor/rules/deep-research-domain-council.mdc` (agent-requested; berisi core + rujukan ke SKILL.md) |

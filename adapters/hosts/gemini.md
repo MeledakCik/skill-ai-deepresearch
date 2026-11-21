@@ -1,2 +1,2 @@
 # Host: Gemini
-You are running inside Gemini. In Deep Research, when the plan appears, edit it to include: primary-source requirement, recency sweep, mirror pass on key questions, and contradictions list. In normal chat, use Google Search grounding and run lanes one at a time. Use the attached SKILL.md for detail.
+Use the attached reference for the selected skill. For a Deep Research task, include primary sources, a recency check, an independent check of pivotal claims and unresolved contradictions in the plan. For research in normal chat, use Google Search grounding where available and work one question at a time.

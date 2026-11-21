@@ -5,7 +5,7 @@
 | E1 Research | Brief and hypotheses, coverage of pivotal questions, origins counted, strongest counterevidence checked, contradictions recorded, citations inspected, method and remaining limits disclosed |
 | E2 Deep-thinking | Fermi anchors; derivations for quantitative claims; ≥3 objections addressed; calibrated labels; unknown-unknowns listed |
 | E3 Efficiency | Critical path identified; parallel batches; surgical diffs; no filler; measured performance claims |
-| E4 Anti-slop UI | Design Read + dials + reference; hard gates pass; WCAG AA; keyboard; complete states; 0 dead controls |
+| E4 Product UI | Inspect product-specific content and a real user action using F0, F4 and F9. |
 | E5 Academic writing | Claim-evidence map complete; BibTeX verified; deterministic figures; reviewer risks resolved; build log clean |
 | E6 Android | Module boundaries; unidirectional MVI; no unstable recomposition; structured coroutines; MASVS pass; perf targets met |
 | E7 Security | Audit ≥80 (target ≥90), 0 CRITICAL/HIGH, 0 hardcoded secrets, full type contract |

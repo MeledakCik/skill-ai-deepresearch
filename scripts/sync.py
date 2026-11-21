@@ -68,7 +68,7 @@ For a concept, walk the sketches. For a runnable implementation with browser acc
 
 For an advanced or research-led brief, isolate the decision with the biggest consequence. Look up the relevant standard, original study or first-party design pattern, record its scope, and test a plausible alternative on the actual task. Report what the source established, what you chose and what you observed. Open just the applicable guide below.""",
         "refs": ["F", "U1", "U2", "U3", "G"],
-        "former_design_refs": ["C3", "S"],
+        "former_design_refs": ["C3", "C5", "S"],
     },
     "ui-component-motion": {
         "description": "Builds custom interactive web components and purposeful UI animations around a product workflow. Use for component behavior, microinteractions, state transitions and keyboard or reduced-motion equivalents.",
@@ -330,9 +330,12 @@ def build_skills(body, version):
         # Keep previously distributed reference paths usable without loading duplicate rules.
         for old in spec.get("former_design_refs", []):
             target = ref_filename("F", secs["F"])
-            anchor = {"C3": "f0-visual-direction-and-design-critique", "S": "f8-motion-with-purpose"}[old]
-            write(f"skills/{name}/references/{ref_filename(old, secs[old])}",
-                  f"Former Part {old}. See the [unified design module]({target}#{anchor}).\n")
+            anchor = {"C3": "f0-visual-direction-and-design-critique", "C5": "f8-motion-with-purpose", "S": "f8-motion-with-purpose"}[old]
+            old_file = ref_filename(old, secs[old])
+            pointer = f"Former Part {old}. See the [unified design module]({target}#{anchor}).\n"
+            if old == "C5":
+                pointer += f"Full-stack guidance lives in [project scaffolding](../../project-scaffolding/references/{old_file}).\n"
+            write(f"skills/{name}/references/{old_file}", pointer)
         # why: YAML needs quotes escaped; use a folded block scalar to stay valid with any punctuation
         fm = (f"---\nname: {name}\ndescription: >-\n  {desc}\nlicense: MIT\nmetadata:\n  author: kasyaf-anugrah\n"
               f"  version: \"{version}\"\n  source: {PLUGIN}\n---\n\n")

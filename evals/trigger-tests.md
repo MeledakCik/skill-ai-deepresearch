@@ -62,6 +62,12 @@ In 17.4.0, two offline forward tests used previously unseen briefs. The dashboar
 
 The U1 CSS example was rendered in Chromium at 320, 390, 1024 and 1440 CSS px. The 390 px grid had four 77.5 px tracks. The 1440 px grid had twelve 78 px tracks. The sample heading, paragraph and button remained visible with the text-spacing overrides applied. All four documented contrast ratios were independently recalculated from the specified sRGB values.
 
+### 17.5.0 design trials in Chromium (2026-11-21)
+
+- **Checkout Patch.** A local checkout with a long Indonesian shipping label, Rp 1.250.000.000 total, missing product image and invisible focus produced 671 px of document width at a 390 px viewport. After repair, screenshots at 390 × 844 and 1440 × 900 in both themes showed the full amount and payment action with zero page overflow. Tab, Shift+Tab, Space and Enter exercised details, payment and focus restoration. Aborting the repaired image request displayed a fallback and checkout still worked.
+- **Gradient and glass.** The two F2.5 palettes used the same 115-degree axis and stops at 0%, 58% and 100%. At 390 and 1440 px the lowest sampled contrast under three label rectangles was 6.75:1 cool and 7.91:1 warm. White text over a white middle between dark ends reached 1.00:1. Over black and white backdrops, the lowest text contrasts on the frosted panel were 11.85:1 light and 10.75:1 dark. Emulating reduced transparency activated the solid panel (14.19:1 light, 13.70:1 dark). Measurements used background pixels from a second render with the text hidden and layout preserved. Other crops and imagery require fresh checks.
+- **Canvas.** Five actual tab round trips produced ten visibility transitions, zero frames scheduled while hidden and at most one on return. A manual pause and emulated reduced motion survived the switch. Startup with WebGL disabled kept the poster and HTML controls usable. Two extension-induced context losses and restores rebuilt the software WebGL scene and retained the selection changed through the fallback. These fixtures did not measure physical GPU performance or test a screen reader.
+
 Observed in local trials for 17.2.0 (2026-11-21):
 
 - Workshop bookings in headless Chromium at 320, 390 and 1024 px kept all reservation times in position with two vehicles expanded. Enter/Space, rapid reversal, focus, reduced motion and empty states passed.

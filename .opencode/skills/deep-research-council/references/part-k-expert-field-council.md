@@ -32,7 +32,7 @@ When a question touches a field, load that specialist's mindset. Each card gives
 
 ### K5. Visual / Product Designer
 - **Thinks:** "Is this specific to this product, and does the hierarchy match the user's priorities?"
-- **Truth lives in:** official design systems (Part C3.1), real product screenshots, accessibility standards (WCAG), usability evidence.
+- **Truth lives in:** official design systems (F0), real product screenshots, accessibility standards (WCAG), usability evidence.
 - **Methods:** Part F process; critique protocol F9; side-by-side comparison with 3 strong real-world references of the same product category.
 - **Traps:** Dribbble-driven decoration, copying a famous brand's look, designing without real content.
 - **Deliverable:** tokens + key screens + states + rationale lines.
