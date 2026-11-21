@@ -31,6 +31,8 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 | Audit plugin ini, aman tidak untuk diinstal? | skill-security-audit |
 | Threat-model API penyewaan ini dan review akses objek lintas tenant dalam kode lokal | application-security |
 | Periksa implementasi autentikasi dan sesi web ini dengan kontrol OWASP yang sesuai | application-security |
+| Rancang unit dan integration test untuk perhitungan ongkir ini tanpa menguji implementasi internal | software-testing |
+| Playwright test ini kadang lolos setelah retry; diagnosis trace dan cari sumber flakiness tanpa menyamarkan failure | software-testing |
 | Buat shot list video iklan 15 detik untuk Dreamina | ai-video-production |
 | Kenapa sesi Claude Code saya boros token? | token-efficiency |
 | Padatkan konteks riset panjang tanpa kehilangan asal data atau bukti yang membantah | token-efficiency |
@@ -68,6 +70,7 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 - **Deep-research regression protocol.** Provide a dated bilingual task pack with a closed multi-file corpus containing relevant evidence, a duplicate-origin article, a distractor table and one inaccessible source, plus a separate live-search task. Ask for a small before/after evaluation plan. It must record model/tool/skill versions and date, use exact page/table locators, state metric denominators, keep critical citation failures separate from presentation, and label live-search source discovery as task-level rather than global recall. Human review must be blind to version on the sampled reports; no universal score threshold or significance claim is invented.
 - **Research data analysis.** Provide a small table with a duplicate row, a missing feed, a true zero, uneven denominators and a before/after association. The analysis must reconcile totals, distinguish missing from zero, report the comparison units and limitations, and avoid a causal claim without an identifying design.
 - **Application security.** Provide local web/API code with a cross-tenant object-authorization flaw and a nearby clean path. The review must trace the reachable server-side check, show a safe local regression test and avoid probing external endpoints or printing credentials.
+- **Software testing.** Provide a deterministic calculation with boundary cases and a browser flow with an intermittent failure. The skill should choose distinct test levels, reuse the existing runner, inspect first-failure evidence, report a retry-pass as flaky, and not run the suite unless the user or repo instructions authorize it.
 
 In 17.3.0, two independent offline concept walkthroughs exercised Part F. A mobile booking conflict left both supplied slots full and the revised design retained the entered name. A printmaking landing page distinguished class capacity from remaining seats and proposed mobile crops from the photo descriptions. Neither walkthrough rendered an interface or inspected the actual photos.
 

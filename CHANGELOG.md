@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.11.0
+
+Added a focused software-testing skill for risk-based test selection, deterministic isolation, browser behavior and flaky-test triage. It distinguishes visual QA, application-security verification and project scaffolding, and respects the requested test/run scope.
+
 ## v17.10.0
 
 Added a manually runnable deep-research regression pack: four synthetic closed-packet cases, two bilingual live-search tasks, source/locator maps, hidden acceptance rubrics and a run-record template. No evaluation scores are claimed until the pack is run.

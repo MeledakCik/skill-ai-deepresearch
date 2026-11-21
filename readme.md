@@ -4,8 +4,8 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.10.0 |
-| **Format** | 14 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
+| **Versi** | 17.11.0 |
+| **Format** | 15 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
 | **Penulis** | kasyaf-anugrah |
@@ -21,6 +21,7 @@ Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memula
 | `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
 | `research-data-analysis` | Audit data, analisis statistik, estimasi, sensitivitas dan sintesis kuantitatif |
 | `application-security` | Threat model dan secure code review untuk aplikasi web/API |
+| `software-testing` | Strategi tes, implementasi, review dan diagnosis tes flaky lintas stack |
 | `web-ui-design` | Riset desain, ritme baca, grid responsif, warna terang/gelap, pengujian hierarki, grafik dan komponen interaktif |
 | `ui-component-motion` | Membuat komponen interaktif dan animasi sesuai alur produk, termasuk navigasi keyboard dan tampilan minim gerak |
 | `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
@@ -206,6 +207,7 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | **T — Usage Limit Recovery** | Checkpoint, klasifikasi gangguan, penyerahan hasil parsial dan langkah pemulihan | Sesi terbatas atau pekerjaan terputus |
 | **V — Application Security** | Threat model web/API, kontrol ASVS, pengujian lokal, laporan temuan terverifikasi | Kode aplikasi web dan API |
 | **W — Research Data Analysis** | Mutu data, penyebut, metode statistik, inferensi kausal, sintesis dan reproduksibilitas | Data kuantitatif dan sintesis riset |
+| **X — Software Testing & Quality Engineering** | Pemilihan level tes, fixture deterministik, browser tests, diagnosis flakes dan pelaporan hasil | Menulis, meninjau atau men-debug tes aplikasi |
 
 ---
 
@@ -273,6 +275,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.11.0
+
+Menambahkan `software-testing` untuk strategi dan pemeliharaan tes lintas stack, dengan fokus pada perilaku pengguna, isolasi, triase flakes, dan pelaporan hasil tanpa menjalankan tes di luar izin tugas.
 
 ### v17.10.0
 

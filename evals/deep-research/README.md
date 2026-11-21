@@ -27,7 +27,7 @@ Use explicit denominators:
 - Live discovery is a task-level decisive-source hit rate, not recall over the unknown total contents of the web.
 - Cost is token/search/tool/time usage per task that clears its critical gates, when the host exposes those values. Mark unavailable values as unknown; do not estimate them.
 
-The key is intentionally separate from the prompts. Do not expose `rubrics.md` or `manifest.json` to the evaluated agent: they contain acceptance criteria and links/expected outcomes. This pack is a maintainer aid, not a claim that Codex or the skill has already passed it.
+The answer key is intentionally separate from the prompts. Do not expose `rubrics.md` to the evaluated agent. `manifest.json` is an operator index; share only the selected prompt and allowed packet with the agent. This pack is a maintainer aid, not a claim that Codex or the skill has already passed it.
 
 ## Files
 

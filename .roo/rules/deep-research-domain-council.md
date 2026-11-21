@@ -11,17 +11,18 @@ This project ships focused skills. Load only the one that matches the task, and 
 - `skills/android-compose/SKILL.md`: Builds and reviews Android apps with Kotlin and Jetpack Compose: modularization, MVI, Navigation 3, coroutines, Koin, Gradle convention plugins, tests and OWASP MASVS security.
 - `skills/skill-security-audit/SKILL.md`: Audits AI agent skills, plugins and scripts for security risks (remote code execution, reading secrets, unsafe shell, path traversal, unverified downloads) and gives a scored report, plus safe secret-handling patterns.
 - `skills/application-security/SKILL.md`: Threat-models and reviews security in user-owned web applications and APIs.
+- `skills/software-testing/SKILL.md`: Plans, writes, reviews and debugs tests for existing software across unit, integration, API and browser layers.
 - `skills/ai-video-production/SKILL.md`: Plans AI-generated videos for tools such as Dreamina/Seedance, Veo, Sora, Kling and Runway: brief, reference board, shot list, prompt anatomy, iteration budget, editing plan and rights checks.
 - `skills/token-efficiency/SKILL.md`: Reduces token use in agent, chat and research workflows while retaining evidence and checks.
 - `skills/usage-limit-recovery/SKILL.md`: Preserves verified partial work and resumes interrupted tasks when session, weekly or free-tier usage limits approach or a host reports quota exhaustion.
 
-# Deep Research Council (Lite, v17.8, for small or free models)
+# Deep Research Council (Lite, v17.11, for small or free models)
 
 Load the matching focused skill and one relevant reference. Dedicated GPTs and Gems can use that skill directly. The monolithic specification is a maintainer resource.
 
 For every task, use only relevant context and references, batch independent calls, keep concise evidence and decisions, and preserve required checks.
 
-Use `application-security` for web/API security, `research-data-analysis` for quantitative data, and R6 for formal evidence reviews.
+Use `application-security` for web/API security, `software-testing` for test plans and flaky-test triage, `research-data-analysis` for quantitative data, and R6 for formal evidence reviews.
 
 Research ("deep research: ..."):
 1. Restate the question in one line; list 2-4 sub-questions.

@@ -1,7 +1,7 @@
 {
   "name": "deep-research-domain-council",
-  "version": "17.10.0",
-  "description": "Focused skills for deep research, research data analysis, web UX, custom components and motion, natural and academic writing, application security, scaffolding, infrastructure, Android, skill audits, AI video, token efficiency and usage-limit recovery.",
+  "version": "17.11.0",
+  "description": "Focused skills for deep research, research data analysis, web UX, custom components and motion, software testing, natural and academic writing, application security, scaffolding, infrastructure, Android, skill audits, AI video, token efficiency and usage-limit recovery.",
   "author": {
     "name": "kasyaf-anugrah"
   },
@@ -15,13 +15,14 @@
   "interface": {
     "displayName": "Deep Research Council",
     "shortDescription": "Senior research & dev council",
-    "longDescription": "Focused skills for deep research, research data analysis, web UX, custom components and motion, natural and academic writing, application security, scaffolding, infrastructure, Android, skill audits, AI video, token efficiency and usage-limit recovery.",
+    "longDescription": "Focused skills for deep research, research data analysis, web UX, custom components and motion, software testing, natural and academic writing, application security, scaffolding, infrastructure, Android, skill audits, AI video, token efficiency and usage-limit recovery.",
     "developerName": "kasyaf-anugrah",
     "category": "Education & Research",
     "capabilities": [
       "Deep research, systematic reviews and evidence evaluation",
       "Research data analysis and statistics",
       "Application security for web and API code",
+      "Software testing and browser QA",
       "Web design, custom components and motion",
       "Academic and natural writing",
       "Project scaffolding, infrastructure and Android",
