@@ -15,8 +15,8 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 | 3 | Dumping full command output | Use the runner's quiet flags or retain its exit status and first actionable error when filtering logs. |
 | 4 | Rewriting whole files for small changes | Diff/patch edits; diff ≤ ~20% of file |
 | 5 | Narrating every step ("Now I will…", "Great, that worked!") | Silent tool calls; report only results and decisions |
-| 6 | Restating the user's request and the plan at length | One-line plan; the work is the answer |
-| 7 | Serial tool calls that could be batched | Parallel independent calls in one turn |
+| 6 | Restating the user's request and the plan at length; expanding a vague prompt to every possible intent | Ask one decision-changing question or state a bounded default; keep the plan internal unless it helps the user |
+| 7 | Serial tool calls or searching every retrieval vector | Batch independent, question-mapped calls; use only applicable source vectors and stop when the pivotal claims are resolved |
 | 8 | Using the biggest model / max effort for trivial steps | Route by task (D2); small model for search, summarization, formatting |
 | 9 | Sub-agents returning full transcripts | Sub-agents return structured summaries (≤ 300-500 tokens) with file paths and line refs |
 | 10 | Pasting web pages / PDFs into context | Extract only the needed passages; store notes, not pages (A4) |
@@ -63,13 +63,16 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 
 ## H7. Token Budget Table (Guideline per Task)
 
-| Task | Target total tokens | Notes |
+Use host-reported limits and measured usage where available. These are initial planning guides, not required spend or quality targets. Work in small slices, checkpoint before the cap, and extend only when an unresolved pivotal claim could change the result.
+
+| Task | Starting budget guide | Expansion rule |
 |:---|:---|:---|
-| Simple Q&A | < 2K | No tools or one search |
-| Bug fix in known file | 5-20K | grep → read range → patch → targeted test |
+| Simple Q&A | < 2K | No tools or one targeted check |
+| Bug fix in known file | 5-20K | grep → read range → scoped change → requested verification |
 | Feature across 3-5 files | 20-80K | Plan once, batch reads, diffs only |
-| S-tier research report | 30-100K | Notes on disk; pages never pasted whole |
-| D/X-tier research | 100K-1M+ | Sub-agents with compact summaries; lead holds only the ledger |
+| Standard research | Start around 5-20K | Add a bounded slice for a specific unresolved material claim; keep notes compact |
+| Deep research | No default 100K+ target | Budget by decision-critical questions and host limit; checkpoint and reassess between stages |
+| Protocol-led review | Budget from scope, eligible record volume and screening plan | If infeasible, narrow/phase the scope with the user rather than silently spending without bound |
 
 ## H8. Token Waste Audit (Run After Expensive Sessions)
 
@@ -87,9 +90,9 @@ The same skill must stay cheap on a frontier model and still work on a small one
 
 | Class | Examples (⚠ names change) | Load | Starting scope | Effort / thinking | Output |
 |:---|:---|:---|:---|:---|:---|
-| **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
+| **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Q/S/D by evidence burden; Deep only when justified | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
 | **Standard** (mid tier) | e.g. Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
-| **Small / free / local** (smallest tier) | e.g. Claude Haiku 5.5, Gemini 4 Hydrogen, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick (1-5 sources) | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
+| **Small / free / local** (smallest tier) | e.g. Claude Haiku 5.5, Gemini 4 Hydrogen, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick; only sources needed for pivotal claims | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
 
 **Rules for every class**
 1. Load references lazily: read the table of contents in the core, open one reference, and within it read only the needed section (grep for the heading) when the harness allows partial reads.
@@ -101,5 +104,7 @@ The same skill must stay cheap on a frontier model and still work on a small one
 ## H10. Compacting research without losing the evidence
 
 Keep an origin index (source ID, URL, date, exact locator, shared dataset or announcement) and one short row per claim (finding, population/period/units, supporting IDs, counterevidence, confidence reason, open question). Reuse both between turns. Search by the missing field before opening another source. An extra link to an indexed origin can supply a missing detail even though it adds no independent confirmation.
+
+For a broad ask, record the chosen default scope or the one unanswered decision question before searching. For web validation, list only claims whose freshness or uncertainty can affect the answer; tie each query and opened page to one of those claims. Do not re-check stable background, search secondary copies of an already verified origin, or repeat a recency sweep within the same run unless new evidence or a changed date requires it.
 
 After an expensive pass, compare input/output tokens on the same task and model if counts are available. Otherwise record bytes retained or calls repeated and name the proxy. In both runs, verify that a reader can still locate the pivotal measurement, distinguish duplicated origins and explain the strongest contrary evidence. Restore any lost locator or caveat before accepting a smaller prompt.

@@ -146,6 +146,15 @@ Expected outcome:
 - Treat `draft-memo.md` (`HS-DRAFT`, §1) as a claim to audit, not evidence. The sources are all internal to the fictional pilot; they do not independently validate a causal claim.
 - Critical failures: misreading any plotted count; using counts as rates; using the context school as a treatment school; claiming both intervention schools pass; repeating the unsupported 40% or causal statement; or recommending expansion despite B failing the stated gate.
 
+### CP-ID-12 — broad prompt scope gate
+
+Expected outcome:
+- The user asks only: “Riset mendalam: AI untuk pendidikan. Buat rekomendasi terbaik.” (`initial-request.md`). The decision type is materially ambiguous: selecting tools for classroom use and recommending institutional adoption policy require different evidence and criteria.
+- Ask one concise, decision-changing question that distinguishes the intended recommendation (for example, tool selection for teachers/students versus school-level adoption policy). Keep the reply in Indonesian and within 50 words.
+- Do not ask yet for every possible detail (budget, grade, format, source preference, timeline, vendor list). If useful, mention that after the intent is clear the research will be scoped and use a targeted current-evidence check.
+- Do not browse, produce a general essay, enumerate all AI-in-education use cases, or inflate the request to Deep/X merely because the words “riset mendalam” appear. This task evaluates the first response before research, not the eventual report.
+- Critical failures: launch a broad web search or full literature survey before resolving the central decision; ask three or more questions; or return a long menu of unrelated possible research directions.
+
 ## Live task seeds (refresh before any later-date run)
 
 ### LIVE-ID-01 — seed as of 2026-11-21
@@ -154,6 +163,7 @@ Expected outcome:
 - Official series landing/table: `https://www.bps.go.id/id/statistics-table/2/MSMy/inflasi-umum-`.
 - During seed research the search index exposed the official release title/date, but direct page opening returned 403 in that research tool. Therefore the pack does not treat an m-to-m value or other page detail as verified. A valid run must open the page or corroborate through another accessible official BPS source; otherwise it must disclose the access gap and limit its claims to verified metadata.
 - At the seed date, October 2026 was the latest BPS monthly release found (published Nov 2). Later runs must search again; do not hard-code October as current.
+- Efficient path: one targeted search for the current BPS release, open the official release or official series table, and stop if the date/value are directly supported. Use a second official BPS source only if opening is blocked or the requested datum is absent/ambiguous; do not search unrelated CPI explainers.
 
 ### LIVE-EN-02 — seed as of 2026-11-21
 
@@ -161,3 +171,4 @@ Expected outcome:
 - Official releases: `https://github.com/OWASP/ASVS/releases` labels the bleeding-edge build “Latest”; it was generated 2026-11-17 and states it is for testing/preview, while stable remains v5.0.0.
 - Correct production answer at the seed date: stable v5.0.0. Explicitly distinguish it from the newer bleeding-edge label; cite both official pages and state the run/access date.
 - Refresh both pages and the seed before a later run. If they disagree after a release, report the discrepancy and resolve from the official stable/downloads designation, not the sort order or badge alone.
+- Efficient path: check the official stable/downloads designation first and open the release page only to resolve the “Latest” versus “Stable” distinction. Do not survey secondary summaries or unrelated security standards.

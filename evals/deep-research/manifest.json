@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.5.0",
+  "suite_version": "1.6.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -91,6 +91,14 @@
       "prompt_heading": "CP-ID-11",
       "packet": "corpora/multimodal-heat-pilot/",
       "purpose": "Read a decisive chart, connect it to denominators and a decision rule, and score claim-dependency and visual-text integrity"
+    },
+    {
+      "id": "CP-ID-12",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-12",
+      "packet": "corpora/research-scope-triage/",
+      "purpose": "Respond to an underspecified research request with one decisive scope question instead of launching a broad, costly search"
     },
     {
       "id": "LIVE-ID-01",

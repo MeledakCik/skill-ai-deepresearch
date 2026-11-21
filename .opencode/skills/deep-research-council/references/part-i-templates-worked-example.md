@@ -40,7 +40,7 @@ Core question: Should we build our store on Platform A or Platform B for the Ind
 5. Disconfirmation: search known outages, fee changes, migration complaints.
 6. Build cost model at 3 volumes; sensitivity to fee changes.
 7. ACH on "A better / B better / depends on volume".
-Deliverable: 2-page brief + cost table + sources. Est. 20-30 sources (S tier).
+Deliverable: concise brief, decision table and sources. Expand the source set only for a material evidence gap.
 ```
 
 ## I5. Report Skeleton

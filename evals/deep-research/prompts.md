@@ -46,6 +46,10 @@ Using only `migration-android-web-desktop`, write a decision memo of at most 250
 
 Audit klaim di `draft-memo.md` hanya dengan paket `multimodal-heat-pilot`. Baca angka pada grafik gambar, gabungkan dengan denominator di `school-register.md`, hitung rate per 1.000 siswa sebelum/sesudah untuk tiap sekolah A, B, dan C, lalu terapkan aturan di `board-rule.md`. Jelaskan apakah klaim penurunan 40% dan keputusan perluasan didukung; pisahkan hasil deskriptif dari klaim sebab-akibat. Maksimal 220 kata. Cantumkan locator sumber dan tunjukkan rantai klaim penting secara ringkas. Jangan browsing; jika angka visual tidak terbaca, tandai sebagai belum terverifikasi.
 
+## CP-ID-12
+
+Baca permintaan di `initial-request.md` dan tulis balasan pertama yang akan Anda kirim sebelum riset dimulai. Maksimal 50 kata, bahasa Indonesia. Terapkan scope gate riset Anda; jangan menjalankan pencarian web atau menulis laporan riset.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.

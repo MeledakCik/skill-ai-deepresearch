@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.18.0"
+  version: "17.19.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -22,14 +22,14 @@ Master specification for maintainers. Active version is recorded in the metadata
 
 ## A0. Ten Laws of the Experienced Researcher
 
-1. **The question is the research.** Most bad reports answer the wrong question well. Spend real effort turning the ask into decision-relevant sub-questions before searching.
-2. **Hypotheses before search.** Write 2-4 candidate answers first. Search to *discriminate* between them, not to confirm a favorite.
+1. **The question is the research.** Most bad reports answer the wrong question well. Turn the ask into a bounded, decision-relevant question before searching; vagueness alone is not permission to research every plausible interpretation.
+2. **Alternatives before search.** For decisions or contested claims, name the strongest plausible alternative and search to discriminate. Skip a formal hypothesis list for a one-fact lookup.
 3. **Primary over secondary, always.** A news article citing a study is not evidence; the study is. Trace every important number to where it was first measured.
 4. **Independence is the whole point of triangulation.** Five articles repeating one press release are one source. Count *independent origins*, not URLs.
-5. **Read laterally.** Before trusting a source, leave it and check what others say about *it* (author, funder, track record, retractions).
+5. **Read laterally when it matters.** Check authority, funding, track record or retraction status for pivotal or unfamiliar sources; do not search a source's reputation when a routine official record directly answers a low-risk claim.
 6. **Dates are evidence.** Prices, versions, role holders, laws and benchmarks decay. Write "as of <date>" on every volatile claim.
 7. **Numbers get sanity-checked.** Units, denominators, base rates, order of magnitude. If a figure is 10× the Fermi estimate, it is guilty until proven innocent.
-8. **Disconfirming evidence gets a dedicated search.** For each key finding, run at least one query designed to break it.
+8. **Disconfirm the linchpins.** Test the strongest alternative for each pivotal or contested finding. Do not launch a separate counter-search for every supporting fact when it cannot change the decision.
 9. **Say what you don't know.** Gaps, conflicts and unresolved questions are findings. Hiding them is the failure.
 10. **Stop on saturation, not exhaustion.** Stop when new sources stop changing the answer, not when tired or when an arbitrary hop limit is hit.
 
@@ -49,24 +49,30 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 |:---|:---|:---|
 | Lookup | One fact, one answer | Q |
 | Explainer | "How does X work", stable knowledge | Q or none |
-| Comparison / landscape | "X vs Y", "options for", "who are the players" | S |
+| Comparison / landscape | A bounded comparison or named market | S; scope gate first if open-ended |
 | Decision brief | "Should we", "which one", money/risk at stake | D |
 | Literature / SOTA review | Narrative map or thesis background | D |
 | Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive).** Source and call ranges estimate effort. They are not quotas or completion criteria. Evidence coverage and the decision govern when to stop. X is defined by its protocol and scope, not a target number of links. Report a lone origin and its limits when independent measurements are unavailable.
+**Scope gate before tiering.** Prompt vagueness does not raise a task to Deep. First identify the requested output and the one decision or question it must serve. For low-risk general asks, state a narrow common-case assumption and give a compact orientation. If one missing intent would route the work into materially different research, ask one concise question (at most two only when both are decisive). Do not ask for facts that a targeted source check can establish. Do not turn “tell me about X” into a comprehensive survey unless the user asked for one.
 
-| Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
-|:---|:---|:---|:---|:---|
-| Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
-| S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |
-| D (Deep) | 25-60 | ≥3 | 1-2 per key finding | 25-80 |
-| X (protocol-led review) | Set by the eligible records in scope | Defined per pivotal question | Protocol-defined | Set by available sources and review scope |
+**Web-validation gate.** Use web search when the user asks for it, a claim is volatile or date-bound, a specific source must be inspected, the claim is niche/uncertain, or high-stakes accuracy requires current authority. If the answer is stable and the user did not request sources, do not search by habit. Search only the claims whose freshness or uncertainty can change the answer; reuse supplied/internal evidence where relevant. Start with the primary source that directly answers each claim cluster. Add an independent confirmation only for a pivotal conflict, ambiguous primary record, high consequence, or a user-requested cross-check. If the source is blocked, use A1 S4.7 once through the recovery ladder; do not repeat identical failed searches. If no web tool is available, state the freshness limit.
+
+**Budget tiers (adaptive, never source quotas).** Choose the smallest tier that meets the evidence burden. Set an initial search/tool/token cap from the host's actual limits when exposed, reserve room for citation checks and delivery, then expand in small slices only for a named unresolved claim likely to change the answer. A cap triggers a checkpoint, not a quality pass.
+
+This staged approach is evidence-informed: a COLM 2026 study reports that simply increasing tool-call budgets does not guarantee better agent performance, while budget-aware planning changes where the remaining search and verification effort goes. An efficiency-aware web-agent preprint also evaluates lower cost behind a correctness gate rather than rewarding brevity alone. Use these as design rationale, not universal numerical targets. [Budget-Aware Tool Use](https://arxiv.org/abs/2511.17006) · [SlimSearcher](https://arxiv.org/abs/2606.07074)
+
+| Tier | Minimum viable work | Expand only when |
+|:---|:---|:---|
+| Q (Quick) | One narrow question; one decisive source if external validation is needed | The source is ambiguous, inaccessible, volatile or consequential enough to require a check |
+| S (Standard) | A bounded set of sub-questions; primary evidence for material claims | A pivotal claim conflicts, lacks support or could change the comparison |
+| D (Deep) | Explicit decision, field and time boundary; staged evidence and linchpin counterchecks | A specific unresolved issue has material decision value and budget remains |
+| X (protocol-led review) | Predeclared eligibility, databases, screening, records and feasible review resources | The protocol permits additional searching/screening; never infer completeness from links opened |
 
 ### S1 — Clarify & Build the Research Brief
 
-Ask only what changes the research. If ≥2 brief elements are missing and a wrong guess is expensive, ask (max 3 questions, multiple-choice where possible). Otherwise infer, list assumptions at the top, and proceed. If the user cannot be asked, label the output "draft without clarification; plan may over-scope".
+Ask only what changes the research. If one missing decision or audience would send the work down a substantially different path and there is no safe default, ask one concise multiple-choice question; ask a second only if it independently changes the result. Otherwise state a bounded assumption and proceed. Do not ask for facts that a targeted web or repository check can verify. Keep the full brief as an internal checklist; for Quick/Standard, expose only the scope and assumptions that help the user. The OpenAI Deep Research cookbook notes that broad prompt rewrites can cause wider coverage, verbosity and higher latency/token use; its clarification/rewrite guidance supports scoping first, not automatically expanding every vague query. [OpenAI Deep Research API cookbook](https://developers.openai.com/cookbook/examples/deep_research_api/introduction_to_deep_research_api)
 
 ```markdown
 ## Decision / purpose      What will the reader DO with this? (decide, write, invest, build, defend)
@@ -83,24 +89,26 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 ### S2 — Plan: Question Tree + Hypotheses + Search Map
 
-1. **Decompose** the core question into an RQ tree (MECE). Leaves must be answerable by evidence. Note dependencies (DAG) and the critical path.
-2. **Hypotheses:** for each RQ list H1..Hn, including the boring/null one and the contrarian one ($H_0/H_1$ for empirical RQs).
+Use a formal RQ tree only when the request contains multiple material questions. A lookup stays one claim with one source target; do not create lanes, a DAG or an unknown-unknowns inventory by default.
+
+1. **Decompose when needed** into answerable research questions; note dependencies/critical path only if claims actually depend on one another.
+2. **Alternatives:** for a pivotal empirical or decision question, list the leading explanation and strongest live alternative; skip formal H1..Hn for straightforward lookups or low-impact facts.
 3. **"Who would know?" map:** for each RQ, name the kind of source holding ground truth (regulator filing, standards body, original dataset, 10-K, clinical registry, source code, court record, expert transcript).
-4. **Fermi estimate** for every quantitative RQ before searching.
-5. **Unknown-unknowns:** list areas where you do not even know the right vocabulary yet.
-6. **Surface the plan** as 5-8 numbered research moves. If the user is present and the task is expensive, let them redirect; otherwise proceed.
+4. **Fermi check** only for material quantitative claims where order of magnitude can catch an error.
+5. **Unknown-unknowns:** map unfamiliar vocabulary only when the domain is genuinely novel or the first targeted search reveals a terminology gap.
+6. Keep a short internal plan. Show a one-line scope for Quick/Standard; show a concise numbered plan only for expensive Deep/X work or when requested. Do not print a 5-8 step plan for a narrow lookup.
 
 ### S3 — Retrieve (Breadth Pass)
 
 **Query craft:**
-- Start broad (2-4 words), then narrow. Every query must differ meaningfully from earlier ones.
+- Start with a question-mapped query aimed at the source that can answer it. Use one broad discovery query only when the terms or source landscape are genuinely unknown, then narrow immediately. Do not repeat wording without changing the evidence sought.
 - **Vocabulary expansion:** synonyms, field jargon, acronym AND long form, old names of renamed things.
-- **Multilingual:** search in the language where the facts live (Bahasa Indonesia for Indonesian regulation/market, etc.), then English.
+- **Multilingual:** add another language only when relevant evidence is likely published there or the first pass reveals a coverage gap.
 - **Operators:** `site:gov`, `site:go.id`, `site:ac.id`, `filetype:pdf`, `"exact phrase"`, `intitle:`, date filters, `-exclude`.
 - **Source-type targeting:** add "dataset", "annual report", "systematic review", "meta-analysis", "white paper", "RFC", "10-K", "peraturan", "putusan", "laporan tahunan".
 - **Parallelize independent queries** in one batch (Brent: $T_P \le T_1/P + T_\infty$). Serialize only true dependencies.
 
-**Four retrieval vectors (all run for S/D/X):**
+**Retrieval vectors (select only those that can answer the scoped questions; do not run every vector by default):**
 
 | Vector | Targets |
 |:---|:---|
@@ -113,11 +121,11 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 **4.1 Source genealogy.** Follow citations back to the original measurement. Record the chain: `News → Blog → Report → Dataset (origin)`. A broken chain = unverified claim.
 
-**4.2 Citation chasing (snowballing).** Backward (reference lists of the 2-3 best papers), forward ("cited by" in Google Scholar / Semantic Scholar / OpenAlex), lateral (same authors' later work, reviews in the same venue).
+**4.2 Citation chasing (snowballing).** Use for literature/SOTA reviews or when a pivotal claim's evidence origin is unclear. Start from 1-2 linchpin works; follow backward/forward links only while they reveal distinct eligible evidence or methods. Stop when new citations repeat known origins or cannot change the synthesis.
 
-**4.3 Lateral reading (SIFT).** Stop → Investigate the source → Find better coverage → Trace to origin. Check author credentials, funder/conflict of interest, venue (predatory?), retraction status, date, incentive to exaggerate.
+**4.3 Lateral reading (SIFT).** For pivotal or unfamiliar sources, Stop → Investigate the source → Find better coverage → Trace to origin. Check relevant author credentials, funder/conflict, venue/retraction status, date and incentive; do not run a reputation audit for every routine official page.
 
-**4.4 Disconfirmation pass.** Queries like `"X" criticism`, `"X" failed replication`, `"X" overstated`, `"X" problems`, `kritik X`. Record results even if the conclusion stands.
+**4.4 Disconfirmation pass.** For each decision-relevant finding, identify the strongest live alternative and test it with the most discriminating query or source type. Deep/high-stakes work needs this for each linchpin; Quick work needs it only when the premise is disputed or a wrong answer is consequential. Record what the check changed. Do not run a generic criticism search for every fact.
 
 **4.5 Numbers audit.** Unit, denominator, n, period, geography, who measured, method. Compare with Fermi estimate. Flag relative-vs-absolute risk, survivorship bias, cherry-picked windows, "up to" marketing numbers.
 
@@ -222,13 +230,15 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 ## A2. Stopping Rules
 
 Stop retrieval for an RQ when **any** holds:
-1. **Saturation:** a genuinely different query, language or source type found no evidence likely to change a pivotal answer.
-2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely value with its time and token cost qualitatively if no defensible estimate exists.
+1. **Sufficiency:** every pivotal claim has enough opened evidence for its risk level, and the citation points to the exact supporting passage.
+2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely information value with its time, token and tool cost; do not count URLs as progress.
 3. **Budget reached:** the agreed time or usage budget is spent. Stop the affected calls, disclose open questions and save the most discriminating next check.
 
 Never stop because the first plausible answer appeared. Never continue only to look thorough.
 
 ## A3. Multi-Agent Orchestration (D/X Tiers)
+
+Delegate only when independent lanes can progress in parallel and the expected coverage gain exceeds context, handoff and synthesis cost. A deep tier does not require sub-agents; for one or two dependent questions, keep one lead and a compact ledger.
 
 | Role | Responsibility | Rule |
 |:---|:---|:---|
@@ -984,8 +994,8 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 | 3 | Dumping full command output | Use the runner's quiet flags or retain its exit status and first actionable error when filtering logs. |
 | 4 | Rewriting whole files for small changes | Diff/patch edits; diff ≤ ~20% of file |
 | 5 | Narrating every step ("Now I will…", "Great, that worked!") | Silent tool calls; report only results and decisions |
-| 6 | Restating the user's request and the plan at length | One-line plan; the work is the answer |
-| 7 | Serial tool calls that could be batched | Parallel independent calls in one turn |
+| 6 | Restating the user's request and the plan at length; expanding a vague prompt to every possible intent | Ask one decision-changing question or state a bounded default; keep the plan internal unless it helps the user |
+| 7 | Serial tool calls or searching every retrieval vector | Batch independent, question-mapped calls; use only applicable source vectors and stop when the pivotal claims are resolved |
 | 8 | Using the biggest model / max effort for trivial steps | Route by task (D2); small model for search, summarization, formatting |
 | 9 | Sub-agents returning full transcripts | Sub-agents return structured summaries (≤ 300-500 tokens) with file paths and line refs |
 | 10 | Pasting web pages / PDFs into context | Extract only the needed passages; store notes, not pages (A4) |
@@ -1032,13 +1042,16 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 
 ## H7. Token Budget Table (Guideline per Task)
 
-| Task | Target total tokens | Notes |
+Use host-reported limits and measured usage where available. These are initial planning guides, not required spend or quality targets. Work in small slices, checkpoint before the cap, and extend only when an unresolved pivotal claim could change the result.
+
+| Task | Starting budget guide | Expansion rule |
 |:---|:---|:---|
-| Simple Q&A | < 2K | No tools or one search |
-| Bug fix in known file | 5-20K | grep → read range → patch → targeted test |
+| Simple Q&A | < 2K | No tools or one targeted check |
+| Bug fix in known file | 5-20K | grep → read range → scoped change → requested verification |
 | Feature across 3-5 files | 20-80K | Plan once, batch reads, diffs only |
-| S-tier research report | 30-100K | Notes on disk; pages never pasted whole |
-| D/X-tier research | 100K-1M+ | Sub-agents with compact summaries; lead holds only the ledger |
+| Standard research | Start around 5-20K | Add a bounded slice for a specific unresolved material claim; keep notes compact |
+| Deep research | No default 100K+ target | Budget by decision-critical questions and host limit; checkpoint and reassess between stages |
+| Protocol-led review | Budget from scope, eligible record volume and screening plan | If infeasible, narrow/phase the scope with the user rather than silently spending without bound |
 
 ## H8. Token Waste Audit (Run After Expensive Sessions)
 
@@ -1056,9 +1069,9 @@ The same skill must stay cheap on a frontier model and still work on a small one
 
 | Class | Examples (⚠ names change) | Load | Starting scope | Effort / thinking | Output |
 |:---|:---|:---|:---|:---|:---|
-| **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Deep / Exhaustive (sub-agents allowed) | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
+| **Pro / frontier** (largest tier) | e.g. Claude Opus 5.5 / Fable 5.2, GPT-6 Astra, Gemini 4 Argon (see D4) | Core + the 1-2 references the task needs | Q/S/D by evidence burden; Deep only when justified | Default medium; high/xhigh only for hard reasoning; max only per Part P/D rules | As long as the task needs, no padding |
 | **Standard** (mid tier) | e.g. Claude Sonnet 5.5, Gemini Flash-class, GPT mini-class, DeepSeek V4 | Core + at most 1 reference; prefer reading a single section of it | Standard | Low-medium; spend on searching, not on long thinking | Compact: BLUF + findings table + sources |
-| **Small / free / local** (smallest tier) | e.g. Claude Haiku 5.5, Gemini 4 Hydrogen, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick (1-5 sources) | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
+| **Small / free / local** (smallest tier) | e.g. Claude Haiku 5.5, Gemini 4 Hydrogen, small open models | Lite prompt only (`adapters/*/INSTRUCTIONS-lite.md` or the core's short rules); never load references in full | Quick; only sources needed for pivotal claims | Lowest; no sub-agents | Short; one table max; say when a bigger model would do better |
 
 **Rules for every class**
 1. Load references lazily: read the table of contents in the core, open one reference, and within it read only the needed section (grep for the heading) when the harness allows partial reads.
@@ -1070,6 +1083,8 @@ The same skill must stay cheap on a frontier model and still work on a small one
 ## H10. Compacting research without losing the evidence
 
 Keep an origin index (source ID, URL, date, exact locator, shared dataset or announcement) and one short row per claim (finding, population/period/units, supporting IDs, counterevidence, confidence reason, open question). Reuse both between turns. Search by the missing field before opening another source. An extra link to an indexed origin can supply a missing detail even though it adds no independent confirmation.
+
+For a broad ask, record the chosen default scope or the one unanswered decision question before searching. For web validation, list only claims whose freshness or uncertainty can affect the answer; tie each query and opened page to one of those claims. Do not re-check stable background, search secondary copies of an already verified origin, or repeat a recency sweep within the same run unless new evidence or a changed date requires it.
 
 After an expensive pass, compare input/output tokens on the same task and model if counts are available. Otherwise record bytes retained or calls repeated and name the proxy. In both runs, verify that a reader can still locate the pivotal measurement, distinguish duplicated origins and explain the strongest contrary evidence. Restore any lost locator or caveat before accepting a smaller prompt.
 
@@ -1117,7 +1132,7 @@ Core question: Should we build our store on Platform A or Platform B for the Ind
 5. Disconfirmation: search known outages, fee changes, migration complaints.
 6. Build cost model at 3 volumes; sensitivity to fee changes.
 7. ACH on "A better / B better / depends on volume".
-Deliverable: 2-page brief + cost table + sources. Est. 20-30 sources (S tier).
+Deliverable: concise brief, decision table and sources. Expand the source set only for a material evidence gap.
 ```
 
 ## I5. Report Skeleton
@@ -1370,6 +1385,7 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 | Multimodal and dependency integrity | Are pivotal visual values read from the correct region/series/period and checked for units/denominators? Are required intermediate claims supported and their dependencies intact? Is any text/OCR/visual mismatch disclosed? |
 | Task and delivery | Does the result answer the decision and material sub-questions, follow the requested language/format, and disclose what could not be verified? |
 | Efficiency and reliability | Record tokens, searches/tool calls, latency, failures, recovery and the compact query log when available. Otherwise label the proxy. Judge whether queries tested distinct uncertainties and found useful evidence; raw query count alone is not efficiency. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
+| Scope and search discipline | Did the agent use a bounded default or ask the smallest decision-changing question? Were searches tied to claims needing external validation, and did it stop duplicate/low-value retrieval without dropping pivotal verification? |
 
 For a within-task token diagnostic, optionally report measured input + output tokens per predeclared pivotal claim that passes citation and factual checks. Keep the accepted-claim count visible; this ratio is descriptive, not a quality score. Compare only matched prompt, packet, model, tools and settings. A run with a critical failure is not an efficiency improvement, even if it is shorter. If token usage is unavailable, mark it unknown instead of estimating from answer length.
 
@@ -1862,33 +1878,35 @@ Output format: findings with severity (blocker/major/minor), evidence (file/line
 
 # PART R — UNIFIED DEEP RESEARCH ENGINE (All Platforms' Methods, Inside the One AI You Use)
 
-**Default mode for every deep-research request.** Whatever AI is running this skill (ChatGPT, Gemini, Claude, Copilot, Perplexity, Grok, DeepSeek, Codex, or an API model) runs one combined engine that fuses the publicly documented methods of all major deep-research systems. The user does not need to open several products: the AI in use works the way all of them work, in one run.
+**Adaptive mode for deep-research requests.** Whatever AI is running this skill uses the relevant stages from a combined research engine. A deep-research request triggers disciplined sourcing, not automatic exhaustive breadth; scope, evidence burden and budget decide which stages run.
 
 **Honest scope:** a skill transfers *methods*, not another company's model weights or search index. ChatGPT running this engine still uses ChatGPT's search; it simply searches, plans, verifies and writes using the best habits from every lab. That is where most of the quality difference comes from. (Part Q remains available if the user *does* want to run several products together.)
 
-## R1. The Engine: 12 Stages, Each Borrowed From the System That Does It Best
+## R1. The Engine: 12 Available Stages
+
+Stages are reusable capabilities, not a mandatory checklist. A short answer can use only a few. Skip an inapplicable stage and do not spend tools to prove that it was skipped.
 
 | # | Stage | Borrowed from | What to do |
 |:---|:---|:---|:---|
-| 1 | **Triage, clarify, rewrite** | OpenAI (cookbook: Triage → Clarifier → Instruction builder) | Classify the request (A1 S0). Ask ≤3 questions only if a wrong guess is costly; otherwise write the research brief yourself (A1 S1) |
-| 2 | **Visible, editable plan** | Google Gemini Deep Research | Show a 5-8 step plan. If the user is present, let them edit it; if not, proceed and note assumptions |
-| 3 | **Fast sweep for a source map** | Perplexity-style quick search | 3-6 broad searches to map the field: key terms, main players, primary-source types, recent events. No conclusions yet |
-| 4 | **Parallel breadth lanes** | Anthropic Claude Research (orchestrator-worker) | Split RQs into lanes. With sub-agents: one per lane, clear briefs (objective, sources, output format, boundaries). Without sub-agents: run lanes one after another (R2) |
+| 1 | **Triage and scope** | OpenAI (cookbook: Triage → Clarifier → Instruction builder) | Apply A1 S0/S1. Ask one decisive question when no safe default exists; otherwise state a bounded assumption. Vague wording alone never triggers exhaustive research |
+| 2 | **Plan** | Research planning practice | Keep the plan internal for Q/S; show a concise editable plan for expensive D/X work or when requested |
+| 3 | **Targeted source map** | Perplexity-style quick search | Search only when external evidence is needed. Begin with question-mapped primary-source queries; use one broad discovery search only for unknown terminology/source landscape |
+| 4 | **Parallel independent lanes** | Anthropic Claude Research (orchestrator-worker) | Split only genuinely independent, material RQs when parallel work saves more than handoff/context cost; otherwise use one lane |
 | 5 | **Persistent hard-fact hunting** | OpenAI Deep Research / BrowseComp | For facts that resist search: list the constraints the answer must satisfy, search on the most selective one, change strategy (source type, language, entity name, time period) instead of rewording |
-| 6 | **Verify inside the loop** | DeepSeek search-while-thinking | After each important find, state in one line what it changes and check it against a second source before building on it |
-| 7 | **Recency sweep** | Grok-style real-time search | For changeable or date-bound claims, search for updates through the requested date. With a closed source packet, respect its cutoff and disclose any gap. Social posts can point to a primary source. |
+| 6 | **Verify inside the loop** | DeepSeek search-while-thinking | Tie pivotal claims to opened passages; add independent confirmation only when risk, conflict or ambiguity warrants it |
+| 7 | **Targeted recency check** | Grok-style real-time search | Refresh only volatile or explicitly date-bound claims. With a closed source packet, respect its cutoff and disclose any gap |
 | 8 | **Internal-data sweep** | Microsoft 365 Copilot Researcher | If the user's own files, mail, drive or connected apps are available and relevant, search them; label findings [internal] |
-| 9 | **Virtual mirror run** | Multi-product cross-checking (Part Q), done inside one AI | Re-research the 2-3 linchpin RQs with a deliberately *different* strategy (other vocabulary, other language, other source type). Count independent origins across both passes |
-| 10 | **Fresh-eyes review** | Anthropic citation pass + lab rubric judging | A reviewer pass that sees only the draft and sources (sub-agent with fresh context if available; otherwise re-read as a hostile reviewer, Part L1 rubric) |
+| 9 | **Targeted countercheck** | Multi-product cross-checking (Part Q), done inside one AI | Re-search a linchpin only while a live alternative could change the answer; use a different strategy and stop when it cannot |
+| 10 | **Fresh-eyes review** | Anthropic citation pass + lab rubric judging | Review linchpins for D/X or high-stakes work; use a separate agent only when the independence benefit exceeds coordination cost |
 | 11 | **Persist state** | Google Gemini async task manager | Keep notes, claim ledger and source log (A4) so long runs survive interruptions and context limits |
 | 12 | **Cited report + method** | All | A1 S6 report shape; methodology lists stages run, searches, languages, dates; Part N pre-send check |
 
-**Scale by tier:** Quick = stages 1, 3, 6, 12. Standard = 1-7, 10, 12. Deep/Exhaustive = all 12.
+**Run stages by need, not as a checklist quota:** Quick = 1, targeted 3 when web evidence is needed, 6 for the pivotal citation, 12. Standard adds only applicable retrieval, recency and internal-data stages. Deep adds lanes, counterchecks, review and persistence when the decision and budget justify them. X follows its declared protocol. Skip inapplicable stages and report only stages actually run.
 
 ## R2. Lanes Without Sub-Agents (Most Chat Apps)
 
 Chat products such as ChatGPT, Gemini app or Grok usually cannot spawn sub-agents. Simulate them without polluting context:
-1. Work one lane (one RQ group) at a time.
+1. Work one lane (one RQ group) at a time; do not invent more lanes than the brief needs.
 2. At the end of each lane, write a **lane summary** in Research Packet form (Part Q4): findings, sources, contradictions, gaps. Max ~300 words.
 3. Start the next lane from the plan and the summaries, not from raw pages.
 4. Synthesis uses only lane summaries + re-opened linchpin sources.
@@ -1897,11 +1915,11 @@ Chat products such as ChatGPT, Gemini app or Grok usually cannot spawn sub-agent
 
 | Host | Turn on / use | Engine notes |
 |:---|:---|:---|
-| **ChatGPT** | Deep research mode (or agent mode / web search for lighter runs); Custom GPT or Project with this skill | Deep research mode already browses for a long time: put the full brief from stage 1 in the first message so its own planner follows it. In normal chat with search, run lanes (R2) |
-| **Gemini app / Gemini CLI** | Deep Research for long runs; Gem with this skill; Gemini CLI loads the skill natively | When Gemini shows its plan, edit it to match stage 2 (add the recency sweep, the mirror pass and primary-source requirements) before starting |
+| **ChatGPT** | Deep research mode (or agent mode / web search for lighter runs); Custom GPT or Project with this skill | Give deep research a compact, bounded brief, not the entire checklist. In normal chat, use lanes (R2) only for independent questions |
+| **Gemini app / Gemini CLI** | Deep Research for long runs; Gem with this skill; Gemini CLI loads the skill natively | Keep the plan scoped; add a recency or countercheck pass only when the claim is volatile or a linchpin remains uncertain |
 | **Claude (claude.ai, Claude Code)** | Research mode / web search; skill loads natively; sub-agents in Claude Code | Use real sub-agents for stage 4 and a separate verifier sub-agent for stage 10 |
 | **Microsoft 365 Copilot** | Researcher agent | Internal-data sweep (stage 8) is its strength; add the brief's source standard so web sources are primary |
-| **Perplexity** | Deep Research / Pro search; Space instructions with this skill | Strong at stage 3; push it through stages 5-10 by asking explicitly for primary sources, recency and contradictions |
+| **Perplexity** | Deep Research / Pro search; Space instructions with this skill | Ask for primary sources and targeted recency/contradiction checks only where they can change the result |
 | **Grok** | DeepSearch / DeeperSearch; custom instructions | Strong at stage 7; require T1/T2 confirmation for anything first seen on social media |
 | **DeepSeek** | Search + DeepThink (thinking) | Matches stage 6 natively; ask for dates and URLs on every claim |
 | **Codex / coding agents** | Web search tool if enabled; skill loads natively | Same engine; notes on disk (stage 11) |
@@ -1910,9 +1928,9 @@ Chat products such as ChatGPT, Gemini app or Grok usually cannot spawn sub-agent
 ## R4. Activation
 
 The user only needs to write **"deep research: <question>"** (or "riset mendalam: …"). The AI then:
-1. Announces the research type, tier and a one-line plan. Route an explicit scoping or systematic review through R6. Use source counts as estimates only.
+1. Announces the research type and one-line scope. For a materially ambiguous, high-cost task, ask the single question needed to choose the research path; otherwise state the bounded default. Route an explicit scoping or systematic review through R6.
 2. Runs R1 stages for that tier.
-3. Delivers the report with a methodology line such as: *"Unified engine, Deep tier: 4 lanes, 38 sources (27 primary), recency sweep to 2026-11-18, mirror pass on RQ2-RQ3, reviewer pass done."*
+3. Delivers a concise method note using actual work only: scope, sources/queries opened if useful, current-fact check date, checks completed and important unknowns. Never present source counts as a target or imply unrun stages were completed.
 
 ## R5. Reconciling evidence that could change a decision
 

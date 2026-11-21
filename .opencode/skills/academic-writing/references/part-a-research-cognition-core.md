@@ -2,14 +2,14 @@
 
 ## A0. Ten Laws of the Experienced Researcher
 
-1. **The question is the research.** Most bad reports answer the wrong question well. Spend real effort turning the ask into decision-relevant sub-questions before searching.
-2. **Hypotheses before search.** Write 2-4 candidate answers first. Search to *discriminate* between them, not to confirm a favorite.
+1. **The question is the research.** Most bad reports answer the wrong question well. Turn the ask into a bounded, decision-relevant question before searching; vagueness alone is not permission to research every plausible interpretation.
+2. **Alternatives before search.** For decisions or contested claims, name the strongest plausible alternative and search to discriminate. Skip a formal hypothesis list for a one-fact lookup.
 3. **Primary over secondary, always.** A news article citing a study is not evidence; the study is. Trace every important number to where it was first measured.
 4. **Independence is the whole point of triangulation.** Five articles repeating one press release are one source. Count *independent origins*, not URLs.
-5. **Read laterally.** Before trusting a source, leave it and check what others say about *it* (author, funder, track record, retractions).
+5. **Read laterally when it matters.** Check authority, funding, track record or retraction status for pivotal or unfamiliar sources; do not search a source's reputation when a routine official record directly answers a low-risk claim.
 6. **Dates are evidence.** Prices, versions, role holders, laws and benchmarks decay. Write "as of <date>" on every volatile claim.
 7. **Numbers get sanity-checked.** Units, denominators, base rates, order of magnitude. If a figure is 10× the Fermi estimate, it is guilty until proven innocent.
-8. **Disconfirming evidence gets a dedicated search.** For each key finding, run at least one query designed to break it.
+8. **Disconfirm the linchpins.** Test the strongest alternative for each pivotal or contested finding. Do not launch a separate counter-search for every supporting fact when it cannot change the decision.
 9. **Say what you don't know.** Gaps, conflicts and unresolved questions are findings. Hiding them is the failure.
 10. **Stop on saturation, not exhaustion.** Stop when new sources stop changing the answer, not when tired or when an arbitrary hop limit is hit.
 
@@ -29,24 +29,30 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 |:---|:---|:---|
 | Lookup | One fact, one answer | Q |
 | Explainer | "How does X work", stable knowledge | Q or none |
-| Comparison / landscape | "X vs Y", "options for", "who are the players" | S |
+| Comparison / landscape | A bounded comparison or named market | S; scope gate first if open-ended |
 | Decision brief | "Should we", "which one", money/risk at stake | D |
 | Literature / SOTA review | Narrative map or thesis background | D |
 | Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive).** Source and call ranges estimate effort. They are not quotas or completion criteria. Evidence coverage and the decision govern when to stop. X is defined by its protocol and scope, not a target number of links. Report a lone origin and its limits when independent measurements are unavailable.
+**Scope gate before tiering.** Prompt vagueness does not raise a task to Deep. First identify the requested output and the one decision or question it must serve. For low-risk general asks, state a narrow common-case assumption and give a compact orientation. If one missing intent would route the work into materially different research, ask one concise question (at most two only when both are decisive). Do not ask for facts that a targeted source check can establish. Do not turn “tell me about X” into a comprehensive survey unless the user asked for one.
 
-| Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
-|:---|:---|:---|:---|:---|
-| Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
-| S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |
-| D (Deep) | 25-60 | ≥3 | 1-2 per key finding | 25-80 |
-| X (protocol-led review) | Set by the eligible records in scope | Defined per pivotal question | Protocol-defined | Set by available sources and review scope |
+**Web-validation gate.** Use web search when the user asks for it, a claim is volatile or date-bound, a specific source must be inspected, the claim is niche/uncertain, or high-stakes accuracy requires current authority. If the answer is stable and the user did not request sources, do not search by habit. Search only the claims whose freshness or uncertainty can change the answer; reuse supplied/internal evidence where relevant. Start with the primary source that directly answers each claim cluster. Add an independent confirmation only for a pivotal conflict, ambiguous primary record, high consequence, or a user-requested cross-check. If the source is blocked, use A1 S4.7 once through the recovery ladder; do not repeat identical failed searches. If no web tool is available, state the freshness limit.
+
+**Budget tiers (adaptive, never source quotas).** Choose the smallest tier that meets the evidence burden. Set an initial search/tool/token cap from the host's actual limits when exposed, reserve room for citation checks and delivery, then expand in small slices only for a named unresolved claim likely to change the answer. A cap triggers a checkpoint, not a quality pass.
+
+This staged approach is evidence-informed: a COLM 2026 study reports that simply increasing tool-call budgets does not guarantee better agent performance, while budget-aware planning changes where the remaining search and verification effort goes. An efficiency-aware web-agent preprint also evaluates lower cost behind a correctness gate rather than rewarding brevity alone. Use these as design rationale, not universal numerical targets. [Budget-Aware Tool Use](https://arxiv.org/abs/2511.17006) · [SlimSearcher](https://arxiv.org/abs/2606.07074)
+
+| Tier | Minimum viable work | Expand only when |
+|:---|:---|:---|
+| Q (Quick) | One narrow question; one decisive source if external validation is needed | The source is ambiguous, inaccessible, volatile or consequential enough to require a check |
+| S (Standard) | A bounded set of sub-questions; primary evidence for material claims | A pivotal claim conflicts, lacks support or could change the comparison |
+| D (Deep) | Explicit decision, field and time boundary; staged evidence and linchpin counterchecks | A specific unresolved issue has material decision value and budget remains |
+| X (protocol-led review) | Predeclared eligibility, databases, screening, records and feasible review resources | The protocol permits additional searching/screening; never infer completeness from links opened |
 
 ### S1 — Clarify & Build the Research Brief
 
-Ask only what changes the research. If ≥2 brief elements are missing and a wrong guess is expensive, ask (max 3 questions, multiple-choice where possible). Otherwise infer, list assumptions at the top, and proceed. If the user cannot be asked, label the output "draft without clarification; plan may over-scope".
+Ask only what changes the research. If one missing decision or audience would send the work down a substantially different path and there is no safe default, ask one concise multiple-choice question; ask a second only if it independently changes the result. Otherwise state a bounded assumption and proceed. Do not ask for facts that a targeted web or repository check can verify. Keep the full brief as an internal checklist; for Quick/Standard, expose only the scope and assumptions that help the user. The OpenAI Deep Research cookbook notes that broad prompt rewrites can cause wider coverage, verbosity and higher latency/token use; its clarification/rewrite guidance supports scoping first, not automatically expanding every vague query. [OpenAI Deep Research API cookbook](https://developers.openai.com/cookbook/examples/deep_research_api/introduction_to_deep_research_api)
 
 ```markdown
 ## Decision / purpose      What will the reader DO with this? (decide, write, invest, build, defend)
@@ -63,24 +69,26 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 ### S2 — Plan: Question Tree + Hypotheses + Search Map
 
-1. **Decompose** the core question into an RQ tree (MECE). Leaves must be answerable by evidence. Note dependencies (DAG) and the critical path.
-2. **Hypotheses:** for each RQ list H1..Hn, including the boring/null one and the contrarian one ($H_0/H_1$ for empirical RQs).
+Use a formal RQ tree only when the request contains multiple material questions. A lookup stays one claim with one source target; do not create lanes, a DAG or an unknown-unknowns inventory by default.
+
+1. **Decompose when needed** into answerable research questions; note dependencies/critical path only if claims actually depend on one another.
+2. **Alternatives:** for a pivotal empirical or decision question, list the leading explanation and strongest live alternative; skip formal H1..Hn for straightforward lookups or low-impact facts.
 3. **"Who would know?" map:** for each RQ, name the kind of source holding ground truth (regulator filing, standards body, original dataset, 10-K, clinical registry, source code, court record, expert transcript).
-4. **Fermi estimate** for every quantitative RQ before searching.
-5. **Unknown-unknowns:** list areas where you do not even know the right vocabulary yet.
-6. **Surface the plan** as 5-8 numbered research moves. If the user is present and the task is expensive, let them redirect; otherwise proceed.
+4. **Fermi check** only for material quantitative claims where order of magnitude can catch an error.
+5. **Unknown-unknowns:** map unfamiliar vocabulary only when the domain is genuinely novel or the first targeted search reveals a terminology gap.
+6. Keep a short internal plan. Show a one-line scope for Quick/Standard; show a concise numbered plan only for expensive Deep/X work or when requested. Do not print a 5-8 step plan for a narrow lookup.
 
 ### S3 — Retrieve (Breadth Pass)
 
 **Query craft:**
-- Start broad (2-4 words), then narrow. Every query must differ meaningfully from earlier ones.
+- Start with a question-mapped query aimed at the source that can answer it. Use one broad discovery query only when the terms or source landscape are genuinely unknown, then narrow immediately. Do not repeat wording without changing the evidence sought.
 - **Vocabulary expansion:** synonyms, field jargon, acronym AND long form, old names of renamed things.
-- **Multilingual:** search in the language where the facts live (Bahasa Indonesia for Indonesian regulation/market, etc.), then English.
+- **Multilingual:** add another language only when relevant evidence is likely published there or the first pass reveals a coverage gap.
 - **Operators:** `site:gov`, `site:go.id`, `site:ac.id`, `filetype:pdf`, `"exact phrase"`, `intitle:`, date filters, `-exclude`.
 - **Source-type targeting:** add "dataset", "annual report", "systematic review", "meta-analysis", "white paper", "RFC", "10-K", "peraturan", "putusan", "laporan tahunan".
 - **Parallelize independent queries** in one batch (Brent: $T_P \le T_1/P + T_\infty$). Serialize only true dependencies.
 
-**Four retrieval vectors (all run for S/D/X):**
+**Retrieval vectors (select only those that can answer the scoped questions; do not run every vector by default):**
 
 | Vector | Targets |
 |:---|:---|
@@ -93,11 +101,11 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 **4.1 Source genealogy.** Follow citations back to the original measurement. Record the chain: `News → Blog → Report → Dataset (origin)`. A broken chain = unverified claim.
 
-**4.2 Citation chasing (snowballing).** Backward (reference lists of the 2-3 best papers), forward ("cited by" in Google Scholar / Semantic Scholar / OpenAlex), lateral (same authors' later work, reviews in the same venue).
+**4.2 Citation chasing (snowballing).** Use for literature/SOTA reviews or when a pivotal claim's evidence origin is unclear. Start from 1-2 linchpin works; follow backward/forward links only while they reveal distinct eligible evidence or methods. Stop when new citations repeat known origins or cannot change the synthesis.
 
-**4.3 Lateral reading (SIFT).** Stop → Investigate the source → Find better coverage → Trace to origin. Check author credentials, funder/conflict of interest, venue (predatory?), retraction status, date, incentive to exaggerate.
+**4.3 Lateral reading (SIFT).** For pivotal or unfamiliar sources, Stop → Investigate the source → Find better coverage → Trace to origin. Check relevant author credentials, funder/conflict, venue/retraction status, date and incentive; do not run a reputation audit for every routine official page.
 
-**4.4 Disconfirmation pass.** Queries like `"X" criticism`, `"X" failed replication`, `"X" overstated`, `"X" problems`, `kritik X`. Record results even if the conclusion stands.
+**4.4 Disconfirmation pass.** For each decision-relevant finding, identify the strongest live alternative and test it with the most discriminating query or source type. Deep/high-stakes work needs this for each linchpin; Quick work needs it only when the premise is disputed or a wrong answer is consequential. Record what the check changed. Do not run a generic criticism search for every fact.
 
 **4.5 Numbers audit.** Unit, denominator, n, period, geography, who measured, method. Compare with Fermi estimate. Flag relative-vs-absolute risk, survivorship bias, cherry-picked windows, "up to" marketing numbers.
 
@@ -202,13 +210,15 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 ## A2. Stopping Rules
 
 Stop retrieval for an RQ when **any** holds:
-1. **Saturation:** a genuinely different query, language or source type found no evidence likely to change a pivotal answer.
-2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely value with its time and token cost qualitatively if no defensible estimate exists.
+1. **Sufficiency:** every pivotal claim has enough opened evidence for its risk level, and the citation points to the exact supporting passage.
+2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely information value with its time, token and tool cost; do not count URLs as progress.
 3. **Budget reached:** the agreed time or usage budget is spent. Stop the affected calls, disclose open questions and save the most discriminating next check.
 
 Never stop because the first plausible answer appeared. Never continue only to look thorough.
 
 ## A3. Multi-Agent Orchestration (D/X Tiers)
+
+Delegate only when independent lanes can progress in parallel and the expected coverage gain exceeds context, handoff and synthesis cost. A deep tier does not require sub-agents; for one or two dependent questions, keep one lead and a compact ledger.
 
 | Role | Responsibility | Rule |
 |:---|:---|:---|

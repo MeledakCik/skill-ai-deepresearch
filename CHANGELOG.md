@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.19.0
+
+Added a scope gate for broad research prompts and targeted web validation: ask only a decision-changing question, otherwise use a bounded assumption; search only claims needing current external evidence; select applicable source vectors; set staged budgets and stop when more retrieval cannot change the answer. Removed source-count and all-stage defaults that could encourage over-search. Added a prompt-triage regression case and tightened web-task efficiency rubrics.
+
 ## v17.18.0
 
 Added a multimodal evidence protocol for locating visual evidence, verifying OCR/chart readings, tracking claim dependencies and reporting unresolved links. Deep-research evaluation now scores visual-text integrity and intermediate dependency correctness separately, with one synthetic chart-based decision case; the case has not been run.
