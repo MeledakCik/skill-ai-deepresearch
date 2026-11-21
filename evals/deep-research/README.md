@@ -1,16 +1,18 @@
 # Deep Research Regression Pack
 
-Version: `1.2.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.3.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
 This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 10 tasks comprise eight synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover official-source fallback, unlike measures, checkpoint continuation and a protocol-led review audit.
 
 ## Run a task
 
-1. Pick one task ID from `manifest.json`. Use a fresh conversation and a clean temporary workspace. For a closed task, copy only the named corpus and its prompt into that workspace. For a live task, give the prompt and web access, but do not provide `rubrics.md`.
-2. Record the task-pack, skill, model, tools/settings and run date in a copy of `run-template.json`. For live or reproducibility runs, preserve exact materially distinct queries and filters in `search_log`, with tool/index, date, language, exposed result count, opened source IDs and query purpose/outcome. Leave it empty when no search was run. Do not put private user files or secrets into this public fixture's run record.
-3. Save the unedited answer and its source locators. Score it against `rubrics.md` only after the answer is complete. For a blind review, hide the skill version and shuffle the versions before a human reviewer sees the output.
-4. Keep retrieval, citation support, reasoning, coverage and cost separate. An unsupported pivotal claim or invented source is a critical failure regardless of prose quality. If a source has changed or cannot be opened, refresh the live seed or record the access limit; do not force the old answer.
-5. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
+1. Pick task IDs from `manifest.json`; order a small, representative first slice before deciding whether to continue. Use a fresh conversation and a clean temporary workspace. For a closed task, copy only the named corpus and its prompt into that workspace. For a live task, give the prompt and web access, but do not provide `rubrics.md`.
+2. Before the first call, set practical caps for tokens or spend (when exposed), wall time and tool calls, plus a reserve for scoring and delivery. Treat each task's cost as unknown until measured. If quota/reset information is not exposed, record it as unknown; do not guess.
+3. Record the task-pack, skill, model, tools/settings, run date, declared budget and task order in a copy of `run-template.json`. For live or reproducibility runs, preserve materially distinct queries and filters in `search_log`, with tool/index, date, language, exposed result count, opened source IDs and query purpose/outcome. Leave it empty when no search was run. Do not put private user files, credentials or unrelated raw transcripts into the run record.
+4. Save the unedited answer, source locators, actual usage and failure/recovery notes immediately after each task. Score it against `rubrics.md` only after the answer is complete. For a blind review, hide the skill version and shuffle the versions before a human reviewer sees the output.
+5. Stop before the next expensive call when a cap is reached, the host reports a quota/rate limit, or the remaining budget cannot cover review and delivery. Save a checkpoint with completed and remaining task IDs, verified outcomes, unknowns, stop reason and exact next action. Resume unfinished tasks only; completed tasks are rerun only for a predeclared replicate. A changed model, tool, effort, prompt or packet is a separate condition.
+6. Use run statuses `planned`, `in_progress`, `partial` or `complete`; task statuses are `not_started`, `in_progress`, `completed` or `blocked`. Mark the run `partial` when interrupted or voluntarily stopped. Report `completed / planned`, score completed tasks only, and do not call it a full-suite pass rate. Keep retrieval, citation support, reasoning, coverage and cost separate. An unsupported pivotal claim or invented source is a critical failure regardless of prose quality. If a source has changed or cannot be opened, refresh the live seed or record the access limit; do not force the old answer.
+7. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
 
 ## Tracks and scoring
 
@@ -34,7 +36,8 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `manifest.json`: task IDs, tracks and prompt/packet paths.
 - `prompts.md`: copy-ready prompts only.
 - `rubrics.md`: hidden acceptance criteria and live seed observations.
-- `run-template.json`: one record per run; leave scores null until a human or defined evaluator scores them.
+- `run-template.json`: one record per run, with budget, status and resumable task IDs; leave scores null until a human or defined evaluator scores them.
+- `runs/`: optional durable run records and answer artifacts; preserve partial runs with their original pack and skill versions so they can be resumed without repeating completed tasks.
 - `corpora/library-evening-pilot/`: synthetic source packet and deliberately flawed draft for closed-packet evaluation.
 - `corpora/source-access-recovery/`: synthetic official-source access failure with an official final data alternative.
 - `corpora/primary-source-conflict/`: synthetic official measures with different populations, constructs and uncertainty.

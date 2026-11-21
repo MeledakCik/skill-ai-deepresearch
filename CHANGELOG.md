@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.14.0
+
+Added budget-gated, resumable research evaluations: declare practical caps, checkpoint after each task, stop before an unaffordable next call, and report partial runs without implying a full-suite pass rate. Added a partial Codex CLI evaluation record with per-task token usage; it is a checkpoint, not a completed baseline.
+
 ## v17.13.0
 
 Added a compact search-log standard for Standard/Deep research and reproducibility requests while keeping Quick work lightweight. Expanded the regression pack with a protocol-led review audit covering search records, deduplication, screening, unavailable full text and synthesis limits.

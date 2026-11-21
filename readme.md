@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.13.0 |
+| **Versi** | 17.14.0 |
 | **Format** | 15 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -275,6 +275,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.14.0
+
+Menambahkan batas anggaran dan checkpoint yang bisa dilanjutkan pada evaluasi riset: simpan hasil setiap tugas, berhenti sebelum panggilan berikutnya melampaui anggaran, lanjutkan dari tugas yang belum selesai, dan laporkan run parsial tanpa menyebutnya pass rate satu paket penuh. Mencatat dua kasus Codex CLI yang sudah dievaluasi sebagai checkpoint, bukan baseline lengkap.
 
 ### v17.13.0
 

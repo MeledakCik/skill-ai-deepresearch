@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.2.0",
+  "suite_version": "1.3.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -13,11 +13,33 @@
     "effort_or_settings": "",
     "prompt_hash_or_revision": "",
     "packet_revision": "",
+    "status": "planned",
+    "planned_task_ids": [],
+    "completed_task_ids": [],
+    "remaining_task_ids": [],
+    "stop_reason": "",
+    "budget": {
+      "planned_input_tokens": null,
+      "planned_output_tokens": null,
+      "planned_spend": null,
+      "currency": "",
+      "planned_wall_time_minutes": null,
+      "planned_tool_calls": null,
+      "review_delivery_reserve": "",
+      "actual_input_tokens": null,
+      "actual_cached_input_tokens": null,
+      "actual_output_tokens": null,
+      "quota_or_reset_status": "unknown"
+    },
+    "checkpoint_artifact": "",
+    "next_action": "",
+    "resume_condition": "",
     "notes": ""
   },
   "tasks": [
     {
       "task_id": "",
+      "status": "not_started",
       "completed_at": "",
       "answer_artifact": "",
       "opened_source_ids_or_urls": [],
