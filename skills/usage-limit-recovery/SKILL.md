@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -25,6 +25,8 @@ For code, run the ordinary entry point for the slice and its focused check. If a
 Save the goal, verified result with evidence, pending work, unchecked or uncertain effects, and one precise next action. Prefer existing task notes. A file-capable host with Python can use the bundled `scripts/checkpoint.py` (Part T includes a command). In chat only, put the same short handoff in the current deliverable at milestones. A hard cutoff can prevent another turn.
 
 On resume, open the saved evidence or artifact and check for changes. Reconcile uncertain writes before any replay. Continue from the first unmet check. Call the full task complete only when every requested outcome passes.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 

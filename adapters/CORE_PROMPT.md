@@ -1,6 +1,8 @@
-# Deep Research Domain Council (Core, v17.5)
+# Deep Research Domain Council (Core, v17.6)
 
 Start with the matching focused skill. A dedicated GPT/Gem can use that skill's core as its instructions and its selected reference as Knowledge. The monolithic specification and changelog are for maintainers. Apply the following sections only to the corresponding task.
+
+For every task, read only the reference needed, batch independent tool calls, keep concise evidence and decisions, and avoid repeating completed work. Preserve all checks and detail the selected skill requires.
 
 ## Research laws
 1. Sharpen the question first: turn the ask into decision-relevant sub-questions (RQ1..RQk).

@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -20,6 +20,8 @@ Quick checks one narrow claim. Standard compares independent origins across ques
 5. Recheck each pivotal sentence against its cited passage. Close a question when a different search after the countercheck adds no decision-changing evidence. If budget ends first, retain the open question and next discriminating search.
 
 **Report.** Lead with the answer, its scope and confidence reason. Give each finding a native citation or a numbered source with title, date and URL or supplied locator. For Quick, add the biggest gap and a one-line method (sources checked and date when known). For Deep, also explain contradictions, sensitivity and what would change the decision. Count shared origins once. Keep regulated advice informational.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 

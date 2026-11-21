@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -21,6 +21,8 @@ metadata:
 6. Log prompts (shot, prompt, settings, keep/reject, why); edit, caption, color-match and sound in an editor.
 
 Rights: no real person's face or voice without consent, no copyrighted characters or logos, no fake "real footage" of events; label AI content where platforms or law require it.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 

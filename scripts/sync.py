@@ -25,6 +25,8 @@ LITE = ROOT / "adapters" / "CORE_LITE.md"
 HOSTS = ROOT / "adapters" / "hosts"
 CHATGPT_LIMIT = 8000
 DESC_LIMIT = 1024
+TOKEN_EFFICIENCY = ("Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence "
+                    "and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.")
 ARCHIVE_EXT = {".zip", ".plugin", ".skill"}
 SKIP_DIRS = {".git", "__pycache__", "_to_delete", "node_modules"}
 NATIVE_DIRS = [".claude/skills", ".agents/skills", ".gemini/skills", ".github/skills", ".opencode/skills"]
@@ -340,7 +342,7 @@ def build_skills(body, version):
         fm = (f"---\nname: {name}\ndescription: >-\n  {desc}\nlicense: MIT\nmetadata:\n  author: kasyaf-anugrah\n"
               f"  version: \"{version}\"\n  source: {PLUGIN}\n---\n\n")
         delivery = "" if "former_design_refs" in spec else f"{MODEL_CLASS}\n\n{SHIP_CHECK}\n\n"
-        text = (fm + f"# {spec['title']}\n\n{spec['core']}\n\n{delivery}"
+        text = (fm + f"# {spec['title']}\n\n{spec['core']}\n\n{TOKEN_EFFICIENCY}\n\n{delivery}"
                 "## References (open only the one you need)\n\n| File | Read when |\n|:---|:---|\n" + "\n".join(rows) +
                 "\n")
         if delivery:

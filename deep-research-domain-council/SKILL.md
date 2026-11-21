@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---

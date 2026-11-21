@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -22,6 +22,8 @@ metadata:
 Principles: everything as code; remote locked state; least privilege with short-lived credentials; secrets in a manager; immutable artifacts by digest; logs, metrics, traces and burn-rate alerts; restores tested; budgets and tags.
 
 **Never** run apply, destroy, delete, drop, force-push or DNS changes on staging or production without explicit human approval in the conversation. Never disable state locking, deletion protection, backups or audit logs to make something work.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 

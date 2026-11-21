@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -22,6 +22,8 @@ metadata:
 7. Acceptance: fresh clone -> install -> lint -> typecheck -> test -> build -> run, with zero manual fixes.
 
 Model pairing (optional): a strong long-context model as architect, a strong coding model as builder; verify by running, not by trust. Details and the hand-off contract are in the scaffolding reference.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 

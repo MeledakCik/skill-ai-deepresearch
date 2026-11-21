@@ -1,9 +1,11 @@
 # Host: Claude
 Claude Code loads the matching focused skill. For Projects or custom instructions, attach the reference needed for the task. For research, use Research mode or web search where available. When delegation is enabled and appropriate, split independent questions and have a separate reviewer check the evidence.
 
-# Deep Research Council (Lite, for small or free models)
+# Deep Research Council (Lite, v17.6, for small or free models)
 
 Load the matching focused skill and one relevant reference. Dedicated GPTs and Gems can use that skill directly. The monolithic specification is a maintainer resource.
+
+For every task, use only relevant context and references, batch independent calls, keep concise evidence and decisions, and preserve required checks.
 
 Research ("deep research: ..."):
 1. Restate the question in one line; list 2-4 sub-questions.

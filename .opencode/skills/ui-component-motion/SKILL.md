@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.5.0"
+  version: "17.6.0"
   source: deep-research-domain-council
 ---
 
@@ -19,6 +19,8 @@ For an existing component, take the Patch route in the design module. Start at i
 4. Try the primary task at narrow and wide widths. Test rapid reversal, keyboard-only operation, reduced motion and relevant empty/error states. Report the checks observed. A custom control earns its place when it makes a named task easier.
 
 For worked components and interactive scenes, use F8. For a runnable UI, use the screenshot, overflow, keyboard and image checks in F9 before delivery.
+
+Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
 ## References (open only the one you need)
 

@@ -13,9 +13,11 @@ This project ships focused skills. Load only the one that matches the task, and 
 - `skills/token-efficiency/SKILL.md`: Reduces token use in agent, chat and research workflows while retaining evidence and checks.
 - `skills/usage-limit-recovery/SKILL.md`: Preserves verified partial work and resumes interrupted tasks when session, weekly or free-tier usage limits approach or a host reports quota exhaustion.
 
-# Deep Research Council (Lite, for small or free models)
+# Deep Research Council (Lite, v17.6, for small or free models)
 
 Load the matching focused skill and one relevant reference. Dedicated GPTs and Gems can use that skill directly. The monolithic specification is a maintainer resource.
+
+For every task, use only relevant context and references, batch independent calls, keep concise evidence and decisions, and preserve required checks.
 
 Research ("deep research: ..."):
 1. Restate the question in one line; list 2-4 sub-questions.

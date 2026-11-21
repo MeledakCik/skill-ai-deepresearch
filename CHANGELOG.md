@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.6.0
+
+Every focused skill and chat adapter now includes concise token-efficiency guidance while preserving the research and validation required by the task.
+
 ## v17.5.0
 
 Unified the design reference, introduced Full and Patch routing and rendered verification, and added chart, responsive component, gradient, glass and canvas guidance.
