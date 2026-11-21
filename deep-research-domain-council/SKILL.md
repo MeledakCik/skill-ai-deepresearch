@@ -5,44 +5,14 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.2.0"
+  version: "17.5.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
 
-# Deep Research & Multi-Domain Principal Council (v17.2)
+# Deep Research & Multi-Domain Principal Council
 
-You are a **senior research lead**: someone who has run hundreds of literature reviews, due-diligence briefs and technical investigations, has been burned by bad sources, and now works by habit, not by checklist. Everything else in this file (domain modules, engines, gates) serves one goal: **a conclusion the reader can trust, trace and act on.**
-
-Load only the module(s) the task needs. For any research task, **Part A (Research Cognition Core) is mandatory**. Parts B-E are add-ons.
-
-**v17.2** adds custom web components and motion (S), partial delivery and usage-limit recovery (T), evidence reconciliation (R5) and compact research notes (H10).
-
-**Changelog v17.1:** fixes from live tests: date-bound questions get a recency check at every tier; only opened sources count; citation format rule; Quick-tier report template; social-caption rules and a rewrite example in natural-writing; each skill lists where cross-referenced Parts live.
-
-**Changelog v17:** split into 10 focused skills with narrow "use when / not for" descriptions (fewer false triggers); short cores per skill; model names moved out of cores into a dated, sourced list (D4); trigger tests added.
-
-**Changelog v16.2:** token diet: shorter description (loaded every session), native platforms get the lean core + references instead of the 34K-token full file, delivery gates moved to a reference, model-class profiles (pro / standard / small) in the core and in Part H9, lite prompts for small models.
-
-**Changelog v16:** added Part R (Unified Deep Research Engine: one AI runs the combined methods of OpenAI, Gemini, Claude, DeepSeek, Copilot, Perplexity and Grok in 12 stages; lanes without sub-agents; host adapters for ChatGPT, Gemini, Claude, Copilot, Perplexity, Grok, DeepSeek, Codex, API; activation phrase); per-host instruction files; gate E20.
-
-**Changelog v15:** added Part Q (multi-AI deep research federation: platform roster, Split/Mirror/Relay/Cross-examine patterns, universal research brief, shared Research Packet format + JSON schema, merge protocol with origin-aware agreement scoring, calibration log, hand-off prompts); gate E19.
-
-**Changelog v14:** added Part N (pre-delivery error handling: verify-before-send loop, error taxonomy, pre-send checklist, tool/runtime error policy, code-level error standards, second-opinion review, honest failure reporting), Part O (project scaffolding with Gemini 4 Argon as architect and Gemini 4 Carbon as builder, with fallback), Part P (infrastructure with Claude Opus 5.5 max as author and Claude Fable 5.2 max as reviewer); D3 engine table re-verified; gates E16-E18.
-
-**Changelog v13:** added Part M (Microsoft 365 Copilot Researcher/Analyst enterprise mode, Dreamina AI-video research & production mode, Apple Siri privacy-tiered mode, "Jarvis Mode" proactive assistant, mode router).
-
-**Changelog v12:** added Part J (public research playbooks of OpenAI, Google Gemini, Anthropic Claude, DeepSeek + cross-lab consensus), Part K (14 specialist researcher personas across fields), Part L (rubric-based evaluation, golden questions, failure taxonomy).
-
-**Changelog v11:** added Part F (web & design deep module: slop diagnosis, process, OKLCH tokens, layout, components, UI copy, accessibility, Core Web Vitals, motion, critique), Part G (natural writing), Part H (token economy across AI harnesses), Part I (templates & worked examples); new gates E11-E13.
-
-**Changelog v10 (vs v9):**
-- Removed the duplicated, broken copy of the file.
-- Replaced the fixed "≤3 hops" cap with adaptive budget tiers (deep research needs dozens of sources).
-- Made confidence scoring honest: independence required for Bayesian updates, no fake precision.
-- Added the expert research craft v9 lacked: question framing, hypotheses-first, source genealogy, lateral reading, citation chasing, disconfirmation, Analysis of Competing Hypotheses, saturation stopping, self-grading rubric, multi-agent orchestration, domain playbooks.
-- Fixed HKDF salt handling and cache-latency figures.
-- Flagged volatile/unverified facts (⚠) that must be re-checked before citing.
+Master specification for maintainers. Active version is recorded in the metadata above. Agents and chat knowledge packs start from the matching entry in `skills/` and its selected reference. See [release history](../CHANGELOG.md).
 
 ---
 
@@ -381,50 +351,9 @@ Density heuristic: count atomic facts + invariants + metrics per technical parag
   - Bab V: numbered answers to each RQ.
   - Lab report: Times New Roman 12 pt; margins top/left 4 cm, bottom/right 3 cm; correct cover year; legible enlarged screenshots.
 
-## C3. Anti-Slop Design Filter (`miqdadbadjuber/anti-slop`)
+## C3. Anti-Slop Design Filter
 
-- **Design Read:** `Reading this as: <page kind> for <audience>, in <visual language>, ENERGY <1-3> / RHYTHM <1-3> / MOTION <1-3>. Reference: <system>.`
-- **3 Dials:** ENERGY (1 calm / 2 balanced / 3 bold), RHYTHM (1 uniform / 2 consistent-breaks / 3 asymmetric), MOTION (1 hover / 2 scroll-reveal / 3 physics/canvas).
-- **5 visual languages:** `swiss-editorial`, `spatial-hardware`, `sentinel-telemetry`, `archival-academic`, `kinetic-bento`.
-
-**Group 1, hard gates:**
-- R-02 no em dashes (`—`) in generated UI copy.
-- R-03 mobile: 0 horizontal overflow, 44×44 px touch targets.
-- R-17/18/36/38 zero fabricated data: no fake stats/testimonials/badges; use `[REAL DATA]` or "Coming soon".
-- R-23 no silently invented logos/team photos.
-- R-24/26 zero dead controls: every `<a>`/`<button>` does something real.
-- R-25/32/39 accessibility: WCAG AA ≥4.5:1 (large ≥3:1), full keyboard, `:focus-visible`, landmarks, `<label>`, `prefers-reduced-motion`.
-- R-27 empty/loading/error states on every data view.
-- R-28 product-specific FAQ, no templates.
-- R-33/34/35/40 no CSS regex patching; light+dark theme integrity; explicit media dimensions; `fetchpriority="high"` on hero.
-
-**Group 2, purpose gates (1-line purpose + dose cap):** R-01 gradients, R-04 icons (no sparkle/robot/orb clichés), R-06 typography, R-07 background grids, R-08 button arrows, R-09 capsule badges (no "AI Powered" pill), R-10 glassmorphism ≤1-2 elements, R-12 shadows, R-13 glow ≤1-2 accents, R-14 varied card hierarchy, R-19 motion matches dial, R-22 illustrations.
-
-**Group 3, quality locks:** R-05 no AI template layouts, R-11 radius hierarchy, R-15 specific CTAs (no "Get Started"/"Learn More"), R-16 banned buzzwords, R-20/R-30 no unprompted Linear/Vercel/Stripe clones, R-29 palette 2-3 core + 1 accent, R-31 one-line reason per design decision.
-
-**`antislop-code` comment filter:** strip narrating comments, ASCII banners, emoji headers; keep only "why" comments (invariants, math, regex/bitmask rationale, platform workarounds).
-
-### C3.1 Professional Design Reference Layer
-
-| Reference | Source | Core principle | Anti-slop alignment |
-|:---|:---|:---|:---|
-| Apple HIG | [developer.apple.com/design](https://developer.apple.com/design/human-interface-guidelines/) | Clarity, deference, depth | R-10, R-25, R-34 |
-| Microsoft Fluent 2 | [fluent2.microsoft.design](https://fluent2.microsoft.design/design-principles) | Native-first, signature where it matters | R-05, R-27, R-39 |
-| Anthropic Brand | [brand-guidelines skill](https://github.com/anthropics/skills/blob/main/skills/brand-guidelines/SKILL.md) | Warm near-black `#141413` + cream `#faf9f5`; accents `#d97757`, `#6a9bcc`, `#788c5d`; no pure `#000`/`#fff` | R-29, R-06, R-16 |
-| Google Material 3 | [m3.material.io](https://m3.material.io/) | Breakpoint-driven adaptive layout | R-03, R-27, R-05 |
-| Stripe (community analysis) | [analysis](https://github.com/yc-software/qm/blob/340e553683455b61a95179eafeafeb19a4dc876c/skills-seed/popular-web-designs/templates/stripe.md) | Blue-tinted shadows `rgba(50,50,93,0.25)`, light display weight, radius 4-8 px | R-12, R-29, R-11 |
-| IBM Carbon | [carbondesignsystem.com](https://carbondesignsystem.com/) | WCAG AA 4.5:1 / 3:1 large; never color alone | R-25, R-32, R-39 |
-
-| Reference | Primary use case |
-|:---|:---|
-| Apple HIG | Consumer iOS/macOS/visionOS |
-| Fluent 2 | Windows / productivity |
-| Anthropic | Research tools, editorial AI products |
-| Material 3 | Android, cross-platform |
-| Stripe | Fintech, infra, premium SaaS |
-| Carbon | Enterprise, government, accessibility-critical |
-
-Every UI declares `Reference: <System>`. Defaults: Carbon (accessibility), Apple HIG (interaction), Anthropic (typography/palette).
+The design brief, diagnostic and reference systems now live in [F0](#f0-visual-direction-and-design-critique).
 
 ## C4. Android & Kotlin Architecture (`javiercamarenatriguero/android-skills`)
 
@@ -611,14 +540,14 @@ Rule: before quoting any model fact to a user, re-check the provider's own page 
 | E1 Research | Brief and hypotheses, coverage of pivotal questions, origins counted, strongest counterevidence checked, contradictions recorded, citations inspected, method and remaining limits disclosed |
 | E2 Deep-thinking | Fermi anchors; derivations for quantitative claims; ≥3 objections addressed; calibrated labels; unknown-unknowns listed |
 | E3 Efficiency | Critical path identified; parallel batches; surgical diffs; no filler; measured performance claims |
-| E4 Anti-slop UI | Design Read + dials + reference; hard gates pass; WCAG AA; keyboard; complete states; 0 dead controls |
+| E4 Product UI | Inspect product-specific content and a real user action using F0, F4 and F9. |
 | E5 Academic writing | Claim-evidence map complete; BibTeX verified; deterministic figures; reviewer risks resolved; build log clean |
 | E6 Android | Module boundaries; unidirectional MVI; no unstable recomposition; structured coroutines; MASVS pass; perf targets met |
 | E7 Security | Audit ≥80 (target ≥90), 0 CRITICAL/HIGH, 0 hardcoded secrets, full type contract |
 | E8 Engine config | Effort declared per D2; no max for short tasks; cost acknowledged |
 | E9 Volatile facts | Every price/version/benchmark/role dated and re-verified this session |
 | E10 Safety | A1 S7.4 scan passed (injection, PII, regulated advice, dangerous content, copyright) |
-| E11 Web & design | F0 slop test passed (page is specific to this product); tokens only; all component states; F9 critique all ≥4; LCP ≤2.5 s, INP ≤200 ms, CLS ≤0.1 measured |
+| E11 Web & design | Walk the primary task and recovery path, record the F9 revision and evidence, check component roles across screens, and identify any pending accessibility or field-performance measurements. |
 | E12 Natural writing | G4 self-check passed; no G1 patterns; every number sourced |
 | E14 Specialist & eval | Lead specialist card (Part K) applied; reviewer cards ran their trap lists; L1 rubric passed |
 | E15 Assistant modes | Correct mode chosen (M5); enterprise data stays within permissions; video work has shot list, prompt log and rights check; Jarvis Mode acts only within the permission ladder |
@@ -631,41 +560,29 @@ Rule: before quoting any model fact to a user, re-check the provider's own page 
 
 ---
 
-# PART F — WEB & DESIGN DEEP MODULE (Extends C3)
+# PART F — WEB & DESIGN DEEP MODULE
 
-C3 says what to avoid. This part says **how a senior product designer + front-end engineer actually builds a page that does not look generated.**
+**Full.** For a new screen, product or redesign, start at F1. Research the audience and content, sketch three grayscale directions, select one, and build its complete flow. Use F9 before delivery.
 
-## F0. Why AI Sites Look Like AI Sites (Diagnose Before You Design)
+**Patch.** For a single component, CSS bug or localized interaction, reproduce it at its normal entry point. Go directly to F2 (tokens), F4 (behavior), F6 (accessibility) and F9 (rendered verification). Add F3 for a layout/data issue or F8 for motion. Keep the surrounding product conventions.
 
-AI slop is not one mistake; it is the *average of the internet* rendered at once. Recognize the fingerprint:
+**Find the right section.** F0 critique · F1 discovery · F2 tokens and materials · F3 layout and information design · F4 interaction states · F5 copy and assets · F6 accessibility · F7 performance · F8 motion and canvas · F9 delivery. Focused research U1–U3 offers deeper evidence on type/themes, hierarchy/usability and dashboards.
 
-| Slop fingerprint | Why it happens | What a senior does instead |
-|:---|:---|:---|
-| Centered hero, giant gradient headline, two buttons, floating 3D blob | Most common landing pattern in training data | Start from the content and the user's first job; hero can be a table, a product screenshot, a search box, a single sentence |
-| Purple-to-blue gradient, glow, glassmorphism everywhere | "Modern" averaged | One brand color derived from the product's world; neutral surfaces carry 90% of the UI |
-| Three feature cards with icons, identical size | Easiest grid | Vary weight: one primary capability large, secondary ones as a list, proof as real data |
-| "Unlock the power of…", "Seamlessly…", "Elevate your…" | Marketing filler | Concrete verb + object + outcome: "Export invoices to Excel in one click" |
-| Fake logos, "Trusted by 10,000+ teams", 5-star testimonials | Template placeholders | Real proof or nothing; placeholder marked `[REAL DATA]` |
-| Inter everywhere, 16/24/48 random sizes | Default font, no scale | Chosen typeface with a reason + modular scale |
-| Every section same padding, same width | No rhythm decision | Deliberate density changes: tight data sections, airy narrative sections |
-| Emoji as icons, sparkle icon for "AI" | Shortcut | Icon set with consistent stroke/grid, or no icon |
-| Dark mode = invert colors | Afterthought | Separate tuned palette (surfaces get lighter with elevation, saturation reduced) |
-| Animations on everything on scroll | "Make it lively" | Motion only where it explains change of state |
+## F0. Visual direction and design critique
 
-**Slop test (run on every page):** cover the logo. Could this page belong to any of 1,000 other startups? If yes, it is slop. Fix the *content and structure* first, styling second.
+Cover the logo and read the first action. Could the same copy, assets and structure sell an unrelated product? Replace unsupported proof with real content or labeled fixtures. Remove badges, icon cards and effects that obscure the decision. Derive contrast from F2, semantics from F6, motion from F8 and delivery checks from F9.
 
-## F1. Design Process (In Order, No Skipping)
+The former C3 filter draws on `miqdadbadjuber/anti-slop`. Pick a reference for a concrete reason: Carbon for comparable records, Fluent for an operator workspace, Apple HIG for platform interaction, Material for an adaptive Android screen. Editorial, spatial-hardware, telemetry and archival directions are useful when the product content supports them. Use color, radius, pacing and illustration in service of that choice. In a visual instrument, MOTION 3 can justify a manipulable scene with F8's accessible controls. [Carbon](https://carbondesignsystem.com/) · [Fluent 2](https://fluent2.microsoft.design/) · [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/) · [Material](https://m3.material.io/)
 
-1. **Job & audience.** Who lands here, from where, wanting what in the first 10 seconds? Write it: `A <role> arriving from <source> wants to <job>; success = <action>.`
-2. **Content inventory.** List every real piece of content you have (copy, data, screenshots, docs, prices). Design *around real content*; never design empty boxes then fill them.
-3. **Information architecture.** Order sections by the questions the visitor asks, in the order they ask them (What is it → Is it for me → Does it work → What does it cost → How do I start).
-4. **Low-fi structure.** Grayscale wireframe in boxes and real text. Judge hierarchy without color.
-5. **Design Read + reference system** (C3).
-6. **Tokens first** (F2), then components (F4), then pages.
-7. **States** for every component: default, hover, focus, active, disabled, loading, empty, error, success.
-8. **Responsive pass** at 360, 768, 1024, 1440 px.
-9. **Accessibility pass** (F6) and **performance pass** (F7).
-10. **Critique pass** (F9) before shipping.
+## F1. Research, moodboard and three grayscale directions
+
+For a new design, write down who arrives, from where, which decision is difficult and what success looks like. Inspect the product's actual copy, data and constraints. Walk the same task in a competitor or analogue when available. Record one observed strength and one point of friction. Distinguish direct observations from assumptions. For a narrow correction, work from the existing product and its conventions.
+
+Build a small moodboard before opening a polished canvas. Use the user's own assets, a real interface from the domain and a visual reference suited to the audience. Behance, Awwwards, Pinterest and Dribbble can help locate work. Trace a promising image to the original project where possible. For each reference keep its source, the specific design decision worth studying, and how that decision would help this audience. When working offline, use supplied materials or an explicitly proposed direction. Credit only references actually inspected.
+
+Sketch three grayscale compositions with the **same copy, data and primary task**. Change the order of decisions, grouping or use of space. On paper, in Figma or in a lightweight coded wireframe, make the key labels legible. Compare where the eye lands, what information the user needs to remember and how they recover. Select one, put difficult content through it, and revise the weakest point. A process handoff can fit in one strip showing the three sketches, the selection reason and the resulting revision.
+
+**Worked decision.** A rider knows their destination but has flexible dates. Explore a destination search above departures, a date picker above routes, and a departures list with filters. The first direction matches what the rider already knows. Try a fully booked departure. Move “Lihat keberangkatan berikutnya” next to that departure and retain the destination. The revision answers a failure discovered in the chosen flow. It also gives a reviewer something concrete to test.
 
 ## F2. Design Tokens (The Foundation)
 
@@ -675,26 +592,28 @@ AI slop is not one mistake; it is the *average of the internet* rendered at once
 - **Max two families** (one + mono is usually enough).
 - **Modular scale:** pick a ratio and stop improvising. 1.125 (dense apps), 1.2 (product UI), 1.25 (marketing), 1.333 (editorial).
 - **Fluid type** with `clamp()` so headings scale between breakpoints without jumps.
-- **Line length** 45-75 characters for body (`max-width: 65ch`). **Line height** 1.5-1.7 body, 1.1-1.25 headings. Tighten letter-spacing slightly on large headings (−0.01 to −0.03em), never on body.
+- Start long-form copy around 55–75 characters per line where space permits. Try body leading of 1.5–1.7 and inspect multiline headings and diacritics. Part U1 gives the supporting studies and a text-spacing override test.
 - **Weight hierarchy over size inflation:** 400 body, 500-600 UI labels, 600-700 headings. Avoid 800-900 except display.
 - Numerals in tables: `font-variant-numeric: tabular-nums;`.
+
+Start by setting one real headline, a paragraph, a long name and a caption together. A practical starting scale in CSS pixels is H1 36/42 on phones and 48/54 on wide layouts, H2 24/30, body 16/24, caption 14/20 (size/line height). Express sizes in rem in code and map them to named text styles in Figma. One family can cover every role. Add a display face only if it gives the title a useful voice alongside the quieter body. For example, try Instrument Serif for an exhibition title and Source Sans 3 for opening hours and directions. For a dense departures table, one functional sans with distinguishable digits suffices. Check wrapping, weight, tracking and spacing around headings at actual widths and at text zoom. Rounded type, tight bold headings and gradient text used together can obscure the reading order.
 
 ### F2.2 Color
 
 - Build in **OKLCH** for perceptually even ramps: same L across hues means same perceived lightness.
 - **Neutral ramp (10-12 steps)** does most of the work: background, surface, border, muted text, text. Tint neutrals slightly toward the brand hue (chroma 0.005-0.02) so gray does not feel dead.
 - **One brand hue**, used for primary action and key highlights only. Plus semantic colors: success, warning, danger, info.
-- **60-30-10**: ~60% neutral surface, ~30% secondary surface/text, ~10% accent.
-- Never pure `#000` on pure `#fff` for long reading; use near-black on off-white.
-- Contrast: body ≥4.5:1, large text and UI components ≥3:1. Never encode meaning by color alone.
+- Start with one primary color, one accent role and a neutral family. The primary hue can also fill the accent role. Put the strongest contrast at the current decision. Add status colors only for meaningful states and pair them with text or a symbol. If a gradient or glass surface has no job in the content, simplify it to a solid surface.
+- Inspect actual foreground/background pairs, including labels over the brightest part of a photograph. Ordinary text needs at least 4.5:1, large text 3:1, and visual cues required to identify active controls or their states generally need 3:1 against adjacent colors. Check focus, hover and errors as well as the default view. [W3C text contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) · [W3C non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
 - **Dark mode**: not inverted. Background around L 0.15-0.20, elevated surfaces get *lighter*, reduce accent chroma, re-test contrast.
 
 ### F2.3 Space, Size, Radius, Shadow
 
-- **4 px base grid**, spacing scale `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`. Use only these.
+- Start with shared spacing steps such as 8, 16, 24, 32 and 48. Give dense controls a small inset token if needed. A repeated 17 px gap in one screen and 13 px in the next is a signal to compare their roles and consolidate.
 - **Proximity rule:** space inside a group < space between groups. If everything has 24 px gaps, nothing is grouped.
 - **Radius hierarchy:** nested radius = outer radius − padding. Pick one personality: sharp (0-4), soft (6-10), round (12-16). Pills only for tags/toggles.
 - **Elevation:** at most 3 shadow levels; shadows are tinted with the background hue, low opacity, with a tight + soft layer combination. In dark mode, use lighter surfaces instead of shadows.
+- Use one icon family with consistent view box, stroke and optical size. Reuse named roles for field radius, primary button shape, focus ring and overlay elevation. Test the same action on two screens. Changing its shared style once should update both instances.
 
 ### F2.4 Token Example (copy and adapt; values are a starting point)
 
@@ -747,18 +666,55 @@ AI slop is not one mistake; it is the *average of the internet* rendered at once
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+```
+
+### F2.5 Gradient and frosted surfaces
+
+Choose the information the surface carries. A directional tint can connect a title to a product view. Frosted glass can keep a toolbar visible while revealing the scene it controls. For a dense form or a chart, keep the reading surface solid. The supplied Pinterest board groups swatches, including pastel and cool hues. Color Hunt provides palette combinations. Use those galleries to explore hue relationships. Choose the direction and positions of the CSS stops for the actual composition. [Pinterest gradient board](https://id.pinterest.com/zaaazzzaaaa/kode-gradasi-warna/) · [Color Hunt gradient collection](https://www.colorhunt.co/palettes/gradient) · [web.dev gradient mechanics](https://web.dev/learn/css/gradients?hl=id)
+
+**Two original recipes.** For a coastal itinerary, try ink blue → petrol → teal (`#102C43`, `#135064`, `#176760`) with white text on the quieter end. For an exhibition invitation, try a paper → apricot → rose wash (`#FFF6E8`, `#F1D2AC`, `#DEAAB0`) with ink text `#272128`. Mark the subject and text zones on both crops first. A linear gradient gives an axis, a radial gradient can put a localized light behind a subject. Move the middle stop to make room for the title. Sample the brightest, darkest and intermediate rendered pixels behind the actual text, including when the layout reflows. A contrast check at just the endpoints can miss a failing strip.
+
+The Dribbble glass search includes refracted compositions and frosted cards. The original Rainy Frosted Glass study is a card treatment. Vecteezy's collection is a reference for photographed materials. Borrow the relationship between tint, edge highlight and a softly visible background. For UI, preserve sharp controls and a solid fallback. Hex values and CSS below are original starting points. [Dribbble glass collection](https://dribbble.com/search/glass-gradient) · [Shashikanth Kapikad’s study](https://dribbble.com/shots/15759398-Rainy-Frosted-Glass-Glassmorphism-Card-Design) · [Vecteezy glass photos](https://www.vecteezy.com/free-photos/glass-gradient)
+
+```css
+.scene {
+  background-color: #102c43;
+  background-image: linear-gradient(115deg, #102c43 0%, #135064 58%, #176760 100%);
+}
+.scene-tools {
+  --panel: #f5f8fa;
+  --wash: rgb(245 248 250 / 92%);
+  --ink: #172833;
+  --edge: #74818a;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--edge);
+}
+@media (prefers-color-scheme: dark) {
+  .scene-tools {
+    --panel: #192a34;
+    --wash: rgb(25 42 52 / 92%);
+    --ink: #f3f7f9;
+    --edge: #8998a1;
+  }
+}
+@supports (backdrop-filter: blur(1px)) {
+  .scene-tools { background: var(--wash); backdrop-filter: blur(12px); }
+}
+@media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+  .scene-tools { background: var(--panel); backdrop-filter: none; }
 }
 ```
+
+Match the theme selector to the host app when it offers its own switch. Blur the backdrop of a bounded panel. Applying `opacity` or `filter: blur()` to the whole panel also affects its contents. Try the panel above a bright highlight, a dark patch and moving detail. Verify text and focus cues on the composed result, then disable the filter and repeat. If scrolling or orbiting stutters on the target device, reduce the affected area or switch to the opaque surface. [MDN backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter) · [MDN reduced transparency](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-transparency)
 
 ## F3. Layout & Composition
 
 - **Grid:** 12 columns desktop, 8 tablet, 4 mobile; content max-width ~1200-1280 px; reading column ~65ch.
-- **Hierarchy tools, in order of strength:** position → size → weight → color → decoration. Reach for decoration last.
-- **One focal point per viewport.** If two things shout, neither is heard.
-- **Rhythm:** alternate dense and airy sections deliberately; break the grid once per page at most, with a reason.
-- **Alignment:** everything aligns to something. Ragged-left text blocks and centered paragraphs longer than 2 lines are reading penalties.
+- Use position, scale, weight and contrast to signal the next decision. Test the resulting reading order on a real task (U2).
+- Give each section one focal point. On a 12-column landing layout, try a copy block across five columns and a product view across six with one column of breathing room. Align the next section to one of those same edges. On a phone, keep the meaningful reading order when the blocks stack.
+- Put extra space around changes of topic and less between a label and its value. An empty column can separate decisions. Remove ornaments one at a time and keep the space if the task is as clear or clearer. Data-heavy work may benefit from compact rows. Choose density by what people need to compare.
+- Align reading text to its starting edge. Centering can suit a short invitation. Compare the ragged edge and line breaks of a full paragraph at mobile width before centering it.
 - **Above the fold** answers "what is this and is it for me", not "how beautiful are we".
 - **Show the product.** Real UI screenshots (with real-looking data you are allowed to show) beat illustrations nearly every time for software.
 
@@ -773,15 +729,65 @@ AI slop is not one mistake; it is the *average of the internet* rendered at once
 | FAQ of filler | The 5 questions support actually receives |
 | Footer link farm | Footer with what people actually look for: docs, status, pricing, contact, legal |
 
+### F3.2 Choose a layout for the surface
+
+| Surface | First view and progression | Test the decision |
+|:---|:---|:---|
+| Landing page | Give the audience a specific outcome, a relevant product screenshot or other substantiated proof, and a next action. Order the scroll by the visitor's uncertainties, such as problem, demonstration, evidence, price or terms, then action. | At phone width, can someone identify the offer, who it serves and how to try it? If the actual evidence is a screenshot, crop it to the task at a readable size. |
+| Mobile app | Give the screen one primary task. Put frequent actions within thumb reach, use familiar bottom navigation for peer destinations, and reserve sheets for short contextual choices. Respect the keyboard and safe-area inset. | Can someone finish with one hand, correct an entry with the keyboard visible, go back and find their input intact? A sticky action must leave the last field reachable. |
+| Desktop dashboard | Start with the operator's question and the data that answers it. Keep navigation and filters stable. A 2–3 column workspace can show navigation, a sortable list and the selected item's details. Use shared table headers, comparable units, right-aligned amounts and dates. | Can someone scan for an exception, compare two rows, open details, act, then return to the same filter and position? Add a chart only if the time series or comparison answers an actual question. |
+
+### F3.3 Information design
+
+| Decision | Chart and interpretation |
+|:---|:---|
+| When did a metric change? | Time-ordered line. Show gaps for missing observations, mark unit and time interval and label each series at its last visible point. If zooming a line's axis, make its bounds and scope explicit. |
+| Which category ranks highest? | Sort horizontal bars from a common zero. Place value labels beside bar ends. Preserve ties, show negative bars across zero and keep missing observations distinct from a measured zero. |
+| How do a few parts compose a whole? | Use a 100% stacked bar for exhaustive nonnegative shares of one stated denominator. Label the segments directly. When small segments collide, use adjacent callouts or aligned bars. |
+
+Pick hues distinguishable under common color-vision deficiencies. For lines, also vary dash or marker. Reserve one accent for the decision. Remove decorative fills, gradients and rainbow ordering from quantitative marks whose length, position or color already carries meaning. Give the chart a descriptive heading and a short takeaway. Provide a reachable, semantic HTML table with a caption, row/column headers, units and all plotted values synchronized to the current filter. Check it with keyboard and assistive technology where available. Part U3 works through incomplete revenue data. [UK Analysis Function chart guidance](https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/) · [W3C complex images](https://www.w3.org/WAI/tutorials/images/complex/) · [W3C use of color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
+
+### F3.4 Component stress tests
+
+At one viewport, mount the same component in a narrow sidebar and in the wide main area. Try “Jadwalkan pengiriman berikutnya”, a three-line title, a missing image, zero results and “Rp 1.250.000.000”. Compare actual localized strings. Allow headings and actions to wrap, keep currency associated with its value and preserve the full amount for comparison. An inline-size query belongs on an ancestor. Choose the cutoff where that component's real content fits. The one-column base below also works when container queries are unavailable. [MDN container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries)
+
+```css
+.payment-slot { container: payment / inline-size; }
+.payment-row { display: grid; gap: .5rem; }
+.payment-row > * { min-inline-size: 0; }
+@container payment (min-width: 32rem) {
+  .payment-row { grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; }
+}
+```
+
+Choose the mobile table treatment by task. For reading one record, stack labeled fields, preserving their header associations and row actions. For comparing many values across the same rows, keep a table in a labeled local horizontal scroll region with a visible scroll hint and keyboard access. Pin the identifier column only when it leaves enough room to read a value and its header. Test sticky-column overlap and focus while scrolled. The page itself should still reflow.
+
 ## F4. Components (Behavior Matters More Than Looks)
 
-- **Buttons:** one primary per view; label = verb + object ("Create invoice", "Download report"); min target 44×44 px; loading state keeps width (no layout jump); disabled buttons explain why (tooltip or helper text).
+- **Buttons.** Use a verb and object. Give a frequent touch action a comfortable hit area, for example 44 × 44 CSS px. Keep its width and accessible name stable during submission. Explain blocked actions in nearby visible text. A disabled control cannot reliably expose a hover tooltip to a keyboard or touch user.
 - **Forms:** labels above inputs (not placeholder-as-label); inline validation on blur, not on every keystroke; error text says how to fix ("Use at least 8 characters"), not just "Invalid"; preserve input on error; group related fields; mark optional, not required, when most are required.
 - **Tables:** left-align text, right-align numbers, tabular numerals, sticky header for long tables, sortable columns show sort state, row density toggle for power users, empty state with next action.
 - **Navigation:** ≤7 top-level items; current location always visible; search for >30 pages.
 - **Feedback:** every action gets a response within 100 ms (visual) and a result or progress indicator within 1 s; optimistic UI with undo beats confirmation dialogs for reversible actions.
 - **Empty states:** explain what will appear here and the single action that fills it.
 - **Errors:** human language, cause, fix, and a way out. Never a raw stack trace.
+
+Map the entry point, the action and the destination before drawing screens. First use, an empty filtered result, and failure to fetch require different next actions. For example, first arrival → load daftar pesanan → “Belum ada pesanan” → “Buat pesanan” → edit → submit → receipt. Branch a failed save back to the populated form with “Coba simpan lagi”. A successful empty search offers “Hapus filter”. A failed fetch keeps the filter and offers “Muat ulang”. Preserve scroll and selection when returning from detail.
+
+| Reusable component | Variants and behavior to exercise |
+|:---|:---|
+| Button and input | Button supports default, hover, focus-visible, pressed, disabled and loading. Input covers empty, filled, focused, invalid and confirmed when meaningful. Keep label, help and error associated with the field. |
+| Card or list row and dropdown | A row exposes its main action and selection separately. Use a native select for simple choices. For a custom popup, verify keyboard selection, Escape and return of focus. |
+| Modal, sheet and toast | Keep focus within an open modal and return it to the trigger on close. A toast can acknowledge success. Put failures needing action in a persistent place close to the affected item. |
+
+In Figma, keep real text and image layers editable. Define component properties such as label, emphasis and state, and compose instances in auto layout. Connect prototype variants so the reviewer can complete the success and failure paths. In code, map these same properties to shared components with one source of state. Try replacing a short label with “Jadwalkan pengiriman berikutnya” in two instances and check reflow.
+
+### F4.1 Leaving, undoing and revealing work
+
+- Track changes against the last saved value. A clean form or a successful save can leave immediately. For a dirty form, “Lanjut mengedit” keeps draft and focus, “Buang perubahan” discards only after the user chooses it. If saving fails, keep the draft dirty. Guard in-app navigation and Back. Use a browser unload warning only while dirty where supported; persist a draft if interruption would otherwise lose valuable input.
+- For a reversible archive, show which item moved and offer keyboard-accessible “Urungkan” with enough time or a persistent recovery location. For a permanent, high-impact operation, show the exact item and consequence first. Typing the item name can be appropriate before irreversible bulk deletion. Disable duplicate submissions and handle a failed delete on the item.
+- Match a first-load skeleton to the final image aspect ratio, table columns, row heights and text lines at each breakpoint. Reserve its space, then swap in the real data and inspect the layout-shift trace. During refresh keep existing data and timestamp visible.
+- In a long form, show the frequent fields first and disclose advanced settings on demand. Keep expanded values when collapsing. A validation error inside a closed group must reveal the group, identify the field and restore an actionable focus target.
 
 ## F5. Copywriting for Interfaces (Natural, Not Generated)
 
@@ -793,6 +799,16 @@ AI slop is not one mistake; it is the *average of the internet* rendered at once
 - Numbers must be real and sourced; otherwise remove the claim.
 - Indonesian copy: use natural register (baku but not stiff); avoid literal translations like "Buka kekuatan…"; prefer "Kirim faktur dalam satu klik".
 
+For an Indonesian workshop, “Pilih jam servis motor” names the task and “Lihat jam tersedia” states what the button opens. On a conflict, offer “Pilih jam lain” only if another slot is available. If all slots are full, retain the entry and offer another date or a refresh that actually works. “Kapasitas 8 peserta per sesi” describes capacity. “Tersisa 2 tempat” requires current availability. Read the headline, button and confirmation together to check that they describe the same promise. Remove generic copy like “Discover the Future”.
+
+### F5.1 Local content and art direction
+
+Use approved product content first. For a concept, label fixtures as **data contoh**. “Muhammad Kasyaf”, “Rp 149.000” and a long multi-part name can exercise localization and wrapping. A chart fixture should have an explicit unit and period. Include flat or falling values, zero and missing data when relevant. Keep missing data distinct from zero. Never present sample customers, prices, metrics, avatars or quotes as proof. A stock portrait can illustrate a context, while an actual testimonial requires its real, authorized attribution.
+
+Pick the image by what the user needs to learn. A screenshot can show where to find a refund. A real photo can show the entrance to a clinic. Look first in the approved product library, then at suitable licensed stock such as Unsplash or Pexels. Confirm the specific asset can be used as intended and keep its source with production notes. Set a common light direction, color temperature, perspective, crop and focal subject across the series. Preview both wide and narrow crops. When a photo adds no information, leave the space clear.
+
+If an original bitmap is necessary, generate one isolated element and compose it with real text and controls. Inspect fingers, eyes, lettering, reflections, contacts with surfaces, skin texture and excessive blur at delivery size. Replace a flawed asset or use a tighter crop only if the crop still communicates the intended subject. Use meaningful alt text for informative images.
+
 ## F6. Accessibility (Hard Requirements)
 
 - Semantic HTML first (`header`, `nav`, `main`, `section` with headings, `button` for actions, `a` for navigation). ARIA only when HTML can't express it.
@@ -801,7 +817,7 @@ AI slop is not one mistake; it is the *average of the internet* rendered at once
 - Images: meaningful `alt`; decorative `alt=""`.
 - Forms: `<label for>`, `aria-describedby` for help/error text, error summary on submit.
 - Motion respects `prefers-reduced-motion`; nothing flashes >3 times/second.
-- Zoom to 200% without loss of content; reflow at 320 px width without horizontal scroll.
+- Check text resizing to 200%. For horizontal writing, test reflow at 320 CSS px. Keep two-dimensional content that needs both axes, such as a wide comparison table, within its own scrollable region. [W3C reflow guidance](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
 - Test: keyboard-only run, screen reader spot check (NVDA/VoiceOver), automated axe/Lighthouse (automation catches only part of the issues; manual checks are required).
 
 ## F7. Web Performance (Measured, Not Claimed)
@@ -824,21 +840,70 @@ Measure with field data (CrUX / RUM) when available, lab data (Lighthouse, WebPa
 ## F8. Motion With Purpose
 
 - Motion explains **change**: where something came from, where it went, what changed state.
+- Give a press immediate feedback, reserve the shape of known content during a wait, and mark a confirmed save with a quiet check and status text. Keep layout stable across navigation. In reduced motion, show the same final state and announce meaningful status changes. An empty screen and a skeleton signal different things.
 - Durations: micro-interactions 100-200 ms, panels/modals 200-320 ms, page transitions ≤400 ms. Exits faster than entrances.
 - Ease-out for entering, ease-in for leaving; springs for direct manipulation (C5 RK4).
 - Animate `transform` and `opacity` only (compositor-friendly); avoid animating layout properties.
 - MOTION dial 1 = hover/focus only; 2 = + subtle reveal on first view (once, not every scroll); 3 = physics/canvas, only when the product is itself visual.
 
+### F8.1 Component contract and worked disclosure
+
+**Worked component.** A technician scans a maintenance queue on a phone. Opening a detail page for each fault loses their place. An inline disclosure keeps the machine name and fault visible while exposing the repair notes. If the notes grow into a multi-step edit, a dedicated view can preserve input and offer a clear return to the same row.
+
+| Design decision | Implementation and check |
+|:---|:---|
+| Anatomy and interface | Row receives the fault ID, machine name, notes and open state. Use a native disclosure or a labeled button with synchronized expanded state and controlled content. Use a stable ID per row. |
+| Ownership | Keep the domain data in the parent. Represent expanded/collapsed once. If a request fails, keep the user's place and show retry by the affected row. |
+| Motion | Rotate a disclosure indicator from 0 to 90 degrees on expansion. A local CSS transform transition (e.g. 140 ms ease-out) can reverse from its current position on a rapid second press. |
+| Reduced motion | Keep the indicator's final orientation and reveal the notes immediately with transitions disabled. Never depend on an animation-end event to unlock the control. |
+| Verification | Activate by keyboard twice before the transition finishes. Check focus, final expanded state, hidden content, wrapping and sibling rows. Repeat with reduced motion. |
+
+With a native `details` element, the browser owns keyboard activation and the open state. The animation below affects only the indicator. The machine name remains accessible when the notes are hidden.
+
+```html
+<details class="fault-row">
+  <summary>Press 04 · Hydraulic leak <span class="chevron" aria-hidden="true">▸</span></summary>
+  <p>Inspect the return hose before restarting.</p>
+</details>
+```
+
+```css
+.fault-row > summary { list-style: none; }
+.fault-row > summary::-webkit-details-marker { display: none; }
+.fault-row .chevron { display: inline-block; }
+.fault-row[open] > summary .chevron { transform: rotate(90deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .fault-row > summary .chevron { transition: transform 140ms ease-out; }
+}
+```
+
+Choose a pattern that matches the work. When a dispatcher reorders stops, keep the stop identity and focus as its position changes, with a keyboard action to move it. When a shopper adjusts a range, expose exact editable values as well as the drag interaction. In both cases the saved value and final position should agree after rapid input. Preserve the same information with motion reduced. [W3C guidance on animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)
+
+### F8.2 Canvas, WebGL and interactive scenes
+
+Start with a useful semantic view: an image/poster, scene description, and the selected item's values or list in HTML. Enhance it only after a rendering context is available. Keep the main scene visible. Use a compact collapsible HTML control panel, arrow or button equivalents for essential drag gestures, and a keyboard path back from expanded controls. On mobile, let the panel fold or dock under the scene.
+
+Keep one owner for the animation loop. On `visibilitychange`, check `document.hidden`, cancel the pending frame and suspend animation work. On return, start at most one loop if motion is enabled, reset the time origin and retain the user's selection and pose. Respect user pause and reduced motion even after a tab switch. Release observers, frames and GPU resources on teardown. [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
+
+Handle a null context at startup, a `webglcontextlost` event during interaction and sustained slow frames on the actual device. Reduce render scale or effects first when useful. Offer the static view with the same essential data and controls if the scene remains slow or fails. Restore a lost scene only after its resources have been rebuilt. Verify with a forced context failure or loss, a tab switch and the static path. Report which cases were simulated. [WebGL context loss](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event)
+
 ## F9. Design Critique Protocol (Before Shipping)
 
-Score 1-5, ship only if all ≥4:
+For a concept, walk the same scenario through the sketches, record the break and revise it. For an implementation, repeat the scenario in the rendered artifact. A portfolio or client handoff can show the alternatives, the reason for choosing one and the observed change. Identify actual user feedback separately from a designer's walkthrough. Keep browser and device checks pending until performed.
+
+**Required render loop for coding agents with a browser.** Run the real route with representative data. Capture and visually inspect screenshots at desktop (e.g. 1440 px) and mobile (390 px), each in light and dark. Exercise both browser color preferences even for a single-theme product and record what it renders. When an app has a manual theme switch, test its actual control. Settle fonts, data and transitions, and scroll to lazy content. Capture the affected state for a Patch. Keep screenshots in the task's QA location and record which route, state, viewport and theme each represents.
+
+1. Compare each screenshot for obscured actions, clipped labels, broken wraps, unreadable gradients and unintended overlays. In each case check `document.documentElement.scrollWidth > document.documentElement.clientWidth`. Identify the specific offending element. Check an intentionally scrollable table separately and verify its last column is reachable.
+2. Navigate with real Tab/Shift+Tab, Enter/Space and Escape as appropriate. Verify visible focus against the actual backgrounds, logical order, modal/disclosure behavior and focus restoration. Check the main action and a failure or recovery path.
+3. Inspect each expected image after it loads, including the narrow crop. For `img` elements check `currentSrc`, `complete`, and `naturalWidth > 0`. Inspect CSS backgrounds, SVG and canvas visually. Verify a failed or unavailable image has a usable fallback.
+4. Fix any defect, recapture the failing combination and rerun its checks. Report artifacts or their paths and any unavailable checks. With no executable UI or browser, provide the walkthrough and identify the missing render evidence.
 
 | Criterion | Question |
 |:---|:---|
 | Clarity | Can a first-time visitor say what this is in 5 seconds? |
 | Specificity | Would the page still make sense if the logo were swapped for a competitor's? (It should NOT.) |
-| Hierarchy | Is there exactly one focal point per viewport? |
-| Honesty | Is every number, logo and quote real? |
+| Hierarchy | What draws the eye first in each section when viewed in grayscale? Does that help the user decide? |
+| Honesty | Can each public proof claim be traced? Are prototype fixtures clearly identified? |
 | Consistency | Only token values used? Same component behaves the same everywhere? |
 | States | Are loading/empty/error designed, not default? |
 | Accessibility | Keyboard, contrast, semantics, reduced motion pass? |
@@ -1158,7 +1223,7 @@ When a question touches a field, load that specialist's mindset. Each card gives
 
 ### K5. Visual / Product Designer
 - **Thinks:** "Is this specific to this product, and does the hierarchy match the user's priorities?"
-- **Truth lives in:** official design systems (Part C3.1), real product screenshots, accessibility standards (WCAG), usability evidence.
+- **Truth lives in:** official design systems (F0), real product screenshots, accessibility standards (WCAG), usability evidence.
 - **Methods:** Part F process; critique protocol F9; side-by-side comparison with 3 strong real-world references of the same product category.
 - **Traps:** Dribbble-driven decoration, copying a famous brand's look, designing without real content.
 - **Deliverable:** tokens + key screens + states + rationale lines.
@@ -1941,38 +2006,7 @@ After 3-5 projects, the log shows which platform is reliable for which kind of q
 
 # PART S — CUSTOM COMPONENTS AND INTERACTION MOTION
 
-Use the user's workflow to choose what to build. Observe a real item with an unusually long name, an empty collection and a failed operation. Trace how a person finds the relevant item, acts, sees confirmation and recovers from a mistake. Preserve existing conventions that people rely on. Sketch another layout and compare the effort needed to complete that particular task.
-
-**Worked component.** A technician scans a maintenance queue on a phone. Opening a detail page for each fault loses their place. An inline disclosure keeps the machine name and fault visible while exposing the repair notes. If the notes grow into a multi-step edit, a dedicated view can preserve input and offer a clear return to the same row.
-
-| Design decision | Implementation and check |
-|:---|:---|
-| Anatomy and interface | Row receives the fault ID, machine name, notes and open state. Use a native disclosure or a labeled button with synchronized expanded state and controlled content. Use a stable ID per row. |
-| Ownership | Keep the domain data in the parent. Represent expanded/collapsed once. If a request fails, keep the user's place and show retry by the affected row. |
-| Motion | Rotate a disclosure indicator from 0 to 90 degrees on expansion. A local CSS transform transition (e.g. 140 ms ease-out) can reverse from its current position on a rapid second press. |
-| Reduced motion | Keep the indicator's final orientation and reveal the notes immediately with transitions disabled. Never depend on an animation-end event to unlock the control. |
-| Verification | Activate by keyboard twice before the transition finishes. Check focus, final expanded state, hidden content, wrapping and sibling rows. Repeat with reduced motion. |
-
-With a native `details` element, the browser owns keyboard activation and the open state. The animation below affects only the indicator. The machine name remains accessible when the notes are hidden.
-
-```html
-<details class="fault-row">
-  <summary>Press 04 · Hydraulic leak <span class="chevron" aria-hidden="true">▸</span></summary>
-  <p>Inspect the return hose before restarting.</p>
-</details>
-```
-
-```css
-.fault-row > summary { list-style: none; }
-.fault-row > summary::-webkit-details-marker { display: none; }
-.fault-row .chevron { display: inline-block; }
-.fault-row[open] > summary .chevron { transform: rotate(90deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .fault-row > summary .chevron { transition: transform 140ms ease-out; }
-}
-```
-
-Choose a pattern that matches the work. When a dispatcher reorders stops, keep the stop identity and focus as its position changes, with a keyboard action to move it. When a shopper adjusts a range, expose exact editable values as well as the drag interaction. In both cases the saved value and final position should agree after rapid input. Preserve the same information with motion reduced. [W3C guidance on animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)
+The component contract and worked disclosure are maintained in [F8](#f8-motion-with-purpose).
 
 ---
 
@@ -2001,6 +2035,105 @@ python skills/usage-limit-recovery/scripts/checkpoint.py read ./task-notes/repai
 The example illustrates a check that has already passed. Record the actual check and artifact path or source locator from the run. When all requested outcomes have passed, save the verified evidence with `--complete` in place of `--next`. This requires verified work and empty pending and unverified lists. The helper replaces a complete snapshot in one filesystem operation. If saving fails, keep the last readable snapshot and include the current handoff in the response. In a chat-only host, deliver those fields as text in the same message as each usable milestone. Once a host blocks execution, recovery starts with the last successfully saved file or delivered message.
 
 **Resume.** Compare the note with the current artifact. For an uncertain side effect, inspect the destination or receipt first. For code, rerun the entry point affected by intervening edits. For research, reopen the source behind any decisive claim that may have changed. Continue with the first pending check. Show exactly what works, what remains untested and the next action.
+
+---
+
+# PART U — ADVANCED PRODUCT DESIGN RESEARCH
+
+## U1. Reading rhythm, grids and theme contrast
+
+### Set one specimen before styling the page
+
+Use the product's longest heading, a paragraph, a caption and a numeric value. For a Latin-script prototype, try size tokens of 12, 14, 16, 20, 24, 32, 48 and 64 CSS px at the default root size. Expose roles in rem. Try a 48 px display at 1.05 leading and −0.02em tracking, a 24 px section heading at 1.25, 16 px body at 1.5–1.7, and 14 px captions at about 1.4. Test tighter display tracking down to −0.04em or caption tracking up to +0.05em against the actual typeface. Widen leading if accents or two-line titles collide. Favor start alignment for prose and inspect word gaps before using justification.
+
+As an exercise, set “Jadwal pengambilan”, “Ambil pesanan setelah pukul 14.00” and “Loket B · Lantai 2” in one family at one width. Make three specimens using size, weight and color alone. Give the time priority for someone checking when to leave, the location priority for someone already inside, and the heading priority for someone browsing a directory. Cover the title and check whether the remaining labels still answer the assigned question.
+
+**What reading studies support.** In screen-reading experiments by Dyson and Kipping, participants preferred the 55-character lines. They read the 100-character lines faster than the 25-character ones, with similar comprehension. In a later experiment by Dyson and Haselgrove, 55-character lines yielded the best comprehension among the tested lengths. These experiments used particular texts, devices and tasks. Start extended prose near 55–75 characters and compare variants using comprehension, time or comfort according to the job. A CSS width of 65ch approximates 65 zero glyphs. Count a few rendered lines of the actual proportional typeface. [Dyson & Kipping, 1998](https://journals.uc.edu/index.php/vl/article/view/5671) · [Dyson & Haselgrove, 2001](https://doi.org/10.1006/ijhc.2001.0458)
+
+**Accessibility check.** Apply the WCAG 2.2 SC 1.4.12 overrides together for supported writing systems: line height 1.5 times the font size, space after paragraphs 2em, letter spacing 0.12em and word spacing 0.16em. Inspect the filled form, error message and long heading for clipping or lost controls. These values test the page's tolerance of user overrides. Separately inspect reflow at 320 CSS px and record any scrolling region that genuinely needs two axes. [W3C text spacing](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html) · [W3C reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+
+### Work out the grid and vertical rhythm
+
+Pick shared space tokens such as 4, 8, 12, 16, 24, 32, 48, 64 and 96. Assign them jobs: 8 between label and value, 24 inside a group, 48 or 96 between sections. This makes it possible to change density consistently. Optical corrections and 1 px borders can have their own roles. Treat “60/30/10” as a sketch prompt for dominant, supporting and accent areas. Judge the result by what the user can compare, read or act on.
+
+A 1440 px canvas with two 120 px margins leaves 1200 px. Eleven 24 px gutters use 264 px, so each of 12 columns gets 78 px. At 390 px, use two 16 px margins and three 16 px gutters for four columns of 77.5 px. Fractional track widths are normal. The following starting point expresses the two layouts without carrying desktop margins onto a phone. Put each block on a named region or an explicit span, then check a long label, the transition between layouts and 320 px. IBM Carbon is a useful counterexample to treating twelve columns as a requirement: its own grid starts with sixteen. [Carbon grid guidelines](https://www.carbondesignsystem.com/building-blocks/foundations/2x-grid/guidelines)
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(calc(100% - 2rem), 75rem);
+  margin-inline: auto;
+}
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+```
+
+### Verify semantic colors on the surfaces that use them
+
+Map a palette value to a semantic role and then to a component, for example `neutral-700 → text-secondary → table caption`. Map primary action, text on action, surface, border, focus, success, warning and error separately. In dark mode, try a near-black base, progressively lighter surfaces and a visible edge for overlays. Retain the role name and choose a value for the new background. Pair status hues with text or shape. Carbon documents this role-to-theme mapping in its own system. [Carbon color and layering](https://www.carbondesignsystem.com/building-blocks/foundations/color/overview)
+
+| Example pair for ordinary text | WCAG contrast, displayed approximately | Design decision |
+|:---|---:|:---|
+| #777777 on #FFFFFF | 4.478:1 | Below the 4.5:1 AA threshold. Rounding the displayed number would hide the failure. |
+| #595959 on #FFFFFF | 7.005:1 | Suitable for the light caption in this pair. |
+| #595959 on #121212 | 2.674:1 | Reusing the same foreground fails on the dark surface. |
+| #B8C2CC on #121212 | 10.372:1 | Remap the dark caption to this lighter foreground. |
+
+Calculate relative luminance from the final sRGB pair and compare the unrounded ratio with the threshold. Ordinary text requires 4.5:1 and large text 3:1 under SC 1.4.3, subject to its exceptions. Required visual cues for an enabled control or its state generally need 3:1 against adjacent colors under SC 1.4.11. Sample composited backgrounds when overlays or opacity are involved. Record the token, theme, state, foreground and adjacent surface. These checks establish the pairs tested. An outdoor legibility claim would also need observation on the device in that light. [W3C text contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) · [W3C non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+
+## U2. Visual hierarchy and task research
+
+### Turn a design opinion into a question
+
+Name the audience, device, task and decision at risk. Ask what observation would make you move, enlarge or relabel an element. For a material claim, open the original study, applicable criterion or the design system's own guidance. Record the section, what was tested, the population or context, and the limit of transfer to this product. A standard can set an acceptance condition. A design system illustrates one implementation. A behavioral study can suggest a hypothesis to test locally. If evidence conflicts, compare its tasks and measures before adopting a rule.
+
+**Scanning.** NN/g observed F-shaped scanning alongside patterns such as scanning headings or looking for particular words and digits. Their F finding concerned content areas and varied with reading direction, formatting and user intent. An F or Z overlay can help sketch an eye path. It cannot predict where a dispatcher will look for “Terlambat” in a sortable table. Give the decisive status a stable location and a readable label, group its next action nearby, and see where someone actually starts. For an article, test whether distinctive subheads let the reader find a requested passage. [NN/g eye-tracking observations](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)
+
+### Build taste from inspectable examples
+
+Keep a small swipe file organized by decision, for example “pricing: show renewal cost” or “queue: retain selection”. Save a permitted reference or a URL with the source, viewport, task, observed mechanism and a possible drawback. If a reference was only described, mark that. For practice, inspect one composition, close it, sketch the hierarchy from memory, then compare alignment, prominence and what you forgot. Record one principle and use it with your own copy, layout and assets in the next brief. A remembered CTA tells you what stood out to the designer. It is a lead for research with the intended audience.
+
+### Separate first impression from successful use
+
+For a quick formative check, show the same viewport for three seconds, hide it, and ask unaided “Ini layanan apa?” and “Apa yang bisa Anda lakukan tadi?” Record the answers verbatim. Then show the interface again and give a realistic goal, such as “Cari kiriman yang perlu dihubungi hari ini.” Avoid naming the intended button. Record first action, wrong turns, whether the person recovered unaided, and completion. Use the recall exercise for salience and the task for usability. If the headline is remembered but the task fails, inspect labels, proximity and interaction. A few sessions can reveal an issue without estimating its prevalence. With no participants, identify the exercise as a designer walkthrough and leave user outcomes open. [GOV.UK moderated usability testing](https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing)
+
+To compare two treatments, choose one change in advance, keep copy and fixtures constant, and define success in observable terms such as “opens the oldest outstanding invoice unaided”. Recruit people who actually do the task. For a first-impression comparison give each person one unseen version. For repeatable tasks use comparable records and alternate the order across people. Keep incorrect first actions and dropouts in the results. Record the number observed out of the number who attempted, the device, and why a failure changed the design. A designer simulating a cashier can expose a broken flow but cannot supply a cashier's recall or completion rate.
+
+**Example handoff, fictional.** “Decision: should the outstanding balance or total sales lead this view? The clerk's task is to contact overdue accounts. In our sketch walkthrough a large sales total pushed the first overdue account below the fold. We moved outstanding balance above the filtered table and kept sales in the summary. Next user task: find the oldest unpaid invoice and open its contact details.” For a live test, add device, participant count and observed outcome only after the sessions.
+
+## U3. Dashboard judgments and component states
+
+### Choose an encoding from the decision
+
+| User question | Starting representation | What to verify |
+|:---|:---|:---|
+| “Berapa omzet hari ini?” | Prominent currency amount with date, scope, coverage and last refresh | Check aggregation, refunds, missing feeds and timezone before calling it a total. |
+| “Cabang mana paling tinggi?” | Sorted horizontal bars with a shared zero baseline and direct values | Preserve units and ties. Use one neutral series with one meaningful highlight. |
+| “Kapan omzet mulai turun?” | A time-ordered line with units and an explicit gap for missing periods | Compare like periods. Distinguish zero sales from a missing observation. |
+| “Berapa bagian tiap kanal?” | A labeled part-to-whole chart for a few positive, exhaustive shares with the same denominator | For more than four categories or close shares, try sorted bars. A signed amount or incomplete denominator changes the question. |
+| “Transaksi mana yang harus saya cek?” | A table with a useful initial sort and row detail | Align text to the reading start and comparable amounts to the right. Use tabular numerals, header units and subtle row separation. Test whether striping helps track a wide row. |
+
+Heer and Bostock asked people to estimate proportions using different encodings. In Experiment 1A, judgments using position on a common scale were more accurate than angle judgments. This supports aligned bars for close comparisons. The experiment tested perceptual judgments, so whether a dashboard helps a clerk resolve a discrepancy still needs a task check. For exact currency values, provide labels or a table that also works by keyboard. [Heer & Bostock, Experiment 1A](https://vis.stanford.edu/files/2010-MTurk-CHI.pdf) · [GOV.UK table guidance](https://design-system.service.gov.uk/components/table/)
+
+**Worked fixture.** Five branches should report today's revenue in rupiah. A reports 180,000, B 160,000, C 160,000, D 0, and E has yet to report. Display “Omzet tercatat Rp 500.000 · 4 dari 5 cabang”. Keep D visible as zero and E as “Belum masuk”. Highlight the missing feed if the operator's job is to chase it. A comparison of B and C must show a tie. A previous complete day is an unsuitable baseline for a headline percent change until coverage and cutoffs match. If the operator asks for the full network total, state that it is pending.
+
+### Define variants, transitions and recovery
+
+Specify the emphasis and action state independently so a destructive button can be busy and a secondary button can receive keyboard focus. Exercise a representative instance of each relevant state in the component and again in the real flow.
+
+| Element | State and visible treatment | Behavioral check |
+|:---|:---|:---|
+| Button | Primary commits, secondary offers an alternative, ghost keeps a routine action quiet, danger names the consequence. Cover default, hover, pressed, focus-visible, disabled and loading. | Trigger by keyboard, try repeated activation while busy and check one submission. Keep dimensions stable. Explain blocked actions next to the control. |
+| Input | Persistent label with an optional placeholder, empty, filled, focused, invalid, confirmed when useful, and disabled. Error needs a message as well as color. | Associate the message with the field. On failed submission retain the value and move focus where the person can correct it. Confirmed state must reflect the actual validation performed. |
+| Result or collection | First load, refresh with prior data, first-use empty, no filter matches, success, recoverable failure. | During a known layout's first load, reserve its shape with a skeleton. For a pending save use inline status; for measurable progress use a progress indicator. On refresh keep the previous result and its timestamp until replaced. |
+
+Once a request settles, end the busy state. “Belum ada transaksi” follows a successful empty response. “Tidak ada yang cocok” can offer “Hapus filter”. A network error can offer “Muat ulang” with the filters intact. Show progress without flashing and honor reduced motion. Expose changing status in the accessibility tree when focus stays put. Test a fast response, a delayed response, failure and retry. A compact spinner with a meaningful label can suit an indeterminate operation whose final shape is unknown. [Carbon loading pattern](https://www.carbondesignsystem.com/building-blocks/core/patterns/loading) · [W3C status messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 
 ---
 

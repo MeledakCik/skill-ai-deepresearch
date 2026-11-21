@@ -1,7 +1,7 @@
 """Build every AI target from one source.
 
 Edit only:
-  deep-research-domain-council/SKILL.md   full source (Parts A-R); no AI loads it directly
+  deep-research-domain-council/SKILL.md   master specification used at build time
   adapters/CORE_PROMPT.md                 chat-app prompt for pro/standard models
   adapters/CORE_LITE.md                   chat-app prompt for small/free models
   adapters/hosts/*.md                     one short note per chat AI
@@ -56,34 +56,33 @@ SKILLS = {
         "refs": ["R5", "A", "I", "J", "K", "L", "Q", "D", "R3", "M1", "M3", "M4", "M5", "E", "N", "H"],
     },
     "web-ui-design": {
-        "description": "Designs and builds websites, landing pages and app screens that look specific to the product instead of AI-generated. Use for web or UI design, front-end layout, design tokens, UI copy, accessibility and Core Web Vitals. Not for backend logic, research reports or long-form writing.",
-        "title": "Web & UI Design (Anti-Slop)",
-        "core": """## Workflow
+        "description": "Designs and critiques product-specific landing pages, mobile flows and desktop dashboards. Use for visual research, typography, grids, themes, component states, chart selection, usability checks and web performance.",
+        "title": "Web & Product UI Design",
+        "core": """## Choose Full or Patch
 
-1. Write the job: "A <role> arriving from <source> wants to <job>; success = <action>."
-2. Inventory real content (copy, data, screenshots, prices). Design around it; never fill empty boxes later.
-3. Map the main path from arrival to outcome, including the cost of a wrong choice and the way back. On a sales page, answer buying questions in order. In an app, keep the object, its status and the action it needs within reach.
-4. Sketch two plausible ways to complete the main job. Choose the one that puts the needed information at the point of decision. Use existing product typography, spacing and interaction conventions where available.
-5. Wire the main action to the real flow. Design relevant loading, empty, error and recovery states. For custom components use Part S to specify keyboard behavior and interruptible motion.
-6. Check at 360 / 768 / 1024 / 1440 px; WCAG AA contrast, keyboard, visible focus, semantic HTML, reduced motion.
-7. Performance: LCP <= 2.5 s, INP <= 200 ms, CLS <= 0.1 (measured, not claimed).
+**Full** for a new design or redesign. Research the audience and task, gather real content, annotate references and sketch three grayscale directions in F1. Select one by walking through a difficult case. Build the flow and its recovery path with shared tokens and components (F2–F8).
 
-**Slop test:** cover the logo. If the page could belong to any startup, fix content and structure before styling.
-Hard rules: no fake stats, logos or testimonials; specific CTAs ("Create invoice", not "Get started"); no em dashes in UI copy; every control does something.""",
-        "refs": ["F", "S", "C3", "C5", "G"],
+**Patch** for a local UI issue. Reproduce it. Go directly to tokens, states, accessibility and verification (F2/F4/F6/F9). Use F3 for localized data, charts and container sizing, F8 for motion or a canvas scene.
+
+For a concept, walk the sketches. For a runnable implementation with browser access, complete F9's desktop/mobile × light/dark screenshot loop, inspect actual pixels, page overflow, focus and images, and recheck any fixes. Report the evidence and any pending checks.
+
+For an advanced or research-led brief, isolate the decision with the biggest consequence. Look up the relevant standard, original study or first-party design pattern, record its scope, and test a plausible alternative on the actual task. Report what the source established, what you chose and what you observed. Open just the applicable guide below.""",
+        "refs": ["F", "U1", "U2", "U3", "G"],
+        "former_design_refs": ["C3", "S"],
     },
     "ui-component-motion": {
         "description": "Builds custom interactive web components and purposeful UI animations around a product workflow. Use for component behavior, microinteractions, state transitions and keyboard or reduced-motion equivalents.",
         "title": "Custom UI Components and Motion",
-        "core": """Start with the user's action, the information needed to take it, and the sign it succeeded. Inspect a neighboring component, the product's vocabulary, density and real data. Sketch two interaction choices and select one for a concrete UX reason.
+        "core": """For an existing component, take the Patch route in the design module. Start at its entry point with real data. For a new interaction, compare alternatives against the user's task and the conventions of adjacent controls.
 
 1. Define the component's anatomy, inputs, owner of state, emitted events and recovery from a failed operation. Compose native controls or the project's accessible primitives. Give the product-specific work its own layout and behavior.
 2. Build the useful static interaction first, wired to the real entry point. Drive visual, semantic and keyboard state from the same value. Keep focus predictable and preserve the user's input on retry.
 3. For each meaningful transition choose its trigger, start and end, property, timing and interruption behavior. Author it with local CSS or the existing animation API. Make state correct immediately even if animation is disabled, cancelled or reversed halfway.
 4. Try the primary task at narrow and wide widths. Test rapid reversal, keyboard-only operation, reduced motion and relevant empty/error states. Report the checks observed. A custom control earns its place when it makes a named task easier.
 
-Example: a warehouse picker needs to see which bin still has missing units. Keep the bin label, picked count and next action aligned within one row. When a pick is confirmed, update its count and status together. Keep the same cues when motion is reduced.""",
-        "refs": ["S"],
+For worked components and interactive scenes, use F8. For a runnable UI, use the screenshot, overflow, keyboard and image checks in F9 before delivery.""",
+        "refs": ["F"],
+        "former_design_refs": ["S"],
     },
     "natural-writing": {
         "description": "Drafts or rewrites prose so it reads like a skilled human instead of an AI. Use for reports, emails, articles, captions, documentation and UI copy when the user wants natural, specific writing or asks to remove AI-sounding text. Not for code, data analysis or research gathering.",
@@ -240,13 +239,12 @@ WHEN = {
     "B": "Efficiency and 4-pass deep thinking with numbers",
     "C1": "OpenCode / agent runtime loading and permissions",
     "C2": "Academic writing engine and Bab I-V details",
-    "C3": "Anti-slop rules R-01..R-40 and reference design systems",
     "C4": "Android architecture details",
     "C5": "Full-stack, 60 fps motion and back-end patterns",
     "C6": "Security audit scoring and crypto vault code",
     "D": "Model routing, effort, verified model names (D4)",
     "E": "All delivery gates E1-E20 (Deep tier or high stakes)",
-    "F": "Full web and design module",
+    "F": "Unified design module: Full/Patch, materials (F2.5), responsive charts (F3), states (F4), motion/canvas (F8), browser QA (F9)",
     "G": "Natural writing patterns and rewrite example",
     "H": "Token economy, caching, model-class profiles (H9)",
     "I": "Templates: source log, contradictions, ACH, plan, report",
@@ -264,8 +262,10 @@ WHEN = {
     "Q": "Running several research AIs together",
     "R3": "How to run the research engine on each AI host",
     "R5": "Resolve conflicting findings, test sensitivity and close the evidence trail",
-    "S": "Design a component contract and test interruptible motion in a worked interaction",
     "T": "Save and resume a partial deliverable, including a local checkpoint example",
+    "U1": "Tune type, measure, responsive grid and theme tokens with worked accessibility checks",
+    "U2": "Research a hierarchy decision, study reference designs and run a recall or task test",
+    "U3": "Choose a dashboard encoding, verify partial totals and exercise async component states",
 }
 
 
@@ -327,13 +327,22 @@ def build_skills(body, version):
             fname = ref_filename(key, secs[key])
             write(f"skills/{name}/references/{fname}", secs[key] + "\n")
             rows.append(f"| `references/{fname}` | {WHEN.get(key, key)} |")
+        # Keep previously distributed reference paths usable without loading duplicate rules.
+        for old in spec.get("former_design_refs", []):
+            target = ref_filename("F", secs["F"])
+            anchor = {"C3": "f0-visual-direction-and-design-critique", "S": "f8-motion-with-purpose"}[old]
+            write(f"skills/{name}/references/{ref_filename(old, secs[old])}",
+                  f"Former Part {old}. See the [unified design module]({target}#{anchor}).\n")
         # why: YAML needs quotes escaped; use a folded block scalar to stay valid with any punctuation
         fm = (f"---\nname: {name}\ndescription: >-\n  {desc}\nlicense: MIT\nmetadata:\n  author: kasyaf-anugrah\n"
               f"  version: \"{version}\"\n  source: {PLUGIN}\n---\n\n")
-        text = (fm + f"# {spec['title']}\n\n{spec['core']}\n\n{MODEL_CLASS}\n\n{SHIP_CHECK}\n\n"
+        delivery = "" if "former_design_refs" in spec else f"{MODEL_CLASS}\n\n{SHIP_CHECK}\n\n"
+        text = (fm + f"# {spec['title']}\n\n{spec['core']}\n\n{delivery}"
                 "## References (open only the one you need)\n\n| File | Read when |\n|:---|:---|\n" + "\n".join(rows) +
-                "\n\nFor a missing Part, find its lowercase ID under `../*/references/part-<id>-*.md`. "
-                "The Part R workflow lives in `../deep-research-council/SKILL.md`.\n")
+                "\n")
+        if delivery:
+            text += ("\nFor a missing Part, find its lowercase ID under `../*/references/part-<id>-*.md`. "
+                     "The Part R workflow lives in `../deep-research-council/SKILL.md`.\n")
         text = text.replace("Full checklist: `references/part-n-pre-delivery-error-handling.md`",
                             "Full checklist: " + (f"`references/{ref_filename('N', secs['N'])}`" if "N" in spec["refs"] else "Part N of the deep-research-council skill"))
         write(f"skills/{name}/SKILL.md", text)

@@ -3,7 +3,7 @@
 This project ships focused skills. Load only the one that matches the task, and inside it open only the reference file you need:
 
 - `skills/deep-research-council/SKILL.md`: Runs a rigorous multi-source research process and writes a cited, calibrated report.
-- `skills/web-ui-design/SKILL.md`: Designs and builds websites, landing pages and app screens that look specific to the product instead of AI-generated.
+- `skills/web-ui-design/SKILL.md`: Designs and critiques product-specific landing pages, mobile flows and desktop dashboards.
 - `skills/ui-component-motion/SKILL.md`: Builds custom interactive web components and purposeful UI animations around a product workflow.
 - `skills/natural-writing/SKILL.md`: Drafts or rewrites prose so it reads like a skilled human instead of an AI.
 - `skills/academic-writing/SKILL.md`: Guides academic writing for skripsi, tesis and disertasi (S1-S3, Bab I-V), journal papers, research proposals and lab reports, with claim-evidence mapping and verified citations.

@@ -12,7 +12,7 @@
 | E8 Engine config | Effort declared per D2; no max for short tasks; cost acknowledged |
 | E9 Volatile facts | Every price/version/benchmark/role dated and re-verified this session |
 | E10 Safety | A1 S7.4 scan passed (injection, PII, regulated advice, dangerous content, copyright) |
-| E11 Web & design | F0 slop test passed (page is specific to this product); tokens only; all component states; F9 critique all ≥4; LCP ≤2.5 s, INP ≤200 ms, CLS ≤0.1 measured |
+| E11 Web & design | Walk the primary task and recovery path, record the F9 revision and evidence, check component roles across screens, and identify any pending accessibility or field-performance measurements. |
 | E12 Natural writing | G4 self-check passed; no G1 patterns; every number sourced |
 | E14 Specialist & eval | Lead specialist card (Part K) applied; reviewer cards ran their trap lists; L1 rubric passed |
 | E15 Assistant modes | Correct mode chosen (M5); enterprise data stays within permissions; video work has shot list, prompt log and rights check; Jarvis Mode acts only within the permission ladder |

@@ -7,7 +7,7 @@
 **Group 1, hard gates:**
 - R-02 no em dashes (`—`) in generated UI copy.
 - R-03 mobile: 0 horizontal overflow, 44×44 px touch targets.
-- R-17/18/36/38 zero fabricated data: no fake stats/testimonials/badges; use `[REAL DATA]` or "Coming soon".
+- R-17/18/36/38 use traceable evidence for published claims. Label prototype fixtures as sample data. Omit unsupported public stats, endorsements and trust badges.
 - R-23 no silently invented logos/team photos.
 - R-24/26 zero dead controls: every `<a>`/`<button>` does something real.
 - R-25/32/39 accessibility: WCAG AA ≥4.5:1 (large ≥3:1), full keyboard, `:focus-visible`, landmarks, `<label>`, `prefers-reduced-motion`.

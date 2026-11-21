@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.2.0 |
+| **Versi** | 17.4.0 |
 | **Format** | 12 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -19,7 +19,7 @@ Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memula
 | Skill | Dipakai untuk |
 |:---|:---|
 | `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
-| `web-ui-design` | Website, landing page, UI tanpa kesan template AI |
+| `web-ui-design` | Riset desain, ritme baca, grid responsif, warna terang/gelap, pengujian hierarki, grafik dan komponen interaktif |
 | `ui-component-motion` | Membuat komponen interaktif dan animasi sesuai alur produk, termasuk navigasi keyboard dan tampilan minim gerak |
 | `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
 | `academic-writing` | Skripsi/tesis/disertasi (Bab I–V), paper, proposal |
@@ -157,7 +157,7 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 |:---|:---|:---|
 | Brief keputusan | "Deep research: pilih Platform A atau B untuk toko online di Indonesia 2027" | Part A, tier S/D |
 | Tinjauan pustaka | "Buat SOTA review RAG untuk Bab II skripsi saya" | Part A + C2 + K12 |
-| Desain web | "Desain landing page untuk aplikasi kasir UMKM, jangan seperti template AI" | Part F + C3 |
+| Desain produk | "Desain ulang alur reservasi bengkel. Di HP pelanggan memilih jam. Di desktop petugas membandingkan antrean. Tunjukkan alasan pemilihan layout dan apa yang terjadi saat slot penuh." | F |
 | Komponen dan animasi | "Buat komponen antrean bengkel. Mekanik bisa membuka detail tanpa kehilangan posisi dan tetap bisa memakai keyboard." | S |
 | Hemat token | "Audit kenapa sesi agen saya boros token" | Part H |
 | Pemulihan kuota | "Kuota mingguan hampir habis. Selesaikan satu alur yang bisa dijalankan, uji, lalu simpan titik lanjut." | T |
@@ -263,6 +263,18 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.4.0
+
+Pilih panduan lanjutan sesuai keputusan yang sedang dikerjakan.
+
+- [Tipografi, grid, dan tema](skills/web-ui-design/references/part-u1-reading-rhythm-grids-and-theme-contrast.md) mencakup dua studi panjang baris, latihan hierarki satu font, perhitungan grid, dan contoh kontras yang gagal jika dibulatkan.
+- [Hierarki dan riset pengguna](skills/web-ui-design/references/part-u2-visual-hierarchy-and-task-research.md) memandu latihan dari referensi, uji ingatan tiga detik dan pengamatan penyelesaian tugas.
+- [Dashboard dan state komponen](skills/web-ui-design/references/part-u3-dashboard-judgments-and-component-states.md) membahas pemilihan grafik, total parsial, serta perilaku tombol dan formulir ketika data lambat, kosong atau gagal.
+
+### v17.3.0
+
+Skill desain kini memandu pembuatan moodboard beranotasi, tiga wireframe hitam-putih, dan revisi berdasarkan alur yang diuji. Ada contoh skala huruf, grid asimetris, pemilihan foto, microcopy Indonesia, dan perilaku komponen saat data kosong atau gagal disimpan. [Panduan desain produk](skills/web-ui-design/references/part-f-web-design-deep-module.md)
 
 ### v17.2.0
 

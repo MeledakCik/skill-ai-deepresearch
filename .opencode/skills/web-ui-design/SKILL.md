@@ -1,28 +1,26 @@
 ---
 name: web-ui-design
 description: >-
-  Designs and builds websites, landing pages and app screens that look specific to the product instead of AI-generated. Use for web or UI design, front-end layout, design tokens, UI copy, accessibility and Core Web Vitals. Not for backend logic, research reports or long-form writing.
+  Designs and critiques product-specific landing pages, mobile flows and desktop dashboards. Use for visual research, typography, grids, themes, component states, chart selection, usability checks and web performance.
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.2.0"
+  version: "17.4.0"
   source: deep-research-domain-council
 ---
 
-# Web & UI Design (Anti-Slop)
+# Web & Product UI Design
 
-## Workflow
+## From brief to working flow
 
-1. Write the job: "A <role> arriving from <source> wants to <job>; success = <action>."
-2. Inventory real content (copy, data, screenshots, prices). Design around it; never fill empty boxes later.
-3. Map the main path from arrival to outcome, including the cost of a wrong choice and the way back. On a sales page, answer buying questions in order. In an app, keep the object, its status and the action it needs within reach.
-4. Sketch two plausible ways to complete the main job. Choose the one that puts the needed information at the point of decision. Use existing product typography, spacing and interaction conventions where available.
-5. Wire the main action to the real flow. Design relevant loading, empty, error and recovery states. For custom components use Part S to specify keyboard behavior and interruptible motion.
-6. Check at 360 / 768 / 1024 / 1440 px; WCAG AA contrast, keyboard, visible focus, semantic HTML, reduced motion.
-7. Performance: LCP <= 2.5 s, INP <= 200 ms, CLS <= 0.1 (measured, not claimed).
+1. Identify the audience, entry point, first decision and evidence of success. Look at the product, real content and a comparable workflow. Label assumptions or sample data. For a new direction, assemble a small annotated moodboard before sketching (F1).
+2. For a new visual direction, sketch **three grayscale alternatives** for the same task and content. Compare how each handles a hard case, choose one for a reason grounded in the user's situation, then revise it. For a focused question or fix, examine the affected decision directly. Show the sketches when they serve the requested handoff.
+3. Choose the surface. A **landing page** names the audience and outcome in the first view, offers credible proof and a specific next action. A **mobile app** prioritizes one task, reachable actions and familiar navigation. A **desktop workspace** keeps navigation stable and puts scannable data alongside the detail needed to act. Walk entry → action → confirmation, then branch through loading, empty, validation, failure and recovery where relevant (F3–F4).
+4. Set a mini design system before polishing. Assign display, section, body and caption roles to one or two type families. Establish shared grid edges, one focal point per section and intentional whitespace. Give primary, accent, neutral and status colors explicit jobs. Reuse spacing, radius, icon stroke, elevation and control variants across screens (F2).
+5. Use concrete UI language, local units and authentic product evidence. Prefer a real screenshot or rights-cleared photograph when it helps the decision. If generating imagery, isolate one needed asset and inspect it at its final crop (F5). In Figma build editable components and variants. In code share semantic primitives, states and tokens.
+6. For a concept, walk the sketches through the main action and a recovery path. For an implementation, run both through the actual interface. Check hierarchy in grayscale, long text on a phone, wide-screen alignment, keyboard focus, contrast and reduced motion in the available medium. Measure performance on a running site (F6–F9). Hand over the revision, the reason and any checks still needed.
 
-**Slop test:** cover the logo. If the page could belong to any startup, fix content and structure before styling.
-Hard rules: no fake stats, logos or testimonials; specific CTAs ("Create invoice", not "Get started"); no em dashes in UI copy; every control does something.
+For an advanced or research-led brief, isolate the decision with the biggest consequence. Look up the relevant standard, original study or first-party design pattern, record its scope, and test a plausible alternative on the actual task. Report what the source established, what you chose and what you observed. Open just the applicable guide below.
 
 Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
 
@@ -38,7 +36,10 @@ Full checklist: Part N of the deep-research-council skill (open only for high-st
 
 | File | Read when |
 |:---|:---|
-| `references/part-f-web-design-deep-module.md` | Full web and design module |
+| `references/part-f-web-design-deep-module.md` | F1 moodboard and three wireframes, F2 type and tokens, F3 platform layouts, F4 states, F5 copy and assets, F6–F9 verification |
+| `references/part-u1-reading-rhythm-grids-and-theme-contrast.md` | Tune type, measure, responsive grid and theme tokens with worked accessibility checks |
+| `references/part-u2-visual-hierarchy-and-task-research.md` | Research a hierarchy decision, study reference designs and run a recall or task test |
+| `references/part-u3-dashboard-judgments-and-component-states.md` | Choose a dashboard encoding, verify partial totals and exercise async component states |
 | `references/part-s-custom-components-and-interaction-motion.md` | Design a component contract and test interruptible motion in a worked interaction |
 | `references/part-c3-anti-slop-design-filter.md` | Anti-slop rules R-01..R-40 and reference design systems |
 | `references/part-c5-full-stack-60fps-motion-distributed-back.md` | Full-stack, 60 fps motion and back-end patterns |
