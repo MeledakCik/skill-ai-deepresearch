@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.17.0
+
+Made cross-platform migration gates measurable: task and session continuity, API behavior, persisted state, data invariants, phase-specific stop thresholds, owners and recovery actions. Added two synthetic closed-packet cases for web-to-Android and Android-to-web/desktop decisions; these are evaluation fixtures, not claimed test results.
+
 ## v17.16.0
 
 Deepened Part Y with repository/dependency discovery, data and identity ownership, API/schema compatibility, evidence-based effort ranges, a phase-by-phase source-of-truth table, and rollback after post-cutover writes. Documented when phased coexistence is a poor fit and added current first-party guidance for offline data, API compatibility, incremental migration and cutover recovery.

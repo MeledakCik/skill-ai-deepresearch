@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.3.0",
+  "suite_version": "1.4.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -67,6 +67,22 @@
       "prompt_heading": "CP-EN-08",
       "packet": "corpora/systematic-review-audit/",
       "purpose": "Audit review protocol, query records, duplicate handling, screening, unavailable full text and synthesis limits"
+    },
+    {
+      "id": "CP-ID-09",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-09",
+      "packet": "corpora/migration-web-android/",
+      "purpose": "Separate knowns and unknowns in web-to-Android offline migration; test auth, idempotency, scope and estimate discipline"
+    },
+    {
+      "id": "CP-EN-10",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-10",
+      "packet": "corpora/migration-android-web-desktop/",
+      "purpose": "Route dispatcher and technician workflows across Android/web/macOS; test data portability and browser/API gates"
     },
     {
       "id": "LIVE-ID-01",

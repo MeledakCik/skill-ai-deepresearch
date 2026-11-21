@@ -34,6 +34,14 @@ Lanjutkan riset dari `handoff.md`; gunakan hanya checkpoint dan bukti lanjutan y
 
 Using only the supplied packet, audit whether the board can call this a completed systematic review. Report the record flow and each exclusion or unresolved full-text status. Then write a dated protocol addendum for the remaining search and screening: preserve the already-run searches as preliminary, specify what must be logged, and explain whether synthesis or pooling is defensible. Do not browse or invent records.
 
+## CP-ID-09
+
+Dengan hanya memakai paket `migration-web-android`, buat memo keputusan maksimal 250 kata untuk migrasi web ke Android. Pisahkan fakta, inferensi, dan hal yang belum diketahui; pertahankan web office client; bandingkan jalur implementasi tanpa mengunci framework yang tidak didukung bukti. Bahas autentikasi, penulisan offline, retry/idempotensi, konflik stok, distribusi, dan satu proof-of-concept terkecil dengan kriteria terukur. Nilai estimasi dua minggu berdasarkan bukti, bukan jumlah layar. Sertakan locator `MIG-WA-*` untuk klaim penting. Jangan browsing atau mengimplementasikan.
+
+## CP-EN-10
+
+Using only `migration-android-web-desktop`, write a decision memo of at most 250 words for the requested Android-to-web/desktop change. Assign the dispatcher and technician workflows to appropriate clients, state what should remain on Android, and assess whether copying the Android database is a viable migration path. Cover API conflicts, idempotent submission, photo uploads, browser auth/CORS and compatibility unknowns; propose the smallest measurable proof of concept and rollout/rollback gate. Treat the six-week/11-screen claim as unverified. Cite exact `MIG-AW-*` locators. Do not browse or implement.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.
