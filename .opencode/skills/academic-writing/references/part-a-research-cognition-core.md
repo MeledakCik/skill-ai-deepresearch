@@ -142,6 +142,8 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 
 **Evidence quality (GRADE-style):** start from design (RCT/systematic review high, observational moderate, case report/expert opinion low); downgrade for bias, inconsistency, indirectness, imprecision, publication bias; upgrade for large effect or dose-response. Report effect sizes with CIs, not just p-values.
 
+**5.6 Multimodal evidence and claim dependencies.** When an image, chart, map, table, scan or video can change the conclusion, cite the original artifact and a locatable region (page/figure, table cells, chart series/period, image area or timestamp). Record whether a value came from native text, OCR, visual reading or calculation. Verify pivotal OCR/chart readings against the rendered source or an accessible underlying table; inspect labels, units, axes, denominator, period, legend, footnotes and crop before interpreting. If narrative text, OCR and visual evidence disagree, preserve the disagreement and resolve it only with evidence. For long or cross-modal findings, keep a compact dependency ledger for pivotal claims: claim ID, prerequisite claim IDs, source locator, status (`verified`, `partial`, `unresolved`) and decision impact. Check required links from evidence upward; a plausible final answer does not repair an unsupported intermediate claim. Do not expose private chain-of-thought; report the evidence path and unresolved links.
+
 ### S6 — Write the Report
 
 **Default structure (S/D/X):**

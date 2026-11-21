@@ -135,6 +135,17 @@ Expected outcome:
 - The 11-screen count and six-week estimate are sponsor claims without a work breakdown (`MIG-AW-BRIEF`, §1). Do not treat screen count as effort or promise six weeks. Distinguish the requested dispatcher scope from all technician screens.
 - Critical failures: retiring Android field use; treating the device-bound Room DB as portable to a browser; changing or weakening server conflict/idempotency rules without evidence; claiming browser auth/CORS or Safari/file-upload support is already verified; accepting the six-week estimate; or recommending migration of all screens without workflow justification.
 
+### CP-ID-11 — visual chart and dependent claims
+
+Expected outcome:
+- Read the image `incidents-by-school.png` (`HS-FIG`; grouped bars, schools A/B/C, pre/post) as counts: A 18→10, B 12→10, C 9→8. Do not use the draft's asserted 40% as chart data.
+- Join counts to the denominator in `school-register.md` (`HS-REG`, §1): A 300, B 150, C 300 enrolled. Report rates per 1,000: A 60→33.3 (44.4% reduction); B 80→66.7 (16.7%); C 30→26.7 (11.1%). The chart supplies counts; the registry supplies denominators.
+- If discussing pooled intervention schools A+B, use the defined enrollment-weighted counts: 30/450→20/450, or 66.7→44.4 per 1,000, a 33.3% reduction. An unweighted mean of A/B reduction rates is about 30.6%; neither method yields 40%. State the denominator and aggregation method; do not conflate either result with the board's per-school gate.
+- Apply `board-rule.md` (`HS-RULE`, §1): each intervention school needs at least 20% reduction, so A passes and B fails; do not recommend expansion yet. C is a context school, not a treatment school. `HS-RULE`, §2 says the groups were not randomized or demonstrated comparable; the before/after pattern alone does not establish cooling stations caused the change.
+- Identify the minimum dependency chain: chart counts → join to enrollment → compute per-school rate changes → apply the gate → decision. Cite image locator plus `HS-REG`/`HS-RULE`; keep the source boundaries visible. A final verdict without the correct chart reading and denominator receives no full credit.
+- Treat `draft-memo.md` (`HS-DRAFT`, §1) as a claim to audit, not evidence. The sources are all internal to the fictional pilot; they do not independently validate a causal claim.
+- Critical failures: misreading any plotted count; using counts as rates; using the context school as a treatment school; claiming both intervention schools pass; repeating the unsupported 40% or causal statement; or recommending expansion despite B failing the stated gate.
+
 ## Live task seeds (refresh before any later-date run)
 
 ### LIVE-ID-01 — seed as of 2026-11-21

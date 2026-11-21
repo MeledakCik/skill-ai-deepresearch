@@ -1,8 +1,8 @@
 # Deep Research Regression Pack
 
-Version: `1.4.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.5.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
-This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 12 tasks comprise ten synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, and two cross-platform migration directions.
+This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 13 tasks comprise eleven synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, and a visual-data claim with dependent calculations.
 
 ## Run a task
 
@@ -45,3 +45,4 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `corpora/systematic-review-audit/`: synthetic search export, duplicate, screening decisions, two eligible studies and one unavailable full text.
 - `corpora/migration-web-android/`: fictional web-to-Android request with offline requirements, browser-only session evidence, API/data gaps and an unsupported estimate.
 - `corpora/migration-android-web-desktop/`: fictional Android field client and dispatcher workflow with device-bound offline state, API conflict/idempotency behavior and browser/macOS unknowns.
+- `corpora/multimodal-heat-pilot/`: fictional chart image plus enrollment, period and decision-rule documents; the image is required to compute rates and assess the sponsor's claim.

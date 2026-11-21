@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.18.0
+
+Added a multimodal evidence protocol for locating visual evidence, verifying OCR/chart readings, tracking claim dependencies and reporting unresolved links. Deep-research evaluation now scores visual-text integrity and intermediate dependency correctness separately, with one synthetic chart-based decision case; the case has not been run.
+
 ## v17.17.0
 
 Made cross-platform migration gates measurable: task and session continuity, API behavior, persisted state, data invariants, phase-specific stop thresholds, owners and recovery actions. Added two synthetic closed-packet cases for web-to-Android and Android-to-web/desktop decisions; these are evaluation fixtures, not claimed test results.

@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.4.0",
+  "suite_version": "1.5.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -83,6 +83,14 @@
       "prompt_heading": "CP-EN-10",
       "packet": "corpora/migration-android-web-desktop/",
       "purpose": "Route dispatcher and technician workflows across Android/web/macOS; test data portability and browser/API gates"
+    },
+    {
+      "id": "CP-ID-11",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-11",
+      "packet": "corpora/multimodal-heat-pilot/",
+      "purpose": "Read a decisive chart, connect it to denominators and a decision rule, and score claim-dependency and visual-text integrity"
     },
     {
       "id": "LIVE-ID-01",
