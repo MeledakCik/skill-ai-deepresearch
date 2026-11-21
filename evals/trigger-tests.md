@@ -9,6 +9,7 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 | Susun protokol systematic review untuk intervensi X dan catat query serta alur screening | deep-research-council |
 | Buat paket evaluasi deep research yang bilingual, pisahkan closed-packet dari live search, dan definisikan acceptance rule sebelum menilai | deep-research-council |
 | Audit laporan riset multi-file ini: cek locator PDF/tabel, dokumen pengalih, asal sumber duplikat, dan sitasi untuk setiap klaim material | deep-research-council |
+| Jalankan CP-ID-01 dari evals/deep-research; jangan baca rubrik tersembunyinya sebelum jawaban selesai | deep-research-council |
 | Bandingkan hasil tiga studi ini, cek beda populasi dan heterogenitas sebelum pooling | research-data-analysis |
 | Analisis CSV berikut. Periksa missing value, duplikasi dan conversion per cohort dengan interval kepercayaan | research-data-analysis |
 | Tolong cek apakah klaim "ekspor nikel naik 40%" itu benar, kasih sumber | deep-research-council |

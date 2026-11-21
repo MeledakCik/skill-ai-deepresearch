@@ -1,0 +1,56 @@
+{
+  "suite_id": "deep-research-regression-mini",
+  "suite_version": "1.0.0",
+  "seed_date": "2026-11-21",
+  "maintainer_fixture": true,
+  "tasks": [
+    {
+      "id": "CP-ID-01",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-01",
+      "packet": "corpora/library-evening-pilot/",
+      "purpose": "Decision brief; evidence origin, denominator, missing outcome, causal restraint"
+    },
+    {
+      "id": "CP-EN-02",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-02",
+      "packet": "corpora/library-evening-pilot/",
+      "purpose": "Claim-by-claim citation audit of an intentionally flawed report"
+    },
+    {
+      "id": "CP-ID-03",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-03",
+      "packet": "corpora/library-evening-pilot/",
+      "purpose": "Numerical sensitivity without turning missing into zero"
+    },
+    {
+      "id": "CP-EN-04",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-04",
+      "packet": "corpora/library-evening-pilot/",
+      "purpose": "Source genealogy and independence audit"
+    },
+    {
+      "id": "LIVE-ID-01",
+      "track": "live-search",
+      "language": "id",
+      "prompt_heading": "LIVE-ID-01",
+      "packet": null,
+      "purpose": "Current official Indonesian CPI release; publication date vs reference month"
+    },
+    {
+      "id": "LIVE-EN-02",
+      "track": "live-search",
+      "language": "en",
+      "prompt_heading": "LIVE-EN-02",
+      "packet": null,
+      "purpose": "Distinguish latest stable standard from a newer bleeding-edge release"
+    }
+  ]
+}

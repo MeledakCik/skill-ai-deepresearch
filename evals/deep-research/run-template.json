@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "deep-research-regression-mini",
+  "suite_version": "1.0.0",
+  "run": {
+    "run_id": "",
+    "started_at": "",
+    "operator": "",
+    "agent_or_host": "",
+    "skill_version": "",
+    "model": "",
+    "tools_and_versions": [],
+    "effort_or_settings": "",
+    "prompt_hash_or_revision": "",
+    "packet_revision": "",
+    "notes": ""
+  },
+  "tasks": [
+    {
+      "task_id": "",
+      "completed_at": "",
+      "answer_artifact": "",
+      "opened_source_ids_or_urls": [],
+      "cited_locators": [],
+      "acceptance_checks": [],
+      "critical_failures": [],
+      "metrics": {
+        "required_evidence_retrieval": { "numerator": null, "denominator": null },
+        "citation_support": { "numerator": null, "denominator": null },
+        "critical_claim_coverage": { "numerator": null, "denominator": null },
+        "task_level_decisive_source_hit": null
+      },
+      "cost_and_reliability": {
+        "input_tokens": null,
+        "output_tokens": null,
+        "searches": null,
+        "tool_calls": null,
+        "wall_time_seconds": null,
+        "tool_failures_or_unavailable": []
+      },
+      "human_review": {
+        "blinded_to_version": null,
+        "reviewer_role": "",
+        "disagreements": [],
+        "adjudication": ""
+      }
+    }
+  ]
+}

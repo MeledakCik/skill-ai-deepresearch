@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.10.0
+
+Added a manually runnable deep-research regression pack: four synthetic closed-packet cases, two bilingual live-search tasks, source/locator maps, hidden acceptance rubrics and a run-record template. No evaluation scores are claimed until the pack is run.
+
 ## v17.9.0
 
 Expanded deep-research evaluation into a reproducible closed-packet/live-search protocol with run manifests, multi-file distractors, exact evidence locators, explicit metric denominators, critical-error gates, blinded human checks and quality-adjusted cost reporting. Added DR³-Eval as a primary research reference.

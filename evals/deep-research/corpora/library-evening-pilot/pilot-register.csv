@@ -1,0 +1,11 @@
+session_id,scheduled_date,staffed_hours,visits,record_status
+S01,2026-10-05,1,5,observed
+S02,2026-10-06,2,8,observed
+S03,2026-10-07,1,0,observed
+S04,2026-10-08,2,12,observed
+S05,2026-10-09,1,4,observed
+S06,2026-10-12,2,10,observed
+S07,2026-10-13,1,7,observed
+S08,2026-10-14,2,11,observed
+S09,2026-10-15,1,6,observed
+S10,2026-10-16,2,,telemetry_outage

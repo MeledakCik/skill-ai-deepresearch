@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.9.0"
+  version: "17.10.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
@@ -1366,7 +1366,7 @@ For critical claims, report factual support and citation support separately from
 
 Run the same prompts, packets, model, tools and effort before and after a skill change. Repeat only a small, risk-selected subset when stochastic variation could change the conclusion; preserve individual runs and summarize the spread rather than presenting one lucky run as stable. Blind a domain-capable human to the version for a sample of evidence and reports. Compare automated judgments with those reviews, record disagreements and revise the rubric; use a judge model for triage, not as ground truth. For small samples, describe observed cases and uncertainty without claiming statistical significance.
 
-Keep the suite small enough to run regularly. Add a task only when it captures a distinct failure, and keep its source locator and acceptance rule with it. Benchmarks offer useful dimensions, not universal quality thresholds: DeepResearch Bench II uses expert-derived rubrics for information recall, analysis and presentation; DR³-Eval tests multi-file reports against supportive material, distractors and noise. These motivate separate retrieval/report checks and realistic document packets, but results across benchmarks or different model/tool setups are not directly interchangeable. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DR³-Eval](https://arxiv.org/abs/2604.14683) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
+Keep the suite small enough to run regularly. Add a task only when it captures a distinct failure, and keep its source locator and acceptance rule with it. Benchmarks offer useful dimensions, not universal quality thresholds: DeepResearch Bench II uses expert-derived rubrics for information recall, analysis and presentation; DR³-Eval tests multi-file reports against supportive material, distractors and noise. These motivate separate retrieval/report checks and realistic document packets, but results across benchmarks or different model/tool setups are not directly interchangeable. For a manually runnable maintainer pack, see `evals/deep-research/README.md`; give the evaluated agent only the prompt and allowed packet, never the hidden acceptance criteria. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DR³-Eval](https://arxiv.org/abs/2604.14683) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
 
 ## Sources for Parts J-L
 
