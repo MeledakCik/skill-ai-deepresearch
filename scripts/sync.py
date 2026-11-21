@@ -64,9 +64,9 @@ SKILLS = {
 
 1. Establish source and target platforms, supported OS/browser versions, user workflows, constraints and release channel. Inspect the repository or supplied evidence before describing the current system. Keep observations, assumptions and unknowns distinct.
 2. Inventory workflows, data and integrations, then map each capability to the target as shared, platform-native, adapted, retired or unknown. Attach current first-party evidence and exact platform/version scope to consequential compatibility claims.
-3. Compare only plausible migration paths against the user's priorities. Separate reusable domain rules and contracts from platform-bound UI, lifecycle, storage and device behavior. Do not choose a framework by popularity or count screens as an effort estimate.
-4. Identify the highest-risk unknown and propose a small vertical proof-of-concept with observable acceptance criteria before committing to a large rewrite or schedule.
-5. Deliver a concise decision, feature/capability matrix, assumptions and risks, phased plan, rollback or coexistence needs, and the next decision-changing check. State which target-platform facts remain unverified.""",
+3. Compare only plausible migration paths against the user's priorities. Separate reusable domain rules and contracts from platform-bound UI, lifecycle, storage and device behavior. Estimate by workflows, integrations, data and coexistence—not screen count—and state the evidence and confidence behind any range.
+4. Identify the highest-risk unknown and propose a small vertical proof-of-concept with observable acceptance criteria before committing to a large rewrite or schedule. Include the real auth/API/data path when it could change feasibility.
+5. Deliver a concise decision, feature/capability matrix, assumptions and risks, phased plan, source-of-truth and data-continuity plan, rollback limits, and the next decision-changing check. State which target-platform facts remain unverified.""",
         "refs": ["Y"],
     },
     "research-data-analysis": {

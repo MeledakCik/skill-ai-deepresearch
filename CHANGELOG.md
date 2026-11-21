@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.16.0
+
+Deepened Part Y with repository/dependency discovery, data and identity ownership, API/schema compatibility, evidence-based effort ranges, a phase-by-phase source-of-truth table, and rollback after post-cutover writes. Documented when phased coexistence is a poor fit and added current first-party guidance for offline data, API compatibility, incremental migration and cutover recovery.
+
 ## v17.15.0
 
 Added a focused `platform-migration` skill and Part Y covering source-system inventory, target capability evidence, architecture-path comparison, a risk-led proof of concept, data and rollout safety, and direction-specific checks for web, Android, iOS, desktop and macOS. Routed deep-research migration requests to Part Y and kept greenfield scaffolding distinct.
