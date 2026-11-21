@@ -1,12 +1,12 @@
 # Deep Research Regression Pack
 
-Version: `1.9.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.10.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
 This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 17 tasks comprise fourteen synthetic closed-packet cases and three dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, visual-data dependencies, prompt-scope triage, and source-led criteria drift with both single-site and multi-site bait. The live set includes a version-sensitive Android-to-iOS/macOS/web migration question.
 
 ## Run a task
 
-1. Pick task IDs from `manifest.json`; order a small, representative first slice before deciding whether to continue. Use a fresh conversation and a clean temporary workspace. For a closed task, copy only the named corpus and its prompt into that workspace. For a live task, give the prompt and web access, but do not provide `rubrics.md`.
+1. Pick task IDs from `manifest.json`; order a small, representative first slice before deciding whether to continue. Use a fresh conversation and an isolated temporary workspace. For a closed task, disable web search, connectors and other retrieval outside the workspace; copy only the selected prompt text and named packet. Do not provide its task ID/header, `manifest.json`, `README.md`, `rubrics.md`, run records or repository path. For a live task, allow only the research tools required by the prompt, but do not provide hidden scoring materials.
 2. Before the first call, set practical caps for tokens or spend (when exposed), wall time and tool calls, plus a reserve for scoring and delivery. Treat each task's cost as unknown until measured. If quota/reset information is not exposed, record it as unknown; do not guess.
 3. Record the task-pack, skill, model, tools/settings, run date, declared budget and task order in a copy of `run-template.json`. For live or reproducibility runs, preserve materially distinct queries and filters in `search_log`, with tool/index, date, language, exposed result count, opened source IDs and query purpose/outcome. Leave it empty when no search was run. Do not put private user files, credentials or unrelated raw transcripts into the run record.
 4. Save the unedited answer, source locators, actual usage and failure/recovery notes immediately after each task. Score it against `rubrics.md` only after the answer is complete. For a blind review, hide the skill version and shuffle the versions before a human reviewer sees the output.
@@ -15,6 +15,14 @@ This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 17 
 7. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
 
 For a token-efficiency claim, pair a small preselected subset across the old and new skill using the same model, tools, effort, prompt and packet. Set factual, citation and coverage gates first; capture measured usage if available. Count lower usage as an improvement only when every critical gate still passes. Report per-task variation and unknown measures; do not use a pooled average to conceal a failed task.
+
+## Contamination control
+
+Closed-packet tasks are valid only when external retrieval is disabled and the evaluated workspace contains the selected prompt plus the named packet. Review the tool trace; if a search, connector, file read or other retrieval escapes that boundary, mark the task contaminated and do not score it as a clean closed-packet result. Keep `rubrics.md`, this README, the manifest and run history out of the evaluated context. Pass only the prompt body, not its repository heading or task ID.
+
+For live tasks, retrieving the official source that answers the question is legitimate evidence. Contamination means retrieving benchmark artifacts such as the exact prompt, benchmark metadata, hidden rubric or expected answer. Review and record the trace using `evaluation_integrity` in `run-template.json`, with type `metadata`, `question_context`, `answer`, `none` or `unknown`. If the suite or exact task wording is publicly searchable, treat results as exploratory and use private rotating holdout variants for release decisions. Do not claim a clean comparison when tool traces or access isolation are unavailable.
+
+A June 2026 arXiv preprint under review reports search-time contamination across six public benchmarks, with measured score inflation up to 4%. The result motivates controls but is not an estimate for this suite or any particular host. [Search-time contamination preprint](https://arxiv.org/abs/2606.05241)
 
 ## Paired orchestration comparison
 
@@ -46,6 +54,8 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `rubrics.md`: hidden acceptance criteria and live seed observations.
 - `run-template.json`: one record per run, with budget, status and resumable task IDs; leave scores null until a human or defined evaluator scores them.
 - `manifest.json` `paired_comparisons`: a matched single-agent/delegated experiment definition; run it as separate records with `paired_comparison` metadata in the template.
+- `manifest.json` `evaluation_controls`: isolation and trace-review rules for closed and live tasks.
+- `scripts/check_eval_integrity.py`: structural check for task/prompt/packet alignment and required contamination controls; it does not run or score an agent.
 - `runs/`: optional durable run records and answer artifacts; preserve partial runs with their original pack and skill versions so they can be resumed without repeating completed tasks.
 - `corpora/library-evening-pilot/`: synthetic source packet and deliberately flawed draft for closed-packet evaluation.
 - `corpora/source-access-recovery/`: synthetic official-source access failure with an official final data alternative.

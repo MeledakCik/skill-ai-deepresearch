@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.9.0",
+  "suite_version": "1.10.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -170,5 +170,21 @@
         "Aggregate input/output tokens, searches/tool calls and wall time when exposed"
       ]
     }
-  ]
+  ],
+  "evaluation_controls": {
+    "closed_packet": {
+      "web_search_connectors": "disabled",
+      "allowed_inputs": "selected prompt and named packet only",
+      "hidden_inputs": ["manifest.json", "README.md", "rubrics.md", "runs/", "repository path"],
+      "trace_review_required": true,
+      "invalid_if_external_retrieval_occurs": true
+    },
+    "live_search": {
+      "web_search_connectors": "allowed as required by the task",
+      "trace_review_required": true,
+      "contamination_review": ["benchmark metadata", "exact task/question context", "answer key or rubric"],
+      "legitimate_evidence": "retrieving the task's primary factual source is not contamination by itself",
+      "release_claims": "use private rotating holdouts; public suite results are exploratory if exact task artifacts are searchable"
+    }
+  }
 }

@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.9.0",
+  "suite_version": "1.10.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -64,6 +64,17 @@
         "assigned_lanes": [],
         "verified_unique_evidence_contributions": null,
         "duplicate_off_scope_or_unusable_returns": null
+      },
+      "evaluation_integrity": {
+        "workspace_isolated": null,
+        "web_access_mode": "unknown",
+        "hidden_material_excluded": null,
+        "trace_reviewed": null,
+        "exposure_status": "unknown",
+        "contamination_signal": "unknown",
+        "contamination_type": "unknown",
+        "contaminated": null,
+        "adjudication": ""
       },
       "cost_and_reliability": {
         "input_tokens": null,

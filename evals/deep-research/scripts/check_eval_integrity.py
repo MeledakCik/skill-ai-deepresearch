@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""Check that the Deep Research evaluation pack enforces its input boundaries."""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+
+
+EVAL = Path(__file__).resolve().parent.parent
+
+
+def load_json(path: Path) -> dict:
+    with path.open(encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def main() -> None:
+    manifest = load_json(EVAL / "manifest.json")
+    run_template = load_json(EVAL / "run-template.json")
+    prompts = (EVAL / "prompts.md").read_text(encoding="utf-8")
+    readme = (EVAL / "README.md").read_text(encoding="utf-8")
+
+    assert manifest["suite_version"] == run_template["suite_version"], "suite version mismatch"
+    tasks = manifest["tasks"]
+    task_ids = [task["id"] for task in tasks]
+    assert len(task_ids) == len(set(task_ids)), "duplicate task ID"
+    assert tasks, "evaluation suite has no tasks"
+
+    controls = manifest.get("evaluation_controls", {})
+    closed = controls.get("closed_packet", {})
+    live = controls.get("live_search", {})
+    assert closed.get("web_search_connectors") == "disabled", "closed-packet retrieval must be disabled"
+    assert closed.get("allowed_inputs") == "selected prompt and named packet only", "closed-packet allowlist is unclear"
+    assert closed.get("trace_review_required") is True, "closed-packet trace review is required"
+    assert closed.get("invalid_if_external_retrieval_occurs") is True, "external retrieval must invalidate a clean closed run"
+    assert live.get("trace_review_required") is True, "live-task trace review is required"
+    assert "private rotating holdouts" in live.get("release_claims", ""), "live release claims need private holdouts"
+
+    headings = set(re.findall(r"^## ([A-Z]+-[A-Z]+-\d+)\s*$", prompts, re.MULTILINE))
+    for task in tasks:
+        assert task["prompt_heading"] in headings, f"missing prompt: {task['id']}"
+        if task["track"] != "closed-packet":
+            continue
+
+        prompt_match = re.search(
+            rf"^## {re.escape(task['prompt_heading'])}\s*$\n(.*?)(?=^## |\Z)",
+            prompts,
+            re.MULTILINE | re.DOTALL,
+        )
+        assert prompt_match, f"cannot extract prompt: {task['id']}"
+        prompt_text = prompt_match.group(1).lower()
+        assert re.search(r"do not browse|don't browse|jangan browsing|jangan menjalankan pencarian web", prompt_text), (
+            f"closed task lacks no-browse instruction: {task['id']}"
+        )
+
+        packet = (EVAL / task["packet"]).resolve()
+        assert packet.is_relative_to((EVAL / "corpora").resolve()), f"packet escapes corpus root: {task['id']}"
+        assert packet.is_dir(), f"packet missing: {task['id']}"
+        packet_files = [path.name.lower() for path in packet.rglob("*") if path.is_file()]
+        forbidden = {"rubrics.md", "manifest.json", "readme.md", "run-template.json"}
+        assert not (forbidden & set(packet_files)), f"operator/evaluation files leaked into packet: {task['id']}"
+        assert not any("answer-key" in name or "hidden-rubric" in name for name in packet_files), (
+            f"hidden scoring material leaked into packet: {task['id']}"
+        )
+
+    task_template = run_template["tasks"][0]
+    integrity = task_template.get("evaluation_integrity", {})
+    required_fields = {
+        "workspace_isolated",
+        "web_access_mode",
+        "hidden_material_excluded",
+        "trace_reviewed",
+        "exposure_status",
+        "contamination_signal",
+        "contamination_type",
+        "contaminated",
+        "adjudication",
+    }
+    assert required_fields <= integrity.keys(), "run template lacks contamination record fields"
+    assert "disable web search" in readme.lower(), "operator instructions do not require closed-run isolation"
+    assert "contamination control" in readme.lower(), "contamination protocol missing from README"
+
+    print(
+        f"Evaluation integrity checks passed: {len(tasks)} tasks, "
+        f"{sum(t['track'] == 'closed-packet' for t in tasks)} closed prompts/packets, "
+        "closed-run isolation, live trace review, and contamination logging."
+    )
+
+
+if __name__ == "__main__":
+    main()

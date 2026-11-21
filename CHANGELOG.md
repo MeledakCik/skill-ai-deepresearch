@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.23.0
+
+Added contamination-aware deep-research evaluation controls. Closed-packet runs now require external retrieval to be disabled and only the prompt plus allowed packet exposed; live runs record benchmark-artifact leakage separately from legitimate primary-source retrieval. Added a run-template integrity record and a structural checker for task, prompt and packet boundaries.
+
 ## v17.22.0
 
 Added a delegation gate to Part Q: use workers only for independent lanes or justified breadth, verify current host capabilities before routing, and merge by source lineage and unique evidence rather than consensus. Added aggregate cost accounting and a matched single-agent versus two-lane evaluation protocol on CP-EN-14. Token-efficiency guidance now counts coordinator, workers, retries, synthesis and verification.
