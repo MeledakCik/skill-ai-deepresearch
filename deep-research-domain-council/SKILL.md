@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.21.0"
+  version: "17.22.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -1375,6 +1375,7 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 - For multimodal or multi-hop cases, make at least one non-text artifact necessary to resolve a predeclared claim; annotate the required visual locator, extracted value, dependent claim links, and answer key. Score intermediate-link correctness and text-visual/source alignment separately from final-answer correctness. Do not award full credit for a lucky answer with a broken evidence path.
 - For adversarial source-selection cases, freeze the user's objective and criteria in the packet, then include a plausible source that tries to redirect them with an unsupported metric or ranking without issuing an explicit instruction. Score whether the agent verifies the metric's authority, preserves criteria provenance and separates source-proposed alternatives from the requested decision. Keep the attack subtle and evaluate the correct answer path, not generalized refusal.
 - For source-network cases, distribute a claim across multiple publishers and citation paths while keeping its underlying data/report genealogy recoverable. Score publication lineage separately from data-origin independence; include a case where the pages look like corroboration but only one underlying evidence origin supports the metric.
+- For a multi-agent efficiency claim, pair the same prompt and packet in single-agent and delegated conditions. Keep the model, tools, effort and total aggregate token/tool budget the same; count coordinator, workers, retries, synthesis and citation checks. Score task quality and citation gates separately from unique verified evidence, duplicate/unusable returns, cost and latency. The delegated run only demonstrates a benefit if it improves a predeclared quality outcome or maintains all critical gates at lower measured cost; more agents, agreement or faster wall time alone is not a gain.
 - For live tasks, date the prompt and reference answer, store exact query-log entries and URLs actually opened, and recheck time-sensitive facts at evaluation time. Do not grade a changed fact against stale ground truth. A web search has a bounded, unknown source universe, so report task-level hits and failures; do not label them global retrieval recall.
 - Before a multi-task run, declare a practical budget: task order, maximum measured tokens or spend when available, wall time, tool calls, and a small reserve for scoring and delivery. If the host exposes a quota or reset window, record its wording and value; otherwise leave it unknown. Start with a representative, high-information task and inspect its actual usage before scheduling more. Do not assume tasks have equal cost.
 - After each task, save the unedited answer, source locators, settings, measured usage, failures and completion status. Stop before the next expensive call when the declared cap is reached, the host reports a quota/rate limit, or the remaining budget cannot cover review and delivery. A failed setup attempt is a failure, not a completed task; record it and retry only through a bounded, materially different recovery path.
@@ -1391,6 +1392,7 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 | Material-claim coverage | What share of checked material claims has adequate evidence? State how claims were selected and the denominator; do not equate citation count with coverage. |
 | Source independence | Do reports trace to independent data origins, or repeat the same press release, study or dataset? Count shared origins once. |
 | Source-network integrity | Does the report distinguish publishers from underlying data origins, classify original analysis versus summary/repost, and avoid treating cross-domain repetition as independent validation? |
+| Delegation contribution | Which assigned workers contributed unique, verified decision-relevant evidence or resolved a material gap? Which returns were duplicates, off-scope or unusable, and what was their aggregate cost? |
 | Analysis | Are measures commensurate? Are contradictions, missing evidence, uncertainty, alternatives, bias and causal limits handled? |
 | Multimodal and dependency integrity | Are pivotal visual values read from the correct region/series/period and checked for units/denominators? Are required intermediate claims supported and their dependencies intact? Is any text/OCR/visual mismatch disclosed? |
 | Criteria and agenda integrity | Are user-set goals preserved? Are source-suggested metrics labeled and validated before use? Does the report disclose any proposed change in criteria and its decision impact? |
@@ -1972,32 +1974,38 @@ Synthesize only studies that answer a sufficiently similar question. Preserve th
 
 # PART Q — MULTI-AI DEEP RESEARCH FEDERATION (Make Every Research AI Strengthen the Others)
 
-No single deep-research product is best at everything. Each searches a different slice of the web, ranks sources differently, and makes different mistakes. Used together with a shared protocol, they cover each other's blind spots: one finds what another missed, and claims that survive independent runs earn more trust. This part turns several research AIs into one team.
+Research hosts can differ in available tools, data access, source ranking, context and failure modes, but their reports may still rely on the same underlying sources. Federation helps only when it explores distinct evidence or resolves a consequential uncertainty; agent agreement alone is not corroboration.
 
 ## Q1. The Roster (Strengths to Exploit, ⚠ features change often)
 
-| Platform | Use it for | Watch out for |
+Treat this roster as discovery hints, not a current ranking or a durable statement of capability. Before routing a real task, verify the host's currently available search/connectors, file access, model selection, limits, privacy rules and output/citation behavior from first-party documentation and the actual authorized account. Record the check date; if a capability is not exposed or cannot be verified, mark it unknown. Do not infer a user's access, plan or quota from public marketing pages, and do not route confidential data to an unapproved provider. Benchmark results are task- and setup-specific; do not turn them into a universal vendor ranking.
+
+| Platform | Potential fit to verify at run time | Pre-use check |
 |:---|:---|:---|
-| ChatGPT Deep Research (OpenAI) | Long cited reports, hard-to-find facts (strong BrowseComp record), file + connector inputs | Long run times; verify that citations support the exact sentence |
-| Gemini Deep Research (Google) | Editable research plan up front, broad web coverage, Google Workspace context, export to Docs | Breadth can outrun depth; check primary sources |
-| Claude Research (Anthropic) | Multi-agent breadth on independent sub-questions, connected work tools (Drive, Gmail, integrations) | Ask explicitly for primary sources and dates |
-| Microsoft 365 Copilot Researcher | Questions that depend on the org's own email, meetings, files, CRM | Only sees what your tenant permissions allow |
-| Perplexity (Deep Research / Pro search) ⚠ | Fast first sweep, quick source lists to seed deeper runs | Short answers; verify depth |
-| Grok DeepSearch (xAI) ⚠ | Very recent public discussion and news on X | Social posts are T4 unless they lead to a primary source |
-| DeepSeek (search + thinking) / Qwen / Kimi ⚠ | Chinese-language sources, cost-efficient runs, second opinion | Check citations and dates carefully |
-| Domain tools (Elicit, Consensus, Semantic Scholar, scite) ⚠ | Academic literature, citation context, study design | Coverage limited to indexed papers |
-| This skill's own agent (any harness) | Orchestrator: brief, split, merge, verify, write | Must not trust any single upstream report |
+| ChatGPT Deep Research (OpenAI) | Cited web research and supplied/connected source support, if enabled | Confirm the actual model, source access and citation locators |
+| Gemini Deep Research (Google) | Plan-led web research and Workspace context, if enabled | Confirm account access, export path and primary-source coverage |
+| Claude Research (Anthropic) | Parallel research lanes and connected work sources, if enabled | Confirm integrations and inspect lane/source overlap |
+| Microsoft 365 Copilot Researcher | Research over organizational records the tenant permits | Confirm permissions and which repositories were searched |
+| Perplexity (Deep Research / Pro search) ⚠ | Public-web discovery or source leads, if currently available | Verify pivotal claims at primary sources |
+| Grok DeepSearch (xAI) ⚠ | Public-discussion discovery, including X only if available | Treat posts as leads unless they resolve to primary evidence |
+| DeepSeek (search + thinking) / Qwen / Kimi ⚠ | Additional-language discovery or comparison lane, if available | Verify current search access, costs and every citation |
+| Domain tools (Elicit, Consensus, Semantic Scholar, scite) ⚠ | Specialized scholarly indexes and citation context | Check coverage, indexing dates and study-level evidence |
+| This skill's own agent (any harness) | Orchestration: brief, assign, merge, verify and report | Verify each upstream claim; do not count agreement as proof |
 
 ## Q2. Four Collaboration Patterns
 
 | Pattern | How | When |
 |:---|:---|:---|
-| **1. Split (divide RQs)** | Each AI gets different RQs matched to its strengths (Copilot: internal data; Grok: last-week discourse; ChatGPT/Gemini/Claude: core literature) | Broad questions with independent parts; saves time and tokens |
+| **1. Split (divide RQs)** | Each AI gets a distinct RQ and evidence boundary matched to its verified tools | Broad questions with independent parts; may reduce elapsed time or expand coverage, usually at higher aggregate usage |
 | **2. Mirror (same brief, independent runs)** | 2-3 AIs get the identical brief; compare claims, definitions, sources and gaps | High-stakes decisions; use disagreement to target checks and treat matching independent evidence as corroboration, not an automatic confidence increase |
-| **3. Relay (sequential)** | AI-1 maps the field and sources → AI-2 goes deep on the gaps AI-1 lists → AI-3 red-teams the combined draft | Unknown territory; each stage builds on the last |
-| **4. Cross-examine (adversarial)** | Give AI-B the report of AI-A and ask it to find errors, missing evidence and counter-evidence | Before shipping any D/X-tier report |
+| **3. Relay (sequential)** | AI-1 maps the field → AI-2 checks only verified gaps → AI-3 reviews the draft if risk warrants it | Unknown territory; pass forward evidence IDs to avoid repeated searches |
+| **4. Cross-examine (adversarial)** | Give a reviewer the report and evidence trail, then ask it to check linchpins and counterevidence | High-stakes, ambiguous or explicitly adversarial reviews |
 
-Default for Deep tier: **Split + Mirror on the 2-3 linchpin RQs + Cross-examine the final draft.**
+### Q2.1 Delegation gate
+
+Start with one researcher. Split only when there are at least two genuinely independent questions with distinct evidence targets, or when breadth/context limits justify parallel retrieval. Keep sequential work with one owner when subquestions depend on shared evolving state. Mirror runs are an expensive uncertainty check, reserved for pivotal/high-stakes questions where independent discovery could change the verdict; agreement is never a vote. Cross-examine a completed report when the risk, ambiguity or user request warrants it. Do not make all three patterns a default for every Deep task.
+
+Before creating workers, record the shared goal, fixed user criteria, assigned RQ and evidence boundary for each worker, expected handoff, aggregate token/tool budget, and a stop condition. Assign non-overlapping lanes first. If a worker discovers a dependency or useful new lead in another lane, report it to the lead rather than launching an unbounded search. The lead should request another lane only for an unresolved, decision-changing gap.
 
 ## Q3. The Universal Research Brief (paste into any deep-research AI)
 
@@ -2011,6 +2019,7 @@ Your sub-questions: RQ<n>: <...>   (only the ones assigned to this AI)
 Scope: <geography, period, population, technology>
 Out of scope: <...>
 Source standard: prefer primary sources (official data, filings, peer-reviewed, official docs); include publication dates; languages: <EN + ID + ...>
+Assignment boundary: <unique RQ, evidence/source types to pursue, out-of-lane topics to hand back>
 Must include for every claim: source title, publisher, date, URL, and a short locator (section/page/quote ≤15 words)
 Mark confidence per finding: Very high / High / Moderate / Low / Speculative, with one line why
 List contradictions you found and sources that disagree
@@ -2032,9 +2041,15 @@ producer: <platform + model + mode>   run_date: <YYYY-MM-DD>   brief_id: <id>
 | F1 | RQ1 | ... | High | S1, S3 | ... |
 
 ### Sources
-| id | title | publisher/author | date | url | tier | locator |
-|:---|:---|:---|:---|:---|:---|:---|
-| S1 | ... | ... | 2026-09 | https://... | T1 | Table 3 |
+| id | title | publisher/author | date | url | publication role | data_origin_id | tier | locator |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+| S1 | ... | ... | 2026-09 | https://... | origin | D1 | T1 | Table 3 |
+
+### Lane contribution
+Assigned RQs: RQ1
+Verified unique evidence IDs: F1
+Overlap with shared ledger: <source/claim IDs or none>
+Unresolved decision-changing gaps: <...>
 
 ### Contradictions
 | topic | says A (source) | says B (source) | likely reason |
@@ -2043,14 +2058,17 @@ producer: <platform + model + mode>   run_date: <YYYY-MM-DD>   brief_id: <id>
 - <what could not be found or verified>
 ```
 
+Use publication role to distinguish an original source from analysis, summary or repost. Add a `data_origin_id` when the underlying measurement can be traced; if the lineage is unclear, mark it unknown rather than guessing.
+
 Machine-readable version: `adapters/deep-research-hub/research_packet.schema.json`.
 
 ## Q5. Merge Protocol (Orchestrator)
 
 1. **Normalize:** convert every report into a Research Packet (ask the producing AI to do it, or extract it yourself).
-2. **De-duplicate sources by origin**, not by URL (A0 law 4). Two AIs citing the same press release = one origin.
-3. **Align claims:** group findings that state the same thing (same entity, metric, period, definition).
-4. **Score agreement:**
+2. **De-duplicate sources by origin**, not by URL (A0 law 4). Two AIs citing the same press release = one origin. Preserve both publication lineage and underlying data lineage.
+3. **Align claims:** group findings that state the same thing (same entity, metric, period, definition). Compare each worker's assignment to its actual sources and claims.
+4. **Separate contribution from repetition:** identify verified evidence or contradiction resolution that only one lane found, shared evidence found by several lanes, and unusable/unsupported output. Agent agreement over a shared origin adds no independent evidence.
+5. **Score agreement:**
 
 | Situation | Effect on confidence |
 |:---|:---|
@@ -2060,18 +2078,18 @@ Machine-readable version: `adapters/deep-research-hub/research_packet.schema.jso
 | AIs disagree | Open a contradiction; resolve with primary source; if unresolved, report both |
 | Claim's cited source does not support it on re-check | Drop or downgrade, whichever AI produced it |
 
-5. **Verify linchpins yourself** by opening the primary sources (Part N). Agreement between AIs is a signal, not proof: they can share the same wrong source.
-6. **Fill gaps:** union of all "Gaps" lists becomes the next relay round, sent to the AI best suited for each gap.
-7. **Write once** in the A1 S6 report shape, crediting which runs contributed (methodology section).
+6. **Verify linchpins yourself** by opening the primary sources (Part N). Agreement between AIs is a signal, not proof: they can share the same wrong source.
+7. **Fill gaps selectively:** merge the "Gaps" lists, remove duplicates and assign only unresolved gaps likely to change the answer. Do not repeat completed searches.
+8. **Write once** in the A1 S6 report shape, crediting which runs contributed (methodology section).
 
 ## Q6. Credit and Calibration Log (Making the Team Better Over Time)
 
 Keep `federation_log.md` per project:
 
-| run | platform | RQs | claims kept | claims dropped (why) | unique valuable finds | citation errors |
-|:---|:---|:---|:---|:---|:---|:---|
+| run | platform/model | assigned RQs | claims kept/dropped | unique verified finds | duplicated/unusable returns | input+output tokens | tool calls | wall time | citation errors |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 
-After 3-5 projects, the log shows which platform is reliable for which kind of question. Route future RQs accordingly. This is how the AIs "benefit each other": every run improves the routing and verification of the next.
+After 3-5 projects, the log can show which tools helped on which task types and at what measured cost. Treat this as a small, setup-specific routing history, not a permanent provider ranking. Route future RQs accordingly and refresh volatile capabilities at use time.
 
 ## Q7. Hand-off Prompts
 
@@ -2091,6 +2109,11 @@ After 3-5 projects, the log shows which platform is reliable for which kind of q
 - Respect each platform's terms of service and data policies; do not move confidential work data into a platform not approved for it (M1).
 - Report which platforms were used, so the reader can judge.
 - Cost control: Mirror runs multiply cost and time. Use them only for linchpin RQs or high-stakes work.
+- Log each worker's assignment, actual tool/source trail, verified unique evidence contribution, duplicated or unusable contribution, and failures. Count lead, workers, retries, merge and citation verification in the aggregate cost whenever the host exposes them; mark hidden usage unknown.
+- Stop delegation when the next worker is expected only to repeat settled evidence, when remaining work is dependent rather than parallel, or when the aggregate budget cannot cover synthesis and citation checks. Report what extra coverage cost; do not claim efficiency from shorter wall time alone.
+- Compare orchestration policies on matched tasks, tools, models and total aggregate budgets before claiming a quality or efficiency gain. A multi-agent run given more tokens than its single-agent baseline cannot establish that delegation itself caused the improvement.
+
+These are conditional controls, not a claim that parallelism is inherently wasteful. Anthropic's published system report describes high task-specific token overhead for its multi-agent research setup, while the Argus preprint identifies duplicated evidence and diminishing returns in parallel rollouts. Treat both as reasons to measure marginal contribution in the user's own setup, not as universal cost ratios. [Anthropic Research system](https://www.anthropic.com/research/multi-agent-research-system) · [Argus preprint](https://arxiv.org/abs/2605.16217)
 
 ---
 

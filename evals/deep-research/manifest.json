@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.8.0",
+  "suite_version": "1.9.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -139,6 +139,36 @@
       "prompt_heading": "LIVE-ID-03",
       "packet": null,
       "purpose": "Plan Android Kotlin/Compose migration across iOS, macOS and web using current official maturity and compatibility evidence"
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "id": "PAIR-CP-EN-14-01",
+      "task_id": "CP-EN-14",
+      "purpose": "Measure whether bounded delegation improves source-network analysis or quality per total budget",
+      "conditions": [
+        {
+          "id": "single-agent",
+          "setup": "One researcher completes the prompt and packet without workers"
+        },
+        {
+          "id": "delegated-two-lane",
+          "setup": "One lead assigns separate criteria/vendor-gate and WDRI-source-genealogy lanes to two workers, then verifies and merges their evidence"
+        }
+      ],
+      "controls": [
+        "Same prompt, packet, exact model/version, tools, effort and settings; use a fresh workspace for each condition",
+        "Same total aggregate token and tool-call budget, including lead, workers, retries, synthesis and citation checks",
+        "Record any unavailable per-agent usage as unknown; do not claim a cost win from wall time or worker count alone",
+        "Run the existing hidden CP-EN-14 rubric separately on each completed answer"
+      ],
+      "metrics": [
+        "Critical rubric gates and citation support",
+        "Required evidence retrieved and used correctly",
+        "Unique verified decision-relevant evidence contributed by workers",
+        "Duplicate, off-scope or unusable worker returns",
+        "Aggregate input/output tokens, searches/tool calls and wall time when exposed"
+      ]
     }
   ]
 }

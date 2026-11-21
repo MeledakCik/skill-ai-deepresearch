@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.8.0",
+  "suite_version": "1.9.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -34,7 +34,12 @@
     "checkpoint_artifact": "",
     "next_action": "",
     "resume_condition": "",
-    "notes": ""
+    "notes": "",
+    "paired_comparison": {
+      "comparison_id": "",
+      "condition": "",
+      "matched_run_id": ""
+    }
   },
   "tasks": [
     {
@@ -52,6 +57,13 @@
         "citation_support": { "numerator": null, "denominator": null },
         "critical_claim_coverage": { "numerator": null, "denominator": null },
         "task_level_decisive_source_hit": null
+      },
+      "delegation_contribution": {
+        "worker_count": null,
+        "worker_models_and_versions": [],
+        "assigned_lanes": [],
+        "verified_unique_evidence_contributions": null,
+        "duplicate_off_scope_or_unusable_returns": null
       },
       "cost_and_reliability": {
         "input_tokens": null,

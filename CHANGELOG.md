@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.22.0
+
+Added a delegation gate to Part Q: use workers only for independent lanes or justified breadth, verify current host capabilities before routing, and merge by source lineage and unique evidence rather than consensus. Added aggregate cost accounting and a matched single-agent versus two-lane evaluation protocol on CP-EN-14. Token-efficiency guidance now counts coordinator, workers, retries, synthesis and verification.
+
 ## v17.21.0
 
 Deepened research against coordinated source echo: trace citation and data lineage across publishers, distinguish publication diversity from independent evidence, and count shared origins once. Added a matched efficiency comparison that only accepts token savings when factual, citation and coverage gates still pass. Added a multi-site source-network packet and a live, official-source Android-to-iOS/macOS/web migration evaluation with per-target framework maturity, stable-versus-RC and compatibility checks.

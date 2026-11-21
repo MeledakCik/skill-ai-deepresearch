@@ -1,6 +1,6 @@
 # Deep Research Regression Pack
 
-Version: `1.8.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.9.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
 This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 17 tasks comprise fourteen synthetic closed-packet cases and three dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, visual-data dependencies, prompt-scope triage, and source-led criteria drift with both single-site and multi-site bait. The live set includes a version-sensitive Android-to-iOS/macOS/web migration question.
 
@@ -15,6 +15,12 @@ This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 17 
 7. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
 
 For a token-efficiency claim, pair a small preselected subset across the old and new skill using the same model, tools, effort, prompt and packet. Set factual, citation and coverage gates first; capture measured usage if available. Count lower usage as an improvement only when every critical gate still passes. Report per-task variation and unknown measures; do not use a pooled average to conceal a failed task.
+
+## Paired orchestration comparison
+
+`manifest.json` defines `PAIR-CP-EN-14-01` for comparing one researcher with a lead plus two non-overlapping workers on the same closed task. Use fresh workspaces and copies of `run-template.json`; give both conditions the identical prompt and packet, and keep the exact model/version, tools, effort and **total aggregate** token/tool budget equal. In the delegated run, count coordinator, worker, retry, merge and citation-check usage. Keep each worker's model, lane and actual evidence trail in the run record. Score the hidden task rubric independently for both answers before comparing outcomes.
+
+Record critical quality gates, evidence/citation coverage, verified unique contributions, duplicate/off-scope returns, aggregate token/tool usage and latency where exposed. If internal usage is hidden, mark it unknown and do not claim a measured efficiency gain. Delegation is useful only when it adds verified decision-relevant evidence or resolves a material gap without failing quality gates; faster completion or more agent agreement alone is not evidence of improvement. Repeat only if stochastic variation could change the conclusion, and preserve every run.
 
 ## Tracks and scoring
 
@@ -39,6 +45,7 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `prompts.md`: copy-ready prompts only.
 - `rubrics.md`: hidden acceptance criteria and live seed observations.
 - `run-template.json`: one record per run, with budget, status and resumable task IDs; leave scores null until a human or defined evaluator scores them.
+- `manifest.json` `paired_comparisons`: a matched single-agent/delegated experiment definition; run it as separate records with `paired_comparison` metadata in the template.
 - `runs/`: optional durable run records and answer artifacts; preserve partial runs with their original pack and skill versions so they can be resumed without repeating completed tasks.
 - `corpora/library-evening-pilot/`: synthetic source packet and deliberately flawed draft for closed-packet evaluation.
 - `corpora/source-access-recovery/`: synthetic official-source access failure with an official final data alternative.
