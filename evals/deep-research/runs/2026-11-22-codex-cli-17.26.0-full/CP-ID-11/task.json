@@ -1,0 +1,28 @@
+{
+  "task_id": "CP-ID-11",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-21T18:46:48Z",
+  "finished_at": "2026-11-21T18:47:06Z",
+  "wall_time_seconds": 18.19,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-ID-11/answer.md",
+  "packet_files_supplied": [
+    "board-rule.md",
+    "draft-memo.md",
+    "incidents-by-school.png",
+    "school-register.md",
+    "source-map.md"
+  ],
+  "input_tokens": 22024,
+  "cached_input_tokens": 18816,
+  "output_tokens": 637,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 4,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T18:46:48.953722Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

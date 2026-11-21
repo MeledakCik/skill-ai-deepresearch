@@ -1,5 +1,13 @@
 # Changelog
 
+## v17.26.0
+
+Made the Quick web-research ceiling always-on across focused skills: at most four web calls, a narrow search with at most two variants, one exact result open, then a same-publisher fallback search/open only when blocked or mismatched. Search snippets and unrelated links are explicitly non-evidence. Routed current or high-stakes fact checks into the research skill without turning them into broad surveys. Required a per-target migration readiness row for runtime, SDK/build host and CI, signing/distribution, team access/owner, evidence status and a passing target POC before calling a production route ready. Fixed evaluation trace capture for Codex's `action.queries` field and made the runner read the active skill version.
+
+## v17.25.0
+
+Added a blocking claim-to-source audit: each pivotal/volatile citation must open to the correct publisher and exact supporting passage; an unrelated link or search snippet cannot substantiate a claim. Added initial per-tier tool-action ceilings and checkpointed expansion when token limits are not enforceable. Strengthened platform migration with a per-target build/release feasibility gate covering runtime, shared-core/UI maturity, SDK/toolchain, build host/CI, signing, distribution and team access; missing Apple build access keeps feasibility unresolved until a target proof-of-concept passes. Expanded live evaluation guidance for citation fidelity, migration prerequisites and bounded search.
+
 ## v17.24.0
 
 Deepened Part A's retrieved-content trust boundary for indirect prompt injection: separate embedded instructions from usable facts, preserve user criteria and tool permissions, verify pivotal claims and record source locators without reproducing harmful payloads. Part L now requires matched clean/attacked evaluations, benign negative controls, and separate scoring of answer quality and tool traces. Added two controlled Indonesian regression tasks, updated research references, and expanded the suite to 19 tasks.

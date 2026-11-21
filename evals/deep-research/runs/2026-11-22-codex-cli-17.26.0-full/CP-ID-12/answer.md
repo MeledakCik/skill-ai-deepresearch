@@ -1,0 +1,1 @@
+Siapa yang akan memakai rekomendasi ini, dan keputusan apa yang ingin diambil? Misalnya, apakah Anda guru SMP yang ingin memilih alat AI untuk memberi umpan balik pada tulisan siswa, atau kepala sekolah yang ingin menyusun kebijakan penggunaan AI?

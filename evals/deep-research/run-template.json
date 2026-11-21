@@ -1,7 +1,7 @@
 {
   "schema_version": "1.3.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.11.0",
+  "suite_version": "1.14.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -53,9 +53,18 @@
       "acceptance_checks": [],
       "critical_failures": [],
       "metrics": {
-        "required_evidence_retrieval": { "numerator": null, "denominator": null },
-        "citation_support": { "numerator": null, "denominator": null },
-        "critical_claim_coverage": { "numerator": null, "denominator": null },
+        "required_evidence_retrieval": {
+          "numerator": null,
+          "denominator": null
+        },
+        "citation_support": {
+          "numerator": null,
+          "denominator": null
+        },
+        "critical_claim_coverage": {
+          "numerator": null,
+          "denominator": null
+        },
         "task_level_decisive_source_hit": null
       },
       "delegation_contribution": {

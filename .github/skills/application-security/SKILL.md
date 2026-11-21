@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.24.0"
+  version: "17.26.0"
   source: deep-research-domain-council
 ---
 
@@ -22,7 +22,7 @@ Open Part V for the review checklist and current primary references.
 
 Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
-Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available.
+Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available. For a Quick web fact check, cap retrieval at four web calls: one narrow search (at most two query variants), open one exact result, and only if blocked or mismatched use one same-publisher fallback search and open. Then stop and mark unresolved; snippets and unrelated URLs are not evidence.
 
 ## Delivery
 

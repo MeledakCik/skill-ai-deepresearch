@@ -1,0 +1,28 @@
+{
+  "task_id": "CP-EN-10",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-21T18:21:35Z",
+  "finished_at": "2026-11-21T18:21:55Z",
+  "wall_time_seconds": 20.12,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-10/answer.md",
+  "packet_files_supplied": [
+    "android-app-inventory.md",
+    "api-and-data-contract.md",
+    "dispatch-observations.md",
+    "product-brief.md",
+    "source-map.md"
+  ],
+  "input_tokens": 20658,
+  "cached_input_tokens": 14080,
+  "output_tokens": 542,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 4,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T18:21:35.681372Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

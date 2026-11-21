@@ -1,0 +1,9 @@
+**Keputusan.** Pertahankan web kantor. Uji satu alur penerimaan pada Android 10 sebelum berkomitmen pada estimasi dua minggu. (MIG-WA-BRIEF §1)
+
+**Fakta.** Web memakai cookie sesi dan token CSRF. Muat ulang menghapus isian. Dalam sampel nonacak 40 sif, 14 laporan menyebut gangguan jaringan dan delapan menyebut entri ulang. Jumlah duplikasi belum terukur. (MIG-WA-REPO §2, MIG-WA-OPS §§1–2) API memerlukan koneksi untuk mencatat penerimaan. PostgreSQL menjadi acuan stok. Kontrak API belum mendokumentasikan kunci idempotensi. (MIG-WA-API §§1–2)
+
+**Inferensi.** Uji pembungkus web terlebih dahulu karena formulir berpotensi dipakai ulang. Klien Android terpisah memberi keleluasaan merancang alur pindai, dengan tambahan pekerjaan antarmuka. Kedua jalur memerlukan antrean lokal yang bertahan setelah aplikasi ditutup dan cara bagi server untuk mengenali kiriman ulang. (MIG-WA-REPO §1, MIG-WA-API §§1–3)
+
+**Belum diketahui.** Verifikasi alur masuk Android dan pemulihan sesi kedaluwarsa, keamanan antrean lokal, aturan pembaruan stok serentak untuk SKU yang sama, serta kesiapan akun, proses peninjauan, dan otomasi rilis Managed Play. Sembilan layar belum mendukung estimasi dua minggu. Estimasi ulang berdasarkan hasil uji dan rincian pekerjaan yang tersisa. (MIG-WA-BRIEF §1, MIG-WA-REPO §§2–3, MIG-WA-API §3, MIG-WA-OPS §2)
+
+**Uji konsep terkecil.** Setelah masuk, pindai satu SKU saat luring, simpan, lalu tutup paksa dan buka kembali aplikasi. Saat sinkronisasi, putuskan respons setelah server menyimpan. Kirim ulang dengan ID yang sama sambil mencatat penerimaan kedua melalui web untuk SKU tersebut. Lulus jika satu entri luring pulih, kedua penerimaan tercatat masing-masing sekali, dan stok bertambah tepat sebesar jumlah kedua kuantitas. (MIG-WA-API §§1–3)

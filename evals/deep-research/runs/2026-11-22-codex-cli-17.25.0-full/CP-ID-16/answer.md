@@ -1,0 +1,5 @@
+**Rekomendasikan Katalog Nusa untuk pilot terbatas enam bulan.** Hanya Nusa yang terbukti memenuhi ketiga syarat wajib (`requirements.md`, paragraf pembuka dan syarat 1–3).
+
+- **Ketersediaan:** Nusa mencapai 99,72% dan Pustaka Karsa 99,93% selama 12 bulan. Keduanya melampaui ambang 99,5% (`requirements.md`, syarat 1; `committee-acceptance-log.md`, Tabel 1–2).
+- **Antrean offline:** Nusa lulus ketiga uji 24 jam. Pada setiap uji, seluruh 420 catatan tersinkron tepat sekali setelah jaringan pulih, tanpa kehilangan atau duplikasi. Uji Karsa belum dilakukan. Klaim brosurnya belum terverifikasi, sehingga belum ada hasil lulus atau gagal (`requirements.md`, syarat 2; `committee-acceptance-log.md`, Tabel 1–2 dan Catatan locator).
+- **Biaya:** Total tahun pertama, termasuk implementasi, dukungan, dan pajak, adalah Rp148 juta untuk Nusa dan Rp132 juta untuk Karsa. Keduanya memenuhi batas Rp160 juta. Karena hanya Nusa yang terbukti lolos seluruh syarat, harga tidak menentukan pilihan (`requirements.md`, syarat 3 dan paragraf penutup; `committee-acceptance-log.md`, paragraf pembuka dan Tabel 1–2).

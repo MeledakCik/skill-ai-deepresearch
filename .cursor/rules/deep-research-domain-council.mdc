@@ -6,7 +6,7 @@ alwaysApply: false
 
 This project ships focused skills. Load only the one that matches the task, and inside it open only the reference file you need:
 
-- `skills/deep-research-council/SKILL.md`: Runs a rigorous multi-source research process and writes a cited, calibrated report.
+- `skills/deep-research-council/SKILL.md`: Runs a rigorous, budget-aware research process and writes cited, calibrated reports.
 - `skills/platform-migration/SKILL.md`: Researches and plans migrations of existing products between web, Android, iOS, desktop and macOS.
 - `skills/research-data-analysis/SKILL.md`: Analyzes datasets and quantitative evidence reproducibly, including data quality, uncertainty, study design and sensitivity checks.
 - `skills/web-ui-design/SKILL.md`: Designs and critiques product-specific landing pages, mobile flows and desktop dashboards.

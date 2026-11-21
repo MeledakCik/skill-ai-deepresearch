@@ -21,6 +21,10 @@ def main() -> None:
     run_template = load_json(EVAL / "run-template.json")
     prompts = (EVAL / "prompts.md").read_text(encoding="utf-8")
     readme = (EVAL / "README.md").read_text(encoding="utf-8")
+    runner = (EVAL / "scripts" / "run_codex_suite.py").read_text(encoding="utf-8")
+    root = EVAL.parents[1]
+    research_skill = (root / "skills" / "deep-research-council" / "SKILL.md").read_text(encoding="utf-8")
+    migration_skill = (root / "skills" / "platform-migration" / "SKILL.md").read_text(encoding="utf-8")
 
     assert manifest["suite_version"] == run_template["suite_version"], "suite version mismatch"
     tasks = manifest["tasks"]
@@ -32,7 +36,8 @@ def main() -> None:
     closed = controls.get("closed_packet", {})
     live = controls.get("live_search", {})
     assert closed.get("web_search_connectors") == "disabled", "closed-packet retrieval must be disabled"
-    assert closed.get("allowed_inputs") == "selected prompt and named packet only", "closed-packet allowlist is unclear"
+    assert closed.get("allowed_inputs") == "selected prompt, named packet, and explicit task skill_files only", "closed-packet allowlist is unclear"
+    assert "explicitly listed" in closed.get("allowed_skill_files", ""), "closed skill-file allowlist is unclear"
     assert closed.get("trace_review_required") is True, "closed-packet trace review is required"
     assert closed.get("invalid_if_external_retrieval_occurs") is True, "external retrieval must invalidate a clean closed run"
     assert live.get("trace_review_required") is True, "live-task trace review is required"
@@ -51,6 +56,13 @@ def main() -> None:
 
     for task in tasks:
         assert task["prompt_heading"] in headings, f"missing prompt: {task['id']}"
+        skill_files = task.get("skill_files", [])
+        assert "skills/deep-research-council/SKILL.md" in skill_files, f"deep-research skill missing: {task['id']}"
+        assert len(skill_files) == len(set(skill_files)), f"duplicate skill file: {task['id']}"
+        for skill_file in skill_files:
+            skill_path = (root / skill_file).resolve()
+            assert skill_path.is_relative_to((root / "skills").resolve()), f"skill path escapes allowlist: {task['id']}"
+            assert skill_path.is_file(), f"skill file missing: {task['id']} ({skill_file})"
         if task["track"] != "closed-packet":
             continue
 
@@ -120,6 +132,16 @@ def main() -> None:
     assert "disable web search" in readme.lower(), "operator instructions do not require closed-run isolation"
     assert "contamination control" in readme.lower(), "contamination protocol missing from README"
     assert "paired retrieved-content injection check" in readme.lower(), "README lacks paired-injection instructions"
+    assert "at most four web calls" in readme.lower(), "Quick lookup call ceiling missing"
+    assert "explicit `skill_files` allowlist" in readme, "runner skill-input handling is undocumented"
+    assert "expected_skill_version()" in runner, "runner must read the active skill version"
+    assert 'action.get("query") or action.get("queries")' in runner, "runner must preserve Codex search queries"
+    assert "unconfirmed" in research_skill.lower() and "same-publisher fallback" in research_skill.lower(), (
+        "generated deep-research skill lacks Quick verification and unknown-access gates"
+    )
+    assert all(term in migration_skill.lower() for term in ("team access/owner", "unconfirmed", "builds, runs/tests")), (
+        "generated migration skill lacks explicit per-target readiness output"
+    )
 
     print(
         f"Evaluation integrity checks passed: {len(tasks)} tasks, "

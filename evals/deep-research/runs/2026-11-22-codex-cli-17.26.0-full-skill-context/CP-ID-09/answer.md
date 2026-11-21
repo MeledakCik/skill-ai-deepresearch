@@ -1,0 +1,9 @@
+**Keputusan.** Pertahankan web kantor. Uji satu alur penerimaan luring di Android 10+ sebelum memilih framework. (`MIG-WA-BRIEF` §1)
+
+**Fakta.** Web memakai cookie sesi dan token CSRF. Muat ulang menghapus isian. Dari 40 laporan sif dalam sampel nonacak, 14 menyebut gangguan koneksi dan delapan menyebut pengisian ulang. Jumlah duplikat belum terukur. (`MIG-WA-REPO` §2, `MIG-WA-OPS` §§1–2) API penerimaan memerlukan koneksi. Kontrak tidak mendokumentasikan kunci idempotensi. PostgreSQL menjadi acuan stok dan penerimaan. (`MIG-WA-API` §§1–2)
+
+**Inferensi.** Membungkus web membuka peluang memakai ulang formulir, tetapi integrasi pemindai perlu diuji. Klien Android khusus memberi kendali langsung atas pemindai dan memerlukan formulir baru. Keduanya perlu antrean persisten, ID pengiriman yang sama saat retry, dan deduplikasi atomik di server. (`MIG-WA-REPO` §§1–2, `MIG-WA-API` §§1–3)
+
+**Belum diketahui.** Login dan pembaruan sesi Android, keamanan penyimpanan lokal, aturan konflik stok, SDK, host build/CI, serta pemilik akses penandatanganan dan Managed Play belum terverifikasi. **Dua minggu belum dapat dijanjikan.** Hitungan sembilan layar tidak mengukur pekerjaan sinkronisasi, pengujian web, atau distribusi. (`MIG-WA-BRIEF` §1, `MIG-WA-REPO` §§1–3, `MIG-WA-API` §2, `MIG-WA-OPS` §2)
+
+**PoC.** Bangun dan pasang paket bertanda tangan melalui Managed Play pada perangkat uji Android 10. Login ke layanan uji, pindai SKU, simpan tiga unit saat luring, lalu mulai ulang aplikasi. Saat sinkronisasi, catat dua unit dari pengiriman lain melalui web untuk SKU yang sama. Hilangkan respons Android setelah server menyimpan, lalu ulangi kiriman. Lulus bila antrean bertahan, kedua penerimaan sah tercatat masing-masing sekali, dan stok bertambah tepat lima unit. Gunakan upaya terukur dari PoC untuk memperkirakan pekerjaan tersisa.

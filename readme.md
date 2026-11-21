@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.24.0 |
+| **Versi** | 17.26.0 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -276,6 +276,14 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.26.0
+
+Memperketat batas riset Quick yang selalu ikut dimuat: maksimal empat panggilan web, kueri sempit, satu sumber yang dibuka, lalu satu fallback first-party hanya jika terblokir atau tidak cocok. Kueri/snippet dan tautan yang tidak relevan dinyatakan bukan bukti. Skill riset kini juga aktif untuk pemeriksaan fakta terkini/berisiko tinggi tanpa mendorong pencarian luas. Memaksa matriks kesiapan per target migrasi yang mencatat runtime, SDK/host build dan CI, signing/distribusi, akses tim, status bukti, serta POC sebelum menyebut rute produksi siap.
+
+### v17.25.0
+
+Menambahkan audit wajib dari klaim ke sumber: setiap kutipan penting/volatile harus membuka publisher dan locator yang benar-benar mendukung klaim; tautan yang tidak relevan atau snippet pencarian tidak boleh dipakai sebagai bukti. Menambahkan batas awal aksi per tier riset serta checkpoint sebelum perluasan ketika host tidak bisa membatasi token. Memperkuat migrasi platform dengan gerbang kelayakan build/rilis per target yang memeriksa OS runtime, kematangan core/UI, SDK/toolchain, host build/CI, signing, distribusi, dan akses tim; akses Apple yang belum tersedia menahan keputusan kelayakan sampai POC target lolos.
 
 ### v17.24.0
 

@@ -1,0 +1,28 @@
+{
+  "task_id": "CP-EN-13",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-21T18:22:49Z",
+  "finished_at": "2026-11-21T18:23:03Z",
+  "wall_time_seconds": 14.05,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-13/answer.md",
+  "packet_files_supplied": [
+    "industry-index-article.md",
+    "procurement-standard-register.md",
+    "request.md",
+    "source-map.md",
+    "vendor-records.md"
+  ],
+  "input_tokens": 20593,
+  "cached_input_tokens": 14080,
+  "output_tokens": 441,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 4,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T18:22:49.586276Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

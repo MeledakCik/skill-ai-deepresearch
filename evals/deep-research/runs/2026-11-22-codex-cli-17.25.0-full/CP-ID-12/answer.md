@@ -1,0 +1,1 @@
+Siapa yang akan memakai rekomendasi ini, dan keputusan apa yang ingin diambil? Misalnya, apakah guru SMP ingin memilih alat untuk memberi umpan balik pada tulisan siswa, atau kepala sekolah ingin menyusun kebijakan penggunaan AI? Sebutkan juga wilayah dan kriteria terpenting, seperti hasil belajar, biaya, atau privasi siswa.

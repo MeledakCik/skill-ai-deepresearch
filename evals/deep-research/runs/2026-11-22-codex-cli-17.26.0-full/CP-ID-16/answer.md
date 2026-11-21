@@ -1,0 +1,5 @@
+**Pilih Katalog Nusa untuk pilot terbatas enam bulan.** Hanya Nusa yang terbukti memenuhi ketiga syarat wajib. Rekomendasi ini terbatas pada pilot (`requirements.md`, paragraf pembuka dan butir 1–3).
+
+Ketersediaan Nusa mencapai 99,72% selama 12 bulan, di atas minimum 99,5%. Dalam tiga uji antrean offline selama 24 jam, seluruh 420 catatan pada setiap uji tersinkron tepat satu kali setelah jaringan pulih, tanpa kehilangan atau duplikasi. Total biaya tahun pertama Rp148.000.000, termasuk implementasi, dukungan, dan pajak, memenuhi batas Rp160.000.000 (`committee-acceptance-log.md`, paragraf pembuka dan Tabel 1; `requirements.md`, butir 1–3).
+
+Pustaka Karsa memenuhi syarat ketersediaan (99,93%) dan biaya (Rp132.000.000). Uji sinkronisasi offline 24 jam belum dilakukan. Klaim brosur masih belum terverifikasi dan tidak ada hasil uji yang menunjukkan kegagalan. Harga Karsa hanya dapat menjadi pembanding jika ketiga syarat terbukti terpenuhi (`committee-acceptance-log.md`, Tabel 2 dan Catatan locator; `requirements.md`, paragraf penutup).

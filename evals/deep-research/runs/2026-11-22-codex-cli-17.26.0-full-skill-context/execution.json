@@ -1,0 +1,608 @@
+{
+  "started_at": "2026-11-21T18:55:56Z",
+  "codex_cli": "codex-cli 0.171.0-alpha.13",
+  "skill_version_expected": "17.26.0",
+  "suite_version": "1.14.0",
+  "selected_task_ids": [
+    "CP-ID-01",
+    "CP-EN-02",
+    "CP-ID-03",
+    "CP-EN-04",
+    "CP-ID-05",
+    "CP-EN-06",
+    "CP-ID-07",
+    "CP-EN-08",
+    "CP-ID-09",
+    "CP-EN-10",
+    "CP-ID-11",
+    "CP-ID-12",
+    "CP-EN-13",
+    "CP-EN-14",
+    "CP-ID-15",
+    "CP-ID-16",
+    "LIVE-ID-01",
+    "LIVE-EN-02",
+    "LIVE-ID-03"
+  ],
+  "caps": {
+    "max_web_calls": 48,
+    "max_input_tokens_checked_between_tasks": 1700000,
+    "max_output_tokens_checked_between_tasks": 40000,
+    "task_timeout_seconds": 900
+  },
+  "status": "partial",
+  "completed_task_ids": [
+    "CP-ID-01",
+    "CP-EN-02",
+    "CP-ID-03",
+    "CP-EN-04",
+    "CP-ID-05",
+    "CP-EN-06",
+    "CP-ID-07",
+    "CP-EN-08",
+    "CP-ID-09",
+    "CP-EN-10",
+    "CP-ID-11",
+    "CP-ID-12",
+    "CP-EN-13",
+    "CP-EN-14",
+    "CP-ID-15",
+    "CP-ID-16"
+  ],
+  "remaining_task_ids": [
+    "LIVE-ID-01",
+    "LIVE-EN-02",
+    "LIVE-ID-03"
+  ],
+  "totals": {
+    "input_tokens": 398662,
+    "cached_input_tokens": 271488,
+    "output_tokens": 15011,
+    "web_search_tool_calls": 0,
+    "search_actions": 0
+  },
+  "tasks": [
+    {
+      "task_id": "CP-ID-01",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:55:56Z",
+      "finished_at": "2026-11-21T18:56:23Z",
+      "wall_time_seconds": 27.24,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-01/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "analyst-summary.md",
+        "decision-brief.md",
+        "draft-report.md",
+        "network-dashboard.csv",
+        "pilot-register.csv",
+        "press-release.md",
+        "source-map.md",
+        "telemetry-status.md",
+        "vendor-note.md"
+      ],
+      "input_tokens": 22966,
+      "cached_input_tokens": 7552,
+      "output_tokens": 1132,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:55:56.787174Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-02",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:56:23Z",
+      "finished_at": "2026-11-21T18:57:02Z",
+      "wall_time_seconds": 38.58,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-02/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "analyst-summary.md",
+        "decision-brief.md",
+        "draft-report.md",
+        "network-dashboard.csv",
+        "pilot-register.csv",
+        "press-release.md",
+        "source-map.md",
+        "telemetry-status.md",
+        "vendor-note.md"
+      ],
+      "input_tokens": 22964,
+      "cached_input_tokens": 14080,
+      "output_tokens": 1695,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:56:24.043419Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-03",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:57:02Z",
+      "finished_at": "2026-11-21T18:57:20Z",
+      "wall_time_seconds": 18.11,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-03/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "analyst-summary.md",
+        "decision-brief.md",
+        "draft-report.md",
+        "network-dashboard.csv",
+        "pilot-register.csv",
+        "press-release.md",
+        "source-map.md",
+        "telemetry-status.md",
+        "vendor-note.md"
+      ],
+      "input_tokens": 22964,
+      "cached_input_tokens": 14080,
+      "output_tokens": 618,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:57:02.624344Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-04",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:57:20Z",
+      "finished_at": "2026-11-21T18:57:42Z",
+      "wall_time_seconds": 22.06,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-04/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r5-reconciling-evidence-that-could-change-a.md"
+      ],
+      "packet_files_supplied": [
+        "analyst-summary.md",
+        "decision-brief.md",
+        "draft-report.md",
+        "network-dashboard.csv",
+        "pilot-register.csv",
+        "press-release.md",
+        "source-map.md",
+        "telemetry-status.md",
+        "vendor-note.md"
+      ],
+      "input_tokens": 23426,
+      "cached_input_tokens": 18816,
+      "output_tokens": 845,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:57:20.805373Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-05",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:57:42Z",
+      "finished_at": "2026-11-21T18:58:02Z",
+      "wall_time_seconds": 19.62,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-05/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "access-log.md",
+        "dataset-notes.md",
+        "decision-brief.md",
+        "final-ledger.csv",
+        "partner-summary.md",
+        "preliminary-release.md"
+      ],
+      "input_tokens": 22075,
+      "cached_input_tokens": 18816,
+      "output_tokens": 626,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:57:42.824194Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-06",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:58:02Z",
+      "finished_at": "2026-11-21T18:58:24Z",
+      "wall_time_seconds": 22.0,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-06/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "draft-headline.md",
+        "education-report.md",
+        "statistics-report.md"
+      ],
+      "input_tokens": 21788,
+      "cached_input_tokens": 14080,
+      "output_tokens": 599,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:58:02.454261Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-07",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:58:24Z",
+      "finished_at": "2026-11-21T18:58:46Z",
+      "wall_time_seconds": 22.16,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-07/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "follow-up-tally.md",
+        "handoff.md"
+      ],
+      "input_tokens": 21889,
+      "cached_input_tokens": 14080,
+      "output_tokens": 592,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:58:24.479436Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-08",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T18:58:46Z",
+      "finished_at": "2026-11-21T19:04:52Z",
+      "wall_time_seconds": 366.52,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-08/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r6-choose-a-formal-review-only-when-the-req.md"
+      ],
+      "packet_files_supplied": [
+        "abstract-r03.md",
+        "access-status.md",
+        "review-brief.md",
+        "screening.csv",
+        "search-log.csv",
+        "study-r01.md",
+        "study-r02.md"
+      ],
+      "input_tokens": 23470,
+      "cached_input_tokens": 22784,
+      "output_tokens": 1642,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T18:58:46.561033Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+        "2026-11-21T19:04:11.921484Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 206ms)... turn_id=01a1ff79-aea0-7190-ba87-51f00424db7b retries=1 max_retries=5 sampling_error=stream disconnected before completion: idle timeout waiting for websocket"
+      ]
+    },
+    {
+      "task_id": "CP-ID-09",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:04:52Z",
+      "finished_at": "2026-11-21T19:05:55Z",
+      "wall_time_seconds": 62.2,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-09/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/platform-migration/SKILL.md",
+        "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+      ],
+      "packet_files_supplied": [
+        "api-and-data.md",
+        "product-brief.md",
+        "repository-inventory.md",
+        "source-map.md",
+        "workflow-and-telemetry.md"
+      ],
+      "input_tokens": 54811,
+      "cached_input_tokens": 40704,
+      "output_tokens": 2414,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:04:53.177971Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+        "2026-11-21T19:05:53.728803Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a1ff7f-4591-78b3-a3a1-71c7757b29e1 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)"
+      ]
+    },
+    {
+      "task_id": "CP-EN-10",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:05:55Z",
+      "finished_at": "2026-11-21T19:12:01Z",
+      "wall_time_seconds": 366.8,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-10/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/platform-migration/SKILL.md",
+        "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+      ],
+      "packet_files_supplied": [
+        "android-app-inventory.md",
+        "api-and-data-contract.md",
+        "dispatch-observations.md",
+        "product-brief.md",
+        "source-map.md"
+      ],
+      "input_tokens": 27757,
+      "cached_input_tokens": 26624,
+      "output_tokens": 1406,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:05:55.373692Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+        "2026-11-21T19:11:28.551553Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 199ms)... turn_id=01a1ff80-386e-7672-83fa-a712adea6f16 retries=1 max_retries=5 sampling_error=stream disconnected before completion: idle timeout waiting for websocket",
+        "2026-11-21T19:12:00.043079Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a1ff80-386e-7672-83fa-a712adea6f16 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)"
+      ]
+    },
+    {
+      "task_id": "CP-ID-11",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:12:01Z",
+      "finished_at": "2026-11-21T19:12:21Z",
+      "wall_time_seconds": 19.78,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-11/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "board-rule.md",
+        "draft-memo.md",
+        "incidents-by-school.png",
+        "school-register.md",
+        "source-map.md"
+      ],
+      "input_tokens": 23902,
+      "cached_input_tokens": 14080,
+      "output_tokens": 630,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:12:02.156318Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-12",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:12:21Z",
+      "finished_at": "2026-11-21T19:12:33Z",
+      "wall_time_seconds": 12.11,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-12/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "initial-request.md"
+      ],
+      "input_tokens": 21503,
+      "cached_input_tokens": 18816,
+      "output_tokens": 353,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:12:21.953141Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-13",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:12:33Z",
+      "finished_at": "2026-11-21T19:12:52Z",
+      "wall_time_seconds": 18.97,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-13/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "industry-index-article.md",
+        "procurement-standard-register.md",
+        "request.md",
+        "source-map.md",
+        "vendor-records.md"
+      ],
+      "input_tokens": 22484,
+      "cached_input_tokens": 0,
+      "output_tokens": 680,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:12:34.083566Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-EN-14",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:12:52Z",
+      "finished_at": "2026-11-21T19:13:12Z",
+      "wall_time_seconds": 19.25,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-EN-14/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r5-reconciling-evidence-that-could-change-a.md"
+      ],
+      "packet_files_supplied": [
+        "alliance-index-report.md",
+        "consultancy-brief.md",
+        "framework-register.md",
+        "northstar-brief.md",
+        "request.md",
+        "source-map.md",
+        "trade-publication.md",
+        "vendor-records.md"
+      ],
+      "input_tokens": 22640,
+      "cached_input_tokens": 14080,
+      "output_tokens": 588,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:12:53.076479Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-15",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:13:12Z",
+      "finished_at": "2026-11-21T19:13:29Z",
+      "wall_time_seconds": 17.14,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-15/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "committee-acceptance-log.md",
+        "requirements.md"
+      ],
+      "input_tokens": 21980,
+      "cached_input_tokens": 14080,
+      "output_tokens": 477,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:13:12.332325Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "CP-ID-16",
+      "track": "closed-packet",
+      "status": "completed",
+      "started_at": "2026-11-21T19:13:29Z",
+      "finished_at": "2026-11-21T19:13:49Z",
+      "wall_time_seconds": 20.33,
+      "exit_code": 0,
+      "timeout_error": "",
+      "answer_artifact": "CP-ID-16/answer.md",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [
+        "committee-acceptance-log.md",
+        "requirements.md"
+      ],
+      "input_tokens": 22043,
+      "cached_input_tokens": 18816,
+      "output_tokens": 714,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 5,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:13:29.467956Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+      ]
+    },
+    {
+      "task_id": "LIVE-ID-01",
+      "track": "live-search",
+      "status": "failed",
+      "started_at": "2026-11-21T19:13:49Z",
+      "finished_at": "2026-11-21T19:13:53Z",
+      "wall_time_seconds": 3.58,
+      "exit_code": 1,
+      "timeout_error": "",
+      "answer_artifact": "",
+      "skill_files_supplied": [
+        "skills/deep-research-council/SKILL.md"
+      ],
+      "packet_files_supplied": [],
+      "input_tokens": 0,
+      "cached_input_tokens": 0,
+      "output_tokens": 0,
+      "web_search_tool_calls": 0,
+      "search_actions": 0,
+      "search_log": [],
+      "json_events": 4,
+      "tool_failures_or_unavailable": [
+        "2026-11-21T19:13:49.792001Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+        "2026-11-21T19:13:51.908735Z  WARN codex_core::session::startup_prewarm: startup websocket prewarm setup failed: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 5:11 AM."
+      ]
+    }
+  ],
+  "stop_reason": "host usage/quota limit reported; saved checkpoint and stopped",
+  "finished_at": "2026-11-21T19:13:53Z"
+}

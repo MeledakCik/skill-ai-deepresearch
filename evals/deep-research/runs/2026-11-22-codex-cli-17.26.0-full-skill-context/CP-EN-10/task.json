@@ -1,0 +1,35 @@
+{
+  "task_id": "CP-EN-10",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-21T19:05:55Z",
+  "finished_at": "2026-11-21T19:12:01Z",
+  "wall_time_seconds": 366.8,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-10/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md",
+    "skills/platform-migration/SKILL.md",
+    "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+  ],
+  "packet_files_supplied": [
+    "android-app-inventory.md",
+    "api-and-data-contract.md",
+    "dispatch-observations.md",
+    "product-brief.md",
+    "source-map.md"
+  ],
+  "input_tokens": 27757,
+  "cached_input_tokens": 26624,
+  "output_tokens": 1406,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T19:05:55.373692Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-21T19:11:28.551553Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 199ms)... turn_id=01a1ff80-386e-7672-83fa-a712adea6f16 retries=1 max_retries=5 sampling_error=stream disconnected before completion: idle timeout waiting for websocket",
+    "2026-11-21T19:12:00.043079Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a1ff80-386e-7672-83fa-a712adea6f16 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)"
+  ]
+}

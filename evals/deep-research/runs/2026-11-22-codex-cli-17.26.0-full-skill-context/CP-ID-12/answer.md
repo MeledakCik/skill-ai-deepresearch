@@ -1,0 +1,1 @@
+Keputusan apa yang ingin Anda ambil dari hasil riset ini? Misalnya, Anda ingin memilih alat AI untuk membantu guru menyiapkan pelajaran, menentukan cara siswa memakai AI saat belajar, atau menetapkan kebijakan penggunaan AI di sekolah.

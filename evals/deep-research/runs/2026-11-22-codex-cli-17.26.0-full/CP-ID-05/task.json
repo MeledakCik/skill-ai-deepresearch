@@ -1,0 +1,29 @@
+{
+  "task_id": "CP-ID-05",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-21T18:43:24Z",
+  "finished_at": "2026-11-21T18:43:42Z",
+  "wall_time_seconds": 17.36,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-ID-05/answer.md",
+  "packet_files_supplied": [
+    "access-log.md",
+    "dataset-notes.md",
+    "decision-brief.md",
+    "final-ledger.csv",
+    "partner-summary.md",
+    "preliminary-release.md"
+  ],
+  "input_tokens": 20191,
+  "cached_input_tokens": 14080,
+  "output_tokens": 562,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 4,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T18:43:25.139260Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

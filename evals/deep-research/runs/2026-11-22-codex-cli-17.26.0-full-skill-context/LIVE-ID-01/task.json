@@ -1,0 +1,26 @@
+{
+  "task_id": "LIVE-ID-01",
+  "track": "live-search",
+  "status": "failed",
+  "started_at": "2026-11-21T19:13:49Z",
+  "finished_at": "2026-11-21T19:13:53Z",
+  "wall_time_seconds": 3.58,
+  "exit_code": 1,
+  "timeout_error": "",
+  "answer_artifact": "",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md"
+  ],
+  "packet_files_supplied": [],
+  "input_tokens": 0,
+  "cached_input_tokens": 0,
+  "output_tokens": 0,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 4,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T19:13:49.792001Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-21T19:13:51.908735Z  WARN codex_core::session::startup_prewarm: startup websocket prewarm setup failed: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 5:11 AM."
+  ]
+}

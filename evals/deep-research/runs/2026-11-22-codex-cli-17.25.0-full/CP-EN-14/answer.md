@@ -1,0 +1,7 @@
+**Select CargoLoop for the limited deployment.** It clears all three gates. Its trailing 12-month availability was 99.92%, above the 99.9% minimum. Its acceptance test demonstrated WMS API v2 reads and writes for both inventory and orders. Its submission reports a full export of inventory, orders and audit records in six calendar days, within the seven-day limit. (SN-REQ §1, SN-VEND §2)
+
+Northstar clears the availability and export gates at 99.98% and three days. Its API test demonstrated reads only. Writes are planned and untested, so Northstar fails the demonstration requirement. Its lower cost and shorter onboarding matter only among platforms that pass every gate. (SN-VEND §1, SN-REQ §§1–2)
+
+Give WDRI no weight in this decision. It ranks Northstar 94/100 and CargoLoop 81/100 using automation, worker satisfaction and subscription price. The Alliance provides no item-level scores, dataset or validation of those weights against the clinics’ requirements. Northstar supplied platform information and sponsored the research. (SN-INDEX §§1–2)
+
+**Six publishers appear in the citation chain, but the scores have one underlying origin and zero independent confirmations.** TradeTech, MarketOps, Northstar and two newsletters all trace back to the Alliance. The regional register omits WDRI, which establishes only that it lacks formal recognition there. (SN-TRADE §§1–2, SN-CONSULT §§1–2, SN-VENDOR §§1–2, SN-REG §1)

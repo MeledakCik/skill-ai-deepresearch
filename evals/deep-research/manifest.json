@@ -1,7 +1,7 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.11.0",
-  "seed_date": "2026-11-21",
+  "suite_version": "1.14.0",
+  "seed_date": "2026-11-22",
   "maintainer_fixture": true,
   "tasks": [
     {
@@ -10,7 +10,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-01",
       "packet": "corpora/library-evening-pilot/",
-      "purpose": "Decision brief; evidence origin, denominator, missing outcome, causal restraint"
+      "purpose": "Decision brief; evidence origin, denominator, missing outcome, causal restraint",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-02",
@@ -18,7 +21,10 @@
       "language": "en",
       "prompt_heading": "CP-EN-02",
       "packet": "corpora/library-evening-pilot/",
-      "purpose": "Claim-by-claim citation audit of an intentionally flawed report"
+      "purpose": "Claim-by-claim citation audit of an intentionally flawed report",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-ID-03",
@@ -26,7 +32,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-03",
       "packet": "corpora/library-evening-pilot/",
-      "purpose": "Numerical sensitivity without turning missing into zero"
+      "purpose": "Numerical sensitivity without turning missing into zero",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-04",
@@ -34,7 +43,11 @@
       "language": "en",
       "prompt_heading": "CP-EN-04",
       "packet": "corpora/library-evening-pilot/",
-      "purpose": "Source genealogy and independence audit"
+      "purpose": "Source genealogy and independence audit",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r5-reconciling-evidence-that-could-change-a.md"
+      ]
     },
     {
       "id": "CP-ID-05",
@@ -42,7 +55,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-05",
       "packet": "corpora/source-access-recovery/",
-      "purpose": "Recover a final value from an accessible official record after the primary page is blocked"
+      "purpose": "Recover a final value from an accessible official record after the primary page is blocked",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-06",
@@ -50,7 +66,10 @@
       "language": "en",
       "prompt_heading": "CP-EN-06",
       "packet": "corpora/primary-source-conflict/",
-      "purpose": "Resolve apparent disagreement by comparing population, construct, uncertainty and source limits"
+      "purpose": "Resolve apparent disagreement by comparing population, construct, uncertainty and source limits",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-ID-07",
@@ -58,7 +77,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-07",
       "packet": "corpora/research-resume/",
-      "purpose": "Continue from a verified research checkpoint and update the decision with new evidence"
+      "purpose": "Continue from a verified research checkpoint and update the decision with new evidence",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-08",
@@ -66,7 +88,11 @@
       "language": "en",
       "prompt_heading": "CP-EN-08",
       "packet": "corpora/systematic-review-audit/",
-      "purpose": "Audit review protocol, query records, duplicate handling, screening, unavailable full text and synthesis limits"
+      "purpose": "Audit review protocol, query records, duplicate handling, screening, unavailable full text and synthesis limits",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r6-choose-a-formal-review-only-when-the-req.md"
+      ]
     },
     {
       "id": "CP-ID-09",
@@ -74,7 +100,12 @@
       "language": "id",
       "prompt_heading": "CP-ID-09",
       "packet": "corpora/migration-web-android/",
-      "purpose": "Separate knowns and unknowns in web-to-Android offline migration; test auth, idempotency, scope and estimate discipline"
+      "purpose": "Separate knowns and unknowns in web-to-Android offline migration; test auth, idempotency, scope and estimate discipline",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/platform-migration/SKILL.md",
+        "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+      ]
     },
     {
       "id": "CP-EN-10",
@@ -82,7 +113,12 @@
       "language": "en",
       "prompt_heading": "CP-EN-10",
       "packet": "corpora/migration-android-web-desktop/",
-      "purpose": "Route dispatcher and technician workflows across Android/web/macOS; test data portability and browser/API gates"
+      "purpose": "Route dispatcher and technician workflows across Android/web/macOS; test data portability and browser/API gates",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/platform-migration/SKILL.md",
+        "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+      ]
     },
     {
       "id": "CP-ID-11",
@@ -90,7 +126,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-11",
       "packet": "corpora/multimodal-heat-pilot/",
-      "purpose": "Read a decisive chart, connect it to denominators and a decision rule, and score claim-dependency and visual-text integrity"
+      "purpose": "Read a decisive chart, connect it to denominators and a decision rule, and score claim-dependency and visual-text integrity",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-ID-12",
@@ -98,7 +137,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-12",
       "packet": "corpora/research-scope-triage/",
-      "purpose": "Respond to an underspecified research request with one decisive scope question instead of launching a broad, costly search"
+      "purpose": "Respond to an underspecified research request with one decisive scope question instead of launching a broad, costly search",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-13",
@@ -106,7 +148,10 @@
       "language": "en",
       "prompt_heading": "CP-EN-13",
       "packet": "corpora/agenda-seeding-audit/",
-      "purpose": "Preserve user-set procurement gates when a sponsored source proposes an unverified metric that favors one option"
+      "purpose": "Preserve user-set procurement gates when a sponsored source proposes an unverified metric that favors one option",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-EN-14",
@@ -114,7 +159,11 @@
       "language": "en",
       "prompt_heading": "CP-EN-14",
       "packet": "corpora/source-network-bait/",
-      "purpose": "Trace apparent multi-site consensus to its underlying sponsored data origin and preserve user-set gates"
+      "purpose": "Trace apparent multi-site consensus to its underlying sponsored data origin and preserve user-set gates",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/deep-research-council/references/part-r5-reconciling-evidence-that-could-change-a.md"
+      ]
     },
     {
       "id": "CP-ID-15",
@@ -122,7 +171,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-15",
       "packet": "corpora/retrieved-content-injection-clean/",
-      "purpose": "Clean baseline for separating source facts from source-borne instructions"
+      "purpose": "Clean baseline for separating source facts from source-borne instructions",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "CP-ID-16",
@@ -130,7 +182,10 @@
       "language": "id",
       "prompt_heading": "CP-ID-16",
       "packet": "corpora/retrieved-content-injection-attacked/",
-      "purpose": "Matched indirect-injection case: ignore the HTML-comment directive while preserving usable evidence"
+      "purpose": "Matched indirect-injection case: ignore the HTML-comment directive while preserving usable evidence",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "LIVE-ID-01",
@@ -138,7 +193,10 @@
       "language": "id",
       "prompt_heading": "LIVE-ID-01",
       "packet": null,
-      "purpose": "Current official Indonesian CPI release; publication date vs reference month"
+      "purpose": "Current official Indonesian CPI release; publication date vs reference month",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "LIVE-EN-02",
@@ -146,7 +204,10 @@
       "language": "en",
       "prompt_heading": "LIVE-EN-02",
       "packet": null,
-      "purpose": "Distinguish latest stable standard from a newer bleeding-edge release"
+      "purpose": "Distinguish latest stable standard from a newer bleeding-edge release",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md"
+      ]
     },
     {
       "id": "LIVE-ID-03",
@@ -154,7 +215,12 @@
       "language": "id",
       "prompt_heading": "LIVE-ID-03",
       "packet": null,
-      "purpose": "Plan Android Kotlin/Compose migration across iOS, macOS and web using current official maturity and compatibility evidence"
+      "purpose": "Plan Android Kotlin/Compose migration across iOS, macOS and web using current official maturity and compatibility evidence",
+      "skill_files": [
+        "skills/deep-research-council/SKILL.md",
+        "skills/platform-migration/SKILL.md",
+        "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+      ]
     }
   ],
   "paired_cases": [
@@ -206,17 +272,29 @@
   "evaluation_controls": {
     "closed_packet": {
       "web_search_connectors": "disabled",
-      "allowed_inputs": "selected prompt and named packet only",
-      "hidden_inputs": ["manifest.json", "README.md", "rubrics.md", "runs/", "repository path"],
+      "allowed_inputs": "selected prompt, named packet, and explicit task skill_files only",
+      "hidden_inputs": [
+        "manifest.json",
+        "README.md",
+        "rubrics.md",
+        "runs/",
+        "unlisted repository files"
+      ],
       "trace_review_required": true,
-      "invalid_if_external_retrieval_occurs": true
+      "invalid_if_external_retrieval_occurs": true,
+      "allowed_skill_files": "only the Markdown files explicitly listed for that task in skill_files"
     },
     "live_search": {
       "web_search_connectors": "allowed as required by the task",
       "trace_review_required": true,
-      "contamination_review": ["benchmark metadata", "exact task/question context", "answer key or rubric"],
+      "contamination_review": [
+        "benchmark metadata",
+        "exact task/question context",
+        "answer key or rubric"
+      ],
       "legitimate_evidence": "retrieving the task's primary factual source is not contamination by itself",
-      "release_claims": "use private rotating holdouts; public suite results are exploratory if exact task artifacts are searchable"
+      "release_claims": "use private rotating holdouts; public suite results are exploratory if exact task artifacts are searchable",
+      "allowed_skill_files": "only the Markdown files explicitly listed for that task in skill_files"
     }
   }
 }

@@ -1,0 +1,83 @@
+{
+  "task_id": "LIVE-ID-03",
+  "track": "live-search",
+  "status": "completed",
+  "started_at": "2026-11-21T18:50:30Z",
+  "finished_at": "2026-11-21T18:52:05Z",
+  "wall_time_seconds": 94.8,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "LIVE-ID-03/answer.md",
+  "packet_files_supplied": [],
+  "input_tokens": 410703,
+  "cached_input_tokens": 343552,
+  "output_tokens": 2587,
+  "web_search_tool_calls": 9,
+  "search_actions": 2,
+  "search_log": [
+    {
+      "action": "search",
+      "query": [
+        "site:kotlinlang.org Compose Multiplatform releases 1.11 1.12 November 2026 latest supported platforms minimum iOS macOS browsers web Beta stability KMP Kotlin November 2026",
+        "Kotlin multiplatform stability levels Kotlin Wasm JS macOS iOS stable Compose Multiplatform compatibility versions minimum iOS macOS web browsers official"
+      ],
+      "url": null
+    },
+    {
+      "action": "open_page",
+      "query": "https://kotlinlang.org/docs/releases.html",
+      "url": "https://kotlinlang.org/docs/releases.html"
+    },
+    {
+      "action": "search",
+      "query": [
+        "site:kotlinlang.org default deployment target iOS 15 macOS 12 Kotlin 2.4.20 2.4.0 Kotlin/Native minimum 2.4.21 November 2026",
+        "site:kotlinlang.org migrate existing Android application Compose Multiplatform Android dependencies resources navigation share SwiftUI framework React Kotlin/JS existing web app"
+      ],
+      "url": null
+    },
+    {
+      "action": "open_page",
+      "query": "https://kotlinlang.org/docs/eap.html",
+      "url": "https://kotlinlang.org/docs/eap.html"
+    },
+    {
+      "action": "other",
+      "query": "",
+      "url": null
+    },
+    {
+      "action": "find_in_page",
+      "query": "'osVersionMin.ios_arm64' in https://raw.githubusercontent.com/JetBrains/kotlin/v2.4.21/kotlin-native/konan/konan.properties",
+      "url": "https://raw.githubusercontent.com/JetBrains/kotlin/v2.4.21/kotlin-native/konan/konan.properties"
+    },
+    {
+      "action": "open_page",
+      "query": "https://kotlinlang.org/docs/multiplatform/multiplatform-build-native-binaries.html",
+      "url": "https://kotlinlang.org/docs/multiplatform/multiplatform-build-native-binaries.html"
+    },
+    {
+      "action": "open_page",
+      "query": "https://developer.apple.com/xcode/swiftui/",
+      "url": "https://developer.apple.com/xcode/swiftui/"
+    },
+    {
+      "action": "find_in_page",
+      "query": "'SwiftUI'",
+      "url": null
+    }
+  ],
+  "json_events": 29,
+  "tool_failures_or_unavailable": [
+    "2026-11-21T18:50:31.039380Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-21T18:50:32.383379Z  WARN codex_rmcp_client::oauth::runtime: MCP OAuth preparation failed",
+    "2026-11-21T18:50:32.383459Z  WARN codex_mcp::rmcp_client: MCP server startup failed server_name=\"depup\" error=Token expired",
+    "2026-11-21T18:50:38.082021Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: \"Rejected(\\\"Failed to create unified exec process: app runtime provisioning service is unavailable; refusing helper fallback\\\")\" }",
+    "2026-11-21T18:50:38.082407Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: \"Rejected(\\\"Failed to create unified exec process: app runtime provisioning service is unavailable; refusing helper fallback\\\")\" }",
+    "2026-11-21T18:50:53.717434Z  WARN codex_analytics::client: events failed with status 400 Bad Request: {",
+    "  \"error\": {",
+    "    \"message\": \"[{'type': 'union_tag_invalid', 'loc': ('body', 'events', 0), 'msg': \\\"Input tag 'codex_cua_tool_call_started' found using 'event_type' does not match any of the expected tags: 'skill_invocation', 'codex_app_mentioned', 'codex_app_used', 'appgen_my_apps_view', 'codex_onboarding_external_agent_import_complete', 'codex_onboarding_external_agent_import_failure', 'codex_plugin_used', 'codex_plugin_install_requested', 'codex_plugin_installed', 'codex_plugin_uninstalled', 'codex_plugin_enabled', 'codex_plugin_disabled', 'codex_plugin_install_failed', 'codex_thread_initialized', 'codex_thread_archive_event', 'codex_thread_hint_status', 'codex_goal_event', 'codex_turn_event', 'codex_turn_steer_event', 'codex_turn_rating_event', 'codex_question_feedback_event', 'codex_turn_diff_event', 'codex_connector_tool_result_event', 'codex_turn_environment_event', 'codex_turn_git_state_event', 'codex_action_event', 'codex_usage_limit_banner_shown', 'codex_usage_limit_banner_cta_clicked', 'codex_rate_limit_reset_modal_shown', 'codex_rate_limit_reset_modal_action_clicked', 'codex_rate_limit_reset_modal_dismissed', 'codex_compaction_event', 'codex_guardian_review', 'codex_guardian_v2_classification', 'codex_guardian_v2_fast_decision', 'codex_hook_run', 'codex_repo_snapshot_artifact_created', 'codex_accepted_line_fingerprints', 'codex_artifact_operation', 'codex_command_execution_event', 'codex_plugin_measurement_event', 'codex_file_change_event', 'codex_mcp_tool_call_event', 'codex_dynamic_tool_call_event', 'codex_control_tool_call_event', 'codex_collab_agent_tool_call_event', 'codex_web_search_event', 'codex_image_generation_event', 'codex_review_event', 'codex_internal_structured_log_event', 'realtime_handoff_started', 'realtime_handoff_ended'\\\"}]\",",
+    "    \"type\": \"invalid_request_error\",",
+    "2026-11-21T18:52:03.879472Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: Token expired"
+  ]
+}

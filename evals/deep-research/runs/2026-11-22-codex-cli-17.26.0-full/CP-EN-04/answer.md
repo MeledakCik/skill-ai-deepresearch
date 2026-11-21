@@ -1,0 +1,12 @@
+**One independent origin supports the pilot’s observed rate.** The Pilot Cohort 2026 register records 63 visits across 13 staffed hours on nine observed evenings, or **4.85 visits per observed staffed hour**. S10’s count is unknown, so its two hours are excluded. (`LIB-REGISTER`, rows `S01`–`S10`; `LIB-ANALYSIS` §§1–2.)
+
+| Packet item and exact locator | Role in the evidence |
+|---|---|
+| `LIB-REGISTER`, rows `S01`–`S09` | Primary session observations. The visit counts and staffed hours supply the numerator and denominator. |
+| `LIB-ANALYSIS` §1 → `LIB-PRESS` §§1–2 | The analyst calculates the rate from the register. The release credits the analyst for the counts and adds a causal claim without new measurements. |
+| `LIB-OUTAGE` §1; `LIB-REGISTER`, row `S10` | The telemetry service provides primary evidence of the outage. The counter was offline and no manual tally exists. |
+| `LIB-NETWORK`, row `annual-all-branches` | Independent operational data yield 4.00 visits per hour (1,200/300) across four branches and all staffed hours in 2025. The different population, period and schedule preclude a like-for-like performance comparison. |
+| `LIB-VENDOR` §1 | The promotional 18% figure has no verifiable underlying data or stated link to the pilot. |
+| `LIB-BRIEF` §§1–2; `LIB-DRAFT` §1, claims 1–4; `source-map.md`, “Provenance graph” | The brief supplies the 4.5 threshold, the draft supplies claims for audit, and the map documents the source chain. None supplies additional visit counts. |
+
+Of the draft’s four claims, only claim 1’s observed totals hold up. The pilot design cannot establish a causal increase (`LIB-ANALYSIS` §3). The release repeats the analyst’s figures (claim 2), and the network comparison cannot establish 21.2% outperformance (claim 3). For claim 4, **six** observed sessions met the threshold. `S02`, `S03` and `S05` fell below it at 4, 0 and 4 visits per hour, respectively, and `S10` is unknown. (`LIB-REGISTER`, rows `S01`–`S10`; `LIB-BRIEF` §1.)
