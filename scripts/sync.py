@@ -44,9 +44,9 @@ MODEL_CLASS = """Start with this core. Open a reference section only to resolve 
 # Each skill: description (what + use when + not for), core workflow, references (Part letters or sub-sections like "C3").
 SKILLS = {
     "deep-research-council": {
-        "description": "Runs a rigorous multi-source research process and writes a cited, calibrated report. Use when the user asks for deep research, a literature review, a decision brief, a market, policy or technical investigation, fact-checking of claims, or writes \"deep research:\" / \"riset mendalam:\". Not for quick one-fact lookups, coding, or design work.",
+        "description": "Runs a rigorous multi-source research process and writes a cited, calibrated report. Use for deep research, literature reviews, decision briefs, technical investigations, platform-migration feasibility, fact-checking, or \"deep research:\" / \"riset mendalam:\" requests. Not for quick one-fact lookups, routine coding, or design implementation.",
         "title": "Deep Research Council",
-        "core": """Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching.
+        "core": """Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching. For feasibility or planning of a migration between existing platforms, also use the focused `platform-migration` skill and Part Y before recommending a stack or estimating effort.
 
 1. Name the decision, scope, pivotal question and observation that could overturn the leading answer. Set inclusion criteria before selecting results. Clarify only assumptions that would materially change the work.
 2. Map primary sources within the requested scope. Trace repeated reports to their original measurements. Count only sources opened or supplied. For date-bound questions at every tier, check for changes through the requested date. In a closed packet, use its latest eligible evidence and disclose any coverage gap. If a material source is inaccessible, use the recovery ladder in Part A; a failure log or search snippet is not evidence for the source's claim. For Standard/Deep or explicit reproducibility requests, keep the compact search log in Part A; a Quick lookup needs only a one-line method note.
@@ -55,7 +55,19 @@ SKILLS = {
 5. Recheck each pivotal sentence against its cited passage. Close a question when a different search after the countercheck adds no decision-changing evidence. If budget ends first, retain the open question and next discriminating search.
 
 **Report.** Lead with the answer, its scope and confidence reason. Give each finding a native citation or a numbered source with title, date and URL or supplied locator. For Quick, add the biggest gap and a one-line method (sources checked and date when known). For Deep, also explain contradictions, sensitivity and what would change the decision. Count shared origins once. Keep regulated advice informational.""",
-        "refs": ["A", "R5", "R6", "L", "I", "J", "K", "Q", "D", "R3", "M1", "M3", "M4", "M5", "E", "N", "H"],
+        "refs": ["A", "R5", "R6", "L", "I", "J", "K", "Q", "D", "R3", "M1", "M3", "M4", "M5", "E", "N", "H", "Y"],
+    },
+    "platform-migration": {
+        "description": "Researches and plans migrations of existing products between web, Android, iOS, desktop and macOS. Use for feasibility, architecture choices, feature parity and phased migration. Not for greenfield projects or implementation confined to one platform.",
+        "title": "Cross-Platform Product Migration",
+        "core": """Use Part Y for migration decisions. Pair with `deep-research-council` when the user needs a sourced feasibility study or decision brief. If they ask for implementation, inspect the existing repository and route code changes to the selected platform skill; do not infer that planning authorizes a rewrite.
+
+1. Establish source and target platforms, supported OS/browser versions, user workflows, constraints and release channel. Inspect the repository or supplied evidence before describing the current system. Keep observations, assumptions and unknowns distinct.
+2. Inventory workflows, data and integrations, then map each capability to the target as shared, platform-native, adapted, retired or unknown. Attach current first-party evidence and exact platform/version scope to consequential compatibility claims.
+3. Compare only plausible migration paths against the user's priorities. Separate reusable domain rules and contracts from platform-bound UI, lifecycle, storage and device behavior. Do not choose a framework by popularity or count screens as an effort estimate.
+4. Identify the highest-risk unknown and propose a small vertical proof-of-concept with observable acceptance criteria before committing to a large rewrite or schedule.
+5. Deliver a concise decision, feature/capability matrix, assumptions and risks, phased plan, rollback or coexistence needs, and the next decision-changing check. State which target-platform facts remain unverified.""",
+        "refs": ["Y"],
     },
     "research-data-analysis": {
         "description": "Analyzes datasets and quantitative evidence reproducibly, including data quality, uncertainty, study design and sensitivity checks. Use for statistical analysis or evidence synthesis. Not for spreadsheet formatting or academic prose.",
@@ -139,9 +151,11 @@ Bab I opens with the concrete phenomenon and its measured problem (no "Di era gl
         "refs": ["C2", "A", "K", "G"],
     },
     "project-scaffolding": {
-        "description": "Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails (format, lint, strict types, tests, pre-commit, CI) and one working vertical slice. Use when starting a new app, repo or monorepo. Not for cloud infrastructure or small edits to an existing codebase.",
+        "description": "Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails and one working vertical slice. Use for a genuinely new app, repo or monorepo. Not for migrating an existing product between platforms; use platform-migration first.",
         "title": "Project Scaffolding",
         "core": """## Workflow
+
+For an existing product moving to another platform, start with `platform-migration`; do not treat it as a greenfield scaffold. For a genuinely new project:
 
 1. One-page brief: product type, users, scale, team skills, deploy target, constraints.
 2. Research current stable versions on official registries and release pages. Never type a version from memory.
@@ -308,6 +322,7 @@ WHEN = {
     "W": "Inspect data, choose statistical methods and report reproducible uncertainty",
     "X": "Plan, write, review and debug software tests and flaky-test behavior",
     "T": "Save and resume a partial deliverable, including a local checkpoint example",
+    "Y": "Research and plan migrations across web, mobile, desktop and macOS platforms",
     "U1": "Tune type, measure, responsive grid and theme tokens with worked accessibility checks",
     "U2": "Research a hierarchy decision, study reference designs and run a recall or task test",
     "U3": "Choose a dashboard encoding, verify partial totals and exercise async component states",
@@ -438,7 +453,7 @@ def sync_adapters():
     write("CLAUDE.md", f"# CLAUDE.md\n\n{pt}")
     write("GEMINI.md", f"# GEMINI.md\n\n{pt}")
     write(".github/copilot-instructions.md", f"# Copilot instructions\n\n{pt}")
-    write(f".cursor/rules/{PLUGIN}.mdc", "---\ndescription: Deep research, research data analysis, web design, natural and academic writing, application security, scaffolding, "
+    write(f".cursor/rules/{PLUGIN}.mdc", "---\ndescription: Deep research, cross-platform migration, research data analysis, web design, natural and academic writing, application security, scaffolding, "
           f"infrastructure, Android, skill audits, AI video, custom UI motion, token efficiency, usage limit recovery\nglobs:\nalwaysApply: false\n---\n\n{pt}\n{lite}")
     for rel in [f".windsurf/rules/{PLUGIN}.md", f".clinerules/{PLUGIN}.md", f".roo/rules/{PLUGIN}.md"]:
         write(rel, f"{pt}\n{lite}")  # why: these rules may be injected every turn, so keep them small
@@ -446,7 +461,7 @@ def sync_adapters():
 
 
 def sync_manifests(version):
-    short = ("Focused skills for deep research, research data analysis, web UX, custom components and motion, software "
+    short = ("Focused skills for deep research and platform migration, research data analysis, web UX, custom components and motion, software "
              "testing, natural and academic writing, application security, scaffolding, infrastructure, Android, skill "
              "audits, AI video, token efficiency and usage-limit recovery.")
     for rel in [".claude-plugin/plugin.json", ".codex-plugin/plugin.json", ".agent-plugin/plugin.json"]:
@@ -461,6 +476,7 @@ def sync_manifests(version):
                 "Software testing and browser QA",
                 "Web design, custom components and motion",
                 "Academic and natural writing",
+                "Platform migration research across web, mobile, desktop and macOS",
                 "Project scaffolding, infrastructure and Android",
                 "Skill security audits, token efficiency and usage-limit recovery",
             ]

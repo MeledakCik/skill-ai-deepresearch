@@ -1,17 +1,17 @@
 ---
 name: deep-research-council
 description: >-
-  Runs a rigorous multi-source research process and writes a cited, calibrated report. Use when the user asks for deep research, a literature review, a decision brief, a market, policy or technical investigation, fact-checking of claims, or writes "deep research:" / "riset mendalam:". Not for quick one-fact lookups, coding, or design work.
+  Runs a rigorous multi-source research process and writes a cited, calibrated report. Use for deep research, literature reviews, decision briefs, technical investigations, platform-migration feasibility, fact-checking, or "deep research:" / "riset mendalam:" requests. Not for quick one-fact lookups, routine coding, or design implementation.
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.14.0"
+  version: "17.15.0"
   source: deep-research-domain-council
 ---
 
 # Deep Research Council
 
-Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching.
+Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching. For feasibility or planning of a migration between existing platforms, also use the focused `platform-migration` skill and Part Y before recommending a stack or estimating effort.
 
 1. Name the decision, scope, pivotal question and observation that could overturn the leading answer. Set inclusion criteria before selecting results. Clarify only assumptions that would materially change the work.
 2. Map primary sources within the requested scope. Trace repeated reports to their original measurements. Count only sources opened or supplied. For date-bound questions at every tier, check for changes through the requested date. In a closed packet, use its latest eligible evidence and disclose any coverage gap. If a material source is inaccessible, use the recovery ladder in Part A; a failure log or search snippet is not evidence for the source's claim. For Standard/Deep or explicit reproducibility requests, keep the compact search log in Part A; a Quick lookup needs only a one-line method note.
@@ -54,5 +54,6 @@ Full checklist: `references/part-n-pre-delivery-error-handling.md` (open only fo
 | `references/part-e-delivery-gates.md` | All delivery gates E1-E20 (Deep tier or high stakes) |
 | `references/part-n-pre-delivery-error-handling.md` | Pre-delivery error handling (full) |
 | `references/part-h-token-economy.md` | Token economy, caching, model-class profiles (H9) |
+| `references/part-y-researching-cross-platform-product-migra.md` | Research and plan migrations across web, mobile, desktop and macOS platforms |
 
 For a missing Part, find its lowercase ID under `../*/references/part-<id>-*.md`. The Part R workflow lives in `../deep-research-council/SKILL.md`.

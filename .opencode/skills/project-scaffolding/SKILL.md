@@ -1,17 +1,19 @@
 ---
 name: project-scaffolding
 description: >-
-  Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails (format, lint, strict types, tests, pre-commit, CI) and one working vertical slice. Use when starting a new app, repo or monorepo. Not for cloud infrastructure or small edits to an existing codebase.
+  Sets up new software projects: stack research with versions verified from official registries, architecture decision records, repo structure, quality rails and one working vertical slice. Use for a genuinely new app, repo or monorepo. Not for migrating an existing product between platforms; use platform-migration first.
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.14.0"
+  version: "17.15.0"
   source: deep-research-domain-council
 ---
 
 # Project Scaffolding
 
 ## Workflow
+
+For an existing product moving to another platform, start with `platform-migration`; do not treat it as a greenfield scaffold. For a genuinely new project:
 
 1. One-page brief: product type, users, scale, team skills, deploy target, constraints.
 2. Research current stable versions on official registries and release pages. Never type a version from memory.

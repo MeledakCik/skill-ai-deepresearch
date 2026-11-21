@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.15.0
+
+Added a focused `platform-migration` skill and Part Y covering source-system inventory, target capability evidence, architecture-path comparison, a risk-led proof of concept, data and rollout safety, and direction-specific checks for web, Android, iOS, desktop and macOS. Routed deep-research migration requests to Part Y and kept greenfield scaffolding distinct.
+
 ## v17.14.0
 
 Added budget-gated, resumable research evaluations: declare practical caps, checkpoint after each task, stop before an unaffordable next call, and report partial runs without implying a full-suite pass rate. Added a partial Codex CLI evaluation record with per-task token usage; it is a checkpoint, not a completed baseline.

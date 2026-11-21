@@ -4,8 +4,8 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.14.0 |
-| **Format** | 15 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
+| **Versi** | 17.15.0 |
+| **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
 | **Penulis** | kasyaf-anugrah |
@@ -19,6 +19,7 @@ Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memula
 | Skill | Dipakai untuk |
 |:---|:---|
 | `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
+| `platform-migration` | Riset kelayakan dan rencana migrasi produk lintas web, Android, iOS, desktop, dan macOS |
 | `research-data-analysis` | Audit data, analisis statistik, estimasi, sensitivitas dan sintesis kuantitatif |
 | `application-security` | Threat model dan secure code review untuk aplikasi web/API |
 | `software-testing` | Strategi tes, implementasi, review dan diagnosis tes flaky lintas stack |
@@ -275,6 +276,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.15.0
+
+Menambahkan `platform-migration` untuk memeriksa kondisi sistem yang ada, membuat matriks kemampuan per platform, membandingkan jalur migrasi dengan bukti dokumentasi resmi, menguji risiko melalui proof-of-concept kecil, dan menyusun rollout serta rollback. Deep research kini merutekan pertanyaan migrasi ke panduan ini; scaffolding dibedakan dari perpindahan platform.
 
 ### v17.14.0
 
