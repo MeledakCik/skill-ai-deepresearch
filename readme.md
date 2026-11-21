@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.8.0 |
+| **Versi** | 17.9.0 |
 | **Format** | 14 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -195,7 +195,7 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | **I — Templates** | `source_log`, `contradictions`, matriks ACH terisi, contoh rencana riset, kerangka laporan | Riset tier S ke atas |
 | **J — Frontier Lab Playbooks** | Praktik publik OpenAI, Google Gemini, Anthropic Claude, DeepSeek, dan konsensus lintas lab | Riset mendalam |
 | **K — Expert Field Council** | 14 persona spesialis plus aturan kombinasi | Pertanyaan per bidang |
-| **L — Research Evaluation** | Rubrik berbasis klaim, golden set, evaluasi retrieval dan laporan, cek manusia | Mengecek kualitas riset |
+| **L — Research Evaluation** | Paket closed/live yang versioned, bukti dan sitasi dengan locator, rubrik terpisah, kasus multi-file/noise, pemeriksaan manusia buta, biaya per hasil yang lolos | Mengecek kualitas riset dan regresi skill |
 | **M — Assistant Archetypes** | Copilot (riset data perusahaan), Dreamina (produksi video AI), Siri (privasi bertingkat), "Jarvis Mode", mode router | Sesuai jenis asisten |
 | **N — Pre-Delivery Error Handling** | Loop verifikasi sebelum kirim, taksonomi 12 jenis error, checklist pra-kirim, kebijakan retry dan error tool, standar error handling per bahasa, review pendapat kedua, format laporan kegagalan | **Semua output**, sebelum dikirim |
 | **O — Scaffolding** | Gemini 4 Argon (arsitek) + Gemini 4 Carbon (builder) dengan fallback, workflow 9 langkah, quality rails, kontrak `scaffold_plan.json`, uji clean clone, layout referensi, template prompt | Proyek atau repo baru |
@@ -273,6 +273,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.9.0
+
+Memperdalam evaluasi deep research: paket closed/live yang dapat diulang, metadata run, kasus multi-file dengan distractor, pemeriksaan sitasi per locator, metrik dengan denominator jelas, gerbang error kritis, validasi manusia buta, dan biaya per hasil berkualitas.
 
 ### v17.8.0
 

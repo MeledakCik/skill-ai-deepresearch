@@ -7,6 +7,8 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 |:---|:---|
 | deep research: dampak QRIS terhadap UMKM di Jawa Barat 2024-2026 | deep-research-council |
 | Susun protokol systematic review untuk intervensi X dan catat query serta alur screening | deep-research-council |
+| Buat paket evaluasi deep research yang bilingual, pisahkan closed-packet dari live search, dan definisikan acceptance rule sebelum menilai | deep-research-council |
+| Audit laporan riset multi-file ini: cek locator PDF/tabel, dokumen pengalih, asal sumber duplikat, dan sitasi untuk setiap klaim material | deep-research-council |
 | Bandingkan hasil tiga studi ini, cek beda populasi dan heterogenitas sebelum pooling | research-data-analysis |
 | Analisis CSV berikut. Periksa missing value, duplikasi dan conversion per cohort dengan interval kepercayaan | research-data-analysis |
 | Tolong cek apakah klaim "ekspor nikel naik 40%" itu benar, kasih sumber | deep-research-council |
@@ -62,6 +64,7 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 - **Quota.** Simulate a weekly cutoff with one verified result and an uncertain write. Preserve both, resume from the saved snapshot and reconcile the receipt before any replay. Check the installed helper with `python -B -m unittest discover -s evals`.
 - **Formal review gate.** Give the researcher a narrowly scoped web search, a broad database protocol request and an inaccessible full-text study. It must label the first as a scoped search, form a dated protocol for the second and disclose the third as unavailable. It must not claim a completed systematic review from the partial search.
 - **Research quality evaluation.** Provide a report where a real source is cited but does not support a pivotal number. Grade citation entailment separately from report style and coverage. The unsupported pivotal claim blocks a passing result even if the prose is strong.
+- **Deep-research regression protocol.** Provide a dated bilingual task pack with a closed multi-file corpus containing relevant evidence, a duplicate-origin article, a distractor table and one inaccessible source, plus a separate live-search task. Ask for a small before/after evaluation plan. It must record model/tool/skill versions and date, use exact page/table locators, state metric denominators, keep critical citation failures separate from presentation, and label live-search source discovery as task-level rather than global recall. Human review must be blind to version on the sampled reports; no universal score threshold or significance claim is invented.
 - **Research data analysis.** Provide a small table with a duplicate row, a missing feed, a true zero, uneven denominators and a before/after association. The analysis must reconcile totals, distinguish missing from zero, report the comparison units and limitations, and avoid a causal claim without an identifying design.
 - **Application security.** Provide local web/API code with a cross-tenant object-authorization flaw and a nearby clean path. The review must trace the reachable server-side check, show a safe local regression test and avoid probing external endpoints or printing credentials.
 

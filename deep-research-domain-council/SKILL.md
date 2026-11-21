@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.8.0"
+  version: "17.9.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
@@ -1337,22 +1337,36 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 | Delegation confusion | Sub-agents duplicate work | Structured delegation briefs (J3) |
 | Pretty but empty | Polished format, thin evidence | Rubric L1 before formatting |
 
-## L5. Evaluate the research report and the retrieval separately
+## L5. Evaluate research retrieval and reports separately
 
-Use two complementary test sets. A **closed evidence packet** makes answers reproducible and exposes whether the agent preserves conflicts, source origins and limits. A small **live-search set** checks source discovery, current facts and actual citation links. Include Bahasa Indonesia and English tasks when those are real use cases. Keep expected facts tied to opened source passages and date the packet.
+Use two complementary tracks. A **closed evidence packet** makes evaluation reproducible and reveals whether the agent preserves conflicts, source origins and limits. A **live-search set** checks source discovery, current facts and working citations. Keep the tracks' scores separate: an answer can reason well from supplied files while failing to find the right web evidence, or retrieve good sources and then misstate them.
 
-Grade each run on separate, inspectable dimensions:
+### Build a small, versioned task set
+
+- Stratify only across dimensions that matter to this skill: Bahasa Indonesia and English when used; supplied files and live web; fact checks and report-level synthesis; stable and time-sensitive facts. Include a compact set of failure cases such as a false premise, conflicting denominators, duplicated reports from one origin, a blocked source, a missing result, unsupported citations and a causal claim without an identifying design.
+- For closed packets, freeze the task's eligible files and date. Include relevant evidence plus realistic distractors or noise when useful. Record each required evidence item, its source origin and exact locator (page, section, table, row or timestamp), expected claims, material caveats and the acceptance rule. If OCR, a chart or another extraction step is uncertain, record that limitation instead of treating a guessed value as ground truth.
+- For live tasks, date the prompt and reference answer, store the query and URLs actually opened, and recheck time-sensitive facts at evaluation time. Do not grade a changed fact against stale ground truth. A web search has no known complete source universe, so report task-level hits and failures; do not label them global retrieval recall.
+- For every run, record the task-pack version, skill/prompt version, model, tools, effort or relevant settings, date, completed task, source locators and any unavailable tools. Keep the same setup for before/after comparisons; if a model or tool changes, mark that as a separate factor rather than attributing the difference to the skill.
+
+### Score observable evidence and outcomes
 
 | Dimension | Observable check |
 |:---|:---|
-| Evidence retrieval | Was the decisive source found, opened and matched to the right population, period and measure? |
-| Claim support | Does the exact cited passage support the attached sentence, including its numbers and strength? |
-| Independent coverage | Do independent origins corroborate the pivotal claim, or do reports trace to one dataset? |
-| Analysis | Are comparisons commensurate? Are counterevidence, uncertainty and causal limits handled? |
-| Task coverage | Does the report answer the decision and every material sub-question? |
-| Delivery and cost | Are the required format and checks complete? Record tokens or searches when available, otherwise label the proxy. |
+| Required-evidence retrieval | In a closed packet, what share of prelisted eligible evidence items was found, opened and used correctly? State the denominator. In live search, did the run find the decisive independent source for each task? |
+| Citation fidelity | Does the exact cited passage support the attached claim's value, population, period, unit and strength? Distinguish broken links, wrong locators and nearby-but-irrelevant passages. |
+| Material-claim coverage | What share of checked material claims has adequate evidence? State how claims were selected and the denominator; do not equate citation count with coverage. |
+| Source independence | Do reports trace to independent data origins, or repeat the same press release, study or dataset? Count shared origins once. |
+| Analysis | Are measures commensurate? Are contradictions, missing evidence, uncertainty, alternatives, bias and causal limits handled? |
+| Task and delivery | Does the result answer the decision and material sub-questions, follow the requested language/format, and disclose what could not be verified? |
+| Efficiency and reliability | Record tokens, searches/tool calls, latency, failures and recovery when available. Otherwise label the proxy. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
 
-Build a small, versioned set around failures the skill must survive: conflicting denominators, reports that repeat one origin, a changed fact, an unsupported citation, a blocked source, a missing result and a premature causal claim. Add a task only with its evidence locator and an acceptance rule. Run the same brief, model, tools and effort before and after a change. Have a blind human check a sample. A judge model is a diagnostic aid, not ground truth. Deep research benchmarks distinguish fixed-answer browsing from report-level analysis and presentation; expert-derived, fine-grained criteria are easier to inspect than one broad score. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
+For critical claims, report factual support and citation support separately from completeness and presentation. A fabricated source or unsupported pivotal claim is a critical failure; presentation or a weighted average cannot hide it. Define acceptance criteria before grading and set thresholds for the task's risk, not as universal constants. If forecasts have resolved outcomes and a suitable reference class, assess calibration on those forecasts; do not convert ordinary research confidence into unsupported probabilities.
+
+### Compare versions without overclaiming
+
+Run the same prompts, packets, model, tools and effort before and after a skill change. Repeat only a small, risk-selected subset when stochastic variation could change the conclusion; preserve individual runs and summarize the spread rather than presenting one lucky run as stable. Blind a domain-capable human to the version for a sample of evidence and reports. Compare automated judgments with those reviews, record disagreements and revise the rubric; use a judge model for triage, not as ground truth. For small samples, describe observed cases and uncertainty without claiming statistical significance.
+
+Keep the suite small enough to run regularly. Add a task only when it captures a distinct failure, and keep its source locator and acceptance rule with it. Benchmarks offer useful dimensions, not universal quality thresholds: DeepResearch Bench II uses expert-derived rubrics for information recall, analysis and presentation; DR³-Eval tests multi-file reports against supportive material, distractors and noise. These motivate separate retrieval/report checks and realistic document packets, but results across benchmarks or different model/tool setups are not directly interchangeable. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DR³-Eval](https://arxiv.org/abs/2604.14683) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
 
 ## Sources for Parts J-L
 
@@ -1365,6 +1379,7 @@ Build a small, versioned set around failures the skill must survive: conflicting
 - DeepSeek API docs, "Web Tools": https://api-docs.deepseek.com/guides/web_tools.md
 - OPPO AI Agent Team, "Search More, Think Less": https://arxiv.org/abs/2602.22675
 - Yue et al., "DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Reports": https://arxiv.org/abs/2601.08536
+- Xie et al., "DR³-Eval: Towards Realistic and Reproducible Deep Research Evaluation": https://arxiv.org/abs/2604.14683
 
 ---
 

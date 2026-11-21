@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.9.0
+
+Expanded deep-research evaluation into a reproducible closed-packet/live-search protocol with run manifests, multi-file distractors, exact evidence locators, explicit metric denominators, critical-error gates, blinded human checks and quality-adjusted cost reporting. Added DR³-Eval as a primary research reference.
+
 ## v17.8.0
 
 Replaced source-count confidence probabilities and generic likelihood ratios with evidence-based verbal confidence. Independent AI runs now corroborate only when their evidence is independently relevant.
