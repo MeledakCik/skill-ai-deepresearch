@@ -1,6 +1,7 @@
 This project ships focused skills. Load only the one that matches the task, and inside it open only the reference file you need:
 
 - `skills/deep-research-council/SKILL.md`: Runs a rigorous multi-source research process and writes a cited, calibrated report.
+- `skills/research-data-analysis/SKILL.md`: Analyzes datasets and quantitative evidence reproducibly, including data quality, uncertainty, study design and sensitivity checks.
 - `skills/web-ui-design/SKILL.md`: Designs and critiques product-specific landing pages, mobile flows and desktop dashboards.
 - `skills/ui-component-motion/SKILL.md`: Builds custom interactive web components and purposeful UI animations around a product workflow.
 - `skills/natural-writing/SKILL.md`: Drafts or rewrites prose so it reads like a skilled human instead of an AI.
@@ -9,15 +10,18 @@ This project ships focused skills. Load only the one that matches the task, and 
 - `skills/infrastructure-iac/SKILL.md`: Plans, writes and reviews cloud infrastructure and delivery pipelines (Terraform or OpenTofu, Kubernetes, CI/CD, observability, backups and DR) using an author/reviewer workflow with human approval before any production change.
 - `skills/android-compose/SKILL.md`: Builds and reviews Android apps with Kotlin and Jetpack Compose: modularization, MVI, Navigation 3, coroutines, Koin, Gradle convention plugins, tests and OWASP MASVS security.
 - `skills/skill-security-audit/SKILL.md`: Audits AI agent skills, plugins and scripts for security risks (remote code execution, reading secrets, unsafe shell, path traversal, unverified downloads) and gives a scored report, plus safe secret-handling patterns.
+- `skills/application-security/SKILL.md`: Threat-models and reviews security in user-owned web applications and APIs.
 - `skills/ai-video-production/SKILL.md`: Plans AI-generated videos for tools such as Dreamina/Seedance, Veo, Sora, Kling and Runway: brief, reference board, shot list, prompt anatomy, iteration budget, editing plan and rights checks.
 - `skills/token-efficiency/SKILL.md`: Reduces token use in agent, chat and research workflows while retaining evidence and checks.
 - `skills/usage-limit-recovery/SKILL.md`: Preserves verified partial work and resumes interrupted tasks when session, weekly or free-tier usage limits approach or a host reports quota exhaustion.
 
-# Deep Research Council (Lite, v17.6, for small or free models)
+# Deep Research Council (Lite, v17.8, for small or free models)
 
 Load the matching focused skill and one relevant reference. Dedicated GPTs and Gems can use that skill directly. The monolithic specification is a maintainer resource.
 
 For every task, use only relevant context and references, batch independent calls, keep concise evidence and decisions, and preserve required checks.
+
+Use `application-security` for web/API security, `research-data-analysis` for quantitative data, and R6 for formal evidence reviews.
 
 Research ("deep research: ..."):
 1. Restate the question in one line; list 2-4 sub-questions.

@@ -2,7 +2,7 @@
 
 ## L1. Rubric-Based Judging
 
-Grade a report (your own, or a sub-agent's) on a 0-1 scale per criterion, using a separate judging pass that has the sources but not your reasoning:
+Inspect the cited passages in a separate pass. Use task-specific, observable criteria rather than relying on a single overall score. Record critical factual or citation failures separately from coverage and presentation. A weighted average cannot erase a false pivotal claim or a citation that does not support it.
 
 | Criterion | Question |
 |:---|:---|
@@ -14,7 +14,7 @@ Grade a report (your own, or a sub-agent's) on a 0-1 scale per criterion, using 
 | Calibration | Confidence matches evidence? |
 | Usefulness | Can the reader act on it? |
 
-Overall pass: all criteria ≥0.8, factual and citation accuracy ≥0.9.
+Do not treat uncalibrated score thresholds as a quality guarantee. Before using an automated judge for release decisions, compare its judgments with a small, blinded expert-reviewed sample. Report the disagreement and revise the rubric before scaling.
 
 ## L2. Golden Questions
 
@@ -29,12 +29,29 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 | Failure | Symptom | Fix |
 |:---|:---|:---|
 | Under-search | A pivotal question rests on one unexamined origin | Trace the measurement, seek an independent challenge and qualify the conclusion if evidence stays sparse |
-| Over-search | Dozens of calls on a simple question | Enforce tier caps; triage first |
+| Over-search | Retrieval continues after the decision and counterchecks are settled | Recheck the pivotal uncertainty and stop when the next search cannot change the answer |
 | Echo chamber | All sources share one origin | Origin counting (A0 law 4) |
 | Citation drift | Citation near but not supporting the claim | Citation inspection (A1 S7.1) |
 | Stale facts | Old prices/versions | "As of" dates; volatile-fact gate (E9) |
 | Delegation confusion | Sub-agents duplicate work | Structured delegation briefs (J3) |
 | Pretty but empty | Polished format, thin evidence | Rubric L1 before formatting |
+
+## L5. Evaluate the research report and the retrieval separately
+
+Use two complementary test sets. A **closed evidence packet** makes answers reproducible and exposes whether the agent preserves conflicts, source origins and limits. A small **live-search set** checks source discovery, current facts and actual citation links. Include Bahasa Indonesia and English tasks when those are real use cases. Keep expected facts tied to opened source passages and date the packet.
+
+Grade each run on separate, inspectable dimensions:
+
+| Dimension | Observable check |
+|:---|:---|
+| Evidence retrieval | Was the decisive source found, opened and matched to the right population, period and measure? |
+| Claim support | Does the exact cited passage support the attached sentence, including its numbers and strength? |
+| Independent coverage | Do independent origins corroborate the pivotal claim, or do reports trace to one dataset? |
+| Analysis | Are comparisons commensurate? Are counterevidence, uncertainty and causal limits handled? |
+| Task coverage | Does the report answer the decision and every material sub-question? |
+| Delivery and cost | Are the required format and checks complete? Record tokens or searches when available, otherwise label the proxy. |
+
+Build a small, versioned set around failures the skill must survive: conflicting denominators, reports that repeat one origin, a changed fact, an unsupported citation, a blocked source, a missing result and a premature causal claim. Add a task only with its evidence locator and an acceptance rule. Run the same brief, model, tools and effort before and after a change. Have a blind human check a sample. A judge model is a diagnostic aid, not ground truth. Deep research benchmarks distinguish fixed-answer browsing from report-level analysis and presentation; expert-derived, fine-grained criteria are easier to inspect than one broad score. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
 
 ## Sources for Parts J-L
 
@@ -46,3 +63,4 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 - DeepSeek-AI, "DeepSeek-V3.2" technical report: https://arxiv.org/abs/2512.02556
 - DeepSeek API docs, "Web Tools": https://api-docs.deepseek.com/guides/web_tools.md
 - OPPO AI Agent Team, "Search More, Think Less": https://arxiv.org/abs/2602.22675
+- Yue et al., "DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Reports": https://arxiv.org/abs/2601.08536

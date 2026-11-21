@@ -4,8 +4,8 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.6.0 |
-| **Format** | 12 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
+| **Versi** | 17.8.0 |
+| **Format** | 14 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
 | **Penulis** | kasyaf-anugrah |
@@ -19,6 +19,8 @@ Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memula
 | Skill | Dipakai untuk |
 |:---|:---|
 | `deep-research-council` | Riset mendalam, literature review, brief keputusan, cek fakta (`deep research: …`) |
+| `research-data-analysis` | Audit data, analisis statistik, estimasi, sensitivitas dan sintesis kuantitatif |
+| `application-security` | Threat model dan secure code review untuk aplikasi web/API |
 | `web-ui-design` | Riset desain, ritme baca, grid responsif, warna terang/gelap, pengujian hierarki, grafik dan komponen interaktif |
 | `ui-component-motion` | Membuat komponen interaktif dan animasi sesuai alur produk, termasuk navigasi keyboard dan tampilan minim gerak |
 | `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
@@ -160,6 +162,9 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 |:---|:---|:---|
 | Brief keputusan | "Deep research: pilih Platform A atau B untuk toko online di Indonesia 2027" | Part A, tier S/D |
 | Tinjauan pustaka | "Buat SOTA review RAG untuk Bab II skripsi saya" | Part A + C2 + K12 |
+| Tinjauan sistematis | "Susun protokol systematic review tentang X, batasi database dan jelaskan alur screening" | Part R6 |
+| Analisis kuantitatif | "Analisis CSV ini. Cek data hilang, bandingkan conversion per cohort dan uji sensitivitas" | research-data-analysis |
+| Keamanan aplikasi | "Threat-model API ini dan review otorisasi lintas tenant secara lokal" | application-security |
 | Desain produk | "Desain ulang alur reservasi bengkel. Di HP pelanggan memilih jam. Di desktop petugas membandingkan antrean. Tunjukkan alasan pemilihan layout dan apa yang terjadi saat slot penuh." | F |
 | Komponen dan animasi | "Buat komponen antrean bengkel. Mekanik bisa membuka detail tanpa kehilangan posisi dan tetap bisa memakai keyboard." | F8 dan F9 |
 | Hemat token | "Audit kenapa sesi agen saya boros token" | Part H |
@@ -190,15 +195,17 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | **I — Templates** | `source_log`, `contradictions`, matriks ACH terisi, contoh rencana riset, kerangka laporan | Riset tier S ke atas |
 | **J — Frontier Lab Playbooks** | Praktik publik OpenAI, Google Gemini, Anthropic Claude, DeepSeek, dan konsensus lintas lab | Riset mendalam |
 | **K — Expert Field Council** | 14 persona spesialis plus aturan kombinasi | Pertanyaan per bidang |
-| **L — Research Evaluation** | Rubrik penilaian, golden questions, human spot check, taksonomi kegagalan | Mengecek kualitas |
+| **L — Research Evaluation** | Rubrik berbasis klaim, golden set, evaluasi retrieval dan laporan, cek manusia | Mengecek kualitas riset |
 | **M — Assistant Archetypes** | Copilot (riset data perusahaan), Dreamina (produksi video AI), Siri (privasi bertingkat), "Jarvis Mode", mode router | Sesuai jenis asisten |
 | **N — Pre-Delivery Error Handling** | Loop verifikasi sebelum kirim, taksonomi 12 jenis error, checklist pra-kirim, kebijakan retry dan error tool, standar error handling per bahasa, review pendapat kedua, format laporan kegagalan | **Semua output**, sebelum dikirim |
 | **O — Scaffolding** | Gemini 4 Argon (arsitek) + Gemini 4 Carbon (builder) dengan fallback, workflow 9 langkah, quality rails, kontrak `scaffold_plan.json`, uji clean clone, layout referensi, template prompt | Proyek atau repo baru |
 | **P — Infrastructure** | Claude Opus 5.5 max (author) + Claude Fable 5.2 max (reviewer), 10 prinsip, workflow author/reviewer, checklist review, aturan keamanan agen, penanganan error infra, deliverable wajib | Cloud, IaC, CI/CD, Kubernetes, DR |
-| **R — Unified Deep Research Engine** | Mesin 12 tahap yang menggabungkan metode OpenAI, Gemini, Claude, DeepSeek, Copilot, Perplexity, dan Grok di dalam satu AI; jalur tanpa sub-agent; adapter per host; frasa aktivasi | **Default** untuk setiap permintaan deep research |
+| **R — Unified Deep Research Engine** | Mesin 12 tahap; triage antara brief keputusan dan tinjauan formal; penyesuaian tier dengan bukti dan anggaran | **Default** untuk setiap permintaan deep research |
 | **Q — Multi-AI Federation** | Roster kekuatan tiap AI riset, 4 pola kolaborasi (Split, Mirror, Relay, Cross-examine), brief universal, format Research Packet + JSON schema, protokol penggabungan berbasis asal sumber, log kalibrasi, prompt hand-off | Memakai beberapa AI riset untuk satu pertanyaan |
 | **S — Custom Components and Interaction Motion** | Rujukan lama ke F8. Kontrak komponen, transisi dan perilaku saat gerak dikurangi ada di modul desain | Komponen interaktif web |
 | **T — Usage Limit Recovery** | Checkpoint, klasifikasi gangguan, penyerahan hasil parsial dan langkah pemulihan | Sesi terbatas atau pekerjaan terputus |
+| **V — Application Security** | Threat model web/API, kontrol ASVS, pengujian lokal, laporan temuan terverifikasi | Kode aplikasi web dan API |
+| **W — Research Data Analysis** | Mutu data, penyebut, metode statistik, inferensi kausal, sintesis dan reproduksibilitas | Data kuantitatif dan sintesis riset |
 
 ---
 
@@ -266,6 +273,14 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.8.0
+
+Mengganti probabilitas dan likelihood ratio generik berbasis jumlah sumber dengan label keyakinan beralasan. Kerja multi-AI menjadi pemeriksaan independen, bukan kenaikan skor otomatis.
+
+### v17.7.0
+
+Menambahkan skill keamanan aplikasi dan analisis data riset. Deep research kini memisahkan riset keputusan dari tinjauan sistematis, menyediakan gerbang protokol formal, serta menilai retrieval dan mutu laporan lewat dimensi yang dapat diperiksa.
 
 ### v17.6.0
 

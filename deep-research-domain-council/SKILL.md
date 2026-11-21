@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.6.0"
+  version: "17.8.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai"
 ---
@@ -51,17 +51,18 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Explainer | "How does X work", stable knowledge | Q or none |
 | Comparison / landscape | "X vs Y", "options for", "who are the players" | S |
 | Decision brief | "Should we", "which one", money/risk at stake | D |
-| Literature / SOTA review | "review", "survey", "state of the art", thesis Bab II | D or X |
+| Literature / SOTA review | Narrative map or thesis background | D |
+| Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive).** Use these ranges to estimate effort. Evidence coverage and the user's scope govern when to stop. Report a lone origin and its limits when independent measurements are unavailable.
+**Budget tiers (adaptive).** Source and call ranges estimate effort. They are not quotas or completion criteria. Evidence coverage and the decision govern when to stop. X is defined by its protocol and scope, not a target number of links. Report a lone origin and its limits when independent measurements are unavailable.
 
 | Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
 |:---|:---|:---|:---|:---|
 | Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
 | S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |
 | D (Deep) | 25-60 | ≥3 | 1-2 per key finding | 25-80 |
-| X (Exhaustive / systematic) | 60-200+ | ≥3 + full PRISMA log | Systematic | 80+ (use sub-agents) |
+| X (protocol-led review) | Set by the eligible records in scope | Defined per pivotal question | Protocol-defined | Set by available sources and review scope |
 
 ### S1 — Clarify & Build the Research Brief
 
@@ -136,17 +137,17 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 **5.4 Contradiction Register.** Source A says X, Source B says ¬X, likely reason (definition, period, population, method, incentive), resolution or "unresolved".
 
-**5.5 Calibrated confidence.**
+**5.5 Calibrated confidence.** Use verbal labels with a reason about relevance, design, traceability, independence, uncertainty and the strongest live alternative. The number of links or agreement among models is not a probability.
 
-| Label | Probability | Typical basis |
-|:---|:---|:---|
-| Very high | ≥ 0.90 | ≥3 independent T1/T2 origins, no credible contradiction |
-| High | 0.75-0.90 | 2-3 independent origins, minor contradictions explained |
-| Moderate | 0.55-0.75 | 1-2 origins or unresolved method concerns |
-| Low | 0.35-0.55 | Single source, T3, or strong contradiction |
-| Speculative | < 0.35 | Inference/hypothesis only, labeled explicitly |
+| Label | Use when |
+|:---|:---|
+| Very high | Multiple fit-for-purpose, independent origins support the exact claim, pivotal limits are resolved and no credible counterevidence remains. |
+| High | The evidence strongly supports the claim, with a remaining limitation unlikely to reverse it. |
+| Moderate | The claim is plausible, but an important gap, assumption or rival explanation remains. |
+| Low | Evidence is sparse, indirect or seriously contested. |
+| Speculative | The claim is a hypothesis or inference without direct supporting evidence. |
 
-Optional Bayesian form: $\text{posterior odds} = \text{prior odds} \times \prod_i LR_i$, **valid only for independent evidence**. Default LRs: T1 ≈ 10, T2 ≈ 5, T3 ≈ 2, T4 ≈ 1 (non-evidence). Never multiply LRs of sources sharing an origin. No false precision ("≈0.8", not "0.8372").
+Do not convert source tiers into fixed likelihood ratios or treat a verbal label as a numeric probability. For an explicit forecast, state the outcome, time horizon and reference class. Give a numeric probability only when it is useful to the decision and can be calibrated against comparable resolved outcomes. Keep prior assumptions and dependence between evidence visible.
 
 **Source tiers:**
 
@@ -217,9 +218,9 @@ Optional Bayesian form: $\text{posterior odds} = \text{prior odds} \times \prod_
 ## A2. Stopping Rules
 
 Stop retrieval for an RQ when **any** holds:
-1. **Saturation:** the last 3-5 new sources added no claim and changed no confidence label.
-2. **EVPI:** $P(\text{new decision-relevant info}) \times \Delta_{\text{decision}} < \text{Cost}_{\text{next search}}$.
-3. **Tier ceiling reached** and remaining gaps are disclosed in Limitations.
+1. **Saturation:** a genuinely different query, language or source type found no evidence likely to change a pivotal answer.
+2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely value with its time and token cost qualitatively if no defensible estimate exists.
+3. **Budget reached:** the agreed time or usage budget is spent. Stop the affected calls, disclose open questions and save the most discriminating next check.
 
 Never stop because the first plausible answer appeared. Never continue only to look thorough.
 
@@ -1302,7 +1303,7 @@ For cross-domain questions, pick a **lead specialist** (owns the RQ framing) and
 
 ## L1. Rubric-Based Judging
 
-Grade a report (your own, or a sub-agent's) on a 0-1 scale per criterion, using a separate judging pass that has the sources but not your reasoning:
+Inspect the cited passages in a separate pass. Use task-specific, observable criteria rather than relying on a single overall score. Record critical factual or citation failures separately from coverage and presentation. A weighted average cannot erase a false pivotal claim or a citation that does not support it.
 
 | Criterion | Question |
 |:---|:---|
@@ -1314,7 +1315,7 @@ Grade a report (your own, or a sub-agent's) on a 0-1 scale per criterion, using 
 | Calibration | Confidence matches evidence? |
 | Usefulness | Can the reader act on it? |
 
-Overall pass: all criteria ≥0.8, factual and citation accuracy ≥0.9.
+Do not treat uncalibrated score thresholds as a quality guarantee. Before using an automated judge for release decisions, compare its judgments with a small, blinded expert-reviewed sample. Report the disagreement and revise the rubric before scaling.
 
 ## L2. Golden Questions
 
@@ -1329,12 +1330,29 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 | Failure | Symptom | Fix |
 |:---|:---|:---|
 | Under-search | A pivotal question rests on one unexamined origin | Trace the measurement, seek an independent challenge and qualify the conclusion if evidence stays sparse |
-| Over-search | Dozens of calls on a simple question | Enforce tier caps; triage first |
+| Over-search | Retrieval continues after the decision and counterchecks are settled | Recheck the pivotal uncertainty and stop when the next search cannot change the answer |
 | Echo chamber | All sources share one origin | Origin counting (A0 law 4) |
 | Citation drift | Citation near but not supporting the claim | Citation inspection (A1 S7.1) |
 | Stale facts | Old prices/versions | "As of" dates; volatile-fact gate (E9) |
 | Delegation confusion | Sub-agents duplicate work | Structured delegation briefs (J3) |
 | Pretty but empty | Polished format, thin evidence | Rubric L1 before formatting |
+
+## L5. Evaluate the research report and the retrieval separately
+
+Use two complementary test sets. A **closed evidence packet** makes answers reproducible and exposes whether the agent preserves conflicts, source origins and limits. A small **live-search set** checks source discovery, current facts and actual citation links. Include Bahasa Indonesia and English tasks when those are real use cases. Keep expected facts tied to opened source passages and date the packet.
+
+Grade each run on separate, inspectable dimensions:
+
+| Dimension | Observable check |
+|:---|:---|
+| Evidence retrieval | Was the decisive source found, opened and matched to the right population, period and measure? |
+| Claim support | Does the exact cited passage support the attached sentence, including its numbers and strength? |
+| Independent coverage | Do independent origins corroborate the pivotal claim, or do reports trace to one dataset? |
+| Analysis | Are comparisons commensurate? Are counterevidence, uncertainty and causal limits handled? |
+| Task coverage | Does the report answer the decision and every material sub-question? |
+| Delivery and cost | Are the required format and checks complete? Record tokens or searches when available, otherwise label the proxy. |
+
+Build a small, versioned set around failures the skill must survive: conflicting denominators, reports that repeat one origin, a changed fact, an unsupported citation, a blocked source, a missing result and a premature causal claim. Add a task only with its evidence locator and an acceptance rule. Run the same brief, model, tools and effort before and after a change. Have a blind human check a sample. A judge model is a diagnostic aid, not ground truth. Deep research benchmarks distinguish fixed-answer browsing from report-level analysis and presentation; expert-derived, fine-grained criteria are easier to inspect than one broad score. [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · [DeepResearch Bench](https://arxiv.org/abs/2506.11763) · [BrowseComp](https://openai.com/index/browsecomp/)
 
 ## Sources for Parts J-L
 
@@ -1346,6 +1364,7 @@ Automated judging misses subtle failures (e.g., preferring SEO pages over author
 - DeepSeek-AI, "DeepSeek-V3.2" technical report: https://arxiv.org/abs/2512.02556
 - DeepSeek API docs, "Web Tools": https://api-docs.deepseek.com/guides/web_tools.md
 - OPPO AI Agent Team, "Search More, Think Less": https://arxiv.org/abs/2602.22675
+- Yue et al., "DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Reports": https://arxiv.org/abs/2601.08536
 
 ---
 
@@ -1861,7 +1880,7 @@ Chat products such as ChatGPT, Gemini app or Grok usually cannot spawn sub-agent
 ## R4. Activation
 
 The user only needs to write **"deep research: <question>"** (or "riset mendalam: …"). The AI then:
-1. Announces the tier and a one-line plan.
+1. Announces the research type, tier and a one-line plan. Route an explicit scoping or systematic review through R6. Use source counts as estimates only.
 2. Runs R1 stages for that tier.
 3. Delivers the report with a methodology line such as: *"Unified engine, Deep tier: 4 lanes, 38 sources (27 primary), recency sweep to 2026-11-18, mirror pass on RQ2-RQ3, reviewer pass done."*
 
@@ -1879,6 +1898,14 @@ Start with the decision and the difference large enough to change it. For each c
 **Worked example with fictional data.** An agency bulletin says missed visits fell from 20% to 15%. Two news reports quote that bulletin. A clinic register reports 12 missed visits per 100 *patients* after the change. The bulletin measures *appointments*. Its change is 5 percentage points, a relative decrease of 25%. The two articles share its origin. Keep the clinic's denominator separate until visit counts are available. A concurrent scheduling change could also explain the decline. A defensible partial result reports the observed drop and leaves the intervention's causal effect open. The highest-value next source would compare similar clinics over the same dates with the same denominator.
 
 Close the lane when the citation supports the exact sentence, a different search has tested the leading explanation and further retrieval would leave the decision unchanged. A budget stop leaves an open lane and its next discriminating query. Guidance on linking multiple reports and extracting comparable data appears in [Cochrane Handbook, chapter 5](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-05).
+
+## R6. Choose a formal review only when the request needs reproducible coverage
+
+A narrative decision brief or literature map can use the adaptive stopping rule in A2. Do not label it a systematic review. For a requested scoping or systematic review, first test whether the user, source access and available time support the requested coverage. If not, agree on or label the deliverable as a scoped or rapid review.
+
+Before screening, write a dated protocol with a question structure and eligibility criteria suited to the field, databases and other sources, language and date limits, and planned synthesis. Keep the exact query, platform, search date, result count, deduplication rule, screening decisions and reasons for full-text exclusions. Preserve the search exports or source list when permitted. Report any unsearched source or unavailable record. For intervention reviews, Cochrane recommends two independent full-text eligibility assessors and a predefined way to resolve disagreements. If staffing forces one screener, state the limitation and consider a second-person sample check. Use PRISMA 2020 to structure reporting and its flow diagram when applicable. PRISMA guides reporting. It does not by itself establish that a search or review was methodologically sound. For complex database strategies, seek an information specialist where one is available. [PRISMA 2020](https://www.prisma-statement.org/prisma-2020) · [PRISMA-S search reporting](https://www.prisma-statement.org/prisma-search) · [Cochrane search and study selection](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04)
+
+Synthesize only studies that answer a sufficiently similar question. Preserve the study design, population, comparison, outcome and uncertainty. Explain missing outcomes, risk of bias and between-study differences before combining estimates. Do not pool incompatible measures to produce a headline. For a requested quantitative evidence synthesis, consult the research-data-analysis skill and the field's current methods. [Cochrane data analysis and meta-analysis](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10)
 
 ---
 
@@ -1905,7 +1932,7 @@ No single deep-research product is best at everything. Each searches a different
 | Pattern | How | When |
 |:---|:---|:---|
 | **1. Split (divide RQs)** | Each AI gets different RQs matched to its strengths (Copilot: internal data; Grok: last-week discourse; ChatGPT/Gemini/Claude: core literature) | Broad questions with independent parts; saves time and tokens |
-| **2. Mirror (same brief, independent runs)** | 2-3 AIs get the identical brief; results are compared claim by claim | High-stakes decisions; agreement across independent runs raises confidence, disagreement shows where to dig |
+| **2. Mirror (same brief, independent runs)** | 2-3 AIs get the identical brief; compare claims, definitions, sources and gaps | High-stakes decisions; use disagreement to target checks and treat matching independent evidence as corroboration, not an automatic confidence increase |
 | **3. Relay (sequential)** | AI-1 maps the field and sources → AI-2 goes deep on the gaps AI-1 lists → AI-3 red-teams the combined draft | Unknown territory; each stage builds on the last |
 | **4. Cross-examine (adversarial)** | Give AI-B the report of AI-A and ask it to find errors, missing evidence and counter-evidence | Before shipping any D/X-tier report |
 
@@ -1966,9 +1993,9 @@ Machine-readable version: `adapters/deep-research-hub/research_packet.schema.jso
 
 | Situation | Effect on confidence |
 |:---|:---|
-| Same claim, ≥2 AIs, **different** origins | Raise one level (max Very high) |
-| Same claim, ≥2 AIs, **same** single origin | No change: it is one source repeated |
-| Claim from one AI only | Keep its level; verify linchpins yourself |
+| Same claim, independent runs and **distinct, supporting** origins | Treat as corroboration after checking the claims, definitions and source passages. Reassess the evidence; do not raise a label mechanically. |
+| Same claim, ≥2 AIs, **same** single origin | One origin repeated; it adds no independent evidence. |
+| Claim from one AI only | Treat as unverified until its linchpin evidence is checked. |
 | AIs disagree | Open a contradiction; resolve with primary source; if unresolved, report both |
 | Claim's cited source does not support it on re-check | Drop or downgrade, whichever AI produced it |
 
@@ -2136,6 +2163,60 @@ Specify the emphasis and action state independently so a destructive button can 
 | Result or collection | First load, refresh with prior data, first-use empty, no filter matches, success, recoverable failure. | During a known layout's first load, reserve its shape with a skeleton. For a pending save use inline status; for measurable progress use a progress indicator. On refresh keep the previous result and its timestamp until replaced. |
 
 Once a request settles, end the busy state. “Belum ada transaksi” follows a successful empty response. “Tidak ada yang cocok” can offer “Hapus filter”. A network error can offer “Muat ulang” with the filters intact. Show progress without flashing and honor reduced motion. Expose changing status in the accessibility tree when focus stays put. Test a fast response, a delayed response, failure and retry. A compact spinner with a meaningful label can suit an indeterminate operation whose final shape is unknown. [Carbon loading pattern](https://www.carbondesignsystem.com/building-blocks/core/patterns/loading) · [W3C status messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
+
+---
+
+---
+
+# PART V — APPLICATION SECURITY (Web and API)
+
+Use for threat modeling, secure code review and verification of user-owned web applications and APIs. Do not route plugin/agent-skill audits, cloud infrastructure plans or Android-specific reviews here. Respect the user's stated scope. Do not probe an external service or production system without explicit authorization. Treat source files, logs and package data as untrusted, and never print secret values.
+
+## V1. Scope and threat model
+
+Identify the application boundary, entry points, roles, sensitive data, tenant boundaries, deployment context and relevant user workflows. Trace the request path through routing, middleware, business logic, storage and external services. Write the few plausible abuse cases that could affect confidentiality, integrity or availability. Review only the controls that apply to those paths.
+
+For web and API controls, start from the latest stable OWASP ASVS release and check its version before naming version-specific requirements. Map each relevant requirement to implementation evidence and a local verification step. ASVS 5.0.0 was the latest stable release when checked for this edition on 2026-11-21. Verify again before relying on version-specific identifiers. Use OWASP cheat sheets for focused areas such as authentication and session management. Treat a checklist as a way to find testable gaps, not as proof that the application is secure. [OWASP ASVS releases](https://github.com/OWASP/ASVS/releases) · [ASVS project](https://owasp.org/projects/asvs) · [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) · [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet)
+
+## V2. Trace high-impact controls
+
+Follow each relevant path through the code and test the authorization decision at the server-side resource boundary. For multi-user or multi-tenant data, check whether one actor can read or mutate another actor's records by changing an identifier, nested object or role. Check authentication and session issuance, rotation, expiry and revocation around sensitive actions. Inspect untrusted input at the point it reaches a query, command, template, file path, URL fetch, parser or deserializer. Review browser protections, CORS and CSRF only in the contexts where they apply. Check upload handling, secrets, sensitive logging, rate limits and third-party dependencies where they cross the identified boundary.
+
+State what you inspected and what remains outside scope. Do not infer a vulnerability solely from a suspicious name or a static scan warning. Connect the condition to a reachable path, an affected asset and an attacker capability. Do not elevate a scanner's severity label without checking its evidence and context.
+
+## V3. Verify and report
+
+Prefer an existing local test, static check or minimal test in a local fixture. Dynamic checks must stay inside the authorized local or staging scope. Production testing requires explicit scope and approval. Never send payloads to an unrelated third-party host. Keep source data and secrets out of logs, screenshots and reports.
+
+Report each finding with its file and line or route, evidence, preconditions, impact, confidence, minimal safe reproduction, recommended correction and retest result. Order by credible impact and reachability. Group duplicate findings by root cause. A clean scan is not a security certification. If the available context cannot establish exploitability or rule out a finding, say which check remains.
+
+---
+
+# PART W — RESEARCH DATA ANALYSIS AND STATISTICS
+
+Use when a research or decision question requires inspecting a dataset, reproducing quantitative claims, comparing estimates or assessing statistical evidence. This skill supports method selection and reproducible analysis. Use a spreadsheet skill for workbook formatting and ordinary spreadsheet editing. Use academic-writing for thesis structure and prose.
+
+## W1. State the quantity before calculating
+
+Record the research question, observational unit, target population, period, outcome, comparison and decision the estimate informs. Name the numerator, denominator, units and data origin. Distinguish a population quantity from a sample estimate and an observed association from a causal effect. Keep the raw file unchanged and work on a derived copy.
+
+## W2. Audit and transform the data
+
+Inspect the schema, row count, identifier uniqueness, duplicate records, data types, allowed values, date and timezone handling, units, missingness and coverage before summarizing. Preserve the difference between zero, missing, not reported, not applicable and a failed feed. Log each exclusion, recode, join, filter and derived field with its reason. Reconcile subtotals to the source and check a small sample against the original records.
+
+## W3. Choose methods that fit the design
+
+Start with distributions, denominators and subgroup coverage. For comparisons, state the estimand, effect measure and uncertainty interval in the units a decision-maker can interpret. Select an inferential method from the sampling and study design, not from a desired significance threshold. Report assumptions and meaningful sensitivity checks. Mark unplanned subgroup analysis as exploratory and account for multiple comparisons where they change interpretation.
+
+For causal claims, identify assignment or comparison design, plausible confounders, selection, measurement and time trends. State which assumptions the estimate needs. Do not infer causation from an observational association alone. A p-value does not give the probability that a hypothesis is true or measure the practical size of an effect. [American Statistical Association statement on p-values](https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf)
+
+When combining studies, compare their population, intervention or exposure, comparator, outcome, measure and follow-up before pooling. Inspect risk of bias and clinical, methodological and statistical heterogeneity. A pooled number does not repair incompatible studies. For intervention meta-analysis, follow the current field-specific methods and consult the [Cochrane analysis handbook](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10). Do not generalize a clinical-review method to another field without checking its assumptions.
+
+## W4. Make the result reproducible
+
+Keep a runnable analysis script or notebook with the input identity, transformations, method, assumptions, software and relevant package versions, random seed when applicable, and a clear run command. Verify key totals with an independent calculation or invariant. Report sample size, missingness, exclusions, estimate, interval and limitations alongside charts. Do not write illustrative or synthetic values as if they came from the supplied data. Do not send private or identifying data to an external service without the user's authorization.
+
+Primary methods: [ASA p-value statement](https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf) · [Cochrane data analysis and meta-analysis](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10) · [Cochrane risk of bias](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-08)
 
 ---
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## v17.8.0
+
+Replaced source-count confidence probabilities and generic likelihood ratios with evidence-based verbal confidence. Independent AI runs now corroborate only when their evidence is independently relevant.
+
+## v17.7.0
+
+Added focused application security and research data-analysis skills. Deep research now separates protocol-led evidence reviews from decision briefs and evaluates retrieval and report quality with inspectable criteria.
+
 ## v17.6.0
 
 Every focused skill and chat adapter now includes concise token-efficiency guidance while preserving the research and validation required by the task.

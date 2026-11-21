@@ -6,6 +6,9 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 | Prompt | Expected skill |
 |:---|:---|
 | deep research: dampak QRIS terhadap UMKM di Jawa Barat 2024-2026 | deep-research-council |
+| Susun protokol systematic review untuk intervensi X dan catat query serta alur screening | deep-research-council |
+| Bandingkan hasil tiga studi ini, cek beda populasi dan heterogenitas sebelum pooling | research-data-analysis |
+| Analisis CSV berikut. Periksa missing value, duplikasi dan conversion per cohort dengan interval kepercayaan | research-data-analysis |
 | Tolong cek apakah klaim "ekspor nikel naik 40%" itu benar, kasih sumber | deep-research-council |
 | Bandingkan 3 platform toko online untuk UMKM, mana yang paling murah biaya transaksinya | deep-research-council |
 | Buatkan landing page aplikasi kasir yang tidak kelihatan seperti template AI | web-ui-design |
@@ -23,6 +26,8 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 | Review plan Terraform ini sebelum apply ke production | infrastructure-iac |
 | Refactor layar Compose ini ke MVI | android-compose |
 | Audit plugin ini, aman tidak untuk diinstal? | skill-security-audit |
+| Threat-model API penyewaan ini dan review akses objek lintas tenant dalam kode lokal | application-security |
+| Periksa implementasi autentikasi dan sesi web ini dengan kontrol OWASP yang sesuai | application-security |
 | Buat shot list video iklan 15 detik untuk Dreamina | ai-video-production |
 | Kenapa sesi Claude Code saya boros token? | token-efficiency |
 | Padatkan konteks riset panjang tanpa kehilangan asal data atau bukti yang membantah | token-efficiency |
@@ -55,6 +60,10 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 - **Design.** Build a mobile booking list whose vehicle details expand inline. Verify that reservation times remain visible, rows operate independently, rapid reversal settles correctly, keyboard focus survives and the same result is available with reduced motion.
 - **Research on a budget.** Give the researcher a pilot report, a press release quoting it and a registry with a different denominator. Ask for a decision in 140 words. Check origin count, locator, comparability and the condition that would change the conclusion after compaction.
 - **Quota.** Simulate a weekly cutoff with one verified result and an uncertain write. Preserve both, resume from the saved snapshot and reconcile the receipt before any replay. Check the installed helper with `python -B -m unittest discover -s evals`.
+- **Formal review gate.** Give the researcher a narrowly scoped web search, a broad database protocol request and an inaccessible full-text study. It must label the first as a scoped search, form a dated protocol for the second and disclose the third as unavailable. It must not claim a completed systematic review from the partial search.
+- **Research quality evaluation.** Provide a report where a real source is cited but does not support a pivotal number. Grade citation entailment separately from report style and coverage. The unsupported pivotal claim blocks a passing result even if the prose is strong.
+- **Research data analysis.** Provide a small table with a duplicate row, a missing feed, a true zero, uneven denominators and a before/after association. The analysis must reconcile totals, distinguish missing from zero, report the comparison units and limitations, and avoid a causal claim without an identifying design.
+- **Application security.** Provide local web/API code with a cross-tenant object-authorization flaw and a nearby clean path. The review must trace the reachable server-side check, show a safe local regression test and avoid probing external endpoints or printing credentials.
 
 In 17.3.0, two independent offline concept walkthroughs exercised Part F. A mobile booking conflict left both supplied slots full and the revised design retained the entered name. A printmaking landing page distinguished class capacity from remaining seats and proposed mobile crops from the photo descriptions. Neither walkthrough rendered an interface or inspected the actual photos.
 

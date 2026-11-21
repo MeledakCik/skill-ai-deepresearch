@@ -31,17 +31,18 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Explainer | "How does X work", stable knowledge | Q or none |
 | Comparison / landscape | "X vs Y", "options for", "who are the players" | S |
 | Decision brief | "Should we", "which one", money/risk at stake | D |
-| Literature / SOTA review | "review", "survey", "state of the art", thesis Bab II | D or X |
+| Literature / SOTA review | Narrative map or thesis background | D |
+| Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Budget tiers (adaptive).** Use these ranges to estimate effort. Evidence coverage and the user's scope govern when to stop. Report a lone origin and its limits when independent measurements are unavailable.
+**Budget tiers (adaptive).** Source and call ranges estimate effort. They are not quotas or completion criteria. Evidence coverage and the decision govern when to stop. X is defined by its protocol and scope, not a target number of links. Report a lone origin and its limits when independent measurements are unavailable.
 
 | Tier | Sources opened | Independent origins sought per key claim | Disconfirmation searches | Typical tool calls |
 |:---|:---|:---|:---|:---|
 | Q (Quick) | 1-5 | 1 (T1) or 2 | 0-1 | 1-5 |
 | S (Standard) | 10-25 | ≥2 | 1 per key finding | 8-25 |
 | D (Deep) | 25-60 | ≥3 | 1-2 per key finding | 25-80 |
-| X (Exhaustive / systematic) | 60-200+ | ≥3 + full PRISMA log | Systematic | 80+ (use sub-agents) |
+| X (protocol-led review) | Set by the eligible records in scope | Defined per pivotal question | Protocol-defined | Set by available sources and review scope |
 
 ### S1 — Clarify & Build the Research Brief
 
@@ -116,17 +117,17 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 **5.4 Contradiction Register.** Source A says X, Source B says ¬X, likely reason (definition, period, population, method, incentive), resolution or "unresolved".
 
-**5.5 Calibrated confidence.**
+**5.5 Calibrated confidence.** Use verbal labels with a reason about relevance, design, traceability, independence, uncertainty and the strongest live alternative. The number of links or agreement among models is not a probability.
 
-| Label | Probability | Typical basis |
-|:---|:---|:---|
-| Very high | ≥ 0.90 | ≥3 independent T1/T2 origins, no credible contradiction |
-| High | 0.75-0.90 | 2-3 independent origins, minor contradictions explained |
-| Moderate | 0.55-0.75 | 1-2 origins or unresolved method concerns |
-| Low | 0.35-0.55 | Single source, T3, or strong contradiction |
-| Speculative | < 0.35 | Inference/hypothesis only, labeled explicitly |
+| Label | Use when |
+|:---|:---|
+| Very high | Multiple fit-for-purpose, independent origins support the exact claim, pivotal limits are resolved and no credible counterevidence remains. |
+| High | The evidence strongly supports the claim, with a remaining limitation unlikely to reverse it. |
+| Moderate | The claim is plausible, but an important gap, assumption or rival explanation remains. |
+| Low | Evidence is sparse, indirect or seriously contested. |
+| Speculative | The claim is a hypothesis or inference without direct supporting evidence. |
 
-Optional Bayesian form: $\text{posterior odds} = \text{prior odds} \times \prod_i LR_i$, **valid only for independent evidence**. Default LRs: T1 ≈ 10, T2 ≈ 5, T3 ≈ 2, T4 ≈ 1 (non-evidence). Never multiply LRs of sources sharing an origin. No false precision ("≈0.8", not "0.8372").
+Do not convert source tiers into fixed likelihood ratios or treat a verbal label as a numeric probability. For an explicit forecast, state the outcome, time horizon and reference class. Give a numeric probability only when it is useful to the decision and can be calibrated against comparable resolved outcomes. Keep prior assumptions and dependence between evidence visible.
 
 **Source tiers:**
 
@@ -197,9 +198,9 @@ Optional Bayesian form: $\text{posterior odds} = \text{prior odds} \times \prod_
 ## A2. Stopping Rules
 
 Stop retrieval for an RQ when **any** holds:
-1. **Saturation:** the last 3-5 new sources added no claim and changed no confidence label.
-2. **EVPI:** $P(\text{new decision-relevant info}) \times \Delta_{\text{decision}} < \text{Cost}_{\text{next search}}$.
-3. **Tier ceiling reached** and remaining gaps are disclosed in Limitations.
+1. **Saturation:** a genuinely different query, language or source type found no evidence likely to change a pivotal answer.
+2. **Decision value:** another search is unlikely to change the action, confidence reason or material limitation. Compare its likely value with its time and token cost qualitatively if no defensible estimate exists.
+3. **Budget reached:** the agreed time or usage budget is spent. Stop the affected calls, disclose open questions and save the most discriminating next check.
 
 Never stop because the first plausible answer appeared. Never continue only to look thorough.
 

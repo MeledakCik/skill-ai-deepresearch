@@ -21,7 +21,7 @@ No single deep-research product is best at everything. Each searches a different
 | Pattern | How | When |
 |:---|:---|:---|
 | **1. Split (divide RQs)** | Each AI gets different RQs matched to its strengths (Copilot: internal data; Grok: last-week discourse; ChatGPT/Gemini/Claude: core literature) | Broad questions with independent parts; saves time and tokens |
-| **2. Mirror (same brief, independent runs)** | 2-3 AIs get the identical brief; results are compared claim by claim | High-stakes decisions; agreement across independent runs raises confidence, disagreement shows where to dig |
+| **2. Mirror (same brief, independent runs)** | 2-3 AIs get the identical brief; compare claims, definitions, sources and gaps | High-stakes decisions; use disagreement to target checks and treat matching independent evidence as corroboration, not an automatic confidence increase |
 | **3. Relay (sequential)** | AI-1 maps the field and sources → AI-2 goes deep on the gaps AI-1 lists → AI-3 red-teams the combined draft | Unknown territory; each stage builds on the last |
 | **4. Cross-examine (adversarial)** | Give AI-B the report of AI-A and ask it to find errors, missing evidence and counter-evidence | Before shipping any D/X-tier report |
 
@@ -82,9 +82,9 @@ Machine-readable version: `adapters/deep-research-hub/research_packet.schema.jso
 
 | Situation | Effect on confidence |
 |:---|:---|
-| Same claim, ≥2 AIs, **different** origins | Raise one level (max Very high) |
-| Same claim, ≥2 AIs, **same** single origin | No change: it is one source repeated |
-| Claim from one AI only | Keep its level; verify linchpins yourself |
+| Same claim, independent runs and **distinct, supporting** origins | Treat as corroboration after checking the claims, definitions and source passages. Reassess the evidence; do not raise a label mechanically. |
+| Same claim, ≥2 AIs, **same** single origin | One origin repeated; it adds no independent evidence. |
+| Claim from one AI only | Treat as unverified until its linchpin evidence is checked. |
 | AIs disagree | Open a contradiction; resolve with primary source; if unresolved, report both |
 | Claim's cited source does not support it on re-check | Drop or downgrade, whichever AI produced it |
 

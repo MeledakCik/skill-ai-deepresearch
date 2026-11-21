@@ -5,13 +5,13 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.6.0"
+  version: "17.8.0"
   source: deep-research-domain-council
 ---
 
 # Deep Research Council
 
-Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence.
+Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching.
 
 1. Name the decision, scope, pivotal question and observation that could overturn the leading answer. Set inclusion criteria before selecting results. Clarify only assumptions that would materially change the work.
 2. Map primary sources within the requested scope. Trace repeated reports to their original measurements. Count only sources opened or supplied. For date-bound questions at every tier, check for changes through the requested date. In a closed packet, use its latest eligible evidence and disclose any coverage gap.
@@ -37,12 +37,13 @@ Full checklist: `references/part-n-pre-delivery-error-handling.md` (open only fo
 
 | File | Read when |
 |:---|:---|
-| `references/part-r5-reconciling-evidence-that-could-change-a.md` | Resolve conflicting findings, test sensitivity and close the evidence trail |
 | `references/part-a-research-cognition-core.md` | Research method library: laws, lifecycle, tiers, ACH, claim ledger, report shape |
+| `references/part-r5-reconciling-evidence-that-could-change-a.md` | Resolve conflicting findings, test sensitivity and close the evidence trail |
+| `references/part-r6-choose-a-formal-review-only-when-the-req.md` | Run a protocol-led scoping or systematic evidence review |
+| `references/part-l-evaluating-research-quality.md` | Grading research quality, failure taxonomy |
 | `references/part-i-templates-worked-example.md` | Templates: source log, contradictions, ACH, plan, report |
 | `references/part-j-frontier-lab-research-playbooks.md` | How OpenAI, Gemini, Claude and DeepSeek research systems work |
 | `references/part-k-expert-field-council.md` | 14 field-specialist personas |
-| `references/part-l-evaluating-research-quality.md` | Grading research quality, failure taxonomy |
 | `references/part-q-multi-ai-deep-research-federation.md` | Running several research AIs together |
 | `references/part-d-model-engine-routing.md` | Model routing, effort, verified model names (D4) |
 | `references/part-r3-host-adapters-how-to-run-the-engine-on-e.md` | How to run the research engine on each AI host |

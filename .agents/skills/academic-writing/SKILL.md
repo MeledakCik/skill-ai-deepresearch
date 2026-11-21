@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.6.0"
+  version: "17.8.0"
   source: deep-research-domain-council
 ---
 
