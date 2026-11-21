@@ -28,6 +28,8 @@ Include identity and session renewal; data ownership, import/export and migratio
 
 For every consequential compatibility or policy claim, record the first-party source, exact page/section/API, platform and version, date checked, supported/limited behavior, and any test still needed. Prefer current official platform and standards documentation. Search only the destination versions and capabilities in scope. Trace copied summaries to the original source and count shared origins once. Treat search snippets and framework marketing matrices as leads, not proof.
 
+Keep the maturity of the shared language/runtime, UI framework, target backend and key libraries separate. A stable shared-logic layer does not make every UI target, plugin or integration stable. For each destination, verify the exact stable release, compatibility matrix and any newer beta/RC/EAP status; never describe a pre-release as the latest stable. Framework-level support also does not prove that this product's workflows, accessibility, native integrations or release path are ready. Add a small target-specific proof of concept where those details could change the recommendation.
+
 ## Y3. Compare migration paths against constraints
 
 Consider only plausible options for the product: retain and adapt the current client; add a browser-installable or packaged web route; use a host/container for selected workflows; share a domain core with platform-specific clients; use a multi-target framework; or rebuild a target client natively. These are option classes, not defaults. For each, compare the user's criteria: workflow and platform fit, offline/data behavior, performance, accessibility, security/privacy, device integration, release rules, team skills, maintenance, transition risk and cost.
@@ -67,6 +69,7 @@ Deliver a short recommendation with: current-state inventory, target scope, capa
 
 These are entry points, not a fixed compatibility verdict. Verify the exact current version and follow links to the relevant API or policy for the user's target:
 
+- Kotlin/Compose migration status and compatibility: [Supported platforms and stability](https://kotlinlang.org/docs/multiplatform/supported-platforms.html) · [Compose compatibility and versioning](https://kotlinlang.org/docs/multiplatform/compose-compatibility-and-versioning.html) · [Migrate a Jetpack Compose app](https://kotlinlang.org/docs/multiplatform/migrate-from-android.html) · [KMP FAQ](https://kotlinlang.org/docs/multiplatform/faq.html) · [Compose Multiplatform releases](https://github.com/JetBrains/compose-multiplatform/releases)
 - Android architecture and lifecycle: [Guide to app architecture](https://developer.android.com/topic/architecture) · [Adaptive Apps](https://developer.android.com/develop/adaptive-apps)
 - Android local/network state and conflict handling: [Build an offline-first app](https://developer.android.com/topic/architecture/data-layer/offline-first)
 - Apple platform differences: [App design and UI](https://developer.apple.com/documentation/technologyoverviews/app-design-and-ui) · [Interface fundamentals](https://developer.apple.com/documentation/technologyoverviews/interface-fundamentals) · [Designing for iOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-ios)

@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.20.0"
+  version: "17.21.0"
   source: deep-research-domain-council
 ---
 
@@ -16,6 +16,7 @@ Find the expensive step first. Use reported input, cached input and output count
 - Search symbols or headings, read the smallest relevant range, edit with a diff. Filter logs while preserving exit status and the first actionable failure. Batch independent reads. Reopen a changed hunk or a source passage when verification depends on it.
 - For a broad request, use a bounded default or ask one decision-changing question; do not enumerate every possible interpretation. For web research, target only the claims that need fresh evidence and open the smallest set of sources that can verify them.
 - Keep user-set decision criteria separate from measures proposed by retrieved sources. Verify a new metric only if it could change the decision; do not let rankings or repeated claims silently rewrite the brief.
+- When multiple pages repeat a pivotal claim, trace the citations and underlying data before opening every derivative. Count a shared origin once; verify one genuinely independent source only when that could change the conclusion.
 - In research, index each opened source once by origin, URL, date and locator. A claim row carries its finding, units/population, source ID, confidence reason and counterevidence. Before discarding raw excerpts, confirm the row can lead a reviewer back to the evidence.
 - Spend the next retrieval on the unresolved claim most likely to change the decision. Keep a short list of searches already tried. Add independent corroboration for pivotal/high-risk claims or conflicts, not for every minor fact. Drop duplicate coverage and narration before dropping a necessary citation check.
 - For a long job, finish one verified slice and save the next action. Reserve room for the normal run or citation check and delivery. If the host reports quota pressure, close the current slice using the recovery procedure in Part T.

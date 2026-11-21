@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.21.0
+
+Deepened research against coordinated source echo: trace citation and data lineage across publishers, distinguish publication diversity from independent evidence, and count shared origins once. Added a matched efficiency comparison that only accepts token savings when factual, citation and coverage gates still pass. Added a multi-site source-network packet and a live, official-source Android-to-iOS/macOS/web migration evaluation with per-target framework maturity, stable-versus-RC and compatibility checks.
+
 ## v17.20.0
 
 Added decision-criteria provenance to protect deep research from agenda seeding and source-led criteria drift. User-set goals and mandatory gates are now frozen before search; source-proposed metrics must be checked for authority, origin, incentives and independent adoption before they can affect a recommendation. Added a closed-packet regression case for a sponsored, unverified ranking metric.

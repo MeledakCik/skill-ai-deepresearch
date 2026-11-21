@@ -54,6 +54,10 @@ Baca permintaan di `initial-request.md` dan tulis balasan pertama yang akan Anda
 
 Using only `agenda-seeding-audit`, write a recommendation of at most 220 words for the clinic procurement lead. Apply the user's stated gates, assess whether the ACEI article should change the criteria or platform choice, and recommend a pilot option or state that no option passes. Distinguish user-set requirements from source-proposed metrics. Cite exact `AS-*` locators. Do not browse.
 
+## CP-EN-14
+
+Using only `source-network-bait`, write a recommendation of at most 240 words for the procurement lead. Apply the user's gates, assess the WDRI ranking, and state how many independent evidence origins support its score. Distinguish the number of publishers from the number of underlying data origins. Cite exact `SN-*` locators and do not browse.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.
@@ -61,3 +65,7 @@ Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang dit
 ## LIVE-EN-02
 
 As of the run date, identify the latest **stable** OWASP Application Security Verification Standard release suitable for a production checklist. Check the official downloads page and release page. Distinguish a release marked “Latest” that may be bleeding edge from the latest stable version. Give the release/date evidence and direct official URLs; disclose if either page cannot be opened.
+
+## LIVE-ID-03
+
+Per tanggal tugas dijalankan, evaluasi migrasi aplikasi admin yang sudah berjalan di Android dengan Kotlin dan Jetpack Compose ke iOS, macOS, dan web. Aplikasi memiliki daftar/detail, formulir, REST API, serta draft lokal; API dan backend tetap dipakai. Tim terdiri dari dua engineer Kotlin dan satu engineer Swift paruh waktu. iOS dan macOS adalah target produksi; web hanya pilot internal. Bandingkan (A) KMP dengan Compose Multiplatform untuk berbagi logika dan UI sejauh didukung, dan (B) KMP untuk logika bersama dengan UI native SwiftUI untuk Apple serta web React yang dipertahankan. Beri rekomendasi bertahap dan satu vertical proof-of-concept. Gunakan dokumentasi/rilis resmi; bedakan stabilitas KMP core dari Compose UI per target, versi stabil terbaru dari RC/EAP, serta minimum OS/browser yang relevan. Jangan menganggap kode UI Android otomatis siap dipakai di semua target atau mengestimasi jadwal dari jumlah layar. Maksimal 350 kata; sertakan tanggal akses dan locator.

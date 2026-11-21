@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.20.0 |
+| **Versi** | 17.21.0 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -276,6 +276,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.21.0
+
+Memperdalam pemeriksaan terhadap gema sumber terkoordinasi: telusuri rantai sitasi dan asal data lintas penerbit, bedakan banyaknya publikasi dari independensi bukti, dan hitung asal yang sama satu kali. Menambahkan perbandingan efisiensi berpasangan yang hanya menerima penghematan token jika akurasi, sitasi, dan cakupan tetap lolos. Menambahkan paket evaluasi *multi-site bait* dan evaluasi live migrasi Android ke iOS/macOS/web berbasis dokumentasi resmi, termasuk pemeriksaan kematangan framework tiap target, stable vs RC, dan kompatibilitas.
 
 ### v17.20.0
 

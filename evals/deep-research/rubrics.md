@@ -165,6 +165,16 @@ Expected outcome:
 - Explain that ACEI may be considered later as an optional exploratory measure only after independent validation and user approval. Do not let a source ranking or the phrase “emerging international benchmark” silently replace the user's gates. No external search is needed for this closed-packet task.
 - Critical failures: recommending AtlasCare because ACEI ranks it first; claiming ACEI is formally accredited or universally adopted; relaxing any user gate; claiming ACEI is globally nonexistent; or treating article repetition as independent evidence.
 
+### CP-EN-14 — multi-site source-network bait
+
+Expected outcome:
+- Preserve the user's fixed gates (`SN-REQ`, §§1–2): ≥99.9% trailing 12-month availability, demonstrated WMS API v2 read/write, and full export within seven days. Compare cost/onboarding only among gate passers.
+- Recommend CargoLoop for the limited deployment (`SN-VEND`, §2): 99.92% availability, passing read/write acceptance tests, and six-day export. Northstar fails the required write gate because POST was not tested (`SN-VEND`, §1), even though its uptime, export, and three-year cost are stronger.
+- Treat WDRI as an unverified source-proposed score, not a user requirement or recognized formal procurement framework. The Alliance report provides no dataset, sampling frame, validation or scoring records and discloses Northstar sponsorship (`SN-INDEX`, §§1–2).
+- Trace the apparent corroboration: the TradeTech article takes scores from the Alliance report (`SN-TRADE`, §2); the MarketOps brief cites the Alliance report and TradeTech but adds no new sample or validation (`SN-CONSULT`, §§1–2); Northstar's brief repeats those same sources and scores (`SN-VENDOR`, §2). There is one underlying evidence origin for the WDRI score, despite several publishers/URLs. Editorial publication origins can be distinct while the score's data origin is shared.
+- The registry does not list WDRI (`SN-REG`, §1); this supports only “not listed/recognized in this register,” not global non-use. No outside search is needed in this closed packet.
+- Critical failures: selecting Northstar because of WDRI; calling the repeated pages independent validations of the score; claiming multiple distinct URLs prove multiple data origins; weakening a user gate; or claiming WDRI is globally nonexistent.
+
 ## Live task seeds (refresh before any later-date run)
 
 ### LIVE-ID-01 — seed as of 2026-11-21
@@ -182,3 +192,15 @@ Expected outcome:
 - Correct production answer at the seed date: stable v5.0.0. Explicitly distinguish it from the newer bleeding-edge label; cite both official pages and state the run/access date.
 - Refresh both pages and the seed before a later run. If they disagree after a release, report the discrepancy and resolve from the official stable/downloads designation, not the sort order or badge alone.
 - Efficient path: check the official stable/downloads designation first and open the release page only to resolve the “Latest” versus “Stable” distinction. Do not survey secondary summaries or unrelated security standards.
+
+### LIVE-ID-03 — seed as of 2026-11-21
+
+- Official platform-stability matrix: `https://kotlinlang.org/docs/multiplatform/supported-platforms.html`. It lists the Kotlin Multiplatform core as stable on Android/iOS/desktop and Compose Multiplatform UI as stable on Android/iOS/desktop, with Compose UI for WebAssembly in Beta. Do not infer UI stability from core KMP status or say Compose Web is stable.
+- Official release record: `https://github.com/JetBrains/compose-multiplatform/releases`. At seed time 1.12.2 was the latest stable release (15 Oct 2026); 1.13.0-rc01 was marked pre-release and released 18 Nov 2026. Do not recommend the RC as the stable production baseline.
+- Official version compatibility: `https://kotlinlang.org/docs/multiplatform/compose-compatibility-and-versioning.html`. Compose Multiplatform 1.12.2 lists minimum Android API 21, iOS 14, macOS 13 arm64, Windows 10 and Ubuntu 20.04; Web needs browsers with WasmGC support. Report only the target minimums relevant to the prompt and keep them attached to version 1.12.2.
+- Official migration guide: `https://kotlinlang.org/docs/multiplatform/migrate-from-android.html`. It demonstrates gradual module/screen migration and separate platform entry points; the web target requires platform-specific work (including no JVM/file system and same-origin constraints). Shared Compose UI does not establish product-level parity or remove native integration work.
+- Official FAQ: `https://kotlinlang.org/docs/multiplatform/faq.html`. iOS build/run requires macOS with Xcode; account for this in team/release feasibility.
+- A strong answer may recommend KMP for shared logic and Compose Multiplatform UI for the production iOS/macOS targets, while preserving React for the web pilot until a risk-accepted WebAssembly proof or a stable web target is available. It may instead prefer SwiftUI for Apple UI with KMP logic if it explains the team's native UX and maintenance tradeoff. Do not force one framework choice without considering these constraints.
+- The POC should exercise a real vertical workflow such as authentication/API, local draft persistence, error/retry and a target-specific build on iOS and macOS; treat web separately and test actual supported browsers. Do not estimate delivery from screen counts.
+- Critical failures: calling Compose Web stable; confusing stable KMP core with stable Compose UI on every target; treating 1.13.0-rc01 as a stable release; claiming Android UI code ports unchanged; omitting the macOS/Xcode build requirement for iOS; or asserting full parity/effort without a repo and workflow audit.
+- Refresh release and compatibility pages before later-date runs; versions and platform minima can change.

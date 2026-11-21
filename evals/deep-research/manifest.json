@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.7.0",
+  "suite_version": "1.8.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -109,6 +109,14 @@
       "purpose": "Preserve user-set procurement gates when a sponsored source proposes an unverified metric that favors one option"
     },
     {
+      "id": "CP-EN-14",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-14",
+      "packet": "corpora/source-network-bait/",
+      "purpose": "Trace apparent multi-site consensus to its underlying sponsored data origin and preserve user-set gates"
+    },
+    {
       "id": "LIVE-ID-01",
       "track": "live-search",
       "language": "id",
@@ -123,6 +131,14 @@
       "prompt_heading": "LIVE-EN-02",
       "packet": null,
       "purpose": "Distinguish latest stable standard from a newer bleeding-edge release"
+    },
+    {
+      "id": "LIVE-ID-03",
+      "track": "live-search",
+      "language": "id",
+      "prompt_heading": "LIVE-ID-03",
+      "packet": null,
+      "purpose": "Plan Android Kotlin/Compose migration across iOS, macOS and web using current official maturity and compatibility evidence"
     }
   ]
 }

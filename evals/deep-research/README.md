@@ -1,8 +1,8 @@
 # Deep Research Regression Pack
 
-Version: `1.7.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.8.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
-This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 15 tasks comprise thirteen synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, visual-data dependencies, prompt-scope triage, and resistance to source-led criteria drift.
+This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 17 tasks comprise fourteen synthetic closed-packet cases and three dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, visual-data dependencies, prompt-scope triage, and source-led criteria drift with both single-site and multi-site bait. The live set includes a version-sensitive Android-to-iOS/macOS/web migration question.
 
 ## Run a task
 
@@ -13,6 +13,8 @@ This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 15 
 5. Stop before the next expensive call when a cap is reached, the host reports a quota/rate limit, or the remaining budget cannot cover review and delivery. Save a checkpoint with completed and remaining task IDs, verified outcomes, unknowns, stop reason and exact next action. Resume unfinished tasks only; completed tasks are rerun only for a predeclared replicate. A changed model, tool, effort, prompt or packet is a separate condition.
 6. Use run statuses `planned`, `in_progress`, `partial` or `complete`; task statuses are `not_started`, `in_progress`, `completed` or `blocked`. Mark the run `partial` when interrupted or voluntarily stopped. Report `completed / planned`, score completed tasks only, and do not call it a full-suite pass rate. Keep retrieval, citation support, reasoning, coverage and cost separate. An unsupported pivotal claim or invented source is a critical failure regardless of prose quality. If a source has changed or cannot be opened, refresh the live seed or record the access limit; do not force the old answer.
 7. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
+
+For a token-efficiency claim, pair a small preselected subset across the old and new skill using the same model, tools, effort, prompt and packet. Set factual, citation and coverage gates first; capture measured usage if available. Count lower usage as an improvement only when every critical gate still passes. Report per-task variation and unknown measures; do not use a pooled average to conceal a failed task.
 
 ## Tracks and scoring
 
@@ -48,3 +50,4 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `corpora/multimodal-heat-pilot/`: fictional chart image plus enrollment, period and decision-rule documents; the image is required to compute rates and assess the sponsor's claim.
 - `corpora/research-scope-triage/`: a deliberately broad Indonesian research request used to check whether the agent asks one decision-changing question before spending tokens on an unfocused search.
 - `corpora/agenda-seeding-audit/`: a synthetic procurement request, vendor test records, a sponsored article with an unverified ranking metric, and a formal standards register. The user-set gates must remain distinct from the article's proposed metric.
+- `corpora/source-network-bait/`: synthetic procurement evidence distributed across several publishers whose apparent ranking consensus traces to one sponsored report and dataset.
