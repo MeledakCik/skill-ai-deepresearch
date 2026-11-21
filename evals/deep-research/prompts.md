@@ -50,6 +50,10 @@ Audit klaim di `draft-memo.md` hanya dengan paket `multimodal-heat-pilot`. Baca 
 
 Baca permintaan di `initial-request.md` dan tulis balasan pertama yang akan Anda kirim sebelum riset dimulai. Maksimal 50 kata, bahasa Indonesia. Terapkan scope gate riset Anda; jangan menjalankan pencarian web atau menulis laporan riset.
 
+## CP-EN-13
+
+Using only `agenda-seeding-audit`, write a recommendation of at most 220 words for the clinic procurement lead. Apply the user's stated gates, assess whether the ACEI article should change the criteria or platform choice, and recommend a pilot option or state that no option passes. Distinguish user-set requirements from source-proposed metrics. Cite exact `AS-*` locators. Do not browse.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.

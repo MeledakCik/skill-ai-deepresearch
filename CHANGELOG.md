@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.20.0
+
+Added decision-criteria provenance to protect deep research from agenda seeding and source-led criteria drift. User-set goals and mandatory gates are now frozen before search; source-proposed metrics must be checked for authority, origin, incentives and independent adoption before they can affect a recommendation. Added a closed-packet regression case for a sponsored, unverified ranking metric.
+
 ## v17.19.0
 
 Added a scope gate for broad research prompts and targeted web validation: ask only a decision-changing question, otherwise use a bounded assumption; search only claims needing current external evidence; select applicable source vectors; set staged budgets and stop when more retrieval cannot change the answer. Removed source-count and all-stage defaults that could encourage over-search. Added a prompt-triage regression case and tightened web-task efficiency rubrics.

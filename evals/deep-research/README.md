@@ -1,8 +1,8 @@
 # Deep Research Regression Pack
 
-Version: `1.6.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
+Version: `1.7.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
-This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 14 tasks comprise twelve synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, a visual-data claim with dependent calculations, and prompt-scope triage.
+This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 15 tasks comprise thirteen synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover source recovery and conflict, checkpoint continuation, protocol-led review, cross-platform migration, visual-data dependencies, prompt-scope triage, and resistance to source-led criteria drift.
 
 ## Run a task
 
@@ -47,3 +47,4 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `corpora/migration-android-web-desktop/`: fictional Android field client and dispatcher workflow with device-bound offline state, API conflict/idempotency behavior and browser/macOS unknowns.
 - `corpora/multimodal-heat-pilot/`: fictional chart image plus enrollment, period and decision-rule documents; the image is required to compute rates and assess the sponsor's claim.
 - `corpora/research-scope-triage/`: a deliberately broad Indonesian research request used to check whether the agent asks one decision-changing question before spending tokens on an unfocused search.
+- `corpora/agenda-seeding-audit/`: a synthetic procurement request, vendor test records, a sponsored article with an unverified ranking metric, and a formal standards register. The user-set gates must remain distinct from the article's proposed metric.

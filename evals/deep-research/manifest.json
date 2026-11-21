@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.6.0",
+  "suite_version": "1.7.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -99,6 +99,14 @@
       "prompt_heading": "CP-ID-12",
       "packet": "corpora/research-scope-triage/",
       "purpose": "Respond to an underspecified research request with one decisive scope question instead of launching a broad, costly search"
+    },
+    {
+      "id": "CP-EN-13",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-13",
+      "packet": "corpora/agenda-seeding-audit/",
+      "purpose": "Preserve user-set procurement gates when a sponsored source proposes an unverified metric that favors one option"
     },
     {
       "id": "LIVE-ID-01",
