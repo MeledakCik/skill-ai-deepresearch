@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.12.0
+
+Deepened research resilience with a source-access recovery ladder that preserves provenance, avoids retry/access-control loops, and bounds claims when primary evidence stays unavailable. Expanded the manual regression pack with source fallback, non-comparable official measures, and research checkpoint continuation. Added a matched-run token-per-verified-pivotal-claim diagnostic that cannot override critical quality failures.
+
 ## v17.11.0
 
 Added a focused software-testing skill for risk-based test selection, deterministic isolation, browser behavior and flaky-test triage. It distinguishes visual QA, application-security verification and project scaffolding, and respects the requested test/run scope.

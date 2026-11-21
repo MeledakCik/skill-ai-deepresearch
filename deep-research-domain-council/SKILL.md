@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.11.0"
+  version: "17.12.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -122,6 +122,8 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 **4.5 Numbers audit.** Unit, denominator, n, period, geography, who measured, method. Compare with Fermi estimate. Flag relative-vs-absolute risk, survivorship bias, cherry-picked windows, "up to" marketing numbers.
 
 **4.6 Pivot triggers (return to S2) when:** a finding kills a hypothesis the plan relied on; your vocabulary is wrong for the field; a better primary source type appears; two T1 sources contradict.
+
+**4.7 Source-access recovery.** When a material source fails to open, record its URL or source ID, access date and observed failure. Do not repeat a deterministic block, bypass access controls or treat a search snippet as a read source; use Part N's bounded retry only for a clearly transient error and Part T for quota or host-limit failures. Seek the closest legitimate alternative in this order: the same publisher's accessible release, data table, API or versioned repository; an official mirror or record that exposes the underlying evidence; then an independent authoritative source measuring the same claim. Preserve dates, versions, definitions and origin links. A mirror or a second report derived from the same dataset is not independent corroboration. If only a secondary summary is available, label it as such and narrow the claim. If the inaccessible source is pivotal and no adequate alternative exists, leave the claim unresolved and name the next discriminating check.
 
 ### S5 — Synthesize
 
@@ -1359,6 +1361,8 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 | Analysis | Are measures commensurate? Are contradictions, missing evidence, uncertainty, alternatives, bias and causal limits handled? |
 | Task and delivery | Does the result answer the decision and material sub-questions, follow the requested language/format, and disclose what could not be verified? |
 | Efficiency and reliability | Record tokens, searches/tool calls, latency, failures and recovery when available. Otherwise label the proxy. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
+
+For a within-task token diagnostic, optionally report measured input + output tokens per predeclared pivotal claim that passes citation and factual checks. Keep the accepted-claim count visible; this ratio is descriptive, not a quality score. Compare only matched prompt, packet, model, tools and settings. A run with a critical failure is not an efficiency improvement, even if it is shorter. If token usage is unavailable, mark it unknown instead of estimating from answer length.
 
 For critical claims, report factual support and citation support separately from completeness and presentation. A fabricated source or unsupported pivotal claim is a critical failure; presentation or a weighted average cannot hide it. Define acceptance criteria before grading and set thresholds for the task's risk, not as universal constants. If forecasts have resolved outcomes and a suitable reference class, assess calibration on those forecasts; do not convert ordinary research confidence into unsupported probabilities.
 

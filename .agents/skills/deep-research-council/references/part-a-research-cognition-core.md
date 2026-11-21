@@ -103,6 +103,8 @@ Ask only what changes the research. If ≥2 brief elements are missing and a wro
 
 **4.6 Pivot triggers (return to S2) when:** a finding kills a hypothesis the plan relied on; your vocabulary is wrong for the field; a better primary source type appears; two T1 sources contradict.
 
+**4.7 Source-access recovery.** When a material source fails to open, record its URL or source ID, access date and observed failure. Do not repeat a deterministic block, bypass access controls or treat a search snippet as a read source; use Part N's bounded retry only for a clearly transient error and Part T for quota or host-limit failures. Seek the closest legitimate alternative in this order: the same publisher's accessible release, data table, API or versioned repository; an official mirror or record that exposes the underlying evidence; then an independent authoritative source measuring the same claim. Preserve dates, versions, definitions and origin links. A mirror or a second report derived from the same dataset is not independent corroboration. If only a secondary summary is available, label it as such and narrow the claim. If the inaccessible source is pivotal and no adequate alternative exists, leave the claim unresolved and name the next discriminating check.
+
 ### S5 — Synthesize
 
 **5.1 Claim Ledger (`claim_ledger.md`)**

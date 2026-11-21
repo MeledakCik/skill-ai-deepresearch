@@ -1,6 +1,6 @@
 {
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.0.0",
+  "suite_version": "1.1.0",
   "seed_date": "2026-11-21",
   "maintainer_fixture": true,
   "tasks": [
@@ -35,6 +35,30 @@
       "prompt_heading": "CP-EN-04",
       "packet": "corpora/library-evening-pilot/",
       "purpose": "Source genealogy and independence audit"
+    },
+    {
+      "id": "CP-ID-05",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-05",
+      "packet": "corpora/source-access-recovery/",
+      "purpose": "Recover a final value from an accessible official record after the primary page is blocked"
+    },
+    {
+      "id": "CP-EN-06",
+      "track": "closed-packet",
+      "language": "en",
+      "prompt_heading": "CP-EN-06",
+      "packet": "corpora/primary-source-conflict/",
+      "purpose": "Resolve apparent disagreement by comparing population, construct, uncertainty and source limits"
+    },
+    {
+      "id": "CP-ID-07",
+      "track": "closed-packet",
+      "language": "id",
+      "prompt_heading": "CP-ID-07",
+      "packet": "corpora/research-resume/",
+      "purpose": "Continue from a verified research checkpoint and update the decision with new evidence"
     },
     {
       "id": "LIVE-ID-01",

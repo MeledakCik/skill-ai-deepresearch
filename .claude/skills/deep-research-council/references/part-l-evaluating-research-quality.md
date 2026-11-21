@@ -59,6 +59,8 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 | Task and delivery | Does the result answer the decision and material sub-questions, follow the requested language/format, and disclose what could not be verified? |
 | Efficiency and reliability | Record tokens, searches/tool calls, latency, failures and recovery when available. Otherwise label the proxy. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
 
+For a within-task token diagnostic, optionally report measured input + output tokens per predeclared pivotal claim that passes citation and factual checks. Keep the accepted-claim count visible; this ratio is descriptive, not a quality score. Compare only matched prompt, packet, model, tools and settings. A run with a critical failure is not an efficiency improvement, even if it is shorter. If token usage is unavailable, mark it unknown instead of estimating from answer length.
+
 For critical claims, report factual support and citation support separately from completeness and presentation. A fabricated source or unsupported pivotal claim is a critical failure; presentation or a weighted average cannot hide it. Define acceptance criteria before grading and set thresholds for the task's risk, not as universal constants. If forecasts have resolved outcomes and a suitable reference class, assess calibration on those forecasts; do not convert ordinary research confidence into unsupported probabilities.
 
 ### Compare versions without overclaiming

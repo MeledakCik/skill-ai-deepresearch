@@ -18,6 +18,18 @@ Hitung tingkat kunjungan pada jam yang datanya tersedia dan skenario sensitivita
 
 Create a compact source genealogy for the packet. Identify which items contain primary observations, which repeat another source, which measure a different population/period, and which provide no verifiable evidence. Cite exact locators and state how many independent origins support the pilot's observed rate.
 
+## CP-ID-05
+
+Dengan hanya memakai paket ini, verifikasi apakah angka realisasi final program 2025 adalah 72%. Halaman PDF resmi tidak dapat diakses, tetapi paket mungkin berisi sumber resmi pengganti. Cari angka final, definisi pembilang/penyebut, tanggal atau status revisi, dan asal sumber yang benar-benar mendukungnya. Tandai apa yang tetap tidak terverifikasi; jangan memperlakukan log kegagalan atau snippet sebagai isi PDF.
+
+## CP-EN-06
+
+The draft says district adult literacy reached 91% in 2025, up 9 percentage points because of the campaign. Using only the packet, assess whether the official figures conflict, what each actually measures, and what the evidence supports about a trend or cause. Give a corrected one-sentence headline with exact locators and state what remains unresolved.
+
+## CP-ID-07
+
+Lanjutkan riset dari `handoff.md`; gunakan hanya checkpoint dan bukti lanjutan yang disediakan. Perbarui memo keputusan maksimal 140 kata. Pertahankan temuan yang sudah terverifikasi, perbarui status interval yang sebelumnya hilang, hitung ulang angka gabungan, dan tulis batas kesimpulan serta langkah berikutnya. Jangan mengulang pencarian atau menyalin seluruh laporan lama.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.0.0",
+  "suite_version": "1.1.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -32,11 +32,19 @@
       },
       "cost_and_reliability": {
         "input_tokens": null,
+        "cached_input_tokens": null,
         "output_tokens": null,
         "searches": null,
         "tool_calls": null,
         "wall_time_seconds": null,
         "tool_failures_or_unavailable": []
+      },
+      "token_efficiency_diagnostic": {
+        "predeclared_pivotal_claims_accepted": null,
+        "input_plus_output_tokens": null,
+        "tokens_per_accepted_pivotal_claim": null,
+        "all_critical_quality_gates_passed": null,
+        "comparable_run_conditions": null
       },
       "human_review": {
         "blinded_to_version": null,

@@ -1,10 +1,10 @@
 # Deep Research Regression Pack
 
-Version: `1.0.0`  
+Version: `1.1.0`
 Seed date: `2026-11-21`  
 Mode: manual evaluation; this pack contains no claimed scores or pass rates.
 
-This maintainer fixture turns Part L5 into a repeatable, low-cost check. It separates evidence retrieval from report quality, includes synthetic multi-file evidence and dated live-search prompts, and keeps answer keys away from the evaluated agent.
+This maintainer fixture turns Part L5 into a repeatable, low-cost check. It separates evidence retrieval from report quality, includes synthetic multi-file evidence and dated live-search prompts, and keeps answer keys away from the evaluated agent. The added closed cases target official-source fallback, apparent conflicts between unlike measures, and continuation from a verified checkpoint.
 
 ## Run a task
 
@@ -26,6 +26,8 @@ Use explicit denominators:
 - Critical-claim coverage = preidentified critical claims with adequate source locators / all preidentified critical claims.
 - Live discovery is a task-level decisive-source hit rate, not recall over the unknown total contents of the web.
 - Cost is token/search/tool/time usage per task that clears its critical gates, when the host exposes those values. Mark unavailable values as unknown; do not estimate them.
+- Optional token-efficiency diagnostic = measured input + output tokens / predeclared pivotal claims that passed factual and citation checks. Report the accepted-claim count beside the ratio. Do not compute it when the count is zero, do not use it as a quality score, and do not call a run more efficient if it failed a critical gate.
+- Compare that diagnostic only across matched prompt, packet, model, tools and settings. Keep costs per task visible; a pooled ratio across unlike tasks can conceal an expensive or weak case.
 
 The answer key is intentionally separate from the prompts. Do not expose `rubrics.md` to the evaluated agent. `manifest.json` is an operator index; share only the selected prompt and allowed packet with the agent. This pack is a maintainer aid, not a claim that Codex or the skill has already passed it.
 
@@ -36,3 +38,6 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `rubrics.md`: hidden acceptance criteria and live seed observations.
 - `run-template.json`: one record per run; leave scores null until a human or defined evaluator scores them.
 - `corpora/library-evening-pilot/`: synthetic source packet and deliberately flawed draft for closed-packet evaluation.
+- `corpora/source-access-recovery/`: synthetic official-source access failure with an official final data alternative.
+- `corpora/primary-source-conflict/`: synthetic official measures with different populations, constructs and uncertainty.
+- `corpora/research-resume/`: a verified checkpoint plus a later source that resolves the pending missing-data question.
