@@ -1,0 +1,7 @@
+record_id,stage,decision,reason,full_text_status
+R01,full-text,include,Adult hypertension primary-care RCT; SMS reminder; eligible adherence outcome at 12 weeks,Retrieved
+R02,full-text,include,Adult hypertension primary-care RCT; SMS reminder; validated adherence outcome at 24 weeks,Retrieved
+R03,full-text,pending,Potentially eligible adult hypertension SMS trial; abstract omits follow-up and full outcome definition,Unavailable after one request
+R04,deduplication,remove,Same DOI and article as R01,Not separately screened
+R05,title-abstract,exclude,Diabetes sample; hypertension subgroup not separately reported,Not sought
+R06,title-abstract,exclude,Four-week follow-up is below the prespecified eight-week minimum,Not sought

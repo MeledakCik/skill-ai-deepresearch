@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "suite_id": "deep-research-regression-mini",
-  "suite_version": "1.1.0",
+  "suite_version": "1.2.0",
   "run": {
     "run_id": "",
     "started_at": "",
@@ -21,6 +21,7 @@
       "completed_at": "",
       "answer_artifact": "",
       "opened_source_ids_or_urls": [],
+      "search_log": [],
       "cited_locators": [],
       "acceptance_checks": [],
       "critical_failures": [],

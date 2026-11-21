@@ -30,6 +30,10 @@ The draft says district adult literacy reached 91% in 2025, up 9 percentage poin
 
 Lanjutkan riset dari `handoff.md`; gunakan hanya checkpoint dan bukti lanjutan yang disediakan. Perbarui memo keputusan maksimal 140 kata. Pertahankan temuan yang sudah terverifikasi, perbarui status interval yang sebelumnya hilang, hitung ulang angka gabungan, dan tulis batas kesimpulan serta langkah berikutnya. Jangan mengulang pencarian atau menyalin seluruh laporan lama.
 
+## CP-EN-08
+
+Using only the supplied packet, audit whether the board can call this a completed systematic review. Report the record flow and each exclusion or unresolved full-text status. Then write a dated protocol addendum for the remaining search and screening: preserve the already-run searches as preliminary, specify what must be logged, and explain whether synthesis or pooling is defensible. Do not browse or invent records.
+
 ## LIVE-ID-01
 
 Per tanggal saat tugas dijalankan, cari rilis inflasi Indonesia terbaru yang diterbitkan BPS. Laporkan bulan referensi, tanggal rilis, dan angka year-on-year hanya jika halaman/sumber primer BPS dapat dibuka atau dikonfirmasi melalui sumber resmi BPS lain. Jangan menyamakan bulan rujukan dengan tanggal publikasi. Cantumkan tanggal akses, URL dan locator; jika halaman terblokir atau hasil pencarian hanya berupa snippet, ungkapkan batas itu dan jangan mengarang detail.

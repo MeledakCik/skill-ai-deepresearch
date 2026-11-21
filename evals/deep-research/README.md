@@ -1,15 +1,13 @@
 # Deep Research Regression Pack
 
-Version: `1.1.0`
-Seed date: `2026-11-21`  
-Mode: manual evaluation; this pack contains no claimed scores or pass rates.
+Version: `1.2.0` · Seed date: `2026-11-21` · Mode: manual evaluation; no scores or pass rates are claimed.
 
-This maintainer fixture turns Part L5 into a repeatable, low-cost check. It separates evidence retrieval from report quality, includes synthetic multi-file evidence and dated live-search prompts, and keeps answer keys away from the evaluated agent. The added closed cases target official-source fallback, apparent conflicts between unlike measures, and continuation from a verified checkpoint.
+This maintainer fixture turns Part L5 into a repeatable, low-cost check. Its 10 tasks comprise eight synthetic closed-packet cases and two dated live-search prompts. It separates evidence retrieval from report quality and keeps answer keys away from the evaluated agent. Closed cases cover official-source fallback, unlike measures, checkpoint continuation and a protocol-led review audit.
 
 ## Run a task
 
 1. Pick one task ID from `manifest.json`. Use a fresh conversation and a clean temporary workspace. For a closed task, copy only the named corpus and its prompt into that workspace. For a live task, give the prompt and web access, but do not provide `rubrics.md`.
-2. Record the task-pack, skill, model, tools/settings and run date in a copy of `run-template.json`. Do not put private user files or secrets into this public fixture's run record.
+2. Record the task-pack, skill, model, tools/settings and run date in a copy of `run-template.json`. For live or reproducibility runs, preserve exact materially distinct queries and filters in `search_log`, with tool/index, date, language, exposed result count, opened source IDs and query purpose/outcome. Leave it empty when no search was run. Do not put private user files or secrets into this public fixture's run record.
 3. Save the unedited answer and its source locators. Score it against `rubrics.md` only after the answer is complete. For a blind review, hide the skill version and shuffle the versions before a human reviewer sees the output.
 4. Keep retrieval, citation support, reasoning, coverage and cost separate. An unsupported pivotal claim or invented source is a critical failure regardless of prose quality. If a source has changed or cannot be opened, refresh the live seed or record the access limit; do not force the old answer.
 5. Compare versions only with the same prompt, evidence packet, model, tools and effort. If any of those change, mark the run as a new condition. With this small set, report observed task outcomes and reviewer disagreement; do not claim statistical significance.
@@ -41,3 +39,4 @@ The answer key is intentionally separate from the prompts. Do not expose `rubric
 - `corpora/source-access-recovery/`: synthetic official-source access failure with an official final data alternative.
 - `corpora/primary-source-conflict/`: synthetic official measures with different populations, constructs and uncertainty.
 - `corpora/research-resume/`: a verified checkpoint plus a later source that resolves the pending missing-data question.
+- `corpora/systematic-review-audit/`: synthetic search export, duplicate, screening decisions, two eligible studies and one unavailable full text.

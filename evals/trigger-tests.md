@@ -7,6 +7,7 @@ Run each prompt in a fresh chat and note which skill loaded. Target: >= 9 of 10 
 |:---|:---|
 | deep research: dampak QRIS terhadap UMKM di Jawa Barat 2024-2026 | deep-research-council |
 | Susun protokol systematic review untuk intervensi X dan catat query serta alur screening | deep-research-council |
+| Audit paket systematic review ini: cek query log, duplikasi, full text yang hilang, alasan eksklusi dan apakah hasilnya boleh dipool | deep-research-council |
 | Buat paket evaluasi deep research yang bilingual, pisahkan closed-packet dari live search, dan definisikan acceptance rule sebelum menilai | deep-research-council |
 | Lanjutkan riset dari checkpoint, jangan ulangi sumber yang sudah tuntas, dan verifikasi satu bukti baru yang dapat mengubah keputusan | deep-research-council |
 | Sumber resmi mengembalikan 403; cari fallback resmi, pisahkan fakta yang terverifikasi dari yang belum, dan jangan mengutip snippet sebagai isi sumber | deep-research-council |

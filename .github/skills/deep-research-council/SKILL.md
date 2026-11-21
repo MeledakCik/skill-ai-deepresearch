@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.12.0"
+  version: "17.13.0"
   source: deep-research-domain-council
 ---
 
@@ -14,7 +14,7 @@ metadata:
 Quick checks one narrow claim. Standard compares independent origins across questions. Deep adds a search for rival explanations and a sensitivity check. Size the search to the decision and the available evidence. For an explicitly scoping or systematic review, use the protocol gate in Part R6 before searching.
 
 1. Name the decision, scope, pivotal question and observation that could overturn the leading answer. Set inclusion criteria before selecting results. Clarify only assumptions that would materially change the work.
-2. Map primary sources within the requested scope. Trace repeated reports to their original measurements. Count only sources opened or supplied. For date-bound questions at every tier, check for changes through the requested date. In a closed packet, use its latest eligible evidence and disclose any coverage gap. If a material source is inaccessible, use the recovery ladder in Part A; a failure log or search snippet is not evidence for the source's claim.
+2. Map primary sources within the requested scope. Trace repeated reports to their original measurements. Count only sources opened or supplied. For date-bound questions at every tier, check for changes through the requested date. In a closed packet, use its latest eligible evidence and disclose any coverage gap. If a material source is inaccessible, use the recovery ladder in Part A; a failure log or search snippet is not evidence for the source's claim. For Standard/Deep or explicit reproducibility requests, keep the compact search log in Part A; a Quick lookup needs only a one-line method note.
 3. Work one question at a time or split independent lanes when appropriate. Keep a row per pivotal claim with URL or supplied source ID, table/section, data origin, population, period, units and limitation. Label relevant authorized internal evidence.
 4. Seek the strongest counterexample using different vocabulary, language or source type. For competing results, compare denominators, designs, selection bias and overlapping samples. Test whether excluding a disputed source or changing a plausible assumption flips the verdict. Part R5 has a worked example.
 5. Recheck each pivotal sentence against its cited passage. Close a question when a different search after the countercheck adds no decision-changing evidence. If budget ends first, retain the open question and next discriminating search.

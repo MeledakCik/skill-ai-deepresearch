@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.13.0
+
+Added a compact search-log standard for Standard/Deep research and reproducibility requests while keeping Quick work lightweight. Expanded the regression pack with a protocol-led review audit covering search records, deduplication, screening, unavailable full text and synthesis limits.
+
 ## v17.12.0
 
 Deepened research resilience with a source-access recovery ladder that preserves provenance, avoids retry/access-control loops, and bounds claims when primary evidence stays unavailable. Expanded the manual regression pack with source fallback, non-comparable official measures, and research checkpoint continuation. Added a matched-run token-per-verified-pivotal-claim diagnostic that cannot override critical quality failures.

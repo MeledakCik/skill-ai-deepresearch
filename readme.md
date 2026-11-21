@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.11.0 |
+| **Versi** | 17.13.0 |
 | **Format** | 15 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -51,7 +51,7 @@ Setelah mengedit `deep-research-domain-council/SKILL.md`, jalankan `python scrip
 
 ## Riset dengan anggaran terbatas
 
-Mulai dari klaim yang paling memengaruhi keputusan. Catat temuan, lokasi bukti, asal data, satuan, dan bukti yang berlawanan. Dua artikel yang mengutip survei yang sama dihitung sebagai satu asal data. Dengan catatan ini, agen dapat memeriksa angka atau melanjutkan pencarian tanpa membawa seluruh halaman ke giliran berikutnya. Untuk aplikasi chat dengan konteks kecil, tersedia adapter `INSTRUCTIONS-lite.md` dan versi API `system-prompt-lite.md`.
+Mulai dari klaim yang paling memengaruhi keputusan. Catat temuan, lokasi bukti, asal data, satuan, dan bukti yang berlawanan. Dua artikel yang mengutip survei yang sama dihitung sebagai satu asal data. Untuk riset Standard/Deep, simpan log ringkas berisi query yang berbeda secara material, alat, tanggal, bahasa, filter, jumlah hasil jika tersedia, dan sumber yang dibuka. Quick cukup memakai satu baris metode. Log ini membantu memeriksa langkah riset dan melanjutkan dari checkpoint tanpa membawa seluruh halaman ke giliran berikutnya. Untuk aplikasi chat dengan konteks kecil, tersedia adapter `INSTRUCTIONS-lite.md` dan versi API `system-prompt-lite.md`.
 
 Saat kuota menipis, agen memprioritaskan satu hasil yang bisa dipakai. Untuk kode, agen menjalankan alur utamanya dan mencatat pemeriksaan yang lolos. Untuk riset, agen menyerahkan temuan yang sudah memiliki sumber dan menandai pertanyaan terbuka. Checkpoint berisi tujuan, hasil terverifikasi, pekerjaan tertunda, tindakan yang hasilnya belum diketahui, dan langkah berikutnya. Jika platform memutus sesi tanpa peringatan, sesi berikutnya dapat memakai checkpoint terakhir yang berhasil disimpan atau dikirim di chat. Contoh perintah lokal ada di [panduan pemulihan](skills/usage-limit-recovery/references/part-t-usage-limit-recovery.md).
 
@@ -275,6 +275,14 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.13.0
+
+Menambahkan log pencarian ringkas untuk riset Standard/Deep dan permintaan yang perlu direproduksi; Quick tetap ringan. Paket evaluasi kini memiliki 10 tugas, termasuk audit tinjauan sistematis dengan duplikasi, full text yang belum tersedia, dan batas sintesis.
+
+### v17.12.0
+
+Menambahkan pemulihan sumber resmi yang terblokir, evaluasi sumber resmi yang mengukur hal berbeda, dan kelanjutan riset dari checkpoint. Efisiensi token diukur bersama klaim penting yang lolos verifikasi.
 
 ### v17.11.0
 

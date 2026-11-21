@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.12.0"
+  version: "17.13.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -241,6 +241,7 @@ Each sub-agent receives: objective, scope boundaries, output schema, source stan
 
 - `research_brief.md` (S1)
 - `source_log.md`: ID, title, URL, author/publisher, date, tier, origin-of, accessed-at, one-line relevance
+- `search_log.md` (Standard/Deep or explicit reproducibility requests): exact materially distinct query, search tool/index, date, language, filters/scope, result count when exposed, opened source IDs, and the question or decision it tested. Record why a query pivoted or stopped; do not paste result pages or log every wording variation. Quick work can use a one-line method note. For protocol-led reviews, follow the fuller record in Part R6.
 - `claim_ledger.md` (S5.1)
 - `contradictions.md` (S5.4)
 - `open_questions.md`: gaps that survive to the report
@@ -1347,8 +1348,8 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 
 - Stratify only across dimensions that matter to this skill: Bahasa Indonesia and English when used; supplied files and live web; fact checks and report-level synthesis; stable and time-sensitive facts. Include a compact set of failure cases such as a false premise, conflicting denominators, duplicated reports from one origin, a blocked source, a missing result, unsupported citations and a causal claim without an identifying design.
 - For closed packets, freeze the task's eligible files and date. Include relevant evidence plus realistic distractors or noise when useful. Record each required evidence item, its source origin and exact locator (page, section, table, row or timestamp), expected claims, material caveats and the acceptance rule. If OCR, a chart or another extraction step is uncertain, record that limitation instead of treating a guessed value as ground truth.
-- For live tasks, date the prompt and reference answer, store the query and URLs actually opened, and recheck time-sensitive facts at evaluation time. Do not grade a changed fact against stale ground truth. A web search has no known complete source universe, so report task-level hits and failures; do not label them global retrieval recall.
-- For every run, record the task-pack version, skill/prompt version, model, tools, effort or relevant settings, date, completed task, source locators and any unavailable tools. Keep the same setup for before/after comparisons; if a model or tool changes, mark that as a separate factor rather than attributing the difference to the skill.
+- For live tasks, date the prompt and reference answer, store exact query-log entries and URLs actually opened, and recheck time-sensitive facts at evaluation time. Do not grade a changed fact against stale ground truth. A web search has a bounded, unknown source universe, so report task-level hits and failures; do not label them global retrieval recall.
+- For every run, record the task-pack version, skill/prompt version, model, tools, effort or relevant settings, date, completed task, source locators and any unavailable tools. For Standard/Deep research tasks, preserve the compact search log as an artifact. Keep the same setup for before/after comparisons; if a model or tool changes, mark that as a separate factor rather than attributing the difference to the skill.
 
 ### Score observable evidence and outcomes
 
@@ -1360,7 +1361,7 @@ Use two complementary tracks. A **closed evidence packet** makes evaluation repr
 | Source independence | Do reports trace to independent data origins, or repeat the same press release, study or dataset? Count shared origins once. |
 | Analysis | Are measures commensurate? Are contradictions, missing evidence, uncertainty, alternatives, bias and causal limits handled? |
 | Task and delivery | Does the result answer the decision and material sub-questions, follow the requested language/format, and disclose what could not be verified? |
-| Efficiency and reliability | Record tokens, searches/tool calls, latency, failures and recovery when available. Otherwise label the proxy. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
+| Efficiency and reliability | Record tokens, searches/tool calls, latency, failures, recovery and the compact query log when available. Otherwise label the proxy. Judge whether queries tested distinct uncertainties and found useful evidence; raw query count alone is not efficiency. Compare cost per task that passes its quality gates, not cost per URL or raw answer. |
 
 For a within-task token diagnostic, optionally report measured input + output tokens per predeclared pivotal claim that passes citation and factual checks. Keep the accepted-claim count visible; this ratio is descriptive, not a quality score. Compare only matched prompt, packet, model, tools and settings. A run with a critical failure is not an efficiency improvement, even if it is shorter. If token usage is unavailable, mark it unknown instead of estimating from answer length.
 

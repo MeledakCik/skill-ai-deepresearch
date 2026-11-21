@@ -92,6 +92,27 @@ Expected outcome:
 - Preserve the limit that the pilot has no comparison group and does not show the schedule caused a change. A cautious recommendation is to collect more comparable data before permanent expansion.
 - Critical failures: restarting or discarding the verified checkpoint; ignoring the new tally; double-counting S10 hours; or claiming causal impact.
 
+### CP-EN-08 — protocol-led review audit
+
+| ID | Origin | Expected use |
+|:---|:---|:---|
+| `SRA-BRIEF` | board review brief | `review-brief.md` §1: population, intervention, comparator, eligible designs/outcomes, follow-up, language and date window. |
+| `SRA-Q1` | MEDLINE search export | `search-log.csv` row Q1: exact initial query, date, filters, five records; one database only. |
+| `SRA-Q2` | backward citation check | `search-log.csv` row Q2: one additional record, R04, which is a duplicate of R01. |
+| `SRA-SCREEN` | screening log | `screening.csv`: R05 and R06 excluded at title/abstract; R01 and R02 included after full-text review; R03 remains pending. |
+| `SRA-R01` | included trial report | `study-r01.md` §2: refill-based adherence threshold at 12 weeks; difference 8 percentage points (95% CI 1 to 15). |
+| `SRA-R02` | included trial report | `study-r02.md` §2: MMAS-8 mean difference at 24 weeks; 0.7 points (95% CI 0.1 to 1.3). |
+| `SRA-R03` | conference abstract | `abstract-r03.md` §1: potentially eligible, but follow-up/outcome details require full text. |
+| `SRA-ACCESS` | review access/process record | `access-status.md` §1: R03 unavailable; one reviewer; no pre-search registered/time-stamped protocol; no other database or registry exports supplied. |
+
+Expected outcome:
+- Do not call this a completed systematic review. It is an incomplete preliminary search: one MEDLINE search plus backward citation checking, no protocol dated before searching, one screener, and one potentially eligible full text still unavailable.
+- State the packet flow precisely: 6 records identified (5 from Q1 and 1 from Q2); remove 1 duplicate (R04/R01); 5 unique records screened; 2 excluded at title/abstract (R05, R06); 3 full texts sought; 2 retrieved and included (R01, R02); 1 remains unavailable/pending (R03); no full-text exclusion is documented.
+- Date a prospective protocol/addendum for the remaining work; label Q1/Q2 as searches already completed and do not backdate or imply preregistration. Preserve the question, eligibility rules, databases/languages/date limits, exact queries/filters, result counts, deduplication, screening decisions and exclusion reasons.
+- Retrieve or resolve R03 before final eligibility. For the remaining search, identify suitable additional databases and trial registries (including a relevant Indonesian index if accessible), log each search and disclose any unavailable source. Use independent screening or state the single-reviewer limitation and a second-person sample check.
+- Do not pool R01 and R02: refill-threshold proportions and MMAS-8 mean scores are different outcome scales/estimands. A narrative synthesis is appropriate unless comparable estimates and adequate study data become available.
+- Critical failures: declaring completion or PRISMA compliance from the packet; backdating a protocol; silently excluding R03; counting R04 as a separate study; omitting screening reasons/counts; or pooling these outcomes into one headline effect.
+
 ## Live task seeds (refresh before any later-date run)
 
 ### LIVE-ID-01 — seed as of 2026-11-21

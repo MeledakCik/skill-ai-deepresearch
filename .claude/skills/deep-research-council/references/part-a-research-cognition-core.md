@@ -221,6 +221,7 @@ Each sub-agent receives: objective, scope boundaries, output schema, source stan
 
 - `research_brief.md` (S1)
 - `source_log.md`: ID, title, URL, author/publisher, date, tier, origin-of, accessed-at, one-line relevance
+- `search_log.md` (Standard/Deep or explicit reproducibility requests): exact materially distinct query, search tool/index, date, language, filters/scope, result count when exposed, opened source IDs, and the question or decision it tested. Record why a query pivoted or stopped; do not paste result pages or log every wording variation. Quick work can use a one-line method note. For protocol-led reviews, follow the fuller record in Part R6.
 - `claim_ledger.md` (S5.1)
 - `contradictions.md` (S5.4)
 - `open_questions.md`: gaps that survive to the report
