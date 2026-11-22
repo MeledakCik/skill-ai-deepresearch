@@ -1,0 +1,34 @@
+{
+  "task_id": "CP-EN-10",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:55:26Z",
+  "finished_at": "2026-11-22T14:56:52Z",
+  "wall_time_seconds": 85.81,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-10/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md",
+    "skills/platform-migration/SKILL.md",
+    "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+  ],
+  "packet_files_supplied": [
+    "android-app-inventory.md",
+    "api-and-data-contract.md",
+    "dispatch-observations.md",
+    "product-brief.md",
+    "source-map.md"
+  ],
+  "input_tokens": 87622,
+  "cached_input_tokens": 72576,
+  "output_tokens": 2777,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:55:27.160170Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-22T14:56:49.688486Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a203c1-49d3-7fb0-bd10-51076c0cbc5a hook_name=legacy_notify error=The filename or extension is too long. (os error 206)"
+  ]
+}

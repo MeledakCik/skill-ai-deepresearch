@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.26.0 |
+| **Versi** | 17.28.0 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -276,6 +276,14 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.28.0
+
+Memperjelas audit sitasi setelah uji migrasi langsung memakai tautan versi dan kompatibilitas yang hanya tampil sebagai hasil pencarian/tautan terkait tanpa dibuka satu per satu. Tautan tersebut kini hanya petunjuk; klaim rilis, minimum runtime, kompatibilitas, SDK, dan distribusi perlu halaman masing-masing yang berhasil dibuka serta locator dalam ledger klaim-sumber. Rubrik evaluasi memeriksa setiap halaman versi yang dikutip. Runner juga membedakan overrun saat task terakhir selesai (run lengkap tetapi melewati anggaran) dari overrun sebelum semua task selesai (run parsial yang dapat dilanjutkan).
+
+### v17.27.0
+
+Menjadikan audit URL sebagai allowlist: tautan hanya boleh mendukung klaim setelah halaman berhasil dibuka pada sesi ini dan judul, publisher, isi, serta locator cocok. Snippet, halaman 403, tautan belum dibuka, dan endpoint pencarian bertopik lain harus dikeluarkan; klaim penting yang tersisa dinyatakan belum terverifikasi. Memperketat migrasi dengan baris kesiapan terpisah untuk setiap target dan status eksplisit `production feasibility: unresolved` serta `schedule: conditional` ketika akses belum terkonfirmasi.
 
 ### v17.26.0
 

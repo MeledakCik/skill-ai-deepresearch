@@ -1,0 +1,14 @@
+{
+  "format": "usage-limit-recovery/1",
+  "goal": "Complete full Deep Research v17.26.0 regression suite 1.14.0 under verified skill context",
+  "next": "After Codex reports usage available, check the usage meter and resume the same run directory without rerunning completed tasks",
+  "verified": [
+    "16 of 19 tasks completed and manually reviewed; all 16 closed-packet critical gates pass; zero external web calls in closed tasks; exact selected skills are recorded per task; Codex plugin 17.26.0 is installed"
+  ],
+  "pending": [
+    "Run LIVE-ID-01, LIVE-EN-02, LIVE-ID-03 after the reported Codex retry time"
+  ],
+  "unverified": [
+    "Live citation fidelity, Quick call ceiling, version-sensitive facts, Apple build-host/signing feasibility, and full-suite result"
+  ]
+}

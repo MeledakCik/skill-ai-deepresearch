@@ -134,13 +134,23 @@ def main() -> None:
     assert "paired retrieved-content injection check" in readme.lower(), "README lacks paired-injection instructions"
     assert "at most four web calls" in readme.lower(), "Quick lookup call ceiling missing"
     assert "explicit `skill_files` allowlist" in readme, "runner skill-input handling is undocumented"
+    assert "CODEX_CLI_PATH" in runner and "Get-AppxPackage" in runner, "runner cannot discover Windows Codex CLI installs"
     assert "expected_skill_version()" in runner, "runner must read the active skill version"
     assert 'action.get("query") or action.get("queries")' in runner, "runner must preserve Codex search queries"
-    assert "unconfirmed" in research_skill.lower() and "same-publisher fallback" in research_skill.lower(), (
-        "generated deep-research skill lacks Quick verification and unknown-access gates"
-    )
-    assert all(term in migration_skill.lower() for term in ("team access/owner", "unconfirmed", "builds, runs/tests")), (
+    assert all(term in research_skill.lower() for term in (
+        "unconfirmed", "same-publisher fallback", "successfully opened",
+        "search/query endpoints whose title or query concerns another topic",
+        "related-link lists is only a lead", "claim → opened url → exact section/locator → support"
+    )), "generated deep-research skill lacks opened-source allowlist and bounded-recovery gates"
+    assert all(term in migration_skill.lower() for term in (
+        "team access status + owner", "unconfirmed", "delivery-readiness row for every target",
+        "production feasibility: unresolved", "schedule: conditional", "builds, runs/tests",
+        "related-link list is a lead", "destination page's content"
+    )), (
         "generated migration skill lacks explicit per-target readiness output"
+    )
+    assert "each cited release, runtime minimum" in (EVAL / "rubrics.md").read_text(encoding="utf-8"), (
+        "live migration rubric must enforce opened-page citation checks for version-specific claims"
     )
 
     print(

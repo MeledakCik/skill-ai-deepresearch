@@ -1,0 +1,7 @@
+**Recommend CargoLoop for the limited deployment.** It clears all three gates. Its trailing 12-month availability was 99.92%, above the 99.9% minimum. Its acceptance test demonstrated WMS API v2 reads and writes for both inventory and orders. Its submission reports full export of inventory, orders and audit records in six calendar days, within the seven-day limit. (`SN-REQ` §1, `SN-VEND` §2)
+
+Northstar meets the availability and export gates at 99.98% and three days. Its API test demonstrated reads only. Writes are planned and untested. Northstar’s lower three-year cost (Rp 280 juta versus Rp 340 juta) and shorter onboarding estimate (eight versus ten weeks) apply only after all gates are met. (`SN-VEND` §§1–2, `SN-REQ` §§1–2)
+
+**Give WDRI no weight in this decision.** It ranks Northstar 94/100 and CargoLoop 81/100 using automation (65%), worker satisfaction (30%) and subscription price (5%). The Alliance provides no item-level data or validation for those weights. Northstar sponsored the research and supplied platform information. (`SN-INDEX` §§1–2)
+
+Four named publishers and two cited newsletters appear in the citation chain. All scores trace to **one underlying origin**, the Alliance scorecard, with **zero independent replications**. The regional register gives WDRI no formal recognition and leaves informal use open. (`SN-INDEX` §§1–2, `SN-TRADE` §§1–2, `SN-CONSULT` §§1–2, `SN-VENDOR` §§1–2, `SN-REG` §1)

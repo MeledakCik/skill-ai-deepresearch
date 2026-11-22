@@ -1,0 +1,34 @@
+{
+  "task_id": "CP-ID-09",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:54:13Z",
+  "finished_at": "2026-11-22T14:55:26Z",
+  "wall_time_seconds": 73.58,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-ID-09/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md",
+    "skills/platform-migration/SKILL.md",
+    "skills/platform-migration/references/part-y-researching-cross-platform-product-migra.md"
+  ],
+  "packet_files_supplied": [
+    "api-and-data.md",
+    "product-brief.md",
+    "repository-inventory.md",
+    "source-map.md",
+    "workflow-and-telemetry.md"
+  ],
+  "input_tokens": 27095,
+  "cached_input_tokens": 0,
+  "output_tokens": 3042,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:54:13.563332Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-22T14:55:24.130892Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a203c0-262f-7a32-abdc-ffcc65791af6 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)"
+  ]
+}

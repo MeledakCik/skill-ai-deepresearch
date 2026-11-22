@@ -1,0 +1,11 @@
+2026-11-22T14:38:37.452681Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:38:37.452736Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:38:37.467066Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-11-22T14:38:38.871793Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:38:38.871869Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:38:39.866973Z  WARN codex_rmcp_client::oauth::runtime: MCP OAuth preparation failed
+2026-11-22T14:38:39.867131Z  WARN codex_mcp::rmcp_client: MCP server startup failed server_name="depup" error=Token expired
+2026-11-22T14:38:42.698519Z  WARN codex_core_plugins::manager: failed to load recommended plugins
+2026-11-22T14:38:58.532610Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: app runtime provisioning service is unavailable; refusing helper fallback\")" }
+2026-11-22T14:41:52.360875Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a203b1-e181-7c41-b04b-96052280758d hook_name=legacy_notify error=The filename or extension is too long. (os error 206)
+2026-11-22T14:41:52.365717Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: Token expired

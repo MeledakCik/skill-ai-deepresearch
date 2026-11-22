@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.26.0"
+  version: "17.28.0"
   source: deep-research-domain-council
 ---
 
@@ -25,7 +25,7 @@ Find the expensive step first. Use reported input, cached input and output count
 
 Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
 
-Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available. For a Quick web fact check, cap retrieval at four web calls: one narrow search (at most two query variants), open one exact result, and only if blocked or mismatched use one same-publisher fallback search and open. Then stop and mark unresolved; snippets and unrelated URLs are not evidence.
+Start with this core. Open a reference section only to resolve a specific question. On a small context window, work in verified slices. Match scope to the request and the budget actually available. For a Quick web fact check, cap retrieval at four web calls: one narrow search (at most two query variants), open one exact result, and only if blocked or mismatched use one same-publisher fallback search and open. Then stop and mark unresolved; snippets and unrelated URLs are not evidence. A URL appearing in search results or a related-link list is only a lead; count it as opened only when an open action successfully returns that destination page's content. Before delivery, allowlist citations from pages successfully opened this run whose publisher, title and content match the claim. For consequential claims, keep a compact ledger: claim → opened URL → exact section/locator → what it supports. Remove any citation absent from that ledger; exclude search results, snippets, access errors, unopened pages, and search endpoints with a mismatched query/title. If no opened source supports a pivotal claim after the bounded fallback, label it unverified and omit it from the recommendation.
 
 ## Delivery
 

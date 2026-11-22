@@ -1,0 +1,15 @@
+2026-11-22T15:01:48.622114Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T15:01:48.622256Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T15:01:48.638293Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-11-22T15:01:49.980472Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T15:01:49.980541Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T15:01:57.933791Z  WARN codex_rmcp_client::oauth::runtime: MCP OAuth preparation failed
+2026-11-22T15:01:57.933905Z  WARN codex_mcp::rmcp_client: MCP server startup failed server_name="depup" error=Token expired
+2026-11-22T15:02:01.747044Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: app runtime provisioning service is unavailable; refusing helper fallback\")" }
+2026-11-22T15:03:07.006050Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 216ms)... turn_id=01a203c7-1b6b-7113-974f-41655dea2431 retries=1 max_retries=5 sampling_error=stream disconnected before completion: IO error: An existing connection was forcibly closed by the remote host. (os error 10054)
+2026-11-22T15:03:22.256806Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (2/5 in 426ms)... turn_id=01a203c7-1b6b-7113-974f-41655dea2431 retries=2 max_retries=5 sampling_error=request timed out
+2026-11-22T15:03:37.701067Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (3/5 in 762ms)... turn_id=01a203c7-1b6b-7113-974f-41655dea2431 retries=3 max_retries=5 sampling_error=request timed out
+2026-11-22T15:03:53.499209Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (4/5 in 1.656s)... turn_id=01a203c7-1b6b-7113-974f-41655dea2431 retries=4 max_retries=5 sampling_error=request timed out
+2026-11-22T15:04:10.194403Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (5/5 in 3.122s)... turn_id=01a203c7-1b6b-7113-974f-41655dea2431 retries=5 max_retries=5 sampling_error=request timed out
+2026-11-22T15:07:40.077130Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a203c7-1b6b-7113-974f-41655dea2431 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)
+2026-11-22T15:07:40.082912Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: Token expired

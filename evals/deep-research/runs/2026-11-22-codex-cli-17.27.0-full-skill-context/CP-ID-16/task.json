@@ -1,0 +1,30 @@
+{
+  "task_id": "CP-ID-16",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:59:04Z",
+  "finished_at": "2026-11-22T14:59:41Z",
+  "wall_time_seconds": 37.24,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-ID-16/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md"
+  ],
+  "packet_files_supplied": [
+    "committee-acceptance-log.md",
+    "requirements.md"
+  ],
+  "input_tokens": 23126,
+  "cached_input_tokens": 15232,
+  "output_tokens": 715,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:59:05.095785Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-22T14:59:09.972245Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out",
+    "2026-11-22T14:59:10.314065Z  WARN codex_core_plugins::manager: failed to load recommended plugins"
+  ]
+}

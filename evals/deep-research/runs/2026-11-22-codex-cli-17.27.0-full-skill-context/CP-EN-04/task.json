@@ -1,0 +1,36 @@
+{
+  "task_id": "CP-EN-04",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:51:37Z",
+  "finished_at": "2026-11-22T14:52:10Z",
+  "wall_time_seconds": 32.28,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-04/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md",
+    "skills/deep-research-council/references/part-r5-reconciling-evidence-that-could-change-a.md"
+  ],
+  "packet_files_supplied": [
+    "analyst-summary.md",
+    "decision-brief.md",
+    "draft-report.md",
+    "network-dashboard.csv",
+    "pilot-register.csv",
+    "press-release.md",
+    "source-map.md",
+    "telemetry-status.md",
+    "vendor-note.md"
+  ],
+  "input_tokens": 24505,
+  "cached_input_tokens": 0,
+  "output_tokens": 911,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:51:38.448078Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

@@ -1,0 +1,7 @@
+2026-11-22T14:49:40.099390Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:49:40.099500Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:49:40.124265Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-11-22T14:49:44.977083Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out
+2026-11-22T14:49:45.329393Z  WARN codex_core_plugins::manager: failed to load recommended plugins
+2026-11-22T14:49:54.076933Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:49:54.077025Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/

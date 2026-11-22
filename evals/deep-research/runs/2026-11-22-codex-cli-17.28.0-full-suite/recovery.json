@@ -1,0 +1,21 @@
+{
+  "format": "usage-limit-recovery/1",
+  "goal": "Run and manually score the v17.28.0 full Deep Research regression suite 1.16.0, verifying the citation-ledger correction and preserving all task outputs.",
+  "next": "After the primary five-hour window resets (reported for 2026-11-23 02:22 WIB), recheck get_usage_limits. If ordinary usage is available and enough budget remains, run the 19-task suite into this directory; do not overwrite or rerun the completed v17.27.0 artifacts.",
+  "verified": [
+    "v17.28.0 was generated across focused skills and export targets by scripts/sync.py.",
+    "Nine runner unit tests passed, including final-task overrun and mid-run checkpoint semantics.",
+    "Evaluation integrity passed for 19 prompts/packets and strengthened live migration citation checks.",
+    "The full v17.27.0 run completed 19/19; manual score is 18/19 critical gates, with LIVE-ID-03 as the citation failure."
+  ],
+  "pending": [
+    "Run the full v17.28.0 suite against all 19 tasks when usage budget allows.",
+    "Inspect LIVE-ID-03 trace and ensure every cited release/runtime/compatibility URL was individually opened or left unverified.",
+    "Manually score all tasks, record budget overages, and update this run directory."
+  ],
+  "unverified": [
+    "Behavioral effect of the new v17.28.0 citation ledger in live and closed tasks.",
+    "Whether the v17.28.0 full suite completes within the selected run ceilings."
+  ],
+  "run_command": "python evals/deep-research/scripts/run_codex_suite.py --run-dir runs/2026-11-22-codex-cli-17.28.0-full-suite"
+}

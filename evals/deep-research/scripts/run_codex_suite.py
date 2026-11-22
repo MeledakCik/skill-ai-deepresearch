@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -39,6 +40,77 @@ def expected_skill_version() -> str:
     if not match:
         raise ValueError("Active skill version is missing from master SKILL.md")
     return match.group(1)
+
+
+def budget_report(totals: dict[str, int], caps: dict[str, int]) -> dict[str, Any]:
+    """Report between-task ceilings without confusing a complete overrun with a partial run."""
+    limits = {
+        "web_search_tool_calls": caps["max_web_calls"],
+        "input_tokens": caps["max_input_tokens"],
+        "output_tokens": caps["max_output_tokens"],
+    }
+    overages = {metric: max(0, totals.get(metric, 0) - limit) for metric, limit in limits.items()}
+    reached = [metric for metric, limit in limits.items() if totals.get(metric, 0) >= limit]
+    status = "exceeded" if any(overages.values()) else "ceiling_reached" if reached else "within_caps"
+    return {"status": status, "overages": overages, "ceilings_reached": reached}
+
+
+def run_ceiling_stop_reason(budget: dict[str, Any], remaining_task_ids: list[str]) -> str:
+    if budget["status"] != "exceeded":
+        return ""
+    if remaining_task_ids:
+        return "run ceiling exceeded after a completed task; checkpoint saved before the next task"
+    return "run ceiling exceeded during the final task; all selected tasks completed and the overrun is recorded"
+
+
+def windows_app_codex_path() -> str | None:
+    """Find the Codex CLI shipped inside the Windows Store desktop app."""
+    if os.name != "nt":
+        return None
+    powershell = shutil.which("powershell") or shutil.which("pwsh")
+    if not powershell:
+        return None
+    command = (
+        "$package = Get-AppxPackage -Name OpenAI.Codex | "
+        "Sort-Object { [version]$_.Version } -Descending | "
+        "Select-Object -First 1; "
+        "if ($package) { Join-Path $package.InstallLocation 'app\\resources\\codex.exe' }"
+    )
+    try:
+        result = subprocess.run(
+            [powershell, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=10,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    candidate = result.stdout.strip()
+    return candidate if result.returncode == 0 and candidate and Path(candidate).is_file() else None
+
+
+def resolve_codex(explicit_path: str | None = None) -> str | None:
+    """Resolve Codex from an explicit path, CODEX_CLI_PATH, PATH, or Windows app."""
+    candidates = [explicit_path, os.environ.get("CODEX_CLI_PATH"), shutil.which("codex")]
+    if os.name == "nt":
+        candidates.append(windows_app_codex_path())
+    seen: set[str] = set()
+    for candidate in candidates:
+        if not candidate:
+            continue
+        normalized = os.path.normcase(os.path.abspath(os.path.expandvars(os.path.expanduser(candidate))))
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        if Path(normalized).is_file():
+            return normalized
+        located = shutil.which(candidate)
+        if located and Path(located).is_file():
+            return str(Path(located).resolve())
+    return None
 
 
 def read_prompt_bodies() -> dict[str, str]:
@@ -151,11 +223,18 @@ def main() -> int:
     parser.add_argument("--max-input-tokens", type=int, default=1_700_000, help="Checkpoint ceiling checked between tasks")
     parser.add_argument("--max-output-tokens", type=int, default=40_000, help="Checkpoint ceiling checked between tasks")
     parser.add_argument("--force", action="store_true", help="Rerun tasks that already have a completed task.json")
+    parser.add_argument(
+        "--codex",
+        dest="codex_path",
+        help="Optional Codex CLI executable path; otherwise use CODEX_CLI_PATH, PATH, or the installed Windows app",
+    )
     args = parser.parse_args()
 
-    codex = shutil.which("codex")
+    codex = resolve_codex(args.codex_path)
     if not codex:
-        parser.error("Codex CLI was not found on PATH")
+        parser.error(
+            "Codex CLI was not found. Install Codex CLI or set CODEX_CLI_PATH / pass --codex with its executable path."
+        )
 
     manifest = json.loads((EVAL_ROOT / "manifest.json").read_text(encoding="utf-8"))
     prompts = read_prompt_bodies()
@@ -176,6 +255,7 @@ def main() -> int:
     execution: dict[str, Any] = {
         "started_at": utc_now(),
         "codex_cli": subprocess.run([codex, "--version"], capture_output=True, text=True, check=False).stdout.strip(),
+        "codex_cli_path": codex,
         "skill_version_expected": expected_skill_version(),
         "suite_version": manifest["suite_version"],
         "selected_task_ids": [task["id"] for task in tasks],
@@ -306,12 +386,32 @@ def main() -> int:
             stopped_reason = "host usage/quota limit reported; saved checkpoint and stopped"
             break
         if totals["web_search_tool_calls"] > args.max_web_calls or totals["input_tokens"] > args.max_input_tokens or totals["output_tokens"] > args.max_output_tokens:
-            stopped_reason = "run ceiling exceeded; saved checkpoint and stopped before next task"
+            stopped_reason = run_ceiling_stop_reason(
+                budget_report(
+                    totals,
+                    {
+                        "max_web_calls": args.max_web_calls,
+                        "max_input_tokens": args.max_input_tokens,
+                        "max_output_tokens": args.max_output_tokens,
+                    },
+                ),
+                execution["remaining_task_ids"],
+            )
             break
 
     completed_set = set(execution["completed_task_ids"])
     execution["remaining_task_ids"] = [task["id"] for task in all_tasks if task["id"] in selected_ids and task["id"] not in completed_set]
     execution["status"] = "complete" if not execution["remaining_task_ids"] else "partial"
+    budget = budget_report(
+        execution["totals"],
+        {
+            "max_web_calls": args.max_web_calls,
+            "max_input_tokens": args.max_input_tokens,
+            "max_output_tokens": args.max_output_tokens,
+        },
+    )
+    execution["budget_status"] = budget["status"]
+    execution["budget_overages"] = budget["overages"]
     execution["stop_reason"] = stopped_reason
     execution["finished_at"] = utc_now()
     save_json(execution_path, execution)

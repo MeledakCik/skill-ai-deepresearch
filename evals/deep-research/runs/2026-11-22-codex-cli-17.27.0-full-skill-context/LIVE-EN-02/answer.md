@@ -1,0 +1,4 @@
+Use **OWASP ASVS 5.0.0** for the production checklist. As of **22 November 2026**, OWASP identifies it as the latest stable version and gives its publication date as **30 May 2025**. The GitHub release tag is `v5.0.0_release`. [OWASP ASVS overview](https://asvs.owasp.org/) · [Tagged 5.0.0 release](https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release)
+
+- **Downloads page.** OWASP lists “Stable Release 5.0.0” separately from “Bleeding Edge” and provides an English CSV under the 5.0.0 downloads for use as a checklist. [Official ASVS downloads](https://asvs.owasp.org/downloads/)
+- **Releases page.** GitHub’s **“Latest”** badge labels the **Bleeding Edge** build, generated from `master` on **22 November 2026 at 13:25 UTC**. OWASP describes that build as a testing preview and explicitly directs production users to **v5.0.0**. [Official ASVS releases](https://github.com/OWASP/ASVS/releases)

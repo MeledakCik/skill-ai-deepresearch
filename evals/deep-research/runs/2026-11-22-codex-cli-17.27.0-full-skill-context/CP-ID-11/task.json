@@ -1,0 +1,31 @@
+{
+  "task_id": "CP-ID-11",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:56:52Z",
+  "finished_at": "2026-11-22T14:57:21Z",
+  "wall_time_seconds": 29.33,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-ID-11/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md"
+  ],
+  "packet_files_supplied": [
+    "board-rule.md",
+    "draft-memo.md",
+    "incidents-by-school.png",
+    "school-register.md",
+    "source-map.md"
+  ],
+  "input_tokens": 24975,
+  "cached_input_tokens": 15232,
+  "output_tokens": 759,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:56:53.075539Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

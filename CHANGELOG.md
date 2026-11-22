@@ -1,5 +1,13 @@
 # Changelog
 
+## v17.28.0
+
+Clarified the citation workflow after a live migration run cited current release and compatibility URLs that appeared as search or related links but were not individually opened. A listed URL is now explicitly only a lead; consequential release, runtime minimum, compatibility, SDK and distribution claims need their own successful open and exact locator in a compact claim-to-source ledger. The eval rubric now checks each cited version-specific page. Fixed runner budget reporting so an overrun during the final task is recorded as an over-budget complete run, while pre-final overruns retain a resumable partial status.
+
+## v17.27.0
+
+Made the citation audit an explicit successful-open allowlist: final citations must resolve to pages opened in the current run whose publisher, title, content and locator support the claim. Search-result snippets, 403 pages, unopened links and mismatched search endpoints cannot support pivotal claims; unresolved claims must be labeled and removed from recommendations. Tightened migration delivery output to one readiness row per target and required explicit `production feasibility: unresolved` / `schedule: conditional` labels when team access is unconfirmed.
+
 ## v17.26.0
 
 Made the Quick web-research ceiling always-on across focused skills: at most four web calls, a narrow search with at most two variants, one exact result open, then a same-publisher fallback search/open only when blocked or mismatched. Search snippets and unrelated links are explicitly non-evidence. Routed current or high-stakes fact checks into the research skill without turning them into broad surveys. Required a per-target migration readiness row for runtime, SDK/build host and CI, signing/distribution, team access/owner, evidence status and a passing target POC before calling a production route ready. Fixed evaluation trace capture for Codex's `action.queries` field and made the runner read the active skill version.

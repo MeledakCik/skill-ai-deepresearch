@@ -1,0 +1,44 @@
+{
+  "task_id": "LIVE-EN-02",
+  "track": "live-search",
+  "status": "completed",
+  "started_at": "2026-11-22T14:37:48Z",
+  "finished_at": "2026-11-22T14:38:36Z",
+  "wall_time_seconds": 48.78,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "LIVE-EN-02/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md"
+  ],
+  "packet_files_supplied": [],
+  "input_tokens": 127198,
+  "cached_input_tokens": 101120,
+  "output_tokens": 664,
+  "web_search_tool_calls": 3,
+  "search_actions": 1,
+  "search_log": [
+    {
+      "action": "search",
+      "query": "OWASP Application Security Verification Standard official Downloads page latest stable ASVS release date github releases Latest bleeding edge OWASP ASVS",
+      "url": null
+    },
+    {
+      "action": "open_page",
+      "query": "https://asvs.owasp.org/downloads/",
+      "url": "https://asvs.owasp.org/downloads/"
+    },
+    {
+      "action": "other",
+      "query": "",
+      "url": null
+    }
+  ],
+  "json_events": 11,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:37:48.614176Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell",
+    "2026-11-22T14:37:51.224823Z  WARN codex_rmcp_client::oauth::runtime: MCP OAuth preparation failed",
+    "2026-11-22T14:37:51.224989Z  WARN codex_mcp::rmcp_client: MCP server startup failed server_name=\"depup\" error=Token expired",
+    "2026-11-22T14:38:32.757978Z  WARN codex_mcp::rmcp_client: failed to initialize MCP client during shutdown: MCP startup failed: Token expired"
+  ]
+}

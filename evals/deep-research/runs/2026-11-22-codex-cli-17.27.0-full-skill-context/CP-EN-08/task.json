@@ -1,0 +1,34 @@
+{
+  "task_id": "CP-EN-08",
+  "track": "closed-packet",
+  "status": "completed",
+  "started_at": "2026-11-22T14:53:22Z",
+  "finished_at": "2026-11-22T14:54:13Z",
+  "wall_time_seconds": 50.48,
+  "exit_code": 0,
+  "timeout_error": "",
+  "answer_artifact": "CP-EN-08/answer.md",
+  "skill_files_supplied": [
+    "skills/deep-research-council/SKILL.md",
+    "skills/deep-research-council/references/part-r6-choose-a-formal-review-only-when-the-req.md"
+  ],
+  "packet_files_supplied": [
+    "abstract-r03.md",
+    "access-status.md",
+    "review-brief.md",
+    "screening.csv",
+    "search-log.csv",
+    "study-r01.md",
+    "study-r02.md"
+  ],
+  "input_tokens": 23991,
+  "cached_input_tokens": 15232,
+  "output_tokens": 1750,
+  "web_search_tool_calls": 0,
+  "search_actions": 0,
+  "search_log": [],
+  "json_events": 5,
+  "tool_failures_or_unavailable": [
+    "2026-11-22T14:53:22.963216Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell"
+  ]
+}

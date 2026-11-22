@@ -1,0 +1,6 @@
+2026-11-22T14:54:13.545570Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:54:13.545627Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:54:13.563332Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-11-22T14:54:14.521773Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:54:14.521842Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-11-22T14:55:24.130892Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a203c0-262f-7a32-abdc-ffcc65791af6 hook_name=legacy_notify error=The filename or extension is too long. (os error 206)
