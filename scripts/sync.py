@@ -11,11 +11,12 @@ Edit only:
 Run:
   python scripts/sync.py          update everything in this folder
   python scripts/sync.py --zip    also write ../<folder>.zip ready to upload
+  python scripts/sync.py --claude --codex  also write platform-specific bundles
 
 The folder never contains .zip/.plugin/.skill files, so you can also right-click it,
 compress it and upload that zip (Claude rejects zips that contain zips).
 """
-import json, pathlib, re, shutil, sys, zipfile
+import argparse, json, pathlib, re, shutil, zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PLUGIN = "deep-research-domain-council"
@@ -30,6 +31,28 @@ TOKEN_EFFICIENCY = ("Keep token use deliberate: open only the reference needed, 
 ARCHIVE_EXT = {".zip", ".plugin", ".skill"}
 SKIP_DIRS = {".git", "__pycache__", "_to_delete", "node_modules"}
 NATIVE_DIRS = [".claude/skills", ".agents/skills", ".gemini/skills", ".github/skills", ".opencode/skills"]
+PLATFORM_ARCHIVES = {
+    "claude": {
+        "include": [".claude-plugin", "skills", "CLAUDE.md"],
+        "required": [".claude-plugin/plugin.json", "skills/deep-research-council/SKILL.md"],
+    },
+    "codex": {
+        "include": [".codex-plugin", "skills", "AGENTS.md"],
+        "required": [".codex-plugin/plugin.json", "skills/deep-research-council/SKILL.md"],
+    },
+    "gemini": {
+        "include": ["gemini-extension.json", ".gemini", "GEMINI.md"],
+        "required": ["gemini-extension.json", "GEMINI.md", ".gemini/skills/deep-research-council/SKILL.md"],
+    },
+    "copilot": {
+        "include": [".github/skills", ".github/copilot-instructions.md"],
+        "required": [".github/copilot-instructions.md", ".github/skills/deep-research-council/SKILL.md"],
+    },
+    "opencode": {
+        "include": [".opencode/skills", "AGENTS.md"],
+        "required": ["AGENTS.md", ".opencode/skills/deep-research-council/SKILL.md"],
+    },
+}
 
 SHIP_CHECK = """## Delivery
 
@@ -503,21 +526,55 @@ def remove_nested_archives():
             print("removed nested archive", p.relative_to(ROOT))
 
 
-def make_zip():
-    out = ROOT.parent / f"{ROOT.name}.zip"
+def write_zip(out, include_paths, required_paths, label):
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-        for p in sorted(ROOT.rglob("*")):
-            rel = p.relative_to(ROOT)
-            if p.is_dir() or SKIP_DIRS & set(rel.parts) or p.suffix.lower() in ARCHIVE_EXT:
-                continue
-            z.write(p, rel.as_posix())
-    names = zipfile.ZipFile(out).namelist()
-    assert ".claude-plugin/plugin.json" in names, "manifest missing from zip root"
+        for include in include_paths:
+            source = ROOT / include
+            if not source.exists():
+                raise SystemExit(f"{label}: required package path is missing: {include}")
+            candidates = [source] if source.is_file() else sorted(source.rglob("*"))
+            for p in candidates:
+                if not p.is_file():
+                    continue
+                rel = p.relative_to(ROOT)
+                if SKIP_DIRS & set(rel.parts) or p.suffix.lower() in ARCHIVE_EXT:
+                    continue
+                z.write(p, rel.as_posix())
+    with zipfile.ZipFile(out) as z:
+        names = z.namelist()
+    missing = [path for path in required_paths if path not in names]
+    assert not missing, f"{label}: required files missing from archive: {', '.join(missing)}"
     assert not [n for n in names if pathlib.Path(n).suffix.lower() in ARCHIVE_EXT], "nested archive in zip"
-    print(f"zip ready: {out} ({out.stat().st_size // 1024} KB, {len(names)} files)")
+    print(f"{label} archive ready: {out} ({out.stat().st_size // 1024} KB, {len(names)} files)")
+
+
+def make_zip():
+    include_paths = [p.relative_to(ROOT).as_posix() for p in ROOT.iterdir()]
+    write_zip(
+        ROOT.parent / f"{ROOT.name}.zip",
+        include_paths,
+        [".claude-plugin/plugin.json"],
+        "Full",
+    )
+
+
+def make_platform_zip(target):
+    spec = PLATFORM_ARCHIVES[target]
+    write_zip(
+        ROOT.parent / f"{ROOT.name}-{target}.zip",
+        spec["include"],
+        spec["required"],
+        target.capitalize(),
+    )
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Build focused skills and optional platform ZIP bundles.")
+    parser.add_argument("--zip", action="store_true", help="also create the full repository archive")
+    for target in PLATFORM_ARCHIVES:
+        parser.add_argument(f"--{target}", action="store_true", help=f"also create the {target.capitalize()} bundle")
+    args = parser.parse_args()
+
     if not SRC.exists():
         raise SystemExit(f"Missing {SRC}")
     body, version = frontmatter(SRC.read_text(encoding="utf-8"))
@@ -526,9 +583,12 @@ def main():
     sync_adapters()
     sync_manifests(version)
     remove_nested_archives()
-    if "--zip" in sys.argv:
+    if args.zip:
         make_zip()
-    print(f"\nDone. Version {version}. Right-click the folder > compress, or run with --zip.")
+    for target in PLATFORM_ARCHIVES:
+        if getattr(args, target):
+            make_platform_zip(target)
+    print(f"\nDone. Version {version}. Use --zip for a full archive or a platform flag such as --claude.")
 
 
 if __name__ == "__main__":

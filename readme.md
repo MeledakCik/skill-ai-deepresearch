@@ -41,13 +41,14 @@ Setiap skill memiliki contoh permintaan untuk menguji kapan ia aktif. Lihat [uji
 
 1. Klik kanan folder ini → **Compress to ZIP** (Windows) / **Compress** (Mac).
 2. Upload zip itu langsung:
-   - **Claude** (Cowork/Claude.ai): Plugin → Unggah plugin → pilih zip.
-   - **Codex**: folder ini sudah berisi `.codex-plugin/plugin.json` dan `.agents/skills/`.
-   - **Gemini CLI**: `gemini extensions install <path-folder-ini>` (memakai `gemini-extension.json`).
+   - **Claude** (Cowork/Claude.ai): buat paket khusus dengan `python scripts/sync.py --claude`, lalu unggah `../<nama-folder>-claude.zip` melalui Plugin → Unggah plugin.
+   - **Codex**: buat paket khusus dengan `python scripts/sync.py --codex`; folder ini juga berisi `.codex-plugin/plugin.json` dan `.agents/skills/`.
+   - **Gemini CLI**: buat paket dengan `python scripts/sync.py --gemini`, lalu jalankan `gemini extensions install <path-folder-ini>`.
+   - **GitHub Copilot** dan **OpenCode**: gunakan `--copilot` atau `--opencode` untuk membuat paket platform masing-masing.
    - **Custom GPT atau Gem khusus desain** memakai isi [skill desain](skills/web-ui-design/SKILL.md) setelah frontmatter sebagai instruksi. Lampirkan [modul desain F](skills/web-ui-design/references/part-f-web-design-deep-module.md) sebagai file pengetahuan. Untuk tugas khusus seperti audit dashboard, tambahkan hanya referensi lanjutan yang ditunjuk inti skill.
    - **Asisten lintas bidang** memakai adapter untuk platformnya dan referensi dari skill yang sedang dipakai. Spesifikasi induk dipakai saat membangun distribusi.
 
-Setelah mengedit `deep-research-domain-council/SKILL.md`, jalankan `python scripts/sync.py` dulu sebelum zip. Skrip ini memperbarui semua salinan, versi ringkas plugin, manifest, dan membuang file zip yang terselip di dalam folder (uploader menolak zip di dalam zip). Pakai `python scripts/sync.py --zip` untuk langsung membuat `../<nama-folder>.zip`.
+Setelah mengedit `deep-research-domain-council/SKILL.md`, jalankan `python scripts/sync.py` dulu sebelum membuat arsip. Skrip ini memperbarui semua salinan, versi ringkas plugin, dan manifest. Pakai `python scripts/sync.py --zip` untuk membuat arsip penuh `../<nama-folder>.zip`, atau gabungkan flag target, misalnya `python scripts/sync.py --claude --codex`. Paket target dibuat di direktori induk dengan akhiran nama platform (`../<nama-folder>-claude.zip`, dan seterusnya); isinya hanya manifest dan berkas yang diperlukan oleh platform tersebut.
 
 
 ## Riset dengan anggaran terbatas
