@@ -113,12 +113,12 @@ Use Part W for the method and sensitivity details. Use the spreadsheet skill for
 
 **Full** for a new design or redesign. Research the audience and task, gather real content, annotate references and sketch three grayscale directions in F1. Select one by walking through a difficult case. Build the flow and its recovery path with shared tokens and components (F2–F8).
 
-**Patch** for a local UI issue. Reproduce it. Go directly to tokens, states, accessibility and verification (F2/F4/F6/F9). Use F3 for localized data, charts and container sizing, F8 for motion or a canvas scene.
+**Patch** for a local UI issue. Reproduce it. Use F2/F4/F6/F9 for tokens, states, accessibility and verification. For layout, component sizing or contrast over glass, use U4's shipment example. Use F3 for charts and F8 for motion or a canvas scene.
 
 For a concept, walk the sketches. For a runnable implementation with browser access, complete F9's desktop/mobile × light/dark screenshot loop, inspect actual pixels, page overflow, focus and images, and recheck any fixes. Report the evidence and any pending checks.
 
 For an advanced or research-led brief, isolate the decision with the biggest consequence. Look up the relevant standard, original study or first-party design pattern, record its scope, and test a plausible alternative on the actual task. Report what the source established, what you chose and what you observed. Open just the applicable guide below.""",
-        "refs": ["F", "U1", "U2", "U3", "G"],
+        "refs": ["F", "U1", "U2", "U3", "U4", "G"],
         "former_design_refs": ["C3", "C5", "S"],
     },
     "ui-component-motion": {
@@ -132,7 +132,7 @@ For an advanced or research-led brief, isolate the decision with the biggest con
 4. Try the primary task at narrow and wide widths. Test rapid reversal, keyboard-only operation, reduced motion and relevant empty/error states. Report the checks observed. A custom control earns its place when it makes a named task easier.
 
 For worked components and interactive scenes, use F8. For a runnable UI, use the screenshot, overflow, keyboard and image checks in F9 before delivery.""",
-        "refs": ["F"],
+        "refs": ["F", "U4"],
         "former_design_refs": ["S"],
     },
     "natural-writing": {
@@ -354,6 +354,7 @@ WHEN = {
     "U1": "Tune type, measure, responsive grid and theme tokens with worked accessibility checks",
     "U2": "Research a hierarchy decision, study reference designs and run a recall or task test",
     "U3": "Choose a dashboard encoding, verify partial totals and exercise async component states",
+    "U4": "Choose page regions, size a reusable component by its contents and measure contrast on glass",
 }
 
 

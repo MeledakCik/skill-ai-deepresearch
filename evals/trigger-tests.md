@@ -63,6 +63,12 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 
 ## Offline behavior checks
 
+### 17.29.0 adaptive shipment row and map panel (2026-11-28)
+
+Headless Chrome 152 rendered the HTML and CSS from U4 at slot widths of 288, 320, 390, 527, 528, 529 and 640 CSS px, each with a root size of 16 and 32 px. The same focused link remained active across all 14 resizes. The row stayed inside its slot and its column count matched the 33rem rule in every case. At a 16 px root, the switch occurred at 528 px.
+
+In a separate panel swatch on a uniform black backdrop, an 8 px backdrop blur with a 35% white fill produced RGB (89, 89, 89) at its center. A 60% fill produced (153, 153, 153). For opaque #202020 text these sampled backgrounds give 2.33:1 and 5.72:1 respectively. The fixture measures layout and composite color. User task performance, real map crops and device frame times require their own observations.
+
 - **Advanced design research.** Given a 390 px viewport and a dense paragraph, compare a fixed desktop margin with an adaptive grid; verify ordinary text before rounding its contrast and distinguish text-spacing overrides from author defaults. For a revenue dashboard with ties, zero and a missing branch, derive the recorded subtotal, choose an encoding for a named task and trace failure and recovery. Record source-backed claims separately from proposed user tests.
 - **Visual direction and flow.** With one supplied timetable and no testimonials, compare three grayscale booking directions. Look for a real difference in the user's first decision and a revision prompted by an unavailable slot. The landing page must use evidence from the brief, the phone must retain the user's work after a conflict, and the desktop must support comparison when a row is selected. Verify sample labels, keyboard recovery and long names.
 - **Design.** Build a mobile booking list whose vehicle details expand inline. Verify that reservation times remain visible, rows operate independently, rapid reversal settles correctly, keyboard focus survives and the same result is available with reduced motion.

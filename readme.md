@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.28.0 |
+| **Versi** | 17.29.0 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -277,6 +277,10 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.29.0
+
+Panduan [layout adaptif dan permukaan transparan](skills/web-ui-design/references/part-u4-adaptive-layouts-and-translucent-surface.md) memakai contoh kartu pengiriman untuk menghitung kapan dua kolom muat, mempertahankan aksi saat ruang menyempit, dan mengukur kontras teks di atas peta.
 
 ### v17.28.0
 

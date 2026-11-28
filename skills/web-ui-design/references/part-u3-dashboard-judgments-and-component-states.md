@@ -25,3 +25,5 @@ Specify the emphasis and action state independently so a destructive button can 
 | Result or collection | First load, refresh with prior data, first-use empty, no filter matches, success, recoverable failure. | During a known layout's first load, reserve its shape with a skeleton. For a pending save use inline status; for measurable progress use a progress indicator. On refresh keep the previous result and its timestamp until replaced. |
 
 Once a request settles, end the busy state. “Belum ada transaksi” follows a successful empty response. “Tidak ada yang cocok” can offer “Hapus filter”. A network error can offer “Muat ulang” with the filters intact. Show progress without flashing and honor reduced motion. Expose changing status in the accessibility tree when focus stays put. Test a fast response, a delayed response, failure and retry. A compact spinner with a meaningful label can suit an indeterminate operation whose final shape is unknown. [Carbon loading pattern](https://www.carbondesignsystem.com/building-blocks/core/patterns/loading) · [W3C status messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
+
+---

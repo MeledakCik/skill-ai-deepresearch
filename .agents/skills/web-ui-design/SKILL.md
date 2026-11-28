@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.28.0"
+  version: "17.29.0"
   source: deep-research-domain-council
 ---
 
@@ -15,7 +15,7 @@ metadata:
 
 **Full** for a new design or redesign. Research the audience and task, gather real content, annotate references and sketch three grayscale directions in F1. Select one by walking through a difficult case. Build the flow and its recovery path with shared tokens and components (F2–F8).
 
-**Patch** for a local UI issue. Reproduce it. Go directly to tokens, states, accessibility and verification (F2/F4/F6/F9). Use F3 for localized data, charts and container sizing, F8 for motion or a canvas scene.
+**Patch** for a local UI issue. Reproduce it. Use F2/F4/F6/F9 for tokens, states, accessibility and verification. For layout, component sizing or contrast over glass, use U4's shipment example. Use F3 for charts and F8 for motion or a canvas scene.
 
 For a concept, walk the sketches. For a runnable implementation with browser access, complete F9's desktop/mobile × light/dark screenshot loop, inspect actual pixels, page overflow, focus and images, and recheck any fixes. Report the evidence and any pending checks.
 
@@ -31,4 +31,5 @@ Keep token use deliberate: open only the reference needed, batch independent cal
 | `references/part-u1-reading-rhythm-grids-and-theme-contrast.md` | Tune type, measure, responsive grid and theme tokens with worked accessibility checks |
 | `references/part-u2-visual-hierarchy-and-task-research.md` | Research a hierarchy decision, study reference designs and run a recall or task test |
 | `references/part-u3-dashboard-judgments-and-component-states.md` | Choose a dashboard encoding, verify partial totals and exercise async component states |
+| `references/part-u4-adaptive-layouts-and-translucent-surface.md` | Choose page regions, size a reusable component by its contents and measure contrast on glass |
 | `references/part-g-natural-writing.md` | Natural writing patterns and rewrite example |

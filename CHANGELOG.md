@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.29.0
+
+Added a worked shipment layout to the design and component skills. The guide derives a component breakpoint from its contents, shows how changing panel opacity affects text contrast, and covers checks for focus, reflow and image size across placements.
+
 ## v17.28.0
 
 Clarified the citation workflow after a live migration run cited current release and compatibility URLs that appeared as search or related links but were not individually opened. A listed URL is now explicitly only a lead; consequential release, runtime minimum, compatibility, SDK and distribution claims need their own successful open and exact locator in a compact claim-to-source ledger. The eval rubric now checks each cited version-specific page. Fixed runner budget reporting so an overrun during the final task is recorded as an over-budget complete run, while pre-final overruns retain a resumable partial status.

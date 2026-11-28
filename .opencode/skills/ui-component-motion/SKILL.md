@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.28.0"
+  version: "17.29.0"
   source: deep-research-domain-council
 ---
 
@@ -27,3 +27,4 @@ Keep token use deliberate: open only the reference needed, batch independent cal
 | File | Read when |
 |:---|:---|
 | `references/part-f-web-design-deep-module.md` | Unified design module: Full/Patch, materials (F2.5), responsive charts (F3), states (F4), motion/canvas (F8), browser QA (F9) |
+| `references/part-u4-adaptive-layouts-and-translucent-surface.md` | Choose page regions, size a reusable component by its contents and measure contrast on glass |

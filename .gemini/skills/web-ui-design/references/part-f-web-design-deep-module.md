@@ -150,7 +150,7 @@ Match the theme selector to the host app when it offers its own switch. Blur the
 
 ## F3. Layout & Composition
 
-- **Grid:** 12 columns desktop, 8 tablet, 4 mobile; content max-width ~1200-1280 px; reading column ~65ch.
+- A 12/8/4 grid can align several page regions. For a single reading task, start with one measured column. Add a rail only when its contents support the task and both regions have room. U4 shows how to derive the switch from content.
 - Use position, scale, weight and contrast to signal the next decision. Test the resulting reading order on a real task (U2).
 - Give each section one focal point. On a 12-column landing layout, try a copy block across five columns and a product view across six with one column of breathing room. Align the next section to one of those same edges. On a phone, keep the meaningful reading order when the blocks stack.
 - Put extra space around changes of topic and less between a label and its value. An empty column can separate decisions. Remove ornaments one at a time and keep the space if the task is as clear or clearer. Data-heavy work may benefit from compact rows. Choose density by what people need to compare.
