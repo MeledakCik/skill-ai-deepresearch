@@ -1,0 +1,49 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^(Read|Bash)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${CLAUDE_PLUGIN_ROOT}/scripts/host_cache_guard.py\" claude read",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${CLAUDE_PLUGIN_ROOT}/scripts/host_cache_guard.py\" claude reset",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${CLAUDE_PLUGIN_ROOT}/scripts/host_cache_guard.py\" claude reset",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${CLAUDE_PLUGIN_ROOT}/scripts/host_cache_guard.py\" claude reset",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

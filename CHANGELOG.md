@@ -1,5 +1,9 @@
 # Changelog
 
+## v17.33.1
+
+Shipped native duplicate-read hooks for Claude Code, Gemini CLI, GitHub Copilot CLI and OpenCode V2. The integrations reuse the same local fingerprint store and minimum document size as Codex. Host-specific responses shorten verified complete reads while preserving partial results and errors. The Gemini extension ZIP includes its native hook and skill directories.
+
 ## v17.32.0
 
 All focused skills now require stable request prefixes, bounded reads and evidence reuse. Added a Codex PostToolUse hook that replaces duplicate complete reads of bundled skill Markdown in the same turn with a small notice. It keeps local fingerprints, resets them on compaction and passes through changed, partial or unavailable results. Cache hits and quota are reported only from host telemetry.

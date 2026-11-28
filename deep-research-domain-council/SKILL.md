@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.32.0"
+  version: "17.33.1"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -1035,7 +1035,7 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 - Reuse a verified result by its locator. Reopen only what changed, was truncated or lost, needs a freshness check, or is required for verification. Cap output at the relevant range. Never send padding, keepalives, warming requests or duplicate model calls to improve a hit rate. A cold start or partial hit alone needs no retry.
 - If comparable requests repeatedly report unexpectedly low cache reads, inspect existing traces for the first differing prefix segment. Correct avoidable churn in the next required request and drop optional expansions. Keep a compact checkpoint when quota is under pressure. Diagnose with existing traces rather than sending a probe.
 - For OpenAI inputs with cache-read counts, record total input, cached reads and output separately. For example, 12,000 total input and 9,000 cached reads means 3,000 input tokens were outside the cached-read category. If the provider separately meters cache writes, account for those before estimating ordinary input cost. Missing telemetry is unknown. Compare existing traces for the same task/model and retained quality. Token counters alone do not reveal remaining weekly quota. [OpenAI prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching)
-- The Codex plugin includes a local PostToolUse hook for duplicate full reads of its own Markdown. Once trusted, the first complete read passes. Within one agent turn, a repeated matching large result is replaced with a short reuse notice. Targeted reads and changed output remain available. The hook affects tool output, not provider cache retention. [Codex hook events and trust](https://developers.openai.com/codex/hooks)
+- In the packaged Codex, Claude Code, Gemini CLI, Copilot CLI and OpenCode V2 integrations, the first complete supported read passes. Within the same turn and agent a repeated, matching large skill document can be replaced by a short notice. Targeted reads, changed content and errors pass through. Hook availability depends on the client and its enabled configuration. A chat instructions file alone cannot intercept a tool result. [Claude Code hooks](https://code.claude.com/docs/en/hooks) · [Gemini CLI hooks](https://geminicli.com/docs/hooks/reference/) · [Copilot hooks](https://docs.github.com/en/copilot/reference/hooks-reference) · [OpenCode server hooks](https://opencode.ai/docs/build/plugins/server) · [Codex hooks](https://developers.openai.com/codex/hooks)
 
 ## H4. Output Discipline
 

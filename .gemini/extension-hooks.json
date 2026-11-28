@@ -1,0 +1,49 @@
+{
+  "hooks": {
+    "AfterTool": [
+      {
+        "matcher": "^read_file$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${extensionPath}/scripts/host_cache_guard.py\" gemini read",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "BeforeAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${extensionPath}/scripts/host_cache_guard.py\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreCompress": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${extensionPath}/scripts/host_cache_guard.py\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S \"${extensionPath}/scripts/host_cache_guard.py\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

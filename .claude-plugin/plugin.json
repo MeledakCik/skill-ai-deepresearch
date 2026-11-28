@@ -1,6 +1,6 @@
 {
   "name": "deep-research-domain-council",
-  "version": "17.32.0",
+  "version": "17.33.1",
   "description": "Focused skills for deep research and platform migration, research data analysis, web UX, custom components and motion, software testing, natural and academic writing, application security, scaffolding, infrastructure, Android, skill audits, AI video, token efficiency and usage-limit recovery.",
   "author": {
     "name": "kasyaf-anugrah"
@@ -15,5 +15,6 @@
     "infrastructure",
     "scaffolding"
   ],
-  "icon": ".claude-plugin/icon.png"
+  "icon": ".claude-plugin/icon.png",
+  "hooks": "./.claude-plugin/hooks.json"
 }

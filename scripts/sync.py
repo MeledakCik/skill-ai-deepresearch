@@ -43,24 +43,24 @@ SKIP_DIRS = {".git", "__pycache__", "_to_delete", "node_modules"}
 NATIVE_DIRS = [".claude/skills", ".agents/skills", ".gemini/skills", ".github/skills", ".opencode/skills"]
 PLATFORM_ARCHIVES = {
     "claude": {
-        "include": [".claude-plugin", "skills", "CLAUDE.md"],
-        "required": [".claude-plugin/plugin.json", "skills/deep-research-council/SKILL.md"],
+        "include": [".claude-plugin", "skills", "CLAUDE.md", "scripts/cache_guard.py", "scripts/host_cache_guard.py"],
+        "required": [".claude-plugin/plugin.json", ".claude-plugin/hooks.json", "skills/deep-research-council/SKILL.md"],
     },
     "codex": {
         "include": [".codex-plugin", "skills", "AGENTS.md"],
         "required": [".codex-plugin/plugin.json", "skills/deep-research-council/SKILL.md"],
     },
     "gemini": {
-        "include": ["gemini-extension.json", ".gemini", "GEMINI.md"],
-        "required": ["gemini-extension.json", "GEMINI.md", ".gemini/skills/deep-research-council/SKILL.md"],
+        "include": ["gemini-extension.json", "skills", ".gemini/skills", "GEMINI.md", "scripts/cache_guard.py", "scripts/host_cache_guard.py"],
+        "required": ["gemini-extension.json", "hooks/hooks.json", "GEMINI.md", ".gemini/skills/deep-research-council/SKILL.md"],
     },
     "copilot": {
-        "include": [".github/skills", ".github/copilot-instructions.md"],
-        "required": [".github/copilot-instructions.md", ".github/skills/deep-research-council/SKILL.md"],
+        "include": [".github/skills", ".github/hooks", ".github/copilot-instructions.md", "scripts/cache_guard.py", "scripts/host_cache_guard.py"],
+        "required": [".github/copilot-instructions.md", ".github/hooks/council-cache.json", ".github/skills/deep-research-council/SKILL.md"],
     },
     "opencode": {
-        "include": [".opencode/skills", "AGENTS.md"],
-        "required": ["AGENTS.md", ".opencode/skills/deep-research-council/SKILL.md"],
+        "include": [".opencode/skills", ".opencode/plugins", "scripts/cache_guard.py", "scripts/host_cache_guard.py", "AGENTS.md"],
+        "required": ["AGENTS.md", ".opencode/plugins/council-cache/index.mjs", ".opencode/skills/deep-research-council/SKILL.md"],
     },
 }
 
@@ -529,6 +529,8 @@ def sync_manifests(version):
             ]
         if rel != ".claude-plugin/plugin.json":
             data["skills"] = "./skills/"
+        else:
+            data["hooks"] = "./.claude-plugin/hooks.json"
         if "interface" in data:
             data["interface"]["longDescription"] = short
         if rel == ".claude-plugin/plugin.json" and (ROOT / ".claude-plugin/icon.png").exists():
@@ -545,7 +547,7 @@ def remove_nested_archives():
             print("removed nested archive", p.relative_to(ROOT))
 
 
-def write_zip(out, include_paths, required_paths, label):
+def write_zip(out, include_paths, required_paths, label, extra_files=()):
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for include in include_paths:
             source = ROOT / include
@@ -559,6 +561,8 @@ def write_zip(out, include_paths, required_paths, label):
                 if SKIP_DIRS & set(rel.parts) or p.suffix.lower() in ARCHIVE_EXT:
                     continue
                 z.write(p, rel.as_posix())
+        for source, destination in extra_files:
+            z.write(ROOT / source, destination)
     with zipfile.ZipFile(out) as z:
         names = z.namelist()
     missing = [path for path in required_paths if path not in names]
@@ -577,13 +581,14 @@ def make_zip():
     )
 
 
-def make_platform_zip(target):
+def make_platform_zip(target, output_dir=None):
     spec = PLATFORM_ARCHIVES[target]
     write_zip(
-        ROOT.parent / f"{ROOT.name}-{target}.zip",
+        (output_dir or ROOT.parent) / f"{ROOT.name}-{target}.zip",
         spec["include"],
         spec["required"],
         target.capitalize(),
+        [(".gemini/extension-hooks.json", "hooks/hooks.json")] if target == "gemini" else [],
     )
 
 
@@ -601,6 +606,7 @@ def main():
     copy_native()
     sync_adapters()
     sync_manifests(version)
+    shutil.copyfile(ROOT / "scripts/cache_guard.py", ROOT / ".codex-plugin/cache_guard.py")
     remove_nested_archives()
     if args.zip:
         make_zip()

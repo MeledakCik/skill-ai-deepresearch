@@ -1,0 +1,49 @@
+{
+  "hooks": {
+    "AfterTool": [
+      {
+        "matcher": "^read_file$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['GEMINI_PROJECT_DIR'],'scripts','host_cache_guard.py'),run_name='__main__')\" gemini read",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "BeforeAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['GEMINI_PROJECT_DIR'],'scripts','host_cache_guard.py'),run_name='__main__')\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreCompress": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['GEMINI_PROJECT_DIR'],'scripts','host_cache_guard.py'),run_name='__main__')\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -I -S -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['GEMINI_PROJECT_DIR'],'scripts','host_cache_guard.py'),run_name='__main__')\" gemini reset",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -63,6 +63,12 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 
 ## Offline behavior checks
 
+### 17.33.1 cross-host duplicate reads (2026-11-28)
+
+Claude Code 2.1.332 loaded the user-installed plugin in a fresh CLI session. Two sequential Bash calls ran the same simple read of the repository's research skill. The first tool reply contained the complete Markdown. The second contained the 115-character reuse notice, which the model identified in its answer. No provider cache or quota saving was measured.
+
+`python -B -m unittest evals.test_host_cache_guard` exercises separately extracted Claude, Gemini, Copilot and OpenCode packages. The tests check native response shapes, first and repeated reads, and context resets. Gemini and Copilot events are fixtures. OpenCode's registered callbacks run with Node and a local fixture. These checks do not establish live execution in those three clients.
+
 ### 17.31.0 screenshot transformation (2026-11-28)
 
 Give an image-capable agent the [mobile reference](design/studio-mobile.png), the generated design skill and U5. Ask in Indonesian for a standalone responsive HTML file that preserves the phone appearance, supports a narrow panel inside a desktop window, and keeps the selection and draft during resize. Withhold the reference HTML, color values and expected desktop composition.

@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.32.0 |
+| **Versi** | 17.33.1 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -277,6 +277,20 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.33.1
+
+Pasang **paket lengkap** untuk mengaktifkan pemangkasan bacaan duplikat. Menyalin folder skill atau menempelkan instruksi chat hanya memasang aturan prompt. Hook lokal memerlukan Python 3.9+ dan izin hook dari host. Baca pertama, file yang berubah, error dan permintaan rentang tertentu tetap diteruskan.
+
+| Host | Cara memuat hook |
+|:---|:---|
+| Claude Code | Muat direktori plugin atau ZIP Claude dengan `claude --plugin-dir <paket>`. Hook memakai hasil `Read` dan pembacaan satu berkas melalui `Bash`. Memerlukan dukungan `PostToolUse.updatedToolOutput`. |
+| Gemini CLI | Buka repo dengan hook proyek aktif, atau pasang isi ZIP Gemini sebagai extension. Hook memeriksa hasil `read_file`. |
+| GitHub Copilot CLI | Di proyek yang dipercaya, muat konfigurasi `.github/hooks/council-cache.json` dan skrip pendamping dari paket Copilot. Hook memeriksa hasil `view` dan pembacaan shell sederhana. |
+| OpenCode V2 | Buka proyek dengan isi ZIP OpenCode dan izinkan plugin lokal `.opencode/plugins/council-cache/`. Hook memeriksa hasil teks `read` dan `bash`. |
+| Codex | Aktifkan hook plugin di **Settings → Hooks**. |
+
+Claude.ai Projects, ChatGPT, Gemini Gems dan adapter chat lain memakai aturan efisiensi dalam instruksi. Paket Cursor, Windsurf, Cline dan Roo juga memakai aturan instruksi. Status cache dan kuota tetap berasal dari penyedia.
 
 ### v17.32.0
 

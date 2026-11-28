@@ -1,0 +1,6 @@
+{
+  "name": "council-cache",
+  "type": "module",
+  "exports": "./index.mjs",
+  "main": "./index.mjs"
+}

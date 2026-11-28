@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "python3 -I -S ./scripts/host_cache_guard.py copilot read",
+        "powershell": "python -I -S ./scripts/host_cache_guard.py copilot read",
+        "cwd": ".",
+        "timeoutSec": 5
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "python3 -I -S ./scripts/host_cache_guard.py copilot reset",
+        "powershell": "python -I -S ./scripts/host_cache_guard.py copilot reset",
+        "cwd": ".",
+        "timeoutSec": 5
+      }
+    ],
+    "preCompact": [
+      {
+        "type": "command",
+        "bash": "python3 -I -S ./scripts/host_cache_guard.py copilot reset",
+        "powershell": "python -I -S ./scripts/host_cache_guard.py copilot reset",
+        "cwd": ".",
+        "timeoutSec": 5
+      }
+    ],
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "python3 -I -S ./scripts/host_cache_guard.py copilot reset",
+        "powershell": "python -I -S ./scripts/host_cache_guard.py copilot reset",
+        "cwd": ".",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}
