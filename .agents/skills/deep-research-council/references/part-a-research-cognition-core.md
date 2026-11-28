@@ -35,7 +35,15 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Scope gate before tiering.** Prompt vagueness does not raise a task to Deep. First identify the requested output and the one decision or question it must serve. For low-risk general asks, state a narrow common-case assumption and give a compact orientation. If one missing intent would route the work into materially different research, ask one concise question (at most two only when both are decisive). Do not ask for facts that a targeted source check can establish. Do not turn “tell me about X” into a comprehensive survey unless the user asked for one.
+**Resolve the scope before choosing a tier.** For “lanjutkan”, “perdalam” or “yang terbaik”, first recover the subject from the latest request, the referenced artifact and the last verified result. Carry forward constraints that still apply. A correction replaces only the detail it changes. If a low-cost assumption is reversible, use it and mention it only if it affects the answer. If two plausible readings lead to different work and context cannot resolve them, ask the single question that chooses between them before spending on that branch.
+
+When the decision object itself is missing and no independent part can proceed, the clarification is the entire answer. For “riset yang terbaik buat proyek ini” with no project or product identified, ask “Apa yang sedang kamu pilih untuk proyek ini?” Budget, vendors and the research plan can wait until the subject is clear.
+
+**Several requests in one turn.** Privately track each requested output, its hard constraints and the evidence it needs. Respect the user's priorities, then resolve prerequisites and share verified facts across outputs. Length limits govern the answer, not the scope of the work. Finish independent items while a dependency is unresolved. When hard requirements conflict, show the exact conflict and ask which may move. Mark an item optional only when the user made it so. Before sending, account for each requested result or name its specific blocker.
+
+For example, if a user previously selected two plans and now says “batasnya ganti jadi Rp700 ribu, pilih satu, hitung sisanya, cek risiko offline”, keep the two plans, replace the old budget and use their supplied prices for both the choice and the subtraction. Verify offline support only if unresolved and external checking is warranted. If the answer is confined to the supplied plans, identify missing offline evidence and give a concrete check. A new survey of vendors would spend the budget on a different decision.
+
+Liu et al. found that the position of relevant evidence affected retrieval and multi-document QA in the models tested. This motivates keeping active constraints together for a long conversation. Actual savings and coverage still need testing on the target task. [Liu et al., TACL 2024](https://aclanthology.org/2024.tacl-1.9/)
 
 **Decision-criteria provenance.** Before search, record the user's goal, mandatory gates and preferences in the brief, with their origin (`user-set`, `official/contractual`, or `analyst-proposed`). Preserve user-set gates. A page, ranking or industry article may suggest a new metric, but do not silently make it a requirement or change the recommendation objective. Verify any decision-changing normative claim at its original authoritative source; label unsupported metrics as source-proposed and show their incentives/limits. If evidence suggests changing the original goal, present that as a separate option and explain the tradeoff rather than retroactively rewriting the brief.
 
@@ -164,18 +172,14 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 
 ### S6 — Write the Report
 
-**Default structure (S/D/X):**
+Choose the output the reader needs. Research depth determines which claims to test. The user's decision and requested format determine how much to write.
 
-| # | Section | Content |
-|:---|:---|:---|
-| 1 | Bottom Line Up Front | 3-5 sentences answering the core question, with confidence labels |
-| 2 | Executive Summary | 6-12 bullets, each cited |
-| 3 | Detailed Analysis | One section per RQ; claims cited inline; contradictions surfaced in place |
-| 4 | Key Findings | Numbered, ranked by decision impact × confidence; each mapped to an RQ |
-| 5 | Confidence & Limitations | Per finding: label, linchpin evidence, what would change the conclusion, gaps |
-| 6 | Methodology | Sources searched, languages, search date, inclusion/exclusion, screened vs used (PRISMA counts for X) |
-| 7 | Sources | Title, author/publisher, date, URL, tier |
-| 8 | Follow-Up Questions | 5-10 questions to resolve before acting |
+| Requested result | What the reader needs |
+|:---|:---|
+| Fact or check | The answer, relevant date/unit and supporting source or packet locator. Mention an uncertainty if it changes interpretation. |
+| Choice or short brief | The choice first, decisive evidence and the condition that would reverse it. For several outputs, give each a distinct answer in the requested order or group closely related ones. |
+| Comparison | Only the alternatives and criteria the decision depends on. A small table helps when readers must compare the same measures across options. |
+| Formal review or audit | The agreed structure, scope, search and screening method, evidence, conflicts and limitations. Include the protocol's counts and locators so the result can be reproduced. |
 
 **Writing craft:**
 - Answer first, evidence after (pyramid principle); each section opens with its conclusion.
@@ -183,7 +187,7 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 - Paraphrase; quote only when exact wording matters, briefly.
 - Tables for comparisons, prose for reasoning, one idea per paragraph.
 - Every number has unit, date and source. Ban "fast/secure/scalable/significant" without a figure.
-- Structured document with table of contents; exportable to Markdown/Word/PDF.
+- Use a contents list only when the document needs navigation. Close when the requested results and material gaps are clear. Omit repeated summaries, process narration and generic follow-up questions.
 
 **Citation format:** use the host's native citation format if one exists. Otherwise `[n]` inline + numbered source list. If the harness supports line-anchored citations, use `〖n†Lstart-Lend〗` (OpenAI style). Cross-source claims cite all supporting sources (`〖1†L10-L15〗〖3†L22-L28〗`). Contradictions are written explicitly: "A says X [2]; B says ¬X [4]; resolution: T1 source C supports A [6]." No claim without a citation; uncitable claims become labeled inferences or are removed.
 

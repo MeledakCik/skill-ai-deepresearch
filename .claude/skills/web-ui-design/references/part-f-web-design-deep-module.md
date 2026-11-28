@@ -1,10 +1,12 @@
 # PART F — WEB & DESIGN DEEP MODULE
 
+**Transform.** When a supplied screenshot or mockup defines the UI to reproduce or adapt, start at U5. Use the pictured state as the source baseline. If the image is only mood or art direction for an original design, use Full and follow the brief about what to borrow.
+
 **Full.** For a new screen, product or redesign, start at F1. Research the audience and content, sketch three grayscale directions, select one, and build its complete flow. Use F9 before delivery.
 
 **Patch.** For a single component, CSS bug or localized interaction, reproduce it at its normal entry point. Go directly to F2 (tokens), F4 (behavior), F6 (accessibility) and F9 (rendered verification). Add F3 for a layout/data issue or F8 for motion. Keep the surrounding product conventions.
 
-**Find the right section.** F0 critique · F1 discovery · F2 tokens and materials · F3 layout and information design · F4 interaction states · F5 copy and assets · F6 accessibility · F7 performance · F8 motion and canvas · F9 delivery. Focused research U1–U3 offers deeper evidence on type/themes, hierarchy/usability and dashboards.
+**Find the right section.** F0 critique · F1 discovery · F2 tokens and materials · F3 layout and information design · F4 interaction states · F5 copy and assets · F6 accessibility · F7 performance · F8 motion and canvas · F9 delivery. U1–U5 cover type and themes, hierarchy, dashboards, adaptive surfaces and screenshot transformation.
 
 ## F0. Visual direction and design critique
 

@@ -5,7 +5,7 @@ This project ships focused skills. Load only the one that matches the task, and 
 - `skills/deep-research-council/SKILL.md`: Runs a rigorous, budget-aware research process and writes cited, calibrated reports.
 - `skills/platform-migration/SKILL.md`: Researches and plans migrations of existing products between web, Android, iOS, desktop and macOS.
 - `skills/research-data-analysis/SKILL.md`: Analyzes datasets and quantitative evidence reproducibly, including data quality, uncertainty, study design and sensitivity checks.
-- `skills/web-ui-design/SKILL.md`: Designs and critiques product-specific landing pages, mobile flows and desktop dashboards.
+- `skills/web-ui-design/SKILL.md`: Designs product UIs and adapts supplied screenshots across mobile and desktop.
 - `skills/ui-component-motion/SKILL.md`: Builds custom interactive web components and purposeful UI animations around a product workflow.
 - `skills/natural-writing/SKILL.md`: Drafts or rewrites prose so it reads like a skilled human instead of an AI.
 - `skills/academic-writing/SKILL.md`: Guides academic writing for skripsi, tesis and disertasi (S1-S3, Bab I-V), journal papers, research proposals and lab reports, with claim-evidence mapping and verified citations.

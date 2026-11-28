@@ -63,6 +63,25 @@ Quality runs (2026-11-19, Sonnet): natural-writing caption rewrite passed (no in
 
 ## Offline behavior checks
 
+### 17.31.0 screenshot transformation (2026-11-28)
+
+Give an image-capable agent the [mobile reference](design/studio-mobile.png), the generated design skill and U5. Ask in Indonesian for a standalone responsive HTML file that preserves the phone appearance, supports a narrow panel inside a desktop window, and keeps the selection and draft during resize. Withhold the reference HTML, color values and expected desktop composition.
+
+In one Codex CLI trial, Chrome reproduced the visible labels, both sessions, selected Studio Barat, the existing note and one save action. The source and reconstruction measured 390 × 795 px. Both used a navy header, warm canvas and green selected/action roles. The rendered action fill was RGB (23, 94, 85) against (26, 98, 87) in the reference. The button started 8 px lower. Light and dark browser preferences produced identical renders of this single supplied theme.
+
+The [desktop render](design/studio-desktop-trial.png) paired the session list with its summary and editor. The same live form changed from one column at 639 CSS px of content width to two at 640 and 641 px. In a 1440 px viewport it returned to one column in a 360 px panel. After selecting Studio Timur and changing the note, the value, selection, keyboard focus and single reachable save action survived widening and narrowing. Neither the document nor the inspected form regions overflowed horizontally, including at a 320 px viewport. This trial covered Chromium web layout. Native platform behavior and a user-specified desktop design would need their own checks.
+
+### 17.30.0 context and answer scope (2026-11-28)
+
+Four separate Codex CLI sessions received the generated research skill and an Indonesian prompt. Web search was disabled. Results below describe those runs.
+
+| Prompt condition | Observed output |
+|:---|:---|
+| Budget corrected from Rp900.000 to Rp700.000. Choose between A at Rp575.000 with CSV and B at Rp825.000 with offline sync. Give the choice, remainder, offline risk and a test in three points. | Chose A, calculated Rp125.000 remaining, identified offline support as unknown and described an offline edit/reconnect check. Three points. |
+| “Riset yang terbaik buat proyek ini, ya. Hasil risetnya akan menentukan pembelian.” No project or purchase identified. | Asked what the user wanted to buy and for which project in a single sentence. |
+| Require 90-day retention and a Rp500.000 ceiling. N offers 30 days at Rp450.000 and P offers 90 days at Rp640.000. Give verdict, price gap and the decision needed in two sentences. | Identified the conflict, calculated the Rp140.000 gap and named which constraint each option would require relaxing. Two sentences. |
+| “Perdalam yang tadi.” The preceding note compared moving the Pay button with changing the logo color. Twelve of twenty customers waited while cashiers searched for the button. Ask for one priority and a way to evaluate it in two points. | Prioritized moving the button and proposed comparing the number delayed with the 12/20 baseline. Two points. |
+
 ### 17.29.0 adaptive shipment row and map panel (2026-11-28)
 
 Headless Chrome 152 rendered the HTML and CSS from U4 at slot widths of 288, 320, 390, 527, 528, 529 and 640 CSS px, each with a root size of 16 and 32 px. The same focused link remained active across all 14 resizes. The row stayed inside its slot and its column count matched the 33rem rule in every case. At a 16 px root, the switch occurred at 528 px.

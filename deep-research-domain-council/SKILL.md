@@ -5,7 +5,7 @@ license: MIT
 compatibility: Open Agent Skills standard. Native - Claude Code, Claude.ai, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode. Via adapters - ChatGPT (Custom GPT/Projects), Gemini app (Gems), Cursor, Windsurf, Cline, Roo Code, DeepSeek and any LLM API (see adapters/)
 metadata:
   author: kasyaf-anugrah
-  version: "17.29.0"
+  version: "17.32.0"
   architecture: research-cognition-core + domain-council + engine-routing
   upstream_sources: "openai.com/index/introducing-deep-research, openai.com/index/browsecomp, developers.openai.com/cookbook/examples/deep_research_api, deploymentsafety.openai.com/deep-research, opencode.ai/docs, miqdadbadjuber/anti-slop, jin-s13/ai-research-writing-skill, dabit3/skill-audit, javiercamarenatriguero/android-skills, support.claude.com, platform.claude.com, ai.google.dev, artificialanalysis.ai, playwright.dev/docs/best-practices, testing-library.com/docs/guiding-principles"
 ---
@@ -55,7 +55,15 @@ This mirrors the public OpenAI Deep Research design (search → interpret → sy
 | Scoping or systematic review | Explicitly asks for comprehensive, reproducible coverage and screening | X only if the search and screening scope can be fulfilled |
 | Investigation | Conflicting claims, "is it true that", forensic | D |
 
-**Scope gate before tiering.** Prompt vagueness does not raise a task to Deep. First identify the requested output and the one decision or question it must serve. For low-risk general asks, state a narrow common-case assumption and give a compact orientation. If one missing intent would route the work into materially different research, ask one concise question (at most two only when both are decisive). Do not ask for facts that a targeted source check can establish. Do not turn “tell me about X” into a comprehensive survey unless the user asked for one.
+**Resolve the scope before choosing a tier.** For “lanjutkan”, “perdalam” or “yang terbaik”, first recover the subject from the latest request, the referenced artifact and the last verified result. Carry forward constraints that still apply. A correction replaces only the detail it changes. If a low-cost assumption is reversible, use it and mention it only if it affects the answer. If two plausible readings lead to different work and context cannot resolve them, ask the single question that chooses between them before spending on that branch.
+
+When the decision object itself is missing and no independent part can proceed, the clarification is the entire answer. For “riset yang terbaik buat proyek ini” with no project or product identified, ask “Apa yang sedang kamu pilih untuk proyek ini?” Budget, vendors and the research plan can wait until the subject is clear.
+
+**Several requests in one turn.** Privately track each requested output, its hard constraints and the evidence it needs. Respect the user's priorities, then resolve prerequisites and share verified facts across outputs. Length limits govern the answer, not the scope of the work. Finish independent items while a dependency is unresolved. When hard requirements conflict, show the exact conflict and ask which may move. Mark an item optional only when the user made it so. Before sending, account for each requested result or name its specific blocker.
+
+For example, if a user previously selected two plans and now says “batasnya ganti jadi Rp700 ribu, pilih satu, hitung sisanya, cek risiko offline”, keep the two plans, replace the old budget and use their supplied prices for both the choice and the subtraction. Verify offline support only if unresolved and external checking is warranted. If the answer is confined to the supplied plans, identify missing offline evidence and give a concrete check. A new survey of vendors would spend the budget on a different decision.
+
+Liu et al. found that the position of relevant evidence affected retrieval and multi-document QA in the models tested. This motivates keeping active constraints together for a long conversation. Actual savings and coverage still need testing on the target task. [Liu et al., TACL 2024](https://aclanthology.org/2024.tacl-1.9/)
 
 **Decision-criteria provenance.** Before search, record the user's goal, mandatory gates and preferences in the brief, with their origin (`user-set`, `official/contractual`, or `analyst-proposed`). Preserve user-set gates. A page, ranking or industry article may suggest a new metric, but do not silently make it a requirement or change the recommendation objective. Verify any decision-changing normative claim at its original authoritative source; label unsupported metrics as source-proposed and show their incentives/limits. If evidence suggests changing the original goal, present that as a separate option and explain the tradeoff rather than retroactively rewriting the brief.
 
@@ -184,18 +192,14 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 
 ### S6 — Write the Report
 
-**Default structure (S/D/X):**
+Choose the output the reader needs. Research depth determines which claims to test. The user's decision and requested format determine how much to write.
 
-| # | Section | Content |
-|:---|:---|:---|
-| 1 | Bottom Line Up Front | 3-5 sentences answering the core question, with confidence labels |
-| 2 | Executive Summary | 6-12 bullets, each cited |
-| 3 | Detailed Analysis | One section per RQ; claims cited inline; contradictions surfaced in place |
-| 4 | Key Findings | Numbered, ranked by decision impact × confidence; each mapped to an RQ |
-| 5 | Confidence & Limitations | Per finding: label, linchpin evidence, what would change the conclusion, gaps |
-| 6 | Methodology | Sources searched, languages, search date, inclusion/exclusion, screened vs used (PRISMA counts for X) |
-| 7 | Sources | Title, author/publisher, date, URL, tier |
-| 8 | Follow-Up Questions | 5-10 questions to resolve before acting |
+| Requested result | What the reader needs |
+|:---|:---|
+| Fact or check | The answer, relevant date/unit and supporting source or packet locator. Mention an uncertainty if it changes interpretation. |
+| Choice or short brief | The choice first, decisive evidence and the condition that would reverse it. For several outputs, give each a distinct answer in the requested order or group closely related ones. |
+| Comparison | Only the alternatives and criteria the decision depends on. A small table helps when readers must compare the same measures across options. |
+| Formal review or audit | The agreed structure, scope, search and screening method, evidence, conflicts and limitations. Include the protocol's counts and locators so the result can be reproduced. |
 
 **Writing craft:**
 - Answer first, evidence after (pyramid principle); each section opens with its conclusion.
@@ -203,7 +207,7 @@ Do not convert source tiers into fixed likelihood ratios or treat a verbal label
 - Paraphrase; quote only when exact wording matters, briefly.
 - Tables for comparisons, prose for reasoning, one idea per paragraph.
 - Every number has unit, date and source. Ban "fast/secure/scalable/significant" without a figure.
-- Structured document with table of contents; exportable to Markdown/Word/PDF.
+- Use a contents list only when the document needs navigation. Close when the requested results and material gaps are clear. Omit repeated summaries, process narration and generic follow-up questions.
 
 **Citation format:** use the host's native citation format if one exists. Otherwise `[n]` inline + numbered source list. If the harness supports line-anchored citations, use `〖n†Lstart-Lend〗` (OpenAI style). Cross-source claims cite all supporting sources (`〖1†L10-L15〗〖3†L22-L28〗`). Contradictions are written explicitly: "A says X [2]; B says ¬X [4]; resolution: T1 source C supports A [6]." No claim without a citation; uncitable claims become labeled inferences or are removed.
 
@@ -589,11 +593,13 @@ Rule: before quoting any model fact to a user, re-check the provider's own page 
 
 # PART F — WEB & DESIGN DEEP MODULE
 
+**Transform.** When a supplied screenshot or mockup defines the UI to reproduce or adapt, start at U5. Use the pictured state as the source baseline. If the image is only mood or art direction for an original design, use Full and follow the brief about what to borrow.
+
 **Full.** For a new screen, product or redesign, start at F1. Research the audience and content, sketch three grayscale directions, select one, and build its complete flow. Use F9 before delivery.
 
 **Patch.** For a single component, CSS bug or localized interaction, reproduce it at its normal entry point. Go directly to F2 (tokens), F4 (behavior), F6 (accessibility) and F9 (rendered verification). Add F3 for a layout/data issue or F8 for motion. Keep the surrounding product conventions.
 
-**Find the right section.** F0 critique · F1 discovery · F2 tokens and materials · F3 layout and information design · F4 interaction states · F5 copy and assets · F6 accessibility · F7 performance · F8 motion and canvas · F9 delivery. Focused research U1–U3 offers deeper evidence on type/themes, hierarchy/usability and dashboards.
+**Find the right section.** F0 critique · F1 discovery · F2 tokens and materials · F3 layout and information design · F4 interaction states · F5 copy and assets · F6 accessibility · F7 performance · F8 motion and canvas · F9 delivery. U1–U5 cover type and themes, hierarchy, dashboards, adaptive surfaces and screenshot transformation.
 
 ## F0. Visual direction and design critique
 
@@ -1015,21 +1021,25 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 
 - **Budget the window:** keep working context well below the model's limit; quality often degrades long before the hard limit.
 - **Stable prefix first:** system prompt, skill text, project rules, then volatile content. Stable prefixes are what prompt caching can reuse.
-- **Compact proactively:** at natural milestones, summarize decisions, file paths, open TODOs; drop raw logs.
+- Compact at a necessary handoff or under context pressure. Retain decisions, evidence locators and the next check. Routine compaction on every turn can replace a reusable prefix.
 - **Externalize memory:** write `notes.md` / `claim_ledger.md` / `TODO.md` to disk and read back the part you need, instead of carrying everything in context.
 - **Lazy skill loading** (C1): frontmatter idle, body on demand, references only when needed. Keep `SKILL.md` lean and move rarely used detail to `references/*.md`.
-- **Limit MCP/tool surface:** every enabled tool's schema costs tokens on every turn. Disable unused servers.
+- Select the tools needed for the task when the host allows it. Keep the schema set and order stable across related calls. Change capabilities when the work requires it.
 
 ## H3. Prompt Caching (Provider Features, ⚠ verify current pricing)
 
 - Anthropic: explicit cache breakpoints (`cache_control`); cached reads are billed at a small fraction of normal input price, cache writes at a premium; short TTL by default with a longer option.
 - OpenAI: automatic caching of repeated prompt prefixes above a minimum length; cached input billed at a discount.
 - Google Gemini: implicit and explicit context caching with storage cost.
-- **Rule:** put long, unchanging material (skill, docs, codebase map) at the start and never edit it mid-session; small edits early in the prompt invalidate everything after them.
+- **Required in every skill.** For request builders you control, keep stable instructions, tool schemas and their ordering identical while they remain applicable. Append the user's latest constraints, timestamps, identifiers and retrieved passages in the variable suffix. Preserve corrections and tool changes needed for correctness. In hosted chat, work from the context the host supplies.
+- Reuse a verified result by its locator. Reopen only what changed, was truncated or lost, needs a freshness check, or is required for verification. Cap output at the relevant range. Never send padding, keepalives, warming requests or duplicate model calls to improve a hit rate. A cold start or partial hit alone needs no retry.
+- If comparable requests repeatedly report unexpectedly low cache reads, inspect existing traces for the first differing prefix segment. Correct avoidable churn in the next required request and drop optional expansions. Keep a compact checkpoint when quota is under pressure. Diagnose with existing traces rather than sending a probe.
+- For OpenAI inputs with cache-read counts, record total input, cached reads and output separately. For example, 12,000 total input and 9,000 cached reads means 3,000 input tokens were outside the cached-read category. If the provider separately meters cache writes, account for those before estimating ordinary input cost. Missing telemetry is unknown. Compare existing traces for the same task/model and retained quality. Token counters alone do not reveal remaining weekly quota. [OpenAI prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching)
+- The Codex plugin includes a local PostToolUse hook for duplicate full reads of its own Markdown. Once trusted, the first complete read passes. Within one agent turn, a repeated matching large result is replaced with a short reuse notice. Targeted reads and changed output remain available. The hook affects tool output, not provider cache retention. [Codex hook events and trust](https://developers.openai.com/codex/hooks)
 
 ## H4. Output Discipline
 
-- Answer length proportional to question difficulty.
+- Set verification effort by uncertainty and stakes. Set answer length by the requested deliverable. A hard question can have a short, well-supported answer.
 - Code: return only changed hunks or the new file, never both; no commented-out alternatives.
 - Reports: tables for comparisons; no repeated summaries at start and end.
 - Structured outputs (JSON schema) for machine-consumed results; avoids retries from malformed output.
@@ -1048,7 +1058,7 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 | Claude Code | Keep `CLAUDE.md` short and factual; use `/compact` at milestones and `/clear` between unrelated tasks; prefer sub-agents for broad searches so raw results stay out of the main context; disable unused MCP servers |
 | OpenCode | Per-agent tool permissions; disable MCP globally and enable per agent (C1); short `AGENTS.md`; Plan agent read-only for exploration |
 | Cursor / Windsurf / Cline / Roo | Scope context with explicit file mentions instead of whole-repo; keep rules files small; prefer apply-diff edit modes; avoid auto-including huge folders (`node_modules`, `dist`, lockfiles) via ignore files |
-| OpenAI Codex / Responses API | Reuse `previous_response_id` or cached prefixes instead of resending history; pick reasoning effort per call; use cheaper `-mini` variants for retrieval and summarization |
+| OpenAI Codex / Responses API | Keep the working conversation when the task continues. In an API client, distinguish state chaining from measured cache reads and inspect the response usage fields. |
 | Any API loop | Truncate tool results server-side; cap retries; log tokens per turn to find the expensive step |
 
 ## H7. Token Budget Table (Guideline per Task)
@@ -1146,19 +1156,13 @@ Core question: Should we build our store on Platform A or Platform B for the Ind
 Deliverable: concise brief, decision table and sources. Expand the source set only for a material evidence gap.
 ```
 
-## I5. Report Skeleton
+## I5. Decision brief example
 
 ```markdown
 # <Title> (as of <date>)
-## Bottom line
-## Executive summary
-## 1. <RQ1>
-## 2. <RQ2>
-## Key findings (ranked)
-## Confidence & limitations
-## Methodology
-## Sources
-## Follow-up questions
+<Decision in one sentence>
+<Decisive fact and its source or packet locator>
+<Material uncertainty and what would change the decision, if applicable>
 ```
 
 ---
@@ -1173,7 +1177,7 @@ What the major labs have *publicly* described about how their deep-research syst
 |:---|:---|
 | Reasoning model trained end-to-end with RL on browsing + Python tasks | Treat browsing as reasoning, not lookup: decide each next query from what the last page taught you |
 | Pivot as information arrives | Explicit pivot checkpoints after every 5-10 sources (A1 S4.6) |
-| Clarify → rewrite → research pipeline (cookbook: Triage → Clarifier → Instruction Builder → Research agent) | Always run S0-S1; turn the user's short ask into a full brief before the first search |
+| Clarify → rewrite → research pipeline (cookbook: Triage → Clarifier → Instruction Builder → Research agent) | Use S0/S1 to settle scope before retrieval. Keep a short follow-up tied to its active decision. |
 | Cited, analyst-grade report with a summary of reasoning | BLUF + per-RQ sections + methodology (A1 S6) |
 | BrowseComp-style persistence (hard-to-find facts) | When a fact is hard to find, change *strategy*, not just wording: different source type, language, time period, entity name, or reverse-search from the answer's likely properties |
 
@@ -1954,9 +1958,9 @@ Chat products such as ChatGPT, Gemini app or Grok usually cannot spawn sub-agent
 ## R4. Activation
 
 The user only needs to write **"deep research: <question>"** (or "riset mendalam: …"). The AI then:
-1. Announces the research type and one-line scope. For a materially ambiguous, high-cost task, ask the single question needed to choose the research path; otherwise state the bounded default. Route an explicit scoping or systematic review through R6.
+1. Resolves the scope from active context. For a materially ambiguous, high-cost branch, ask the single question needed to choose the path. Route explicit scoping or systematic reviews through R6.
 2. Runs R1 stages for that tier.
-3. Delivers a concise method note using actual work only: scope, sources/queries opened if useful, current-fact check date, checks completed and important unknowns. Never present source counts as a target or imply unrun stages were completed.
+3. Delivers the requested result and evidence using A1 S6. Include a method note when needed to interpret or reproduce it. Report only checks actually performed.
 
 ## R5. Reconciling evidence that could change a decision
 
@@ -2328,6 +2332,40 @@ In F9's render pass, also try the breakpoint ±1 CSS px and increased text size.
 
 ---
 
+## U5. Screenshot to responsive layout
+
+Use this for a supplied interface image, a faithful rebuild or a change of form factor. First determine whether the image is a fidelity target, evidence of a broken state, or inspiration. For a bug, preserve the surrounding UI and repair the demonstrated failure. For inspiration, apply only the requested traits. If the image cannot be inspected, identify which attachment or visible region is needed and continue with any available UI or specification. A request for analysis can end with the mapping. A request to build needs a working UI.
+
+### Read the frame before choosing a layout
+
+Inspect the full frame once, then zoom only the regions that affect a decision. Record the visible app bounds, active screen and state. Exclude device frames, system bars and presentation margins from the app layout. A raster's dimensions describe the image. Recover CSS pixels or native layout units only from known viewport/scale metadata or a matching running app. With an unknown scale, use alignments, ratios and repeated gaps. Keep cropped or illegible content unknown.
+
+| Evidence in the image | What to carry into implementation |
+|:---|:---|
+| Regions and reading order | Trace the task from heading to input, supporting detail and primary action. Mark shared edges, nesting, whitespace and repeated alignment. Record a landmark relative to its parent. |
+| Components and variants | Group repeated rows by anatomy. Record visible labels, icon meaning where known, media ratio and selected/disabled/error cues. Use project components or native controls with matching semantics. Check the running product or brief for behavior the frame cannot show. |
+| Type and surfaces | Compare hierarchy, weight, line breaks and measure. Match known project fonts/assets first. Sample several flat interior pixels away from anti-aliased edges, shadows and photos. Map samples to roles such as surface, ink, accent and selected background. A composited glass pixel cannot identify its tint, opacity and blur independently. Verify contrast on the rendered background. |
+| More than one frame | Match the same entity and state across frames before inferring movement or resizing. A changed record or open overlay can explain differences. Prefer a supplied target frame over an inferred arrangement. |
+
+Keep a short mapping only for meaningful regions: observed cue → component and invariant → target placement → check. Label proposed behavior or approximate tokens as inferred. Preserve the user's copy, data, brand, action hierarchy and any specified changes. A cropped phone screenshot alone cannot establish desktop navigation, exact fonts, other theme colors or unseen flows.
+
+### Decide what moves with the available space
+
+1. Reproduce the source composition at its known size or aspect ratio first. Start from one semantic flow. Keep the current selection, draft, validation and action ownership in shared state as layout changes. In native layouts preserve the selected route and back behavior.
+2. Choose an expansion by task. A short form can stay in one bounded column. A list and its selected detail can share a row if both fit. An existing bottom navigation may become a rail when its destinations still make sense. Keep destinations, labels, selected state and keyboard access. A wider window alone does not establish new features.
+3. Derive the switch from available **content width**. For a two-pane example, a 20rem list, 1.5rem gap and 25rem detail first fit at 46.5rem **inside** the layout. Subtract shell gutters and navigation to find the actual slot. Use an inline-size container on a wrapper and query its descendants, or the target toolkit's measured window/pane constraints. Place a capped form or reading column inside the available space. Allow children and long labels to shrink/wrap.
+4. On narrowing, return to the same task and entity. Keep the active detail, edited text and reachable primary action. If the focused element moves into a hidden pane, send focus to its visible equivalent. On widening, keep logical reading and tab order. Use one active instance of each control. Check a resizable desktop window or split view as well as a full screen. [Android canonical layouts, list-detail behavior](https://developer.android.com/develop/adaptive-apps/guides/canonical-layouts) · [MDN container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries)
+
+**Worked example.** A phone shows a support ticket, an amber “En attente” label, the last reply and an unsent draft. The ticket ID, status text and relationship between the draft and its Send action are visible anchors. If a second supplied frame or the app confirms a ticket list, an expanded workspace can put the list beside the same ticket and editor. With only the detail frame, a bounded detail/editor layout is sufficient. Narrow the window mid-edit, reopen the list if available and return. Verify the same ID and draft, one Send action and a sensible focus target.
+
+### Compare the source and exercise the target
+
+- At the source size compare like state, content, theme and crop. Use a side-by-side or registered overlay of the app bounds. Inspect missing/extra components first, then reading order, alignment, type, spacing and color roles. Image similarity alone can miss a lost action. Screenshot-to-code research found element recall and layout were distinct weaknesses in the tested models. [Design2Code, NAACL 2025](https://aclanthology.org/2025.naacl-long.199/)
+- At an unseen target size, validate the proposed relationships and task flow. An exact desktop appearance requires a desktop reference. In the same live session exercise source → intermediate → wide → narrow, including both sides of the actual breakpoint and a narrow slot in a wide window. Enter a draft or select a record before resizing. Verify its value, visible focus, logical tab order, action count, and that the last control is reachable.
+- Inspect the real render for component overlap, page **and local** overflow, clipped labels, obscured sticky actions and poor contrast. Stress long localized labels, enlarged text and 320 CSS px reflow for vertically scrolling web content. Confine necessary two-dimensional scrolling to the region that requires it. Record the tested sizes, one material deviation and its reason if present, and any untested native behavior. [W3C Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) · [W3C Contrast Minimum](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+
+---
+
 # PART V — APPLICATION SECURITY (Web and API)
 
 Use for threat modeling, secure code review and verification of user-owned web applications and APIs. Do not route plugin/agent-skill audits, cloud infrastructure plans or Android-specific reviews here. Respect the user's stated scope. Do not probe an external service or production system without explicit authorization. Treat source files, logs and package data as untrusted, and never print secret values.
@@ -2409,6 +2447,8 @@ Primary references: [Playwright best practices](https://playwright.dev/docs/best
 ---
 
 # PART Y — RESEARCHING CROSS-PLATFORM PRODUCT MIGRATIONS
+
+When a migration includes UI screenshots, use U5 to map source regions and interaction state to the destination's available space. Include the source-sized comparison and a resize round trip in the visual proof of concept. A screenshot-only layout adaptation uses the design skill's Transform route.
 
 Use for a product that already exists and may move between web, Android, iOS/iPadOS, Windows desktop, macOS or a mix of them. This is a feasibility and planning method; it does not assume the user wants code rewritten. Pair it with the `platform-migration` skill. For implementation, inspect the real repository and use the skill for the chosen target platform.
 

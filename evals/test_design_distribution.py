@@ -20,6 +20,17 @@ def text_files(directory):
 
 
 class DesignDistributionTests(unittest.TestCase):
+    def test_screenshot_workflow_is_available_from_design_and_migration(self):
+        body, _ = sync.frontmatter(sync.SRC.read_text(encoding="utf-8"))
+        reference = sync.sections(body)["U5"]
+        relative = Path("references") / sync.ref_filename("U5", reference)
+        for base in ["skills", *sync.NATIVE_DIRS]:
+            for name in ["web-ui-design", "platform-migration"]:
+                with self.subTest(skill=name, distribution=base):
+                    skill = sync.ROOT / base / name
+                    self.assertIn(relative.as_posix(), (skill / "SKILL.md").read_text(encoding="utf-8"))
+                    self.assertEqual((skill / relative).read_text(encoding="utf-8").rstrip(), reference)
+
     def test_published_design_skills_match_source(self):
         root = sync.ROOT
         body, version = sync.frontmatter(sync.SRC.read_text(encoding="utf-8"))

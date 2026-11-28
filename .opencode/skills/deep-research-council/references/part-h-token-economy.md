@@ -25,21 +25,25 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 
 - **Budget the window:** keep working context well below the model's limit; quality often degrades long before the hard limit.
 - **Stable prefix first:** system prompt, skill text, project rules, then volatile content. Stable prefixes are what prompt caching can reuse.
-- **Compact proactively:** at natural milestones, summarize decisions, file paths, open TODOs; drop raw logs.
+- Compact at a necessary handoff or under context pressure. Retain decisions, evidence locators and the next check. Routine compaction on every turn can replace a reusable prefix.
 - **Externalize memory:** write `notes.md` / `claim_ledger.md` / `TODO.md` to disk and read back the part you need, instead of carrying everything in context.
 - **Lazy skill loading** (C1): frontmatter idle, body on demand, references only when needed. Keep `SKILL.md` lean and move rarely used detail to `references/*.md`.
-- **Limit MCP/tool surface:** every enabled tool's schema costs tokens on every turn. Disable unused servers.
+- Select the tools needed for the task when the host allows it. Keep the schema set and order stable across related calls. Change capabilities when the work requires it.
 
 ## H3. Prompt Caching (Provider Features, ⚠ verify current pricing)
 
 - Anthropic: explicit cache breakpoints (`cache_control`); cached reads are billed at a small fraction of normal input price, cache writes at a premium; short TTL by default with a longer option.
 - OpenAI: automatic caching of repeated prompt prefixes above a minimum length; cached input billed at a discount.
 - Google Gemini: implicit and explicit context caching with storage cost.
-- **Rule:** put long, unchanging material (skill, docs, codebase map) at the start and never edit it mid-session; small edits early in the prompt invalidate everything after them.
+- **Required in every skill.** For request builders you control, keep stable instructions, tool schemas and their ordering identical while they remain applicable. Append the user's latest constraints, timestamps, identifiers and retrieved passages in the variable suffix. Preserve corrections and tool changes needed for correctness. In hosted chat, work from the context the host supplies.
+- Reuse a verified result by its locator. Reopen only what changed, was truncated or lost, needs a freshness check, or is required for verification. Cap output at the relevant range. Never send padding, keepalives, warming requests or duplicate model calls to improve a hit rate. A cold start or partial hit alone needs no retry.
+- If comparable requests repeatedly report unexpectedly low cache reads, inspect existing traces for the first differing prefix segment. Correct avoidable churn in the next required request and drop optional expansions. Keep a compact checkpoint when quota is under pressure. Diagnose with existing traces rather than sending a probe.
+- For OpenAI inputs with cache-read counts, record total input, cached reads and output separately. For example, 12,000 total input and 9,000 cached reads means 3,000 input tokens were outside the cached-read category. If the provider separately meters cache writes, account for those before estimating ordinary input cost. Missing telemetry is unknown. Compare existing traces for the same task/model and retained quality. Token counters alone do not reveal remaining weekly quota. [OpenAI prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching)
+- The Codex plugin includes a local PostToolUse hook for duplicate full reads of its own Markdown. Once trusted, the first complete read passes. Within one agent turn, a repeated matching large result is replaced with a short reuse notice. Targeted reads and changed output remain available. The hook affects tool output, not provider cache retention. [Codex hook events and trust](https://developers.openai.com/codex/hooks)
 
 ## H4. Output Discipline
 
-- Answer length proportional to question difficulty.
+- Set verification effort by uncertainty and stakes. Set answer length by the requested deliverable. A hard question can have a short, well-supported answer.
 - Code: return only changed hunks or the new file, never both; no commented-out alternatives.
 - Reports: tables for comparisons; no repeated summaries at start and end.
 - Structured outputs (JSON schema) for machine-consumed results; avoids retries from malformed output.
@@ -58,7 +62,7 @@ Repeated large inputs can dominate an agent loop. Use the host's reported usage 
 | Claude Code | Keep `CLAUDE.md` short and factual; use `/compact` at milestones and `/clear` between unrelated tasks; prefer sub-agents for broad searches so raw results stay out of the main context; disable unused MCP servers |
 | OpenCode | Per-agent tool permissions; disable MCP globally and enable per agent (C1); short `AGENTS.md`; Plan agent read-only for exploration |
 | Cursor / Windsurf / Cline / Roo | Scope context with explicit file mentions instead of whole-repo; keep rules files small; prefer apply-diff edit modes; avoid auto-including huge folders (`node_modules`, `dist`, lockfiles) via ignore files |
-| OpenAI Codex / Responses API | Reuse `previous_response_id` or cached prefixes instead of resending history; pick reasoning effort per call; use cheaper `-mini` variants for retrieval and summarization |
+| OpenAI Codex / Responses API | Keep the working conversation when the task continues. In an API client, distinguish state chaining from measured cache reads and inspect the response usage fields. |
 | Any API loop | Truncate tool results server-side; cap retries; log tokens per turn to find the expensive step |
 
 ## H7. Token Budget Table (Guideline per Task)

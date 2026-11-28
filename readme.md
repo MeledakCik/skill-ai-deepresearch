@@ -4,7 +4,7 @@ Skill agent AI untuk **riset mendalam setingkat peneliti senior**, dilengkapi de
 
 | | |
 |:---|:---|
-| **Versi** | 17.29.0 |
+| **Versi** | 17.32.0 |
 | **Format** | 16 skill fokus di `skills/`, dibangun oleh `scripts/sync.py` untuk format Agent Skills |
 | **Kompatibel** | Claude Code, Claude.ai, OpenAI Codex, ChatGPT, Gemini CLI, Gemini app, GitHub Copilot, OpenCode, Cursor, Windsurf, Cline, Roo Code, DeepSeek, API LLM apa pun |
 | **Lisensi** | MIT |
@@ -23,7 +23,7 @@ Pilih skill berdasarkan hasil yang ingin dibuat. Panduan inti cukup untuk memula
 | `research-data-analysis` | Audit data, analisis statistik, estimasi, sensitivitas dan sintesis kuantitatif |
 | `application-security` | Threat model dan secure code review untuk aplikasi web/API |
 | `software-testing` | Strategi tes, implementasi, review dan diagnosis tes flaky lintas stack |
-| `web-ui-design` | Riset desain, ritme baca, grid responsif, warna terang/gelap, pengujian hierarki, grafik dan komponen interaktif |
+| `web-ui-design` | Membaca screenshot, mengadaptasi UI mobile dan desktop, meneliti hierarki, warna, grid, grafik dan komponen interaktif |
 | `ui-component-motion` | Membuat komponen interaktif dan animasi sesuai alur produk, termasuk navigasi keyboard dan tampilan minim gerak |
 | `natural-writing` | Tulisan natural, membuang gaya "AI banget" |
 | `academic-writing` | Skripsi/tesis/disertasi (Bab I–V), paper, proposal |
@@ -192,7 +192,7 @@ Skill aktif otomatis kalau permintaan cocok dengan deskripsinya. Anda juga bisa 
 | **C — Domain Council** | OpenCode runtime, penulisan akademik + Bab I–V, Android, full-stack, audit keamanan skill dan rujukan C3 ke F0 untuk kritik visual | Sesuai domain |
 | **D — Model & Engine Routing** | Fakta OpenAI Deep Research (terverifikasi), routing effort, profil engine | Memilih model/effort |
 | **E — Delivery Gates** | 15 gate kelulusan sebelum hasil dikirim | Selalu, di akhir |
-| **F — Web & Design Deep Module** | Jalur Full/Patch, sistem visual, gradien dan kaca, pemilihan grafik, layout responsif per komponen, pemulihan interaksi, Canvas/WebGL dan verifikasi render | Website, alur produk, dashboard dan komponen |
+| **F — Web & Design Deep Module** | Jalur Transform/Full/Patch, sistem visual, gradien dan kaca, pemilihan grafik, layout responsif per komponen, pemulihan interaksi, Canvas/WebGL dan verifikasi render | Website, alur produk, dashboard dan komponen |
 | **G — Natural Writing** | Pola tulisan khas AI yang dibuang, ciri tulisan ahli, contoh sebelum/sesudah | Laporan, dokumen, copy |
 | **H — Token Economy** | Rumus biaya, 10 sumber pemborosan, kebersihan konteks, prompt caching, tips per harness, audit token | Sesi agen panjang/mahal |
 | **I — Templates** | `source_log`, `contradictions`, matriks ACH terisi, contoh rencana riset, kerangka laporan | Riset tier S ke atas |
@@ -222,16 +222,16 @@ S0 Triage → S1 Brief → S2 Rencana (pohon RQ + hipotesis) → S3 Cari (luas)
         ↑____________ bisa kembali merencana ulang kapan saja ____________|
 ```
 
-Rentang berikut membantu memperkirakan anggaran. Pencarian dapat berhenti ketika bukti sudah menjawab pertanyaan dan pengujian terhadap penjelasan lain selesai. Bila kuota habis lebih dulu, catat celahnya.
+Pilih kedalaman berdasarkan pertanyaan yang belum terjawab. Beberapa permintaan bisa memakai bukti yang sama. Bila kuota habis lebih dulu, catat kesimpulan yang sudah terverifikasi dan celah yang masih memengaruhi keputusan.
 
-| Tier | Sumber dibaca | Sumber independen per klaim kunci | Contoh |
-|:---|:---|:---|:---|
-| Q | 1–5 | 1–2 | Satu fakta |
-| S | 10–25 | ≥2 | Perbandingan, lanskap |
-| D | 25–60 | ≥3 | Brief keputusan, investigasi |
-| X | 60–200+ | ≥3 + log PRISMA | Tinjauan sistematis |
+| Tier | Kapan cukup |
+|:---|:---|
+| Q · Cek fakta | Bukti langsung menjawab satu klaim dengan satuan dan tanggal yang sesuai. |
+| S · Perbandingan | Kriteria penentu setiap opsi sudah diperiksa dan kekosongan bukti ditandai. |
+| D · Investigasi | Kesimpulan sudah diuji terhadap bukti yang bertentangan dan asumsi yang bisa membalik keputusan. |
+| X · Tinjauan sistematis | Pencarian dan penyaringan yang ditetapkan protokol telah dijalankan dan dicatat. |
 
-**Format laporan bawaan:** jawaban di depan (BLUF) → ringkasan eksekutif → analisis per pertanyaan riset → temuan kunci → keyakinan & keterbatasan → metodologi → sumber → pertanyaan lanjutan.
+Jawaban dibuka dengan hasil yang diminta. Cek fakta cukup memuat temuan dan sumbernya. Untuk keputusan, sertakan bukti penentu dan kondisi yang bisa mengubah pilihan. Untuk tinjauan sistematis, sertakan metode, hasil penyaringan, dan keterbatasan.
 
 ---
 
@@ -277,6 +277,20 @@ Fakta OpenAI Deep Research yang **sudah diverifikasi**: HLE 26,6%, BrowseComp 51
 ---
 
 ## Riwayat versi
+
+### v17.32.0
+
+Semua skill wajib memakai ulang bukti dan mempertahankan awalan prompt yang stabil. Dengan Python 3.9+ dan hook tepercaya, Codex mengganti keluaran berulang dari pembacaan utuh Markdown skill berukuran minimal 4 KiB dengan pemberitahuan pendek. Berlaku untuk `cat` dan `Get-Content` satu berkas pada giliran dan agen yang sama. Baca pertama, potongan teks, keluaran yang berubah serta pembacaan setelah kompaksi tetap diteruskan. Hook menyimpan sidik jari lokal dan membersihkan entri berusia lebih dari satu hari pada pembacaan yang cocok berikutnya.
+
+Saat memasang atau memperbarui plugin, tinjau hook di **Settings → Hooks** pada Codex desktop atau `/hooks` di CLI. Awalan yang stabil memberi peluang cache hit. Status hit dan sisa kuota tetap mengikuti data yang dilaporkan penyedia. [Dokumentasi hook Codex](https://developers.openai.com/codex/hooks) · [Prompt caching OpenAI](https://developers.openai.com/api/docs/guides/prompt-caching)
+
+### v17.31.0
+
+Jalur [Transform](skills/web-ui-design/references/part-u5-screenshot-to-responsive-layout.md) membaca struktur, komponen, warna dan status dari gambar UI. Tampilan dibandingkan dahulu pada ukuran asal. Saat dipindah ke desktop, lebar panel menentukan kapan susunan berubah. Pilihan, isi formulir dan aksi utama ikut diuji saat layar dilebarkan lalu dipersempit.
+
+### v17.30.0
+
+Semua skill membaca permintaan lanjutan seperti “perdalam lagi” bersama koreksi terakhir dan batasan yang masih berlaku. Jika ada beberapa permintaan, tiap hasil tetap diperiksa dan satu sumber bisa menjawab beberapa poin. Jawaban riset dimulai dari hasil yang diminta. Metode dan bukti lengkap tetap disertakan untuk tinjauan sistematis.
 
 ### v17.29.0
 

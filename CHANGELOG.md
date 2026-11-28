@@ -1,5 +1,17 @@
 # Changelog
 
+## v17.32.0
+
+All focused skills now require stable request prefixes, bounded reads and evidence reuse. Added a Codex PostToolUse hook that replaces duplicate complete reads of bundled skill Markdown in the same turn with a small notice. It keeps local fingerprints, resets them on compaction and passes through changed, partial or unavailable results. Cache hits and quota are reported only from host telemetry.
+
+## v17.31.0
+
+Added a Transform route for screenshot-based UI work. The design and migration skills now share a reference for extracting visible component and color relationships, adapting them to available space and checking source fidelity and state across a live resize.
+
+## v17.30.0
+
+All focused skills now resolve vague follow-ups against active constraints and keep track of each requested result. The research workflow groups questions that share evidence, asks for a choice only where it changes the outcome, and delivers the answer in the requested format. Formal reviews retain their method and screening records. Removed repeated retrieval instructions from the research entry point.
+
 ## v17.29.0
 
 Added a worked shipment layout to the design and component skills. The guide derives a component breakpoint from its contents, shows how changing panel opacity affects text contrast, and covers checks for focus, reflow and image size across placements.

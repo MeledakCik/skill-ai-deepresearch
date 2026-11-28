@@ -1,2 +1,2 @@
 # Host: ChatGPT
-Use the attached reference for the selected skill. For a deep research request in Deep research mode, put the brief and plan in the first turn. With ordinary web search, work one question at a time and retain a short evidence summary.
+Use the attached reference for the selected skill. In Deep research mode, use the planning step to settle consequential scope choices. With ordinary web search, reuse verified evidence for related questions.

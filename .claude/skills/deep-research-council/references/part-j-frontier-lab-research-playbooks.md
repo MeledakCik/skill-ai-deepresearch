@@ -8,7 +8,7 @@ What the major labs have *publicly* described about how their deep-research syst
 |:---|:---|
 | Reasoning model trained end-to-end with RL on browsing + Python tasks | Treat browsing as reasoning, not lookup: decide each next query from what the last page taught you |
 | Pivot as information arrives | Explicit pivot checkpoints after every 5-10 sources (A1 S4.6) |
-| Clarify → rewrite → research pipeline (cookbook: Triage → Clarifier → Instruction Builder → Research agent) | Always run S0-S1; turn the user's short ask into a full brief before the first search |
+| Clarify → rewrite → research pipeline (cookbook: Triage → Clarifier → Instruction Builder → Research agent) | Use S0/S1 to settle scope before retrieval. Keep a short follow-up tied to its active decision. |
 | Cited, analyst-grade report with a summary of reasoning | BLUF + per-RQ sections + methodology (A1 S6) |
 | BrowseComp-style persistence (hard-to-find facts) | When a fact is hard to find, change *strategy*, not just wording: different source type, language, time period, entity name, or reverse-search from the answer's likely properties |
 

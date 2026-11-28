@@ -43,17 +43,11 @@ Core question: Should we build our store on Platform A or Platform B for the Ind
 Deliverable: concise brief, decision table and sources. Expand the source set only for a material evidence gap.
 ```
 
-## I5. Report Skeleton
+## I5. Decision brief example
 
 ```markdown
 # <Title> (as of <date>)
-## Bottom line
-## Executive summary
-## 1. <RQ1>
-## 2. <RQ2>
-## Key findings (ranked)
-## Confidence & limitations
-## Methodology
-## Sources
-## Follow-up questions
+<Decision in one sentence>
+<Decisive fact and its source or packet locator>
+<Material uncertainty and what would change the decision, if applicable>
 ```

@@ -1,5 +1,7 @@
 # PART Y — RESEARCHING CROSS-PLATFORM PRODUCT MIGRATIONS
 
+When a migration includes UI screenshots, use U5 to map source regions and interaction state to the destination's available space. Include the source-sized comparison and a resize round trip in the visual proof of concept. A screenshot-only layout adaptation uses the design skill's Transform route.
+
 Use for a product that already exists and may move between web, Android, iOS/iPadOS, Windows desktop, macOS or a mix of them. This is a feasibility and planning method; it does not assume the user wants code rewritten. Pair it with the `platform-migration` skill. For implementation, inspect the real repository and use the skill for the chosen target platform.
 
 ## Y1. Establish the actual migration

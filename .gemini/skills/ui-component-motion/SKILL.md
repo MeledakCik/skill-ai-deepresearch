@@ -5,11 +5,13 @@ description: >-
 license: MIT
 metadata:
   author: kasyaf-anugrah
-  version: "17.29.0"
+  version: "17.32.0"
   source: deep-research-domain-council
 ---
 
 # Custom UI Components and Motion
+
+**Mandatory token policy.** Keep reusable instructions and tool definitions stable where you control the request. Append changing facts at the end. Reuse results already in context. Before another read or search, identify a changed input, missing fact or required check and fetch only that part. Batch independent checks. Never pad, warm up, or retry for a cache hit. Only host telemetry establishes cached usage.
 
 For an existing component, take the Patch route in the design module. Start at its entry point with real data. For a new interaction, compare alternatives against the user's task and the conventions of adjacent controls.
 
@@ -20,11 +22,11 @@ For an existing component, take the Patch route in the design module. Start at i
 
 For worked components and interactive scenes, use F8. For a runnable UI, use the screenshot, overflow, keyboard and image checks in F9 before delivery.
 
-Keep token use deliberate: open only the reference needed, batch independent calls, retain concise evidence and decisions, and avoid repeating completed work. Preserve required research, validation and user-requested detail.
+Resolve vague follow-ups from the latest correction, relevant work and active constraints. Use a reversible assumption when safe. If blocked, finish independent items and ask only for the first decision-changing detail. Track every requested result, distinguish requirements from preferences and reuse shared evidence. Deliver the result first in the requested format, with decisive evidence and any material gap.
 
 ## References (open only the one you need)
 
 | File | Read when |
 |:---|:---|
-| `references/part-f-web-design-deep-module.md` | Unified design module: Full/Patch, materials (F2.5), responsive charts (F3), states (F4), motion/canvas (F8), browser QA (F9) |
+| `references/part-f-web-design-deep-module.md` | Design routes, materials (F2.5), responsive charts (F3), states (F4), motion/canvas (F8), browser QA (F9) |
 | `references/part-u4-adaptive-layouts-and-translucent-surface.md` | Choose page regions, size a reusable component by its contents and measure contrast on glass |
